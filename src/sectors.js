@@ -62,8 +62,8 @@ module.exports = function (subhero, mock, C, access) {
     const pack = pre(mock("board-pack", "#F6F8FC", "Your board pack", "A deck that reads like ", "", "pack"), "pack", d.pre).replace('A deck that reads like </h2><p class="lead"></p>', "A deck that reads like " + C("your business.") + '</h2><p class="lead">The slides a board in this sector expects, filled from the ledger and the plan. Click any text to edit it.</p>');
     const fit = d.fit ? `<section id="fit" class="ab-sec" style="background: #FFFFFF">
 <div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
-<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 900px"><p class="ey">Who else it fits</p><h2 class="h2">Most businesses fit. ${C("Here is where the edges are.")}</h2><p class="lead">This is the design scope, and it will move as early users tell us what they need.</p></div>
-<div class="sx-fit rv">${d.fit.map((f, i) => `<div class="sx-f${i}"><small>${f[0]}</small><p>${f[1]}</p><ul>${f[2].map((x) => `<li><b>${x[0]}</b><span>${x[1]}</span></li>`).join("")}</ul></div>`).join("")}</div>
+<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 900px"><p class="ey">Who else it fits</p><h2 class="h2">Most businesses fit. ${C("Here is where the edges are.")}</h2><p class="lead">Type what you do, or pick from the list. This is the design scope, and it will move as early users tell us what they need.</p></div>
+<div class="m-card" data-widget="fit"></div>
 </div>
 </section>` : "";
     const spec = `<section id="specifics" class="ab-sec ab-dark">

@@ -43,6 +43,8 @@
       var d = new DOMParser().parseFromString(html, "text/html");
       var nt = d.getElementById("tpl"), na = d.getElementById("app");
       if (!nt || !na) throw new Error("page");
+      var ns = d.querySelector('script[src*="assets/app."]'), cs = document.querySelector('script[src*="assets/app."]'), nl = d.querySelector('link[href*="assets/site."]'), cl = document.querySelector('link[href*="assets/site."]');
+      if ((ns && cs && ns.getAttribute("src") !== cs.getAttribute("src")) || (nl && cl && nl.getAttribute("href") !== cl.getAttribute("href"))) { location.href = url.replace(/^index\.html/, "./").replace(/\.html/, ""); return; }
       document.getElementById("tpl").innerHTML = nt.innerHTML;
       app.innerHTML = na.innerHTML;
       document.title = d.title;
