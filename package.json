@@ -1,0 +1,6 @@
+{
+  "name": "countahead-site",
+  "private": true,
+  "scripts": { "build": "node src/build.js" },
+  "devDependencies": { "jsdom": "^24.0.0" }
+}

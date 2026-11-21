@@ -1,0 +1,1166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Countahead homepage</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFFFFF}
+a{color:#2450DC}a:hover{color:#0B1B3A}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #2450DC;outline-offset:3px}
+button{font-family:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding-left:24px;padding-right:24px;box-sizing:border-box}
+.ey{margin:0;font-size:13px;font-weight:800;letter-spacing:.12em;color:#2450DC;text-transform:uppercase}
+.h2{margin:0;font-stretch:125%;font-weight:800;font-size:clamp(38px,5.4vw,76px);line-height:.96;letter-spacing:-.035em;text-wrap:balance}
+.lead{margin:0;font-size:19px;line-height:1.55;color:#2B3648}
+.navlinks{display:flex}
+@media (max-width:860px){.navlinks{display:none}}
+.b-teal{transition:box-shadow .15s,transform .15s}.b-teal:hover{color:#FFFFFF;box-shadow:4px 4px 0 #0B1B3A;transform:translate(-2px,-2px)}
+.b-white{transition:background .15s,box-shadow .15s,transform .15s}.b-white:hover{background:#E4F7EE;color:#0B1B3A;box-shadow:4px 4px 0 #2450DC;transform:translate(-2px,-2px)}
+.b-amber{transition:box-shadow .15s,transform .15s}.b-amber:hover{color:#0B1B3A;box-shadow:4px 4px 0 #2450DC;transform:translate(-2px,-2px)}
+.cell{transition:background .15s}
+@media (hover:hover){.cell:hover{background:#E4F7EE}}
+.caret{display:inline-block;width:2px;height:1.1em;background:#0B1B3A;vertical-align:-0.15em;margin-left:2px;animation:blink 1.1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.r1{animation:rise .6s .05s both ease-out}.r2{animation:rise .6s .15s both ease-out}.r3{animation:rise .6s .25s both ease-out}.r4{animation:rise .6s .35s both ease-out}.r5{animation:rise .7s .45s both ease-out}
+@keyframes beacon{0%{transform:scale(.6);opacity:.7}70%,100%{transform:scale(2.8);opacity:0}}
+.beacon{animation:beacon 2.2s ease-out infinite}
+@keyframes scan{0%{top:0;opacity:0}8%{opacity:1}55%{top:100%;opacity:1}60%,100%{top:100%;opacity:0}}
+.scan{animation:scan 9s linear infinite}
+@keyframes f1{0%,8%{background:#FFFFFF}12%,90%{background:#E4F7EE}100%{background:#FFFFFF}}
+@keyframes f2{0%,20%{background:#FFFFFF}24%,90%{background:#E4F7EE}100%{background:#FFFFFF}}
+@keyframes f3{0%,32%{background:#FFFFFF}36%,90%{background:#E4F7EE}100%{background:#FFFFFF}}
+@keyframes f4{0%,44%{background:#FFFFFF}48%,90%{background:#E4F7EE}100%{background:#FFFFFF}}
+.f1{animation:f1 9s infinite}.f2{animation:f2 9s infinite}.f3{animation:f3 9s infinite}.f4{animation:f4 9s infinite}
+@keyframes p5{0%,56%{opacity:0;transform:translateY(8px)}62%,92%{opacity:1;transform:none}100%{opacity:0;transform:translateY(8px)}}
+.p5{animation:p5 9s infinite}
+@keyframes lit{0%,22%{background:#E4F7EE;box-shadow:6px 6px 0 #2450DC;transform:translate(-3px,-3px)}28%,100%{background:#FFFFFF;box-shadow:0 0 0 #2450DC;transform:none}}
+.lit{animation:lit 8s infinite}
+@keyframes rail{from{width:0}to{width:100%}}
+.rail{animation:rail 8s linear infinite}
+@keyframes lift{from{transform:translateY(40px)}to{transform:none}}
+@supports (animation-timeline: view()){.rv{animation:lift linear both;animation-timeline:view();animation-range:entry 0% entry 40%}}
+section[id]{scroll-margin-top:76px}
+.prog{display:none}
+@keyframes prog{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@supports (animation-timeline: scroll()){.prog{display:block;transform-origin:0 50%;animation:prog linear both;animation-timeline:scroll(nearest block)}}
+@keyframes grow{from{transform:scaleY(0)}to{transform:none}}
+.gb{transform-origin:50% 100%;animation:grow .7s both cubic-bezier(.2,.8,.2,1)}
+.mbtn{transition:background .15s}
+@media (hover:hover){.mbtn:hover{background:rgba(255,255,255,.08)}}
+@keyframes drift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(8%,10%) scale(1.15)}}
+@keyframes drift2{0%,100%{transform:translate(0,0) scale(1.1)}50%{transform:translate(-10%,-8%) scale(.9)}}
+.a1{animation:drift1 14s ease-in-out infinite}.a2{animation:drift2 18s ease-in-out infinite}
+@keyframes wd{from{opacity:0;transform:translateY(.5em)}to{opacity:1;transform:none}}
+.w{display:inline-block;animation:wd .8s both cubic-bezier(.2,.8,.2,1)}
+@keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.marq{animation:marq 38s linear infinite}
+@keyframes tilt{from{transform:perspective(1100px) rotateX(18deg) scale(.9);opacity:.6}to{transform:perspective(1100px) rotateX(0) scale(1);opacity:1}}
+@supports (animation-timeline: view()){.tilt{transform-origin:50% 0;animation:tilt linear both;animation-timeline:view();animation-range:entry 0% cover 32%}}
+@keyframes fillin{from{background-size:0% 100%,100% 100%}to{background-size:100% 100%,100% 100%}}
+.mani{view-timeline-name:--mani}
+@supports (animation-timeline: view()){
+.fill{color:transparent;-webkit-background-clip:text;background-clip:text;background-repeat:no-repeat;background-image:linear-gradient(#0B1B3A,#0B1B3A),linear-gradient(#CBD2DF,#CBD2DF);background-size:0% 100%,100% 100%;animation:fillin linear both;animation-timeline:--mani;animation-range:cover 12% cover 48%}
+.fill2{background-image:linear-gradient(#2450DC,#2450DC),linear-gradient(#CBD2DF,#CBD2DF);animation-range:cover 46% cover 62%}
+}
+.marq2{animation:marq 46s linear infinite reverse}
+.ghost{position:absolute;left:0;white-space:nowrap;font-stretch:125%;font-weight:800;font-size:30vw;line-height:.8;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1.5px #E3E8F0;pointer-events:none}
+@keyframes gl{from{transform:translateX(8%)}to{transform:translateX(-50%)}}
+@keyframes gr{from{transform:translateX(-50%)}to{transform:translateX(8%)}}
+@supports (animation-timeline: view()){.g1{animation:gl linear both;animation-timeline:--mani;animation-range:cover 0% cover 100%}.g2{animation:gr linear both;animation-timeline:--mani;animation-range:cover 0% cover 100%}}
+@media (prefers-reduced-motion:reduce){.marq2,.g1,.g2{animation:none}}
+.hs{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:6px 24px 20px 24px;margin:0 -24px;scrollbar-width:none}
+.hs::-webkit-scrollbar{display:none}
+.nosb{scrollbar-width:none}.nosb::-webkit-scrollbar{display:none}
+.hc{flex:0 0 min(80%,310px);scroll-snap-align:center;box-sizing:border-box}
+.swipe{display:flex}
+@media (min-width:1100px){.hs{overflow:visible;margin:0;padding:0;gap:16px}.hc{flex:1 1 0;min-width:0}.swipe{display:none}}
+@keyframes shine{from{background-position:0 0}to{background-position:200% 0}}
+.shine{background:linear-gradient(90deg,#A9E8CF 0,#FFFFFF 25%,#A9E8CF 50%,#A9E8CF 100%);background-size:200% 100%;animation:shine 2.8s linear infinite}
+.bento{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.bw{grid-column:span 2}
+@media (min-width:900px){.bento{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}}
+.bt{transition:transform .2s,border-color .2s,background .2s}
+@media (hover:hover){.bt:hover{transform:translateY(-4px);border-color:#A9E8CF}}
+@media (max-width:700px){.stk{position:sticky}.stk1{top:84px}.stk2{top:140px}.stk3{top:196px}.stk4{top:252px}}
+@media (prefers-reduced-motion:reduce){.a1,.a2,.w,.marq,.tilt,.fill,.shine{animation:none}.fill{color:#0B1B3A;background:none}}
+@keyframes growx{from{transform:scaleX(0)}to{transform:none}}
+.gx{transform-origin:0 50%;animation:growx .8s .1s both cubic-bezier(.2,.8,.2,1)}
+@keyframes nd1{0%,100%{transform:none}50%{transform:translateY(7px)}}
+@keyframes nd2{0%,100%{transform:none}50%{transform:translateY(-7px)}}
+@keyframes pop{0%{transform:scale(.97)}60%{transform:scale(1.015)}100%{transform:none}}
+@media (prefers-reduced-motion:reduce){.gb,.prog,.gx{animation:none}.mcard{animation:none !important}}
+@media (prefers-reduced-motion:reduce){.caret,.r1,.r2,.r3,.r4,.r5,.beacon,.scan,.f1,.f2,.f3,.f4,.p5,.lit,.rail,.rv{animation:none}}
+</style>
+</helmet>
+<div style="font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; color: #0B1B3A; background: #FFFFFF; width: 100%; font-variant-numeric: tabular-nums; font-size: 17px; line-height: 1.5; overflow-x: clip">
+
+<header style="position: sticky; top: 0; z-index: 30; background: rgba(255,255,255,0.94); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-bottom: 1px solid #0B1B3A">
+<div class="wrap" style="padding-top: 10px; padding-bottom: 10px; display: flex; align-items: center; justify-content: space-between; gap: 12px 16px">
+<a href="#top" aria-label="{{brand}} home" style="display: flex; align-items: center; gap: 10px; color: #0B1B3A; text-decoration: none; min-height: 44px; min-width: 0">
+<svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true" style="flex: none"><rect x="0" y="9" width="17" height="17" style="fill: #0B1B3A"></rect><rect x="9" y="0" width="17" height="17" style="fill: #2450DC"></rect><rect x="9" y="9" width="8" height="8" style="fill: #A9E8CF"></rect></svg>
+<span style="font-stretch: 125%; font-weight: 800; font-size: 20px; letter-spacing: -0.02em">{{brand}}</span>
+</a>
+<nav class="navlinks" aria-label="Main" style="align-items: center; gap: 4px 22px; font-size: 15px; font-weight: 600">
+<a href="#different" style="color: #0B1B3A; text-decoration: none; padding: 12px 0">Why it is different</a>
+<a href="#accounting" style="color: #0B1B3A; text-decoration: none; padding: 12px 0">Accounting</a>
+<a href="#who" style="color: #0B1B3A; text-decoration: none; padding: 12px 0">Who it is for</a>
+<a href="#control" style="color: #0B1B3A; text-decoration: none; padding: 12px 0">Controls</a>
+<a href="#planning" style="color: #0B1B3A; text-decoration: none; padding: 12px 0">Planning</a>
+<a href="#about" style="color: #0B1B3A; text-decoration: none; padding: 12px 0">About</a>
+</nav>
+<a href="#access" class="b-teal" style="flex: none; background: #0B1B3A; color: #FFFFFF; text-decoration: none; font-weight: 700; font-size: 15px; padding: 11px 16px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; gap: 8px">Early access <span aria-hidden="true">&rarr;</span></a>
+</div>
+<div class="prog" aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: -3px; height: 3px; background: linear-gradient(90deg, #0B1B3A, #2450DC 60%, #A9E8CF)"></div>
+</header>
+
+<section id="top" style="position: relative; overflow: clip; background: #0B1B3A; color: #FFFFFF">
+<div aria-hidden="true" style="position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 44px 44px; -webkit-mask-image: linear-gradient(180deg, #000 0, transparent 70%); mask-image: linear-gradient(180deg, #000 0, transparent 70%)"></div>
+<div aria-hidden="true" class="a1" style="position: absolute; width: 120vw; max-width: 900px; aspect-ratio: 1; left: -35%; top: -180px; background: radial-gradient(closest-side, rgba(36,80,220,0.55), rgba(36,80,220,0))"></div>
+<div aria-hidden="true" class="a2" style="position: absolute; width: 100vw; max-width: 760px; aspect-ratio: 1; right: -40%; top: 260px; background: radial-gradient(closest-side, rgba(169,232,207,0.38), rgba(169,232,207,0))"></div>
+<div class="wrap" style="position: relative; z-index: 1; padding-top: 48px; padding-bottom: 88px; display: flex; flex-direction: column; gap: 40px">
+<div style="display: flex; flex-direction: column; gap: 24px">
+<p class="r1" style="margin: 0; align-self: flex-start; display: inline-flex; align-items: stretch; border: 1px solid rgba(255,255,255,0.35); background: rgba(255,255,255,0.08); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); font-size: 14px; font-weight: 700; line-height: 1.2"><span style="background: #A9E8CF; color: #0B1B3A; padding: 8px 10px; font-size: 12px; font-weight: 800; letter-spacing: 0.1em; display: inline-flex; align-items: center">NEW</span><span style="padding: 8px 12px; display: inline-flex; align-items: center">The forward-looking ledger</span></p>
+<h1 style="margin: 0; font-stretch: 125%; font-weight: 800; font-size: clamp(46px, 12.4vw, 132px); line-height: 0.9; letter-spacing: -0.045em"><span class="w" style="animation-delay: 0.10s">Your</span> <span class="w" style="animation-delay: 0.17s">books</span> <span class="w" style="animation-delay: 0.24s">are</span> <span class="w" style="animation-delay: 0.31s">done.</span><br><span style="color: #5B8CFF"><span class="w" style="animation-delay: 0.50s">Your</span> <span class="w" style="animation-delay: 0.57s">future</span> <span class="w" style="animation-delay: 0.64s">is</span> <span class="w" style="animation-delay: 0.71s">clear.</span></span></h1>
+<p class="r4" style="margin: 0; max-width: 34em; font-size: clamp(18px, 2vw, 22px); line-height: 1.5; color: #E1E7F2; text-wrap: pretty">One ledger for the past and the future. Agents keep the books, you approve, and your forecast, runway and board pack read the same numbers.</p>
+<div class="r4" style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center">
+<a href="#access" class="b-amber" style="background: #A9E8CF; color: #0B1B3A; text-decoration: none; font-weight: 800; font-size: 17px; padding: 18px 26px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 0 44px rgba(169,232,207,0.45)">Get early access <span aria-hidden="true">&rarr;</span></a>
+<a href="#different" style="background: rgba(255,255,255,0.06); color: #FFFFFF; border: 1px solid rgba(255,255,255,0.45); text-decoration: none; font-weight: 600; font-size: 17px; padding: 17px 24px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center">See why it is different</a>
+</div>
+</div>
+
+<div class="r5" style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.22); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); display: flex; flex-direction: column">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 6px 16px; padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.14)">
+<span style="font-size: 13px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: #A9E8CF">Tap a month. One ledger, past and future.</span>
+<span style="display: inline-flex; align-items: center; gap: 14px; font-size: 13px; color: #C7D2E6"><span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; background: #FFFFFF; display: inline-block"></span>Actual</span><span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 12px; height: 12px; box-sizing: border-box; border: 1px solid #A9E8CF; background: repeating-linear-gradient(135deg, #A9E8CF 0 1.5px, transparent 1.5px 4px); display: inline-block"></span>Forecast</span></span>
+</div>
+<div role="group" aria-label="Months, cash balance" style="display: flex; align-items: stretch; padding: 10px 8px 0 8px">
+<sc-for list="{{rail}}" as="m" hint-placeholder-count="12">
+<button type="button" class="mbtn" aria-pressed="{{m.pressed}}" aria-label="{{m.aria}}" onClick="{{m.pick}}" style="flex: 1 1 0; min-width: 0; padding: 0 2px; border: 0; border-bottom: 3px solid {{m.ul}}; background: {{m.bg}}; cursor: pointer; display: flex; flex-direction: column; justify-content: flex-end; align-items: stretch; gap: 6px; height: 132px; color: #FFFFFF">
+<span class="gb" style="display: block; height: {{m.h}}; box-sizing: border-box; border: 1px solid {{m.bd}}; background: {{m.fill}}; box-shadow: {{m.glow}}; animation-delay: {{m.delay}}"></span>
+<span style="font-size: 11px; font-weight: {{m.lw}}; color: {{m.lc}}; padding-bottom: 6px; white-space: nowrap; overflow: hidden">{{m.lab}}</span>
+</button>
+</sc-for>
+</div>
+<div aria-live="polite" style="background: {{mBg}}; border-top: 1px solid rgba(255,255,255,0.22); padding: 18px 16px; display: flex; flex-direction: column; gap: 12px; transition: background .3s">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px">
+<span style="font-stretch: 112%; font-weight: 800; font-size: 20px; letter-spacing: -0.01em">{{mTitle}}</span>
+<span style="font-size: 12px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 8px; background: {{mTagBg}}; color: {{mTagFg}}">{{mTag}}</span>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 12px 28px">
+<div style="flex: 1 1 84px; min-width: 0"><div style="font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #C7D2E6">Revenue</div><div style="font-stretch: 112%; font-weight: 800; font-size: clamp(24px, 3.4vw, 40px); letter-spacing: -0.02em">{{mRev}}</div></div>
+<div style="flex: 1 1 84px; min-width: 0"><div style="font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #C7D2E6">Net burn</div><div style="font-stretch: 112%; font-weight: 800; font-size: clamp(24px, 3.4vw, 40px); letter-spacing: -0.02em">{{mBurn}}</div></div>
+<div style="flex: 1 1 84px; min-width: 0"><div style="font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #C7D2E6">Cash</div><div style="font-stretch: 112%; font-weight: 800; font-size: clamp(24px, 3.4vw, 40px); letter-spacing: -0.02em; color: #A9E8CF">{{mCash}}</div></div>
+</div>
+<p style="margin: 0; font-size: 14px; color: #E1E7F2">{{mNote}}</p>
+</div>
+</div>
+
+<div class="tilt" style="background: #FFFFFF; color: #0B1B3A; border: 1px solid #0B1B3A; box-shadow: 10px 10px 0 #2450DC, 0 40px 120px rgba(36,80,220,0.55); display: flex; flex-direction: column">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding: 12px 20px; background: #0B1B3A; color: #FFFFFF">
+<span style="font-weight: 700; font-size: 15px">Sample Co., Inc. <span style="font-weight: 400; color: #C7D2E6">Consolidated, USD, accrual basis</span></span>
+<span style="font-size: 14px; color: #C7D2E6">Illustrative interface</span>
+</div>
+<div role="tablist" class="nosb" aria-label="Accounting views" style="display: flex; flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; border-bottom: 1px solid #0B1B3A; background: #F6F8FC">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="5">
+<button type="button" role="tab" aria-selected="{{t.pressed}}" onClick="{{t.pick}}" style="flex: 0 0 auto; white-space: nowrap; text-align: left; font-size: 15px; font-weight: 700; padding: 14px 18px; min-height: 50px; cursor: pointer; border: 0; border-right: 1px solid #D5DBE5; border-bottom: 3px solid {{t.ul}}; background: {{t.bg}}; color: {{t.fg}}">{{t.label}}</button>
+</sc-for>
+</div>
+
+<sc-if value="{{tabPnl}}" hint-placeholder-val="{{true}}">
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-bottom: 1px solid #0B1B3A">
+<sc-for list="{{kpis}}" as="k" hint-placeholder-count="3">
+<div style="padding: 16px 14px; border-right: 1px solid #D5DBE5; display: flex; flex-direction: column; gap: 4px; min-width: 0">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #4B5565">{{k.label}}</span>
+<span style="font-stretch: 112%; font-weight: 800; font-size: clamp(17px, 4.8vw, 28px); line-height: 1.1; letter-spacing: -0.02em">{{k.val}}</span>
+<span style="font-size: 13px; font-weight: 700; color: {{k.color}}">{{k.delta}}</span>
+</div>
+</sc-for>
+</div>
+<div style="padding: 18px 16px 14px 16px; border-bottom: 1px solid #0B1B3A; background: linear-gradient(180deg, #F6F8FC, #FFFFFF); display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px"><span style="font-size: 12px; font-weight: 800; letter-spacing: 0.1em; color: #0B1B3A">FROM REVENUE TO EBITDA, NOVEMBER</span><span style="font-size: 12px; color: #4B5565">USD thousands</span></div>
+<div role="img" aria-label="Waterfall chart: revenue 335, cost of revenue 84, gross profit 251, R and D 228, sales and marketing 142, G and A 92, EBITDA negative 211" style="position: relative; height: 290px">
+<div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 156px; height: 1px; background: #0B1B3A"></div>
+<sc-for list="{{wf}}" as="c" hint-placeholder-count="7">
+<div aria-hidden="true" style="position: absolute; top: 0; bottom: 0; left: {{c.left}}; width: {{c.width}}">
+<span class="gb" style="position: absolute; left: 0; right: 0; top: {{c.top}}; height: {{c.h}}; box-sizing: border-box; border: 1px solid {{c.bd}}; background: {{c.bg}}; animation-delay: {{c.delay}}"></span>
+<span style="position: absolute; left: -8px; right: -8px; top: {{c.vtop}}; text-align: center; font-size: 11.5px; font-weight: 800; color: #0B1B3A">{{c.val}}</span>
+<span style="position: absolute; left: -8px; right: -8px; bottom: 0; text-align: center; font-size: 10.5px; font-weight: 700; letter-spacing: 0.02em; color: #4B5565">{{c.lab}}</span>
+</div>
+</sc-for>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: minmax(0, 1fr) 72px 60px; gap: 8px; padding: 10px 20px; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #4B5565; border-bottom: 1px solid #B9C3D3; text-align: right">
+<span style="text-align: left">USD thousands</span><span style="color: #0B1B3A">Nov</span><span>Oct</span>
+</div>
+<sc-for list="{{pnl}}" as="r" hint-placeholder-count="9">
+<div style="padding: {{r.pad}} 20px; background: {{r.bg}}; border-top: {{r.bt}}; color: {{r.fg}}; display: flex; flex-direction: column; gap: 7px">
+<div style="display: grid; grid-template-columns: minmax(0, 1fr) 72px 60px; gap: 8px; align-items: baseline; text-align: right">
+<span style="text-align: left; font-weight: {{r.weight}}; font-size: {{r.size}}">{{r.label}}</span>
+<span style="font-weight: {{r.nw}}; font-size: {{r.size}}">{{r.nov}}</span>
+<span style="font-size: 14px; color: {{r.mut}}">{{r.oct}}</span>
+</div>
+<sc-if value="{{r.hasNote}}" hint-placeholder-val="{{false}}">
+<span style="font-size: 13px; color: {{r.mut}}">{{r.note}}</span>
+</sc-if>
+</div>
+</sc-for>
+<div style="padding: 14px 20px; border-top: 1px solid #0B1B3A; background: #E4F7EE; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; font-size: 14px; color: #0B1B3A">
+<span style="flex: 1 1 240px; min-width: 0"><b>Agent note.</b> Gross margin fell 3.5 points. Hosting rose $11.2k after a usage tier change on November 3.</span>
+<a href="#ask" style="font-weight: 700; color: #2450DC; padding: 8px 0">Ask the ledger why</a>
+</div>
+</sc-if>
+
+<sc-if value="{{tabLedger}}" hint-placeholder-val="{{false}}">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(330px, 100%), 1fr)); background: #F6F8FC; gap: 14px; padding: 14px">
+<sc-for list="{{entries}}" as="e" hint-placeholder-count="3">
+<div style="background: #FFFFFF; border: 1px solid #0B1B3A; box-shadow: 5px 5px 0 #0B1B3A; padding: 18px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 10px"><span style="font-stretch: 125%; font-weight: 800; font-size: 13px; letter-spacing: 0.04em; color: #2450DC">{{e.je}}</span><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.08em; background: #2450DC; color: #FFFFFF; padding: 4px 8px">POSTED {{e.dateUp}}</span></div>
+<div style="font-stretch: 112%; font-weight: 800; font-size: 22px; line-height: 1.12; letter-spacing: -0.01em">{{e.desc}}</div>
+<div style="display: flex; align-items: center; gap: 10px; padding: 9px 10px; border: 1px dashed #B9C3D3; background: #F6F8FC; font-size: 14px; color: #2B3648"><svg width="16" height="20" viewBox="0 0 16 20" aria-hidden="true" style="flex: none"><path d="M0.5 0.5h10l5 5v14h-15z" style="fill: #FFFFFF; stroke: #0B1B3A"></path><path d="M10.5 0.5v5h5M3.5 10.5h9M3.5 14.5h6" style="fill: none; stroke: #2450DC"></path></svg><span><b style="color: #0B1B3A">Source.</b> {{e.src}}</span></div>
+<div style="border: 1px solid #0B1B3A; display: flex; flex-direction: column">
+<div style="display: flex; align-items: center; gap: 10px; padding: 10px 12px 10px {{e.i1}}; border-top: {{e.bt1}}"><span style="flex: none; width: 30px; text-align: center; font-size: 11px; font-weight: 800; padding: 3px 0; background: {{e.b1}}; color: {{e.f1}}">{{e.t1}}</span><span style="flex: 1; min-width: 0; font-size: 15px">{{e.a1}}</span><span style="flex: none; font-weight: 700; font-size: 15px">{{e.m1}}</span></div>
+<div style="display: flex; align-items: center; gap: 10px; padding: 10px 12px 10px {{e.i2}}; border-top: {{e.bt2}}"><span style="flex: none; width: 30px; text-align: center; font-size: 11px; font-weight: 800; padding: 3px 0; background: {{e.b2}}; color: {{e.f2}}">{{e.t2}}</span><span style="flex: 1; min-width: 0; font-size: 15px">{{e.a2}}</span><span style="flex: none; font-weight: 700; font-size: 15px">{{e.m2}}</span></div>
+<sc-if value="{{e.has3}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; align-items: center; gap: 10px; padding: 10px 12px 10px {{e.i3}}; border-top: {{e.bt3}}"><span style="flex: none; width: 30px; text-align: center; font-size: 11px; font-weight: 800; padding: 3px 0; background: {{e.b3}}; color: {{e.f3}}">{{e.t3}}</span><span style="flex: 1; min-width: 0; font-size: 15px">{{e.a3}}</span><span style="flex: none; font-weight: 700; font-size: 15px">{{e.m3}}</span></div>
+</sc-if>
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 9px 12px; background: #E4F7EE; border-top: 1px solid #0B1B3A; font-size: 13px; font-weight: 800"><span style="display: inline-flex; align-items: center; gap: 8px"><svg width="14" height="14" viewBox="0 0 18 18" aria-hidden="true" style="flex: none"><rect x="0.5" y="0.5" width="17" height="17" style="fill: #2450DC; stroke: #2450DC"></rect><path d="M4.5 9.5l3 3 6-7" style="fill: none; stroke: #FFFFFF; stroke-width: 2"></path></svg>Debits equal credits</span><span>{{e.total}}</span></div>
+</div>
+<div style="margin-top: auto; font-size: 13px; color: #4B5565">Approved under policy. Source document attached.</div>
+</div>
+</sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{tabBank}}" hint-placeholder-val="{{false}}">
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-bottom: 1px solid #D5DBE5">
+<div style="padding: 16px 14px 16px 20px; border-right: 1px solid #D5DBE5; display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #4B5565">Bank statement</span><span style="font-stretch: 112%; font-weight: 800; font-size: clamp(16px, 4.6vw, 24px)">3,060,412.18</span></div>
+<div style="padding: 16px 14px; display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #4B5565">Ledger</span><span style="font-stretch: 112%; font-weight: 800; font-size: clamp(16px, 4.6vw, 24px)">{{recLedger}}</span></div>
+</div>
+<div aria-live="polite" style="display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 20px; background: {{recDiffBg}}; border-bottom: 1px solid #0B1B3A; transition: background .5s">
+<span style="font-size: 14px; font-weight: 700">{{recDiffLabel}}</span>
+<span style="font-stretch: 112%; font-weight: 800; font-size: 22px; color: {{recDiffFg}}">{{recDiff}}</span>
+</div>
+<div style="display: flex; flex-wrap: wrap">
+<div style="flex: 1 1 340px; min-width: 0; padding: 20px; box-sizing: border-box; background: #F6F8FC; display: flex; flex-direction: column">
+<p style="margin: 0 0 14px 0; font-size: 12px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: {{recHeadFg}}">{{recHead}}</p>
+<div style="display: flex; flex-direction: column; box-shadow: {{recShadow}}; transition: box-shadow .4s .35s">
+<div class="mcard" style="position: relative; background: {{recBg}}; border: 1px solid #0B1B3A; padding: 14px 16px; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; animation: {{recAnim1}}; transition: background .4s .3s">
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 3px"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #4B5565">BANK LINE</span><span style="font-weight: 800; font-size: 16px; line-height: 1.25">Incoming wire, <span style="background: #A9E8CF">Northwind Ltd</span></span><span style="font-size: 13px; color: #4B5565">Nov 05, reference <span style="background: #A9E8CF; color: #0B1B3A">INV-0147</span></span></div>
+<span style="flex: none; font-stretch: 112%; font-weight: 800; font-size: 18px; background: #A9E8CF; padding: 0 4px">12,000.00</span>
+</div>
+<div style="height: {{recMidH}}; opacity: {{recMidOp}}; visibility: {{recMidVis}}; overflow: hidden; transition: height .5s cubic-bezier(.6,0,.2,1), opacity .25s, visibility .5s; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; border-left: 1px dashed #2450DC; border-right: 1px dashed #2450DC; box-sizing: border-box">
+<span style="font-size: 13px; color: #2B3648; text-align: center; padding: 0 12px">Same payer, same amount, reference on the wire</span>
+<button type="button" class="b-teal" onClick="{{recConfirm}}" style="background: #2450DC; color: #FFFFFF; border: 0; font-weight: 700; font-size: 16px; padding: 12px 22px; min-height: 46px; cursor: pointer">Confirm match</button>
+</div>
+<div class="mcard" style="background: {{recBg}}; border: 1px solid #0B1B3A; margin-top: {{recMt}}; padding: 14px 16px; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; animation: {{recAnim2}}; transition: background .4s .3s">
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 3px"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #4B5565">OPEN INVOICE</span><span style="font-weight: 800; font-size: 16px; line-height: 1.25"><span style="background: #A9E8CF">INV-0147</span>, <span style="background: #A9E8CF">Northwind Ltd</span></span><span style="font-size: 13px; color: #4B5565">Issued Oct 21, due Nov 20</span></div>
+<span style="flex: none; font-stretch: 112%; font-weight: 800; font-size: 18px; background: #A9E8CF; padding: 0 4px">12,000.00</span>
+</div>
+</div>
+<sc-if value="{{recOn}}" hint-placeholder-val="{{false}}">
+<div class="r1" style="margin-top: 18px; display: flex; flex-direction: column; gap: 10px; font-size: 14px; color: #2B3648">
+<span><b style="color: #0B1B3A">JE-1191 posted.</b> Debit 1010 Operating bank, credit 1200 Accounts receivable, 12,000.00. Invoice INV-0147 marked paid.</span>
+<button type="button" class="b-white" onClick="{{recUndo}}" style="align-self: flex-start; background: #FFFFFF; color: #0B1B3A; border: 1px solid #0B1B3A; font-weight: 600; font-size: 14px; padding: 9px 14px; min-height: 44px; cursor: pointer">Undo and replay</button>
+</div>
+</sc-if>
+</div>
+<div style="flex: 1 1 340px; min-width: 0; border-top: 1px solid #D5DBE5">
+<div style="padding: 14px 20px; border-bottom: 1px solid #D5DBE5; display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; font-size: 14px; color: #2B3648"><span><b>{{recCount}} of 214</b> transactions reconciled</span><span style="color: #4B5565">Operating account, November</span></div>
+<div style="height: 8px; background: #E3E7EE"><div style="height: 8px; width: {{recBarW}}; background: #2450DC; transition: width .6s .3s"></div></div>
+</div>
+<sc-for list="{{bankRows}}" as="b" hint-placeholder-count="4">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 12px 20px; border-bottom: 1px solid #E3E7EE">
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 3px"><span style="font-weight: 700; font-size: 15px">{{b.desc}}</span><span style="display: flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 600; color: #2450DC"><span aria-hidden="true" style="width: 9px; height: 9px; flex: none; background: #2450DC"></span>{{b.status}}</span></div>
+<div style="flex: none; text-align: right; display: flex; flex-direction: column; gap: 3px"><span style="font-weight: 800; font-size: 15px">{{b.amt}}</span><span style="font-size: 13px; color: #4B5565">{{b.date}}</span></div>
+</div>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{tabClose}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-wrap: wrap">
+<div style="flex: 1 1 280px; min-width: 0; padding: 22px 20px; border-right: 1px solid #D5DBE5; display: flex; flex-direction: column; gap: 10px">
+<p style="margin: 0; font-size: 14px; color: #4B5565">November close</p>
+<p style="margin: 0; font-stretch: 125%; font-weight: 800; font-size: 46px; line-height: 1; letter-spacing: -0.02em">{{closePct}}</p>
+<div style="height: 8px; background: #E3E7EE"><div style="height: 8px; background: #2450DC; width: {{closePct}}; transition: width .6s ease-out"></div></div>
+<p style="margin: 0; font-size: 15px; color: #2B3648">Agents prepare each step as the month runs. You review the exceptions, then lock the period.</p>
+</div>
+<div style="flex: 2 1 460px; min-width: 0; font-size: 15px">
+<sc-for list="{{closeSteps}}" as="s" hint-placeholder-count="7">
+<div class="cell" style="display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; gap: 12px; padding: 11px 20px; border-bottom: 1px solid #E3E7EE; align-items: center">
+<span aria-hidden="true" style="width: 16px; height: 16px; border: 1.5px solid {{s.color}}; background: {{s.fill}}; box-sizing: border-box"></span>
+<span>{{s.label}}</span>
+<span style="font-size: 13px; font-weight: 700; color: {{s.color}}">{{s.status}}</span>
+</div>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{tabStmt}}" hint-placeholder-val="{{false}}">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); font-size: 15px">
+<div style="padding: 20px; border-right: 1px solid #D5DBE5; display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 0; font-size: 13px; font-weight: 800; letter-spacing: .08em; color: #2450DC">ASSETS, USD THOUSANDS</p>
+<div style="display: flex; justify-content: space-between"><span>Cash</span><span>3,060</span></div>
+<div style="display: flex; justify-content: space-between"><span>Accounts receivable</span><span>412</span></div>
+<div style="display: flex; justify-content: space-between"><span>Prepaid expenses</span><span>86</span></div>
+<div style="display: flex; justify-content: space-between"><span>Fixed assets, net</span><span>74</span></div>
+<div style="display: flex; justify-content: space-between; border-top: 2px solid #0B1B3A; padding-top: 8px; font-weight: 800"><span>Total assets</span><span>3,632</span></div>
+</div>
+<div style="padding: 20px; display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 0; font-size: 13px; font-weight: 800; letter-spacing: .08em; color: #2450DC">LIABILITIES AND EQUITY</p>
+<div style="display: flex; justify-content: space-between"><span>Payables and cards</span><span>198</span></div>
+<div style="display: flex; justify-content: space-between"><span>Deferred revenue</span><span>540</span></div>
+<div style="display: flex; justify-content: space-between"><span>Accrued expenses</span><span>121</span></div>
+<div style="display: flex; justify-content: space-between"><span>Equity</span><span>2,773</span></div>
+<div style="display: flex; justify-content: space-between; border-top: 2px solid #0B1B3A; padding-top: 8px; font-weight: 800"><span>Total liabilities and equity</span><span>3,632</span></div>
+</div>
+</div>
+<div style="padding: 12px 20px; border-top: 1px solid #D5DBE5; background: #F6F8FC; font-size: 14px; color: #2B3648"><b style="color: #2450DC">Balance sheet balances.</b> As of November 30. Click any line in the product to see the entries behind it.</div>
+</sc-if>
+</div>
+
+</div>
+</section>
+
+<div aria-hidden="true" style="background: #A9E8CF; border-bottom: 1px solid #0B1B3A; overflow: clip; white-space: nowrap">
+<div class="marq" style="display: inline-flex; align-items: center; padding: 14px 0; font-stretch: 125%; font-weight: 800; font-size: 17px; letter-spacing: 0.02em; text-transform: uppercase; color: #0B1B3A"><span style="padding: 0 18px">Bookkeeping</span><span aria-hidden="true" style="width: 10px; height: 10px; background: #0B1B3A; flex: none"></span><span style="padding: 0 18px">Reconciliation</span><span aria-hidden="true" style="width: 10px; height: 10px; background: #0B1B3A; flex: none"></span><span style="padding: 0 18px">Month-end close</span><span aria-hidden="true" style="width: 10px; height: 10px; background: #0B1B3A; flex: none"></span><span style="padding: 0 18px">Statements</span><span aria-hidden="true" style="width: 10px; height: 10px; background: #0B1B3A; flex: none"></span><span style="padding: 0 18px"><span style="color: #2450DC">Forecast</span></span><span aria-hidden="true" style="width: 10px; height: 10px; background: #2450DC; flex: none"></span><span style="padding: 0 18px"><span style="color: #2450DC">Runway</span></span><span aria-hidden="true" style="width: 10px; height: 10px; background: #2450DC; flex: none"></span><span style="padding: 0 18px"><span style="color: #2450DC">Headcount plan</span></span><span aria-hidden="true" style="width: 10px; height: 10px; background: #2450DC; flex: none"></span><span style="padding: 0 18px"><span style="color: #2450DC">Board pack</span></span><span aria-hidden="true" style="width: 10px; height: 10px; background: #2450DC; flex: none"></span><span style="padding: 0 18px">Bookkeeping</span><span aria-hidden="true" style="width: 10px; height: 10px; background: #0B1B3A; flex: none"></span><span style="padding: 0 18px">Reconciliation</span><span aria-hidden="true" style="width: 10px; height: 10px; background: #0B1B3A; flex: none"></span><span style="padding: 0 18px">Month-end close</span><span aria-hidden="true" style="width: 10px; height: 10px; background: #0B1B3A; flex: none"></span><span style="padding: 0 18px">Statements</span><span aria-hidden="true" style="width: 10px; height: 10px; background: #0B1B3A; flex: none"></span><span style="padding: 0 18px"><span style="color: #2450DC">Forecast</span></span><span aria-hidden="true" style="width: 10px; height: 10px; background: #2450DC; flex: none"></span><span style="padding: 0 18px"><span style="color: #2450DC">Runway</span></span><span aria-hidden="true" style="width: 10px; height: 10px; background: #2450DC; flex: none"></span><span style="padding: 0 18px"><span style="color: #2450DC">Headcount plan</span></span><span aria-hidden="true" style="width: 10px; height: 10px; background: #2450DC; flex: none"></span><span style="padding: 0 18px"><span style="color: #2450DC">Board pack</span></span><span aria-hidden="true" style="width: 10px; height: 10px; background: #2450DC; flex: none"></span></div>
+</div>
+
+<section class="mani" style="position: relative; overflow: clip; padding: clamp(88px, 13vw, 180px) 0; border-bottom: 1px solid #D5DBE5">
+<div aria-hidden="true" class="ghost g1" style="top: 4%">THE PAST THE PAST</div>
+<div aria-hidden="true" class="ghost g2" style="bottom: 4%">THE FUTURE THE FUTURE</div>
+<div class="wrap" style="position: relative; z-index: 1">
+<p style="margin: 0; max-width: 17em; font-stretch: 112%; font-weight: 800; font-size: clamp(32px, 6.6vw, 84px); line-height: 1.04; letter-spacing: -0.035em; color: #0B1B3A"><span class="fill">Accounting software records the past. Planning software models the future. You buy both and join them by hand.</span> <span class="fill fill2">Until now.</span></p>
+</div>
+</section>
+
+<section id="different" style="padding: 80px 0; border-bottom: 1px solid #D5DBE5">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 28px">
+<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px">
+<p class="ey">Why it is different</p>
+<h2 class="h2">Every other tool does <span style="color: #2450DC">half the job.</span></h2>
+<p class="lead">Four categories, and each covers one side. Swipe through them, then see what one ledger for both looks like.</p>
+</div>
+<div class="rv" style="display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: 14px; color: #2B3648">
+<span style="display: inline-flex; align-items: center; gap: 8px"><span aria-hidden="true" style="width: 14px; height: 14px; background: #2450DC"></span>Done by the software</span>
+<span style="display: inline-flex; align-items: center; gap: 8px"><span aria-hidden="true" style="width: 14px; height: 14px; background: #B9C3D3"></span>Done by hand</span>
+<span style="display: inline-flex; align-items: center; gap: 8px"><span aria-hidden="true" style="width: 14px; height: 14px; background: #FFFFFF; border: 1.5px solid #0B1B3A; box-sizing: border-box"></span>Not covered</span>
+</div>
+<div class="swipe" aria-hidden="true" style="align-items: center; gap: 8px; font-size: 13px; font-weight: 800; letter-spacing: 0.1em; color: #2450DC; margin-bottom: -12px">SWIPE <span>&rarr;</span></div>
+<div class="hs">
+<sc-for list="{{cmp}}" as="r" hint-placeholder-count="4">
+<div class="hc" style="background: #FFFFFF; border: 1px solid #0B1B3A; box-shadow: 6px 6px 0 #0B1B3A; padding: 22px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-direction: column; gap: 2px"><span style="font-stretch: 125%; font-weight: 800; font-size: 13px; color: #2450DC">{{r.n}}</span><b style="font-stretch: 112%; font-weight: 800; font-size: 22px; line-height: 1.1">{{r.name}}</b><span style="font-size: 14px; color: #4B5565">{{r.eg}}</span></div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px">
+<div style="display: flex; flex-direction: column; gap: 5px"><span style="font-size: 12px; font-weight: 800; letter-spacing: .08em; color: #4B5565">THE BOOKS</span><div style="height: 18px; border: 1.5px solid #0B1B3A; background: #FFFFFF; box-sizing: border-box"><div style="height: 100%; width: {{r.bw}}; background: {{r.bc}}"></div></div></div>
+<div style="display: flex; flex-direction: column; gap: 5px"><span style="font-size: 12px; font-weight: 800; letter-spacing: .08em; color: #4B5565">THE PLAN</span><div style="height: 18px; border: 1.5px solid #0B1B3A; background: #FFFFFF; box-sizing: border-box"><div style="height: 100%; width: {{r.pw}}; background: {{r.pc}}"></div></div></div>
+</div>
+<div style="display: flex; flex-direction: column; font-size: 15px">
+<div style="display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-top: 1px solid #E3E7EE"><span style="color: #4B5565">Bookkeeping</span><b style="text-align: right">{{r.books}}</b></div>
+<div style="display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-top: 1px solid #E3E7EE"><span style="color: #4B5565">Planning</span><b style="text-align: right">{{r.plan}}</b></div>
+<div style="display: flex; justify-content: space-between; gap: 12px; padding: 9px 0 0; border-top: 1px solid #E3E7EE"><span style="color: #4B5565">Sees</span><b style="text-align: right">{{r.sees}}</b></div>
+</div>
+</div>
+</sc-for>
+</div>
+<div class="rv" style="background: radial-gradient(120% 140% at 0% 0%, #2450DC 0, #0B1B3A 55%); color: #FFFFFF; box-shadow: 10px 10px 0 #A9E8CF; padding: clamp(24px, 3vw, 40px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 24px 48px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-direction: column; gap: 2px"><b style="font-stretch: 125%; font-weight: 800; font-size: clamp(36px, 5vw, 64px); line-height: 1; letter-spacing: -0.035em">{{brand}}</b><span style="font-size: 16px; color: #C7D2E6">One ledger for the past and the future</span></div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0">
+<div style="display: flex; flex-direction: column; gap: 5px"><span style="font-size: 12px; font-weight: 800; letter-spacing: .08em; color: #A9E8CF">THE BOOKS</span><div class="shine" style="height: 26px"></div></div>
+<div style="display: flex; flex-direction: column; gap: 5px"><span style="font-size: 12px; font-weight: 800; letter-spacing: .08em; color: #A9E8CF">THE PLAN</span><div class="shine" style="height: 26px"></div></div>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; font-size: 16px">
+<div style="display: flex; justify-content: space-between; gap: 16px; padding: 11px 0; border-top: 1px solid #2F4063"><span style="color: #C7D2E6">Bookkeeping</span><b style="text-align: right">Done by agents, approved by you</b></div>
+<div style="display: flex; justify-content: space-between; gap: 16px; padding: 11px 0; border-top: 1px solid #2F4063"><span style="color: #C7D2E6">Planning</span><b style="text-align: right">Built in, reads the ledger directly</b></div>
+<div style="display: flex; justify-content: space-between; gap: 16px; padding: 11px 0; border-top: 1px solid #2F4063; border-bottom: 1px solid #2F4063"><span style="color: #C7D2E6">Sees</span><b style="text-align: right">Transactions, documents, contracts and your tools</b></div>
+</div>
+</div>
+<p class="rv" style="margin: 0; font-size: 13px; line-height: 1.5; color: #4B5565; max-width: 70em">Our reading of how each category is designed at its core, as of November 2026. Individual products vary and change, and named products are examples of a category, not a review of each one.</p>
+</div>
+</section>
+
+<section id="who" style="padding: 80px 0; background: #F6F8FC; border-bottom: 1px solid #D5DBE5">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
+<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 800px">
+<p class="ey">Who it is for</p>
+<h2 class="h2">Three people look at the books. <span style="color: #2450DC">Each asks something different.</span></h2>
+<p class="lead">Pick your seat to see what changes for you, and the questions you would ask us.</p>
+</div>
+<div class="rv" role="group" aria-label="Your role" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid #0B1B3A; background: #FFFFFF; max-width: 720px">
+<sc-for list="{{personas}}" as="p" hint-placeholder-count="3">
+<button type="button" onClick="{{p.pick}}" aria-pressed="{{p.pressed}}" style="min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 2px; padding: 12px 12px; min-height: 60px; cursor: pointer; border: 0; border-right: 1px solid #0B1B3A; background: {{p.bg}}; color: {{p.fg}}; transition: background .2s; text-align: left"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: {{p.sub}}">{{p.kick}}</span><b style="font-stretch: 112%; font-weight: 800; font-size: clamp(15px, 4.2vw, 19px); line-height: 1.15">{{p.short}}</b></button>
+</sc-for>
+</div>
+<div class="rv" style="display: flex; flex-direction: column; gap: 6px">
+<p style="margin: 0; font-size: 14px; color: #4B5565">{{pv.role}}</p>
+<p style="margin: 0; font-stretch: 112%; font-weight: 800; font-size: clamp(24px, 3.2vw, 36px); line-height: 1.12; letter-spacing: -0.02em; text-wrap: balance">{{pv.line}}</p>
+</div>
+<div class="rv" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 20px">
+<sc-for list="{{pairs}}" as="x" hint-placeholder-count="3">
+<div style="background: #FFFFFF; border: 1px solid #0B1B3A; box-shadow: 6px 6px 0 #0B1B3A; display: flex; flex-direction: column">
+<div style="padding: 18px 18px 26px 18px; display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 10px"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.12em; color: #4B5565">TODAY</span><span style="font-stretch: 125%; font-weight: 800; font-size: 14px; color: #B9C3D3">{{x.n}}</span></div>
+<p style="margin: 0; font-size: 16px; line-height: 1.4; color: #4B5565">{{x.pain}}</p>
+</div>
+<div style="position: relative; flex: 1; background: #E4F7EE; border-top: 1px solid #0B1B3A; padding: 26px 18px 20px 18px; display: flex; flex-direction: column; gap: 8px">
+<span aria-hidden="true" style="position: absolute; left: 18px; top: -17px; width: 34px; height: 34px; box-sizing: border-box; background: #2450DC; border: 1px solid #0B1B3A; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px">&darr;</span>
+<span style="font-size: 11px; font-weight: 800; letter-spacing: 0.12em; color: #2450DC">WITH <span style="text-transform: uppercase">{{brand}}</span></span>
+<p style="margin: 0; font-stretch: 112%; font-weight: 800; font-size: 19px; line-height: 1.25; letter-spacing: -0.01em">{{x.gain}}</p>
+</div>
+</div>
+</sc-for>
+</div>
+<div class="rv" style="background: #0B1B3A; color: #FFFFFF; display: flex; flex-direction: column">
+<p style="margin: 0; padding: 18px 20px 6px 20px; font-size: 12px; font-weight: 800; letter-spacing: 0.12em; color: #A9E8CF">QUESTIONS YOU WILL ASK</p>
+<sc-for list="{{faqs}}" as="f" hint-placeholder-count="3">
+<div style="border-top: 1px solid #2F4063">
+<button type="button" onClick="{{f.pick}}" aria-expanded="{{f.open}}" style="width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 16px 20px; min-height: 56px; background: transparent; border: 0; color: #FFFFFF; cursor: pointer; text-align: left; font-size: 17px; font-weight: 700"><span>{{f.q}}</span><span aria-hidden="true" style="flex: none; width: 28px; height: 28px; box-sizing: border-box; border: 1px solid {{f.signBd}}; background: {{f.signBg}}; color: {{f.signFg}}; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 700; line-height: 1">{{f.sign}}</span></button>
+<sc-if value="{{f.isOpen}}" hint-placeholder-val="{{true}}">
+<p class="r1" style="margin: 0; padding: 0 20px 18px 20px; max-width: 760px; font-size: 16px; line-height: 1.55; color: #E1E7F2">{{f.a}}</p>
+</sc-if>
+</div>
+</sc-for>
+</div>
+</div>
+</section>
+
+<section id="accounting" style="padding: 80px 0; border-bottom: 1px solid #D5DBE5">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 36px">
+<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 820px">
+<p class="ey">The accounting system</p>
+<h2 class="h2">Everything a finance team expects <span style="color: #2450DC">from its ledger.</span></h2>
+<p class="lead">The planning only works if the books are right. So the foundation is a full accounting system, with agents doing the routine work inside it and people approving what posts. Try the review queue below.</p>
+</div>
+<div class="rv" style="display: flex; flex-direction: column; border: 1px solid #0B1B3A; background: #FFFFFF; box-shadow: 10px 10px 0 #0B1B3A">
+<div role="group" aria-label="Accounting modules" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(140px, 44%), 1fr)); background: #F6F8FC">
+<sc-for list="{{mods}}" as="m" hint-placeholder-count="8">
+<button type="button" onClick="{{m.pick}}" aria-pressed="{{m.pressed}}" style="min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; padding: 14px 14px 16px 14px; min-height: 84px; cursor: pointer; border: 0; border-right: 1px solid #D5DBE5; border-bottom: 1px solid #D5DBE5; background: {{m.bg}}; color: {{m.fg}}; text-align: left; transition: background .2s"><span style="font-stretch: 125%; font-weight: 800; font-size: 13px; color: {{m.nc}}">{{m.n}}</span><b style="font-size: 15px; font-weight: 700; line-height: 1.2">{{m.short}}</b></button>
+</sc-for>
+</div>
+<div aria-live="polite" style="border-top: 1px solid #0B1B3A; display: flex; flex-wrap: wrap">
+<div style="flex: 1.2 1 320px; min-width: 0; padding: 24px 20px; box-sizing: border-box; display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 12px; font-weight: 800; letter-spacing: 0.1em; color: #2450DC">{{mv.tag}}</span>
+<b style="font-stretch: 112%; font-weight: 800; font-size: clamp(24px, 3vw, 32px); line-height: 1.1; letter-spacing: -0.02em">{{mv.name}}</b>
+<span style="font-size: 17px; line-height: 1.5; color: #2B3648">{{mv.desc}}</span>
+</div>
+<div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; border-left: 1px solid #D5DBE5">
+<div style="flex: 1; padding: 18px 20px; background: #EEF3FE; border-top: 1px solid #D5DBE5; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.12em; color: #2450DC">AGENTS DO</span><span style="font-size: 16px; font-weight: 600; line-height: 1.4">{{mv.agent}}</span></div>
+<div style="flex: 1; padding: 18px 20px; background: #E4F7EE; border-top: 1px solid #D5DBE5; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.12em; color: #0B1B3A">YOU DO</span><span style="font-size: 16px; font-weight: 600; line-height: 1.4">{{mv.you}}</span></div>
+</div>
+</div>
+</div>
+
+<div class="rv" style="display: flex; flex-wrap: wrap; gap: 28px; align-items: stretch">
+<div style="flex: 1 1 340px; min-width: 0; background: #FFFFFF; border: 1px solid #B9C3D3; padding: 24px; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px">
+<p style="margin: 0; font-size: 14px; font-weight: 600; color: #2450DC">An agent reading a document</p>
+<div style="position: relative; border: 1px solid #0B1B3A; padding: 18px; overflow: hidden; background: #FFFFFF; display: flex; flex-direction: column; gap: 0">
+<div class="scan" aria-hidden="true" style="position: absolute; left: 0; right: 0; height: 2px; background: #2450DC; box-shadow: 0 0 18px 5px rgba(36,80,220,0.3)"></div>
+<div style="display: flex; justify-content: space-between; gap: 12px; align-items: baseline; padding-bottom: 12px"><span style="font-stretch: 112%; font-weight: 800; font-size: 20px">Orbit Cloud</span><span style="font-size: 13px; color: #4B5565">Invoice 2291</span></div>
+<div class="f1" style="display: flex; justify-content: space-between; gap: 12px; border-top: 1px solid #D5DBE5; padding: 10px 8px; font-size: 15px"><span style="color: #4B5565">Amount due</span><span style="font-weight: 700">$4,812.40</span></div>
+<div class="f2" style="display: flex; justify-content: space-between; gap: 12px; border-top: 1px solid #D5DBE5; padding: 10px 8px; font-size: 15px"><span style="color: #4B5565">Service period</span><span style="font-weight: 700">Nov 1 to Nov 30</span></div>
+<div class="f3" style="display: flex; justify-content: space-between; gap: 12px; border-top: 1px solid #D5DBE5; padding: 10px 8px; font-size: 15px"><span style="color: #4B5565">Paid with</span><span style="font-weight: 700">Card ending 2204</span></div>
+<div class="f4" style="display: flex; justify-content: space-between; gap: 12px; border-top: 1px solid #D5DBE5; padding: 10px 8px; font-size: 15px"><span style="color: #4B5565">Account</span><span style="font-weight: 700">5100 Hosting</span></div>
+</div>
+<div class="p5" style="background: #0B1B3A; color: #FFFFFF; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 13px; font-weight: 700; color: #A9E8CF">Entry proposed</span>
+<span style="font-size: 15px">Dr 5100 Hosting 4,812.40</span>
+<span style="font-size: 15px">Cr 2100 Card payable 4,812.40</span>
+</div>
+<p style="margin: 0; font-size: 14px; color: #4B5565">Illustrative. Each field is traced to its place in the source document.</p>
+</div>
+
+<div style="flex: 2 1 520px; min-width: 0; background: #FFFFFF; border: 1px solid #0B1B3A; box-shadow: 10px 10px 0 #0B1B3A; display: flex; flex-direction: column">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding: 14px 20px; background: #0B1B3A; color: #FFFFFF">
+<span style="font-weight: 700; font-size: 15px">Your review queue</span>
+<span style="font-size: 14px; color: #C7D2E6">{{queueStatus}}</span>
+</div>
+<div style="height: 6px; background: #E3E7EE"><div style="height: 6px; background: #2450DC; width: {{closePct}}; transition: width .6s ease-out"></div></div>
+<div style="padding: 12px 20px; border-bottom: 1px solid #E3E7EE; font-size: 14px; font-weight: 600; color: #2450DC">November close: {{closePct}} prepared</div>
+<sc-for list="{{queue}}" as="item" hint-placeholder-count="4">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; padding: 16px 20px; border-bottom: 1px solid #E3E7EE; background: {{item.bg}}; transition: background .4s">
+<div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 3px">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px">
+<div style="font-weight: 700; font-size: 16px">{{item.title}}</div>
+<div style="font-weight: 700; font-size: 16px; white-space: nowrap">{{item.amount}}</div>
+</div>
+<div style="font-size: 15px; color: #2B3648">{{item.detail}}</div>
+<div style="font-size: 13px; color: #4B5565">{{item.entry}}</div>
+</div>
+<sc-if value="{{item.canApprove}}" hint-placeholder-val="{{true}}">
+<button type="button" class="b-teal" onClick="{{item.approve}}" style="font-size: 15px; font-weight: 700; background: #2450DC; color: #FFFFFF; border: 0; padding: 13px 20px; min-height: 44px; cursor: pointer">Approve</button>
+</sc-if>
+<sc-if value="{{item.done}}" hint-placeholder-val="{{false}}">
+<div style="min-height: 44px; display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 700; color: #2450DC">
+<svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" style="flex: none"><rect x="0.5" y="0.5" width="17" height="17" style="fill: #FFFFFF; stroke: #2450DC"></rect><path d="M4.5 9.5l3 3 6-7" style="fill: none; stroke: #2450DC; stroke-width: 1.8"></path></svg>
+Posted and logged
+</div>
+</sc-if>
+<sc-if value="{{item.exception}}" hint-placeholder-val="{{false}}">
+<div style="min-height: 44px; display: flex; align-items: center; font-size: 14px; font-weight: 700; color: #0B1B3A; background: #A9E8CF; border: 1px solid #0B1B3A; padding: 0 12px; box-sizing: border-box">Waiting on a document</div>
+</sc-if>
+</div>
+</sc-for>
+<p style="margin: 0; padding: 16px 20px; font-size: 14.5px; line-height: 1.5; color: #4B5565; margin-top: auto">{{auditLine}}</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="control" style="position: relative; overflow: clip; padding: 88px 0; background: #0B1B3A; color: #FFFFFF; border-bottom: 1px solid #0B1B3A">
+<div aria-hidden="true" class="a2" style="position: absolute; width: 110vw; max-width: 820px; aspect-ratio: 1; right: -35%; top: -160px; background: radial-gradient(closest-side, rgba(36,80,220,0.6), rgba(36,80,220,0))"></div>
+<div class="wrap" style="position: relative; z-index: 1; display: flex; flex-direction: column; gap: 36px">
+<div class="rv" style="display: flex; flex-direction: column; gap: 16px; max-width: 820px">
+<p class="ey" style="color: #A9E8CF">Controls and audit trail</p>
+<h2 class="h2">Agents propose. <span style="color: #A9E8CF">People approve.</span></h2>
+<p style="margin: 0; font-size: 19px; line-height: 1.55; color: #C7D2E6">Automation is only useful in finance if you can see exactly what it did and why. So control is how the product is built, not a setting you switch on.</p>
+</div>
+<div class="rv bento">
+<div class="bt bw" style="padding: 20px; border: 1px solid #2F4063; background: linear-gradient(135deg, rgba(36,80,220,0.55), rgba(36,80,220,0.08)); display: flex; flex-direction: column; gap: 8px; min-width: 0"><b style="font-stretch: 112%; font-weight: 800; font-size: 24px; line-height: 1.15; color: #A9E8CF">Approval policies</b><span style="font-size: 15px; line-height: 1.45; color: #E1E7F2">Who signs off on what, by type and amount. Agents work inside those limits.</span><div style="margin-top: 8px; display: flex; flex-direction: column; border: 1px solid rgba(255,255,255,0.25); background: rgba(11,27,58,0.55); font-size: 14px"><div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 12px; border-top: 0"><span>Bills under $5,000</span><span style="flex: none; font-size: 12px; font-weight: 800; padding: 4px 8px; background: #A9E8CF; color: #0B1B3A">Posts itself</span></div><div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 12px; border-top: 1px solid rgba(255,255,255,0.18)"><span>Bills over $5,000</span><span style="flex: none; font-size: 12px; font-weight: 800; padding: 4px 8px; background: #FFFFFF; color: #0B1B3A">CFO approves</span></div><div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 12px; border-top: 1px solid rgba(255,255,255,0.18)"><span>Any new vendor</span><span style="flex: none; font-size: 12px; font-weight: 800; padding: 4px 8px; background: #FFFFFF; color: #0B1B3A">Always asks</span></div></div><span style="font-size: 12px; color: #C7D2E6">Example policy</span></div>
+<div class="bt" style="padding: 20px; border: 1px solid #2F4063; background: rgba(255,255,255,0.05); display: flex; flex-direction: column; gap: 8px; min-width: 0"><b style="font-stretch: 112%; font-weight: 800; font-size: 18px; line-height: 1.15; color: #A9E8CF">Period locks</b><span style="font-size: 15px; line-height: 1.45; color: #E1E7F2">Close a month and it stays closed.</span></div>
+<div class="bt" style="padding: 20px; border: 1px solid #2F4063; background: rgba(255,255,255,0.05); display: flex; flex-direction: column; gap: 8px; min-width: 0"><b style="font-stretch: 112%; font-weight: 800; font-size: 18px; line-height: 1.15; color: #A9E8CF">Roles for everyone</b><span style="font-size: 15px; line-height: 1.45; color: #E1E7F2">Founder, finance team, fractional CFO, outside accountant.</span></div>
+<div class="bt bw" style="padding: 20px; border: 1px solid #2F4063; background: linear-gradient(135deg, rgba(36,80,220,0.55), rgba(36,80,220,0.08)); display: flex; flex-direction: column; gap: 8px; min-width: 0"><b style="font-stretch: 112%; font-weight: 800; font-size: 24px; line-height: 1.15; color: #A9E8CF">Full audit trail</b><span style="font-size: 15px; line-height: 1.45; color: #E1E7F2">Every action, document and decision recorded with its source and approver.</span><div style="margin-top: 8px; display: flex; flex-direction: column; border: 1px solid rgba(255,255,255,0.25); background: rgba(11,27,58,0.55); font-size: 14px"><div style="display: flex; gap: 12px; padding: 10px 12px; border-top: 0"><span style="flex: none; color: #C7D2E6">09:14</span><span style="min-width: 0"><b style="color: #A9E8CF">Agent</b> read invoice 2291 from Orbit Cloud</span></div><div style="display: flex; gap: 12px; padding: 10px 12px; border-top: 1px solid rgba(255,255,255,0.18)"><span style="flex: none; color: #C7D2E6">09:14</span><span style="min-width: 0"><b style="color: #A9E8CF">Agent</b> proposed JE-1182, matched to card</span></div><div style="display: flex; gap: 12px; padding: 10px 12px; border-top: 1px solid rgba(255,255,255,0.18)"><span style="flex: none; color: #C7D2E6">09:31</span><span style="min-width: 0"><b style="color: #FFFFFF">You</b> approved under policy</span></div></div><span style="font-size: 12px; color: #C7D2E6">Illustrative log</span></div>
+<div class="bt" style="padding: 20px; border: 1px solid #2F4063; background: rgba(255,255,255,0.05); display: flex; flex-direction: column; gap: 8px; min-width: 0"><b style="font-stretch: 112%; font-weight: 800; font-size: 18px; line-height: 1.15; color: #A9E8CF">Explainable entries</b><span style="font-size: 15px; line-height: 1.45; color: #E1E7F2">Document, match and reasoning on every entry.</span></div>
+<div class="bt" style="padding: 20px; border: 1px solid #2F4063; background: rgba(255,255,255,0.05); display: flex; flex-direction: column; gap: 8px; min-width: 0"><b style="font-stretch: 112%; font-weight: 800; font-size: 18px; line-height: 1.15; color: #A9E8CF">Human override</b><span style="font-size: 15px; line-height: 1.45; color: #E1E7F2">Reclassify or post a manual journal at any time. It is logged.</span></div>
+</div>
+<p class="rv" style="margin: 0; max-width: 52em; font-size: 15px; line-height: 1.55; color: #C7D2E6"><span>{{brand}}</span> reduces the manual work. It does not replace your accountant, tax adviser or statutory filings, and it makes working with them easier.</p>
+</div>
+</section>
+
+<section id="planning" style="padding: 80px 0; border-bottom: 1px solid #D5DBE5">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
+<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 840px">
+<p class="ey">Then, the future</p>
+<h2 class="h2">Because the books are right, <span style="color: #2450DC">the forecast can be.</span></h2>
+<p class="lead">Your model reads straight from the ledger. Close a month and the actuals fill themselves in, the forecast re-bases and runway updates. Change an assumption and see the effect before you commit.</p>
+</div>
+
+<div class="rv" style="background: #FFFFFF; border: 2px solid #0B1B3A; box-shadow: 10px 10px 0 #0B1B3A">
+<div style="display: flex; flex-wrap: wrap; border-bottom: 2px solid #0B1B3A">
+<div style="flex: 1 1 320px; min-width: 0; padding: 24px; border-right: 1px solid #D5DBE5; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<p style="margin: 0; font-size: 14px; color: #4B5565">Runway</p>
+<p style="margin: 0; font-stretch: 125%; font-weight: 800; font-size: 48px; line-height: 1; letter-spacing: -0.02em; color: {{runwayColor}}" aria-live="polite">{{runway}}</p>
+<p style="margin: 0; font-size: 15px; font-weight: 600; color: #2450DC">{{cashOutLine}}</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 14px; font-weight: 600">People to hire</span>
+<div style="display: flex; align-items: stretch">
+<button type="button" class="b-white" onClick="{{hiresDown}}" aria-label="One fewer hire" style="width: 46px; min-height: 46px; border: 1px solid #0B1B3A; background: #FFFFFF; color: #0B1B3A; font-size: 22px; font-weight: 700; cursor: pointer">&minus;</button>
+<div style="flex: 1; display: flex; align-items: center; justify-content: center; background: #E4F7EE; border-top: 1px solid #0B1B3A; border-bottom: 1px solid #0B1B3A; font-stretch: 112%; font-weight: 800; font-size: 20px" aria-live="polite">{{hiresLabel}}</div>
+<button type="button" class="b-white" onClick="{{hiresUp}}" aria-label="One more hire" style="width: 46px; min-height: 46px; border: 1px solid #0B1B3A; background: #FFFFFF; color: #0B1B3A; font-size: 22px; font-weight: 700; cursor: pointer">+</button>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 14px; font-weight: 600">Monthly revenue growth</span>
+<div style="display: flex; align-items: stretch">
+<button type="button" class="b-white" onClick="{{growthDown}}" aria-label="Lower growth" style="width: 46px; min-height: 46px; border: 1px solid #0B1B3A; background: #FFFFFF; color: #0B1B3A; font-size: 22px; font-weight: 700; cursor: pointer">&minus;</button>
+<div style="flex: 1; display: flex; align-items: center; justify-content: center; background: #E4F7EE; border-top: 1px solid #0B1B3A; border-bottom: 1px solid #0B1B3A; font-stretch: 112%; font-weight: 800; font-size: 20px" aria-live="polite">{{growthLabel}}</div>
+<button type="button" class="b-white" onClick="{{growthUp}}" aria-label="Raise growth" style="width: 46px; min-height: 46px; border: 1px solid #0B1B3A; background: #FFFFFF; color: #0B1B3A; font-size: 22px; font-weight: 700; cursor: pointer">+</button>
+</div>
+</div>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; color: #2B3648">{{narrative}}</p>
+</div>
+<div style="flex: 2 1 520px; min-width: 0; padding: 24px 20px 18px; display: flex; flex-direction: column; gap: 12px">
+<div style="position: relative">
+<svg viewBox="0 0 720 260" role="img" aria-label="{{chartLabel}}" style="width: 100%; height: auto; display: block">
+<line x1="0" y1="93.3" x2="720" y2="93.3" style="stroke: #E3E7EE; stroke-width: 1"></line>
+<line x1="0" y1="166.7" x2="720" y2="166.7" style="stroke: #E3E7EE; stroke-width: 1"></line>
+<line x1="0" y1="240" x2="720" y2="240" style="stroke: #B9C3D3; stroke-width: 1.5"></line>
+<rect x="{{todayX}}" y="0" width="{{shadeW}}" height="240" style="fill: #E4F7EE; opacity: 0.6"></rect>
+<path d="{{ghost}}" style="fill: none; stroke: #4B5565; stroke-width: 1.5; stroke-dasharray: 2 6; opacity: {{ghostOpacity}}"></path>
+<line x1="{{todayX}}" y1="0" x2="{{todayX}}" y2="240" style="stroke: #0B1B3A; stroke-width: 1.5"></line>
+<path d="{{actualPath}}" style="fill: none; stroke: #2450DC; stroke-width: 3.5; stroke-linejoin: round; stroke-linecap: round"></path>
+<path d="{{forecastPath}}" style="fill: none; stroke: #0B1B3A; stroke-width: 3; stroke-dasharray: 8 7; stroke-linecap: square"></path>
+<rect x="{{lastActualBoxX}}" y="{{lastActualBoxY}}" width="11" height="11" style="fill: #2450DC; stroke: #FFFFFF; stroke-width: 2"></rect>
+<rect x="{{endBoxX}}" y="{{endBoxY}}" width="11" height="11" style="fill: {{endFill}}; stroke: #0B1B3A; stroke-width: 2"></rect>
+</svg>
+<span style="position: absolute; left: 6px; top: 30%; font-size: 12px; color: #4B5565">$3.0M</span>
+<span style="position: absolute; left: 6px; top: 58%; font-size: 12px; color: #4B5565">$1.5M</span>
+<span style="position: absolute; left: {{todayPct}}; top: 0; transform: translateX(-50%); background: #0B1B3A; color: #FFFFFF; padding: 3px 9px; font-size: 12px; font-weight: 700; white-space: nowrap; transition: left .35s ease-out">Today</span>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: #2B3648">
+<span style="display: inline-flex; align-items: center; gap: 7px"><span style="display: inline-block; width: 20px; border-top: 3.5px solid #2450DC"></span>Actuals, from the ledger</span>
+<span style="display: inline-flex; align-items: center; gap: 7px"><span style="display: inline-block; width: 20px; border-top: 3px dashed #0B1B3A"></span>Forecast, from the plan</span>
+<span style="display: inline-flex; align-items: center; gap: 7px"><span style="display: inline-block; width: 12px; height: 12px; background: #E4F7EE; border: 1px solid #0B1B3A"></span>Assumptions you can change</span>
+</div>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; padding: 16px 24px; border-bottom: 1px solid #B9C3D3; background: #F6F8FC">
+<button type="button" class="b-teal" onClick="{{closeNext}}" disabled="{{closeDisabled}}" style="font-size: 16px; font-weight: 700; background: {{closeBg}}; color: #FFFFFF; border: 0; padding: 13px 20px; min-height: 46px; cursor: pointer">{{closeLabel}}</button>
+<button type="button" class="b-white" onClick="{{reset}}" style="font-size: 15px; font-weight: 600; background: #FFFFFF; color: #0B1B3A; border: 1px solid #0B1B3A; padding: 12px 18px; min-height: 46px; cursor: pointer">Reset</button>
+<p style="margin: 0; font-size: 15px; color: #4B5565">Books closed through <b style="color: #0B1B3A">{{todayLabel}}</b></p>
+</div>
+<div style="overflow-x: auto">
+<div role="table" aria-label="Monthly plan in USD thousands. Columns up to today are actuals, later columns are forecast." style="min-width: 720px; font-size: 16px">
+<div role="row" style="display: grid; grid-template-columns: minmax(200px, 1.6fr) repeat(6, minmax(0, 1fr)); border-bottom: 1px solid #B9C3D3; text-align: right">
+<span role="columnheader" style="padding: 12px 24px; text-align: left; font-size: 14px; color: #4B5565">USD thousands</span>
+<sc-for list="{{cols}}" as="c" hint-placeholder-count="6">
+<span role="columnheader" style="padding: 10px 16px; border-left: {{c.bl}}; background: {{c.bg}}; display: flex; flex-direction: column; align-items: flex-end; gap: 1px"><b style="font-weight: 700">{{c.label}}</b><small style="font-size: 12px; font-weight: 800; letter-spacing: .08em; color: {{c.tagColor}}">{{c.tag}}</small></span>
+</sc-for>
+</div>
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="5">
+<div role="row" style="display: grid; grid-template-columns: minmax(200px, 1.6fr) repeat(6, minmax(0, 1fr)); border-bottom: 1px solid #E3E7EE; text-align: right; font-weight: {{r.weight}}">
+<span role="rowheader" style="padding: 12px 24px; text-align: left">{{r.label}}</span>
+<span role="cell" style="padding: 12px 16px; color: {{r.k0}}; background: {{r.b0}}; border-left: {{r.l0}}">{{r.c0}}</span>
+<span role="cell" style="padding: 12px 16px; color: {{r.k1}}; background: {{r.b1}}; border-left: {{r.l1}}">{{r.c1}}</span>
+<span role="cell" style="padding: 12px 16px; color: {{r.k2}}; background: {{r.b2}}; border-left: {{r.l2}}">{{r.c2}}</span>
+<span role="cell" style="padding: 12px 16px; color: {{r.k3}}; background: {{r.b3}}; border-left: {{r.l3}}">{{r.c3}}</span>
+<span role="cell" style="padding: 12px 16px; color: {{r.k4}}; background: {{r.b4}}; border-left: {{r.l4}}">{{r.c4}}</span>
+<span role="cell" style="padding: 12px 16px; color: {{r.k5}}; background: {{r.b5}}; border-left: {{r.l5}}">{{r.c5}}</span>
+</div>
+</sc-for>
+</div>
+</div>
+<div style="padding: 16px 24px; background: #0B1B3A; color: #FFFFFF; font-size: 16px; line-height: 1.5">{{closeNote}}</div>
+</div>
+</div>
+</section>
+
+<section id="ask" style="padding: 80px 0; background: #F6F8FC; border-bottom: 1px solid #D5DBE5">
+<div class="wrap rv" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr)); gap: 40px 64px; align-items: start">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<p class="ey">Financial intelligence</p>
+<h2 class="h2">Ask the ledger.</h2>
+<p class="lead">Answers come from your own entries, with the working shown. Every figure links back to the transactions behind it. Pick a question.</p>
+<div style="display: flex; flex-direction: column; gap: 8px; margin-top: 4px" role="group" aria-label="Sample questions">
+<sc-for list="{{questions}}" as="q" hint-placeholder-count="4">
+<button type="button" onClick="{{q.pick}}" aria-pressed="{{q.pressed}}" style="text-align: left; font-size: 16px; font-weight: 600; padding: 14px 16px; min-height: 52px; cursor: pointer; border: 1px solid #0B1B3A; background: {{q.bg}}; color: {{q.fg}}; box-shadow: {{q.sh}}; transition: background .2s, box-shadow .2s">{{q.text}}</button>
+</sc-for>
+</div>
+</div>
+<div style="background: #FFFFFF; border: 1px solid #0B1B3A; box-shadow: 10px 10px 0 #0B1B3A; display: flex; flex-direction: column; min-height: 440px">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 20px; background: #0B1B3A; color: #FFFFFF">
+<span style="font-weight: 700; font-size: 15px">Answer from the ledger</span>
+<span style="font-size: 14px; color: #C7D2E6">Sample answer, illustrative data</span>
+</div>
+<div style="padding: 26px 24px; display: flex; flex-direction: column; gap: 16px; flex: 1">
+<p style="margin: 0; font-size: 14px; color: #2450DC; font-weight: 600">{{askedText}}</p>
+<h3 style="margin: 0; font-stretch: 112%; font-weight: 700; font-size: 28px; line-height: 1.18; letter-spacing: -0.01em">{{answerTitle}}</h3>
+<p style="margin: 0; font-size: 17px; line-height: 1.6; color: #2B3648; background: #E4F7EE; padding: 14px 16px; min-height: 130px">{{answerTyped}}<span class="caret" aria-hidden="true" style="opacity: {{caretOpacity}}"></span></p>
+<p style="margin: auto 0 0; padding-top: 14px; border-top: 1px solid #E3E7EE; font-size: 14.5px; line-height: 1.5; color: #4B5565"><b style="color: #0B1B3A">Working:</b> {{answerSource}}</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="connected" style="position: relative; overflow: clip; padding: 88px 0; background: #0B1B3A; color: #FFFFFF">
+<div aria-hidden="true" class="a1" style="position: absolute; width: 120vw; max-width: 900px; aspect-ratio: 1; left: -40%; top: 120px; background: radial-gradient(closest-side, rgba(36,80,220,0.7), rgba(36,80,220,0))"></div>
+<div class="wrap" style="position: relative; z-index: 1; display: flex; flex-direction: column; gap: 36px">
+<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px">
+<p class="ey" style="color: #A9E8CF">Connected to the business</p>
+<h2 class="h2">Sign a contract. <span style="color: #A9E8CF">Watch the books move.</span></h2>
+<p style="margin: 0; font-size: 19px; line-height: 1.55; color: #C7D2E6">A ledger only sees transactions. <span>{{brand}}</span> also reads the context around them. Try it: sign the contract below.</p>
+</div>
+<div class="rv" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); gap: 28px 32px; align-items: start">
+<div style="background: #FFFFFF; color: #0B1B3A; padding: 22px 20px; box-shadow: 8px 8px 0 #2450DC; transform: rotate(-1.2deg); display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; justify-content: space-between; gap: 10px; font-size: 11px; font-weight: 800; letter-spacing: 0.12em; color: #4B5565"><span>SERVICE AGREEMENT</span><span>SAMPLE</span></div>
+<b style="font-stretch: 112%; font-weight: 800; font-size: 24px; line-height: 1.1; letter-spacing: -0.01em">Harbor Labs</b>
+<div style="display: flex; flex-direction: column"><div style="display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-top: 1px solid #E3E7EE; font-size: 15px"><span style="color: #4B5565">Annual fee</span><b>$48,000</b></div><div style="display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-top: 1px solid #E3E7EE; font-size: 15px"><span style="color: #4B5565">Billing</span><b>Quarterly</b></div><div style="display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-top: 1px solid #E3E7EE; font-size: 15px"><span style="color: #4B5565">Payment terms</span><b>Net 30</b></div><div style="display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; border-top: 1px solid #E3E7EE; font-size: 15px"><span style="color: #4B5565">Start date</span><b>December 1</b></div></div>
+<div style="position: relative; height: 70px; border-bottom: 1.5px solid #0B1B3A">
+<svg viewBox="0 0 240 70" aria-hidden="true" style="position: absolute; left: 0; bottom: 2px; width: min(240px, 80%); height: 70px; overflow: visible"><path d="M6 52 C 20 10, 34 8, 30 40 S 44 66, 58 30 S 70 20, 76 44 S 96 58, 104 34 S 120 24, 126 46 S 150 56, 162 30 S 190 40, 232 22" style="fill: none; stroke: #2450DC; stroke-width: 2.6; stroke-linecap: round; stroke-dasharray: 420; stroke-dashoffset: {{sigOff}}; transition: stroke-dashoffset 1s ease-out"></path></svg>
+</div>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px">
+<span style="font-size: 13px; color: #4B5565">{{sigLine}}</span>
+<button type="button" class="b-teal" onClick="{{sigToggle}}" style="background: {{sigBtnBg}}; color: {{sigBtnFg}}; border: 1px solid #0B1B3A; font-weight: 800; font-size: 16px; padding: 13px 20px; min-height: 48px; cursor: pointer">{{sigBtn}}</button>
+</div>
+</div>
+<div aria-live="polite" style="display: flex; flex-direction: column; gap: 12px">
+<p style="margin: 0; font-size: 12px; font-weight: 800; letter-spacing: 0.12em; color: #A9E8CF">{{sigHead}}</p>
+<div style="border: 1px {{sigBs}} {{sigBd}}; background: {{sigCardBg}}; opacity: {{sigOp}}; transform: {{sigTf}}; transition: opacity .5s 0.5s, transform .5s 0.5s cubic-bezier(.2,.8,.2,1), background .5s 0.5s, border-color .5s 0.5s; padding: 16px; display: flex; gap: 14px; align-items: flex-start"><span style="flex: none; width: 36px; height: 36px; background: #A9E8CF; color: #0B1B3A; font-stretch: 125%; font-weight: 800; font-size: 15px; display: flex; align-items: center; justify-content: center">01</span><div style="min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px"><b style="font-stretch: 112%; font-weight: 800; font-size: 19px; line-height: 1.15">Terms extracted</b><span style="font-size: 15px; line-height: 1.45; color: #E1E7F2">$48,000 a year, billed quarterly, net 30, starting December 1.</span></div></div>
+<div style="border: 1px {{sigBs}} {{sigBd}}; background: {{sigCardBg}}; opacity: {{sigOp}}; transform: {{sigTf}}; transition: opacity .5s 0.9s, transform .5s 0.9s cubic-bezier(.2,.8,.2,1), background .5s 0.9s, border-color .5s 0.9s; padding: 16px; display: flex; gap: 14px; align-items: flex-start"><span style="flex: none; width: 36px; height: 36px; background: #A9E8CF; color: #0B1B3A; font-stretch: 125%; font-weight: 800; font-size: 15px; display: flex; align-items: center; justify-content: center">02</span><div style="min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px"><b style="font-stretch: 112%; font-weight: 800; font-size: 19px; line-height: 1.15">Invoice drafted</b><span style="font-size: 15px; line-height: 1.45; color: #E1E7F2">First invoice for $12,000, waiting for you to send.</span></div></div>
+<div style="border: 1px {{sigBs}} {{sigBd}}; background: {{sigCardBg}}; opacity: {{sigOp}}; transform: {{sigTf}}; transition: opacity .5s 1.3s, transform .5s 1.3s cubic-bezier(.2,.8,.2,1), background .5s 1.3s, border-color .5s 1.3s; padding: 16px; display: flex; gap: 14px; align-items: flex-start"><span style="flex: none; width: 36px; height: 36px; background: #A9E8CF; color: #0B1B3A; font-stretch: 125%; font-weight: 800; font-size: 15px; display: flex; align-items: center; justify-content: center">03</span><div style="min-width: 0; flex: 1; display: flex; flex-direction: column; gap: 4px"><b style="font-stretch: 112%; font-weight: 800; font-size: 19px; line-height: 1.15">Books and forecast agree</b><span style="font-size: 15px; line-height: 1.45; color: #E1E7F2">Revenue scheduled at $4,000 a month and each payment added to the cash forecast.</span><div aria-hidden="true" style="margin-top: 8px; display: flex; align-items: flex-end; gap: 6px"><span style="flex: 1; display: flex; flex-direction: column; align-items: stretch; justify-content: flex-end; gap: 4px; height: 64px"><span style="height: 18px; background: rgba(255,255,255,0.35); transition: height .7s 1.7s cubic-bezier(.2,.8,.2,1), background .4s 1.7s"></span><span style="font-size: 10.5px; text-align: center; color: #C7D2E6">Dec</span></span><span style="flex: 1; display: flex; flex-direction: column; align-items: stretch; justify-content: flex-end; gap: 4px; height: 64px"><span style="height: {{sigBarH}}; background: {{sigBarBg}}; transition: height .7s 1.7s cubic-bezier(.2,.8,.2,1), background .4s 1.7s"></span><span style="font-size: 10.5px; text-align: center; color: #C7D2E6">Jan</span></span><span style="flex: 1; display: flex; flex-direction: column; align-items: stretch; justify-content: flex-end; gap: 4px; height: 64px"><span style="height: 21px; background: rgba(255,255,255,0.35); transition: height .7s 1.7s cubic-bezier(.2,.8,.2,1), background .4s 1.7s"></span><span style="font-size: 10.5px; text-align: center; color: #C7D2E6">Feb</span></span><span style="flex: 1; display: flex; flex-direction: column; align-items: stretch; justify-content: flex-end; gap: 4px; height: 64px"><span style="height: 23px; background: rgba(255,255,255,0.35); transition: height .7s 1.7s cubic-bezier(.2,.8,.2,1), background .4s 1.7s"></span><span style="font-size: 10.5px; text-align: center; color: #C7D2E6">Mar</span></span><span style="flex: 1; display: flex; flex-direction: column; align-items: stretch; justify-content: flex-end; gap: 4px; height: 64px"><span style="height: {{sigBarH2}}; background: {{sigBarBg}}; transition: height .7s 1.7s cubic-bezier(.2,.8,.2,1), background .4s 1.7s"></span><span style="font-size: 10.5px; text-align: center; color: #C7D2E6">Apr</span></span><span style="flex: 1; display: flex; flex-direction: column; align-items: stretch; justify-content: flex-end; gap: 4px; height: 64px"><span style="height: 26px; background: rgba(255,255,255,0.35); transition: height .7s 1.7s cubic-bezier(.2,.8,.2,1), background .4s 1.7s"></span><span style="font-size: 10.5px; text-align: center; color: #C7D2E6">May</span></span></div><span style="font-size: 12px; color: #C7D2E6">Cash received in the forecast, illustrative</span></div></div>
+</div>
+</div>
+</div>
+<div class="rv" style="position: relative; z-index: 1; margin-top: 56px; display: flex; flex-direction: column; gap: 12px">
+<div class="wrap" style="width: 100%; font-size: 14px; color: #C7D2E6"><b style="color: #FFFFFF; font-weight: 700">Connects to the tools you already run.</b> Categories planned for early access.</div>
+<div style="overflow: clip; white-space: nowrap"><div class="marq" style="display: inline-flex"><span style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 16px; margin-right: 12px; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); white-space: nowrap"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #A9E8CF">MONEY</span><b style="font-size: 16px; font-weight: 700">Banks and cards</b></span><span style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 16px; margin-right: 12px; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); white-space: nowrap"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #A9E8CF">SPEND</span><b style="font-size: 16px; font-weight: 700">Expense tools</b></span><span style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 16px; margin-right: 12px; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); white-space: nowrap"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #A9E8CF">PAYMENTS</span><b style="font-size: 16px; font-weight: 700">Stripe and other processors</b></span><span style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 16px; margin-right: 12px; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); white-space: nowrap"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #A9E8CF">SALES</span><b style="font-size: 16px; font-weight: 700">Shopify and Amazon</b></span><span style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 16px; margin-right: 12px; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); white-space: nowrap"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #A9E8CF">MONEY</span><b style="font-size: 16px; font-weight: 700">Banks and cards</b></span><span style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 16px; margin-right: 12px; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); white-space: nowrap"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #A9E8CF">SPEND</span><b style="font-size: 16px; font-weight: 700">Expense tools</b></span><span style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 16px; margin-right: 12px; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); white-space: nowrap"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #A9E8CF">PAYMENTS</span><b style="font-size: 16px; font-weight: 700">Stripe and other processors</b></span><span style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 16px; margin-right: 12px; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); white-space: nowrap"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #A9E8CF">SALES</span><b style="font-size: 16px; font-weight: 700">Shopify and Amazon</b></span><span style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 16px; margin-right: 12px; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); white-space: nowrap"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #A9E8CF">MONEY</span><b style="font-size: 16px; font-weight: 700">Banks and cards</b></span><span style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 16px; margin-right: 12px; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); white-space: nowrap"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #A9E8CF">SPEND</span><b style="font-size: 16px; font-weight: 700">Expense tools</b></span><span style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 16px; margin-right: 12px; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); white-space: nowrap"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #A9E8CF">PAYMENTS</span><b style="font-size: 16px; font-weight: 700">Stripe and other processors</b></span><span style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 16px; margin-right: 12px; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); white-space: nowrap"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #A9E8CF">SALES</span><b style="font-size: 16px; font-weight: 700">Shopify and Amazon</b></span><span style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 16px; margin-right: 12px; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); white-space: nowrap"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #A9E8CF">MONEY</span><b style="font-size: 16px; font-weight: 700">Banks and cards</b></span><span style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 16px; margin-right: 12px; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); white-space: nowrap"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #A9E8CF">SPEND</span><b style="font-size: 16px; font-weight: 700">Expense tools</b></span><span style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 16px; margin-right: 12px; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); white-space: nowrap"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #A9E8CF">PAYMENTS</span><b style="font-size: 16px; font-weight: 700">Stripe and other processors</b></span><span style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 16px; margin-right: 12px; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); white-space: nowrap"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #A9E8CF">SALES</span><b style="font-size: 16px; font-weight: 700">Shopify and Amazon</b></span></div></div>
+<div style="overflow: clip; white-space: nowrap"><div class="marq2" style="display: inline-flex"><span style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 16px; margin-right: 12px; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); white-space: nowrap"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #A9E8CF">PEOPLE</span><b style="font-size: 16px; font-weight: 700">Payroll</b></span><span style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 16px; margin-right: 12px; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); white-space: nowrap"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #A9E8CF">CONTEXT</span><b style="font-size: 16px; font-weight: 700">Email and Slack</b></span><span style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 16px; margin-right: 12px; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); white-space: nowrap"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #A9E8CF">DEALS</span><b style="font-size: 16px; font-weight: 700">CRM and contract tools</b></span><span style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 16px; margin-right: 12px; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); white-space: nowrap"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #A9E8CF">SETUP</span><b style="font-size: 16px; font-weight: 700">Company formation</b></span><span style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 16px; margin-right: 12px; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); white-space: nowrap"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #A9E8CF">PEOPLE</span><b style="font-size: 16px; font-weight: 700">Payroll</b></span><span style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 16px; margin-right: 12px; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); white-space: nowrap"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #A9E8CF">CONTEXT</span><b style="font-size: 16px; font-weight: 700">Email and Slack</b></span><span style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 16px; margin-right: 12px; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); white-space: nowrap"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #A9E8CF">DEALS</span><b style="font-size: 16px; font-weight: 700">CRM and contract tools</b></span><span style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 16px; margin-right: 12px; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); white-space: nowrap"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #A9E8CF">SETUP</span><b style="font-size: 16px; font-weight: 700">Company formation</b></span><span style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 16px; margin-right: 12px; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); white-space: nowrap"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #A9E8CF">PEOPLE</span><b style="font-size: 16px; font-weight: 700">Payroll</b></span><span style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 16px; margin-right: 12px; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); white-space: nowrap"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #A9E8CF">CONTEXT</span><b style="font-size: 16px; font-weight: 700">Email and Slack</b></span><span style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 16px; margin-right: 12px; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); white-space: nowrap"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #A9E8CF">DEALS</span><b style="font-size: 16px; font-weight: 700">CRM and contract tools</b></span><span style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 16px; margin-right: 12px; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); white-space: nowrap"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #A9E8CF">SETUP</span><b style="font-size: 16px; font-weight: 700">Company formation</b></span><span style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 16px; margin-right: 12px; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); white-space: nowrap"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #A9E8CF">PEOPLE</span><b style="font-size: 16px; font-weight: 700">Payroll</b></span><span style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 16px; margin-right: 12px; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); white-space: nowrap"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #A9E8CF">CONTEXT</span><b style="font-size: 16px; font-weight: 700">Email and Slack</b></span><span style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 16px; margin-right: 12px; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); white-space: nowrap"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #A9E8CF">DEALS</span><b style="font-size: 16px; font-weight: 700">CRM and contract tools</b></span><span style="display: inline-flex; align-items: center; gap: 10px; padding: 13px 16px; margin-right: 12px; border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.06); white-space: nowrap"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #A9E8CF">SETUP</span><b style="font-size: 16px; font-weight: 700">Company formation</b></span></div></div>
+</div>
+</section>
+
+<section id="about" style="padding: 88px 0; background: #F6F8FC; border-bottom: 1px solid #D5DBE5">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
+<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 900px">
+<p class="ey">Who is building it</p>
+<h2 class="h2">Built by a CFO who has sat in <span style="color: #2450DC">all three seats.</span></h2>
+</div>
+<div class="rv" style="background: #FFFFFF; border: 1px solid #0B1B3A; box-shadow: 10px 10px 0 #2450DC; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr))">
+<div style="padding: 24px 20px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; align-items: center; gap: 14px"><span aria-hidden="true" style="flex: none; width: 64px; height: 64px; background: #0B1B3A; color: #A9E8CF; font-stretch: 125%; font-weight: 800; font-size: 24px; display: flex; align-items: center; justify-content: center; box-shadow: 4px 4px 0 #A9E8CF">FT</span><div style="display: flex; flex-direction: column"><b style="font-stretch: 112%; font-weight: 800; font-size: 24px; line-height: 1.1; letter-spacing: -0.01em">Felipe Tunnell</b><span style="font-size: 15px; color: #4B5565">Founder, <span>{{brand}}</span></span></div></div>
+<p style="margin: 0; font-size: 19px; line-height: 1.5; color: #2B3648">A CFO across multiple countries and sectors, after starting out in investment banking and venture capital. He has run finance on the tools this replaces.</p>
+<p style="margin: 0; padding-top: 14px; border-top: 1px solid #E3E7EE; font-size: 15px; line-height: 1.5; color: #4B5565">Built for startups first, in any sector, and designed to grow with them across entities, currencies and countries.</p>
+</div>
+<div style="padding: 24px 20px; background: #0B1B3A; color: #FFFFFF; display: flex; flex-direction: column">
+<div style="display: flex; gap: 14px"><div style="flex: none; display: flex; flex-direction: column; align-items: center; width: 14px"><span style="width: 14px; height: 14px; box-sizing: border-box; background: transparent; border: 1px solid #A9E8CF; margin-top: 4px"></span><span style="flex: 1; width: 1px; background: #5B6B86"></span></div><div style="display: flex; flex-direction: column; gap: 3px; padding-bottom: 22px"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.12em; color: #A9E8CF">SEAT 01</span><b style="font-stretch: 112%; font-weight: 800; font-size: 20px; line-height: 1.15">Investor</b><span style="font-size: 15px; line-height: 1.45; color: #E1E7F2">Investment banking, then venture capital.</span></div></div>
+<div style="display: flex; gap: 14px"><div style="flex: none; display: flex; flex-direction: column; align-items: center; width: 14px"><span style="width: 14px; height: 14px; box-sizing: border-box; background: transparent; border: 1px solid #A9E8CF; margin-top: 4px"></span><span style="flex: 1; width: 1px; background: #5B6B86"></span></div><div style="display: flex; flex-direction: column; gap: 3px; padding-bottom: 22px"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.12em; color: #A9E8CF">SEAT 02</span><b style="font-stretch: 112%; font-weight: 800; font-size: 20px; line-height: 1.15">Scale-up finance</b><span style="font-size: 15px; line-height: 1.45; color: #E1E7F2">Helped scale Holded, the European accounting and business software company acquired by Visma.</span></div></div>
+<div style="display: flex; gap: 14px"><div style="flex: none; display: flex; flex-direction: column; align-items: center; width: 14px"><span style="width: 14px; height: 14px; box-sizing: border-box; background: transparent; border: 1px solid #A9E8CF; margin-top: 4px"></span><span style="flex: 1; width: 1px; background: #5B6B86"></span></div><div style="display: flex; flex-direction: column; gap: 3px; padding-bottom: 22px"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.12em; color: #A9E8CF">SEAT 03</span><b style="font-stretch: 112%; font-weight: 800; font-size: 20px; line-height: 1.15">CFO</b><span style="font-size: 15px; line-height: 1.45; color: #E1E7F2">Led finance at international SaaS businesses.</span></div></div>
+<div style="display: flex; gap: 14px"><div style="flex: none; display: flex; flex-direction: column; align-items: center; width: 14px"><span style="width: 14px; height: 14px; box-sizing: border-box; background: #A9E8CF; border: 1px solid #A9E8CF; margin-top: 4px"></span></div><div style="display: flex; flex-direction: column; gap: 3px; padding-bottom: 0"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.12em; color: #A9E8CF">NOW</span><b style="font-stretch: 112%; font-weight: 800; font-size: 20px; line-height: 1.15">Founder</b><span style="font-size: 15px; line-height: 1.45; color: #E1E7F2">Building <span>{{brand}}</span>.</span></div></div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="access" style="position: relative; overflow: clip; padding: 112px 0; background: #0B1B3A; color: #FFFFFF">
+<div aria-hidden="true" class="a1" style="position: absolute; width: 120vw; max-width: 900px; aspect-ratio: 1; left: -30%; bottom: -320px; background: radial-gradient(closest-side, rgba(36,80,220,0.85), rgba(36,80,220,0))"></div>
+<div aria-hidden="true" class="a2" style="position: absolute; width: 90vw; max-width: 640px; aspect-ratio: 1; right: -30%; top: -160px; background: radial-gradient(closest-side, rgba(169,232,207,0.3), rgba(169,232,207,0))"></div>
+<div class="wrap rv" style="position: relative; z-index: 1; display: flex; flex-direction: column; gap: 24px; max-width: 980px">
+<h2 style="margin: 0; font-stretch: 125%; font-weight: 800; font-size: clamp(44px, 9vw, 112px); line-height: 0.92; letter-spacing: -0.04em; text-wrap: balance">Know where you have been. <span style="color: #A9E8CF">See where you are going.</span></h2>
+<p style="margin: 0; max-width: 36em; font-size: 19px; line-height: 1.55; color: #C7D2E6"><span>{{brand}}</span> is in development. Leave your work email and tell us your role, and we will be in touch when early access opens.</p>
+<form style="display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; max-width: 820px">
+<div style="flex: 2 1 280px; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+<label for="ea-email" style="font-size: 14px; font-weight: 600; color: #C7D2E6">Work email</label>
+<input id="ea-email" type="email" placeholder="you@company.com" style="min-height: 56px; padding: 0 16px; box-sizing: border-box; border: 1px solid #5B6B86; background: #FFFFFF; color: #0B1B3A; font-family: inherit; font-size: 17px; width: 100%; border-radius: 0">
+</div>
+<div style="flex: 1 1 200px; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+<label for="ea-role" style="font-size: 14px; font-weight: 600; color: #C7D2E6">Your role</label>
+<input id="ea-role" type="text" placeholder="Founder, CFO, accountant" style="min-height: 56px; padding: 0 16px; box-sizing: border-box; border: 1px solid #5B6B86; background: #FFFFFF; color: #0B1B3A; font-family: inherit; font-size: 17px; width: 100%; border-radius: 0">
+</div>
+<button type="button" class="b-amber" style="min-height: 56px; padding: 0 26px; border: 0; background: #A9E8CF; color: #0B1B3A; font-size: 17px; font-weight: 700; cursor: pointer">Get early access</button>
+</form>
+</div>
+</section>
+
+<footer style="background: #FFFFFF">
+<div class="wrap" style="padding-top: 28px; padding-bottom: 40px; display: flex; flex-wrap: wrap; gap: 12px 32px; justify-content: space-between; font-size: 14px; color: #4B5565">
+<div style="display: flex; align-items: center; gap: 8px; color: #0B1B3A; font-weight: 700"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><rect x="0.5" y="8.5" width="15" height="15" style="fill: #FFFFFF; stroke: #0B1B3A"></rect><rect x="10" y="0" width="14" height="14" style="fill: #2450DC"></rect></svg><span>{{brand}}</span><span style="font-weight: 400; color: #4B5565">© 2026</span></div>
+<div>Product interfaces shown are illustrative and use sample data.</div>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"brand":{"editor":"text","default":"Countahead"},"$preview":{"width":1360,"height":8000}}'>
+class Component extends DCLogic {
+componentWillUnmount() { if (this._tw) clearInterval(this._tw); }
+qs(base, hire5) {
+return [
+{ text: "Why did gross margin decline last month?", title: "Gross margin fell from 78.4% to 74.9% in November.", body: "The decline is cost-driven. Hosting rose $11.2k after the usage tier change on November 3, and support contractor spend rose $3.3k. Revenue grew 4.0% over the same month, so pricing and volume are not the cause.", src: "14 entries in 5100 Hosting, 6 entries in 5200 Support, November revenue by customer" },
+{ text: "How much runway do we have?", title: base.runway + ", to " + base.outLabel + ".", body: "Cash today is $3.06M. On the base plan revenue grows 2% a month, so burn falls from about $" + base.firstBurn + "k a month as you go. Cash still runs out before the plan reaches breakeven, which is the gap to close.", src: "Bank balances as of yesterday, base plan forecast, current headcount" },
+{ text: "Which expenses increased most this quarter?", title: "Hosting, travel and software, in that order.", body: "Hosting and other costs rose from $159k in October to $178k in November. The three largest increases were hosting at $11.2k, travel at $4.1k and software subscriptions at $2.3k.", src: "Cost accounts 5100 to 6900, October against November" },
+{ text: "What happens to cash if we hire five people?", title: "Runway moves from " + base.runway + " to " + hire5.runway + ".", body: "Five hires starting in January add about $85k a month in loaded payroll. Cash runs out in " + hire5.outLabel + " instead of " + base.outLabel + ". Open it as a scenario to adjust start dates or salaries.", src: "Headcount plan, payroll burden rates, base plan forecast" }
+];
+}
+people() {
+return [
+{ id: "ceo", label: "I run the company", short: "Founder", line: "You want to know how long the money lasts, without becoming an accountant.", role: "Founder or CEO",
+pains: ["Books that are weeks behind, so every decision uses old numbers.", "No confident answer to how long the money lasts.", "Paying for software and a bookkeeper, and still building the investor update by hand."],
+gains: ["Books that are current every day, without you doing them.", "Runway and burn from real numbers, in plain language.", "Investor and board updates drafted from the ledger."],
+qa: [
+{ q: "Do I still need an accountant?", a: "For tax filings and statutory accounts, yes. This handles the daily bookkeeping and hands your accountant clean, documented books." },
+{ q: "How much of my time does it take?", a: "The aim is minutes a week. Agents prepare the work and you approve what your policy sends to you." },
+{ q: "Will my books hold up in due diligence?", a: "Every entry carries its source document and approval, so any number can be traced to where it came from." }
+] },
+{ id: "cfo", label: "I run finance", short: "Finance lead", line: "You want a close measured in days and a forecast you do not rebuild.", role: "CFO, head of finance or fractional CFO",
+pains: ["A close that takes two weeks of reconciliations.", "A model rebuilt from exports every month.", "Entities and currencies consolidated by hand."],
+gains: ["Continuous reconciliation, so you close by exception.", "A forecast that reads the ledger directly.", "Entities consolidated with intercompany eliminated."],
+qa: [
+{ q: "Is it a real general ledger?", a: "Yes. Double-entry and accrual-based, multi-entity and multi-currency, with period locks. It is the system of record, not a layer on top of one." },
+{ q: "How do I control what the agents do?", a: "Approval policies by type and amount. Agents propose, and nothing posts outside the limits you set." },
+{ q: "Can I check the work?", a: "Each entry shows its document, its match and its reasoning. You can reclassify or post a manual journal at any time, and it is logged." }
+] },
+{ id: "acct", label: "I keep the books", short: "Accountant", line: "You want to review the work, not retype it.", role: "Accountant, controller or bookkeeper",
+pains: ["Chasing people for invoices and receipts.", "Coding and reconciling line by line.", "Cleaning up the books before the real work can start."],
+gains: ["Documents collected and attached at the source.", "Entries arrive coded, with their evidence.", "You review the exceptions, not every line."],
+qa: [
+{ q: "Is this meant to replace me?", a: "No. It takes the collecting, coding and matching. Review, judgment, adjusting entries, tax and sign-off stay with you." },
+{ q: "Can I correct and adjust?", a: "Yes. Post adjusting journals, reclassify, and lock the period when you are done. Every change is logged." },
+{ q: "What do I get at year end?", a: "A trial balance and ledger detail in which every line links to its source document and approval." }
+] }
+];
+}
+renderVals() {
+var self = this;
+var st = this.state || {};
+var hires = st.hires == null ? 0 : st.hires;
+var growth = st.growth == null ? 2 : st.growth;
+var t0 = st.t0 == null ? 5 : st.t0;
+var qSel = st.q || 0;
+var tab = st.tab || "pnl";
+var who = st.who || "ceo";
+var approved = st.approved || {};
+var brand = this.props.brand ?? "Countahead";
+
+var T = {
+rev: [275, 286, 298, 310, 322, 335, 351, 360, 379],
+pay: [352, 358, 362, 365, 368, 372, 378, 384, 390],
+opx: [150, 155, 160, 165, 159, 178, 176, 188, 181]
+};
+var cashTrue = [];
+var c0 = 4378;
+for (var a = 0; a < 9; a++) { c0 -= T.pay[a] + T.opx[a] - T.rev[a]; cashTrue.push(c0); }
+
+var NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+var LONG = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+function monthLabel(i) { return NAMES[(5 + i) % 12] + " " + (2026 + Math.floor((5 + i) / 12)); }
+function fmt(n) { return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
+
+function sim(start, h, g) {
+var S = { rev: [], pay: [], opx: [], burn: [], cash: [] };
+for (var i = 0; i <= start; i++) {
+S.rev[i] = T.rev[i]; S.pay[i] = T.pay[i]; S.opx[i] = T.opx[i];
+S.burn[i] = T.pay[i] + T.opx[i] - T.rev[i]; S.cash[i] = cashTrue[i];
+}
+var c = cashTrue[start], rev = T.rev[start], opx = T.opx[start], pay = T.pay[start];
+var hireStart = Math.max(7, start + 1);
+var out = null, be = null, sum6 = 0, firstBurn = 0;
+for (var m = start + 1; m <= start + 72; m++) {
+rev = rev * (1 + g / 100);
+opx = opx * 1.01;
+var p = pay + (m >= hireStart ? h * 17 : 0);
+var burn = p + opx - rev;
+if (m === start + 1) firstBurn = burn;
+if (m - start <= 6) sum6 += burn;
+if (out === null) {
+if (be === null && burn <= 0) be = m;
+c -= burn;
+if (c <= 0) { out = m; c = 0; }
+}
+if (m < 24) { S.rev[m] = rev; S.pay[m] = p; S.opx[m] = opx; S.burn[m] = burn; S.cash[m] = Math.max(c, 0); }
+}
+var months = out === null ? null : out - start;
+return {
+S: S, cash: S.cash, out: out, be: be, months: months,
+runway: months === null ? "5+ years" : months + " months",
+outLabel: out === null ? "no date in sight" : monthLabel(out),
+avg6: sum6 / 6, firstBurn: Math.round(firstBurn),
+hireFrom: hireStart === 7 ? "January" : "next month"
+};
+}
+
+var cur = sim(t0, hires, growth);
+var baseNow = sim(t0, 0, 2);
+var base = sim(5, 0, 2);
+var hire5 = sim(5, 5, 2);
+
+function X(i) { return 15 + 30 * i; }
+function Y(v) { return Math.round((20 + (4500 - v) / 4500 * 220) * 10) / 10; }
+function pathOf(vals, from, to) {
+var o = "";
+for (var i = from; i <= to; i++) { o += (i === from ? "M" : " L") + X(i) + " " + Y(vals[i]); }
+return o;
+}
+var endIdx = cur.out !== null && cur.out <= 23 ? cur.out : 23;
+var baseEnd = baseNow.out !== null && baseNow.out <= 23 ? baseNow.out : 23;
+var same = hires === 0 && growth === 2;
+var todayX = X(t0);
+var hitZero = cur.out !== null && cur.out <= 23;
+
+var narrative = "";
+if (same) {
+narrative = "This is the base plan: the current team, revenue growing 2% a month. Change a number to test a decision before you make it.";
+} else {
+if (hires > 0) narrative += "Hiring " + hires + (hires === 1 ? " person" : " people") + " from " + cur.hireFrom + " adds $" + (hires * 17) + "k a month to payroll. ";
+if (growth !== 2) narrative += "Revenue grows " + growth + "% a month instead of 2%. ";
+if (cur.months === null) narrative += cur.be === null ? "On this plan cash does not run out in the next five years." : "On this plan the company reaches breakeven in " + monthLabel(cur.be) + " with cash to spare.";
+else if (baseNow.months === null) narrative += "Cash now runs out in " + cur.outLabel + ".";
+else {
+var dd = cur.months - baseNow.months;
+narrative += dd === 0 ? "Runway is unchanged at " + cur.runway + "." : "Runway goes from " + baseNow.runway + " to " + cur.runway + ".";
+}
+}
+
+var colIdx = [t0 - 2, t0 - 1, t0, t0 + 1, t0 + 2, t0 + 3];
+var justClosed = t0 > 5 ? t0 : -1;
+var cols = colIdx.map(function (ci) {
+var act = ci <= t0;
+return {
+label: NAMES[(5 + ci) % 12],
+tag: act ? "ACTUAL" : "FORECAST",
+tagColor: act ? "#2450DC" : "#4B5565",
+bg: ci === justClosed ? "#E4F7EE" : "transparent",
+bl: ci === t0 + 1 ? "2px solid #0B1B3A" : "1px solid transparent"
+};
+});
+function row(label, key, weight) {
+var r = { label: label, weight: weight };
+colIdx.forEach(function (ci, n) {
+var act = ci <= t0;
+r["c" + n] = fmt(cur.S[key][ci]);
+r["k" + n] = act ? "#2450DC" : "#0B1B3A";
+r["b" + n] = ci === justClosed ? "#E4F7EE" : "transparent";
+r["l" + n] = ci === t0 + 1 ? "2px solid #0B1B3A" : "1px solid transparent";
+});
+return r;
+}
+var rows = [row("Revenue", "rev", 400), row("Payroll", "pay", 400), row("Hosting and other costs", "opx", 400), row("Net burn", "burn", 700), row("Ending cash", "cash", 700)];
+
+var closeNote = "";
+if (t0 === 5) {
+closeNote = "November is closed. December to February are forecast from the plan. Close the next month to see actuals replace them.";
+} else {
+var prev = sim(t0 - 1, 0, growth);
+var dv = Math.round(T.rev[t0] - prev.S.rev[t0]);
+var db = Math.round((T.pay[t0] + T.opx[t0] - T.rev[t0]) - prev.S.burn[t0]);
+closeNote = LONG[(5 + t0) % 12] + " closed. Revenue came in $" + Math.abs(dv) + "k " + (dv >= 0 ? "above" : "below") + " forecast and burn was $" + Math.abs(db) + "k " + (db <= 0 ? "lower" : "higher") + " than planned. The forecast has re-based from the new actuals: runway is now " + cur.runway + ".";
+}
+var canClose = t0 < 8;
+
+var queueDefs = [
+{ id: "host", title: "Orbit Cloud, hosting invoice", amount: "$4,812.40", detail: "Collected from the billing inbox and matched to the card ending 2204.", entry: "Proposed: Dr 5100 Hosting / Cr 2100 Card payable" },
+{ id: "tools", title: "Lumen design tools, annual receipt", amount: "$540.00", detail: "Matched to the card ending 2204. Spread over 12 months as a prepaid.", entry: "Proposed: Dr 1400 Prepaid expenses / Cr 2100 Card payable" },
+{ id: "payout", title: "Payment processor payout", amount: "$38,204.11", detail: "Reconciled to 212 customer charges. Fees of $1,146.12 split out.", entry: "Proposed: Dr 1010 Bank, Dr 6400 Fees / Cr 1200 Receivables" },
+{ id: "wire", title: "Incoming wire, sender not recognized", amount: "$12,000.00", detail: "No matching invoice or contract found. The agent has asked your ops lead in Slack.", entry: "Held in 2900 Suspense until documented", exception: true }
+];
+var pending = 0, doneCount = 0;
+var queue = queueDefs.map(function (dq) {
+var done = !!approved[dq.id];
+var ex = !!dq.exception;
+if (done) doneCount++;
+if (!done && !ex) pending++;
+return {
+title: dq.title, amount: dq.amount, detail: dq.detail, entry: dq.entry,
+canApprove: !done && !ex, done: done, exception: ex,
+bg: done ? "#EEF3FE" : "#FFFFFF",
+approve: function () {
+var next = Object.assign({}, approved);
+next[dq.id] = true;
+self.setState({ approved: next });
+}
+};
+});
+var queueStatus = pending === 0 ? "All approved. 1 waiting on a document" : pending + " waiting for your approval";
+var closePct = (86 + doneCount * 4) + "%";
+var auditLine = doneCount === 0 ? "Try it: approve an item. Every approval is recorded with who, when and the source document." : "Audit trail: " + doneCount + (doneCount === 1 ? " entry" : " entries") + " approved by you just now, posted to the ledger with the source attached.";
+
+var tabDefs = [["pnl", "Income statement"], ["stmt", "Balance sheet"], ["close", "Month-end close"], ["bank", "Bank reconciliation"], ["ledger", "Journal entries"]];
+var tabs = tabDefs.map(function (td) {
+var on = td[0] === tab;
+return { label: td[1], pressed: on ? "true" : "false", bg: on ? "#FFFFFF" : "transparent", fg: on ? "#2450DC" : "#0B1B3A", ul: on ? "#2450DC" : "transparent", pick: function () { self.setState({ tab: td[0] }); } };
+});
+var entries = [
+{ je: "JE-1182", date: "Nov 03", desc: "Orbit Cloud, hosting", src: "Invoice 2291, matched to card", a1: "5100 Hosting", d1: "4,812.40", c1: "", a2: "2100 Card payable", d2: "", c2: "4,812.40", has3: false, a3: "", d3: "", c3: "" },
+{ je: "JE-1183", date: "Nov 03", desc: "Lumen design tools, annual", src: "Receipt, spread over 12 months", a1: "1400 Prepaid expenses", d1: "540.00", c1: "", a2: "2100 Card payable", d2: "", c2: "540.00", has3: false, a3: "", d3: "", c3: "" },
+{ je: "JE-1184", date: "Nov 04", desc: "Payment processor payout", src: "Reconciled to 212 charges", a1: "1010 Operating bank", d1: "38,204.11", c1: "", a2: "6400 Payment fees", d2: "1,146.12", c2: "", has3: true, a3: "1200 Accounts receivable", d3: "", c3: "39,350.23" }
+];
+var jeTotals = ["4,812.40", "540.00", "39,350.23"];
+entries.forEach(function (e, ei) {
+e.total = jeTotals[ei]; e.dateUp = e.date.toUpperCase();
+[1, 2, 3].forEach(function (n) {
+var dr = !!e["d" + n];
+e["t" + n] = dr ? "DR" : "CR"; e["b" + n] = dr ? "#A9E8CF" : "#0B1B3A"; e["f" + n] = dr ? "#0B1B3A" : "#FFFFFF";
+e["i" + n] = dr ? "12px" : "30px"; e["m" + n] = e["d" + n] || e["c" + n]; e["bt" + n] = n === 1 ? "0" : "1px solid #E3E7EE";
+});
+});
+var TINTC = "#F6F8FC";
+function pl(label, nov, oct, pct, kind, note) {
+var r = { label: label, nov: nov, oct: oct, weight: 500, nw: 700, bg: "transparent", bt: "1px solid #E3E7EE", fg: "#0B1B3A", mut: "#4B5565", pad: "12px", size: "16px",
+hasBar: pct != null, w: (pct == null ? 0 : Math.min(pct, 100)) + "%", pct: pct == null ? "" : pct.toFixed(1) + "% of revenue", bar: "#0B1B3A", hasNote: !!note, note: note || "" };
+if (kind === "rev") { r.weight = 800; r.nw = 800; r.bar = "#2450DC"; r.bt = "1px solid transparent"; r.pct = "100%"; }
+if (kind === "sub") { r.weight = 800; r.nw = 800; r.bg = TINTC; r.bt = "1.5px solid #0B1B3A"; r.size = "17px"; }
+if (kind === "total") { r.weight = 800; r.nw = 800; r.bg = "#0B1B3A"; r.fg = "#FFFFFF"; r.mut = "#C7D2E6"; r.bt = "1px solid #0B1B3A"; r.pad = "16px"; r.size = "18px"; }
+return r;
+}
+var pnl = [
+pl("Revenue", "335", "322", 100, "rev"),
+pl("Cost of revenue", "(84)", "(70)", 25.1),
+pl("Gross profit", "251", "252", null, "sub", "Margin 74.9%, down from 78.4%"),
+pl("R&D", "(228)", "(224)", 68.1),
+pl("Sales and marketing", "(142)", "(139)", 42.4),
+pl("G&A", "(92)", "(90)", 27.5),
+pl("EBITDA", "(211)", "(201)", null, "sub", "Margin (63.0%)"),
+pl("D&A", "(4)", "(4)", 1.2),
+pl("Net income", "(215)", "(205)", null, "total", "Ties to November net burn in the plan")
+];
+var kpis = [
+{ label: "Revenue", val: "$335k", delta: "+4.0% on Oct", color: "#2450DC" },
+{ label: "Margin", val: "74.9%", delta: "-3.5 pts", color: "#8A5A00" },
+{ label: "Net income", val: "($215k)", delta: "Oct ($205k)", color: "#4B5565" }
+];
+var HATCH = "repeating-linear-gradient(135deg, #0B1B3A 0 2px, #FFFFFF 2px 5px)";
+var wfDefs = [["Rev", 0, 335, "335", "#2450DC", "#2450DC"], ["Cost", 251, 335, "(84)", HATCH, "#0B1B3A"], ["GP", 0, 251, "251", "#A9E8CF", "#0B1B3A"], ["R&D", 23, 251, "(228)", HATCH, "#0B1B3A"], ["S&M", -119, 23, "(142)", HATCH, "#0B1B3A"], ["G&A", -211, -119, "(92)", HATCH, "#0B1B3A"], ["EBITDA", -211, 0, "(211)", "#0B1B3A", "#0B1B3A"]];
+var wf = wfDefs.map(function (d, i) {
+var top = 156 - d[2] * 0.4, h = (d[2] - d[1]) * 0.4;
+return { lab: d[0], val: d[3], bg: d[4], bd: d[5], left: "calc(" + (i * 14.2857).toFixed(3) + "% + 4px)", width: "calc(14.2857% - 8px)", top: top.toFixed(1) + "px", h: h.toFixed(1) + "px", vtop: (d[2] > 0 ? top - 17 : top + h + 3).toFixed(1) + "px", delay: (0.1 + i * 0.09).toFixed(2) + "s" };
+});
+var sig = !!st.sig;
+var recOn = !!st.rec;
+var bankRows = [
+{ date: "Nov 04", desc: "Processor payout", amt: "38,204.11", status: "Matched to JE-1184", color: "#2450DC" },
+{ date: "Nov 03", desc: "Card payment, Orbit Cloud", amt: "-4,812.40", status: "Matched to JE-1182", color: "#2450DC" },
+{ date: "Nov 03", desc: "Card payment, Lumen", amt: "-540.00", status: "Matched to JE-1183", color: "#2450DC" },
+{ date: "Nov 02", desc: "Payroll run", amt: "-186,400.00", status: "Matched to payroll journal", color: "#2450DC" }
+];
+var stepDefs = [
+["Bank and card accounts reconciled", 2], ["Payables and receivables tied to the ledger", 2], ["Accruals and prepaids posted", 2],
+["Revenue schedules run", 2], ["Intercompany balances eliminated", 2], ["Review exceptions", doneCount >= 3 ? 2 : 1], ["Lock the period", 0]
+];
+var closeSteps = stepDefs.map(function (sd) {
+var s = sd[1];
+return { label: sd[0], status: s === 2 ? "Done" : s === 1 ? (pending + " for you") : "Waiting", color: s === 2 ? "#2450DC" : s === 1 ? "#8A5A00" : "#4B5565", fill: s === 2 ? "#2450DC" : s === 1 ? "#A9E8CF" : "#FFFFFF" };
+});
+
+var people = this.people();
+var pv = people[0];
+var personas = people.map(function (pp, pi) {
+var on = pp.id === who;
+if (on) pv = pp;
+return { label: pp.label, short: pp.short, kick: "0" + (pi + 1), role: pp.role, pressed: on ? "true" : "false", bg: on ? "#0B1B3A" : "#FFFFFF", fg: on ? "#FFFFFF" : "#0B1B3A", sub: on ? "#A9E8CF" : "#2450DC", pick: function () { self.setState({ who: pp.id, faq: 0 }); } };
+});
+var pairs = pv.pains.map(function (pn, i) { return { n: "0" + (i + 1), pain: pn, gain: pv.gains[i] }; });
+var faqSel = st.faq == null ? 0 : st.faq;
+var faqs = pv.qa.map(function (f, i) {
+var on = i === faqSel;
+return { q: f.q, a: f.a, isOpen: on, open: on ? "true" : "false", sign: on ? "\u2212" : "+", signBg: on ? "#A9E8CF" : "transparent", signFg: on ? "#0B1B3A" : "#FFFFFF", signBd: on ? "#A9E8CF" : "#5B6B86", pick: function () { self.setState({ faq: on ? -1 : i }); } };
+});
+var modDefs = [
+["CORE", "General ledger", "General ledger", "Double-entry and accrual-based, with your own chart of accounts and journal entries you can open and trace.", "Post each entry with its source document attached.", "Set the chart of accounts, and post a manual journal whenever you want."],
+["CASH", "Bank reconciliation", "Bank and card reconciliation", "Transactions matched to documents and reconciled continuously, not in a month-end scramble.", "Match each bank and card line to its document as it arrives.", "Confirm the few matches they are unsure of."],
+["MONEY OUT", "Bills and expenses", "Bills and expenses", "Invoices and receipts collected from inboxes, read, coded and queued for approval.", "Collect, read and code every bill and receipt.", "Approve what your policy sends to you."],
+["MONEY IN", "Invoicing", "Invoicing and receivables", "Customer invoices prepared from signed contracts, with payouts reconciled to the charges behind them.", "Draft invoices from signed contracts and match payments to them.", "Approve invoices before they go out."],
+["TIMING", "Accruals and schedules", "Accruals, prepaids and schedules", "Costs and revenue recognized in the right period, with the schedule kept behind each balance.", "Build the schedule and post each month's entry.", "Review the schedule when it is created."],
+["CLOSE", "Month-end close", "Month-end close", "A checklist that prepares itself through the month.", "Work through the checklist as the month runs.", "Review the exceptions, then lock the period."],
+["REPORTING", "Statements", "Financial statements", "Income statement, balance sheet and cash flow that are current today, with drill-down to every entry.", "Keep all three statements current every day.", "Open any number down to the entries behind it."],
+["GROUP", "Entities and currencies", "Entities and currencies", "Several entities and currencies consolidated into one view, with intercompany eliminated.", "Consolidate entities and eliminate intercompany balances.", "Review the consolidated view."]
+];
+var modSel = st.mod || 0;
+var mods = modDefs.map(function (md, i) {
+var on = i === modSel;
+return { n: "0" + (i + 1), short: md[1], pressed: on ? "true" : "false", bg: on ? "#0B1B3A" : "transparent", fg: on ? "#FFFFFF" : "#0B1B3A", nc: on ? "#A9E8CF" : "#2450DC", pick: function () { self.setState({ mod: i }); } };
+});
+var mdv = modDefs[modSel];
+var mv = { tag: mdv[0], name: mdv[2], desc: mdv[3], agent: mdv[4], you: mdv[5] };
+
+var ACCC = "#2450DC", GREYC = "#B9C3D3";
+var cmp = [
+{ n: "01", name: "Traditional accounting software", eg: "Such as Xero and QuickBooks", bw: "100%", bc: GREYC, pw: "18%", pc: GREYC, books: "Mostly manual", plan: "Basic budgets", sees: "Transactions" },
+{ n: "02", name: "ERPs", eg: "Such as NetSuite and Odoo", bw: "100%", bc: GREYC, pw: "30%", pc: GREYC, books: "Mostly manual", plan: "Separate module", sees: "Transactions" },
+{ n: "03", name: "Planning tools", eg: "Such as Pigment and Abacum", bw: "0%", bc: ACCC, pw: "100%", pc: ACCC, books: "None, imports them", plan: "Yes", sees: "Imported data" },
+{ n: "04", name: "AI accounting", eg: "Such as Rillet and Digits", bw: "100%", bc: ACCC, pw: "25%", pc: ACCC, books: "Automated", plan: "Limited", sees: "Transactions, documents" }
+];
+var qDefs = this.qs(base, hire5);
+var ans = qDefs[qSel];
+var typed = st.typed == null ? ans.body.length : st.typed;
+var questions = qDefs.map(function (dq, qi) {
+var on = qi === qSel;
+return {
+text: dq.text,
+pressed: on ? "true" : "false",
+bg: on ? "#0B1B3A" : "#FFFFFF",
+fg: on ? "#FFFFFF" : "#0B1B3A",
+sh: on ? "4px 4px 0 #2450DC" : "0 0 0 #2450DC",
+pick: function () {
+if (self._tw) clearInterval(self._tw);
+var len = dq.body.length;
+self.setState({ q: qi, typed: 0 });
+self._tw = setInterval(function () {
+var n = ((self.state && self.state.typed) || 0) + 3;
+if (n >= len) { n = len; clearInterval(self._tw); self._tw = null; }
+self.setState({ typed: n });
+}, 16);
+}
+};
+});
+
+var mSel = st.m == null ? 5 : st.m;
+var rail = [];
+for (var ri = 0; ri < 12; ri++) {
+(function (i) {
+var act = i <= 5, on = i === mSel;
+rail.push({
+lab: NAMES[(5 + i) % 12], pressed: on ? "true" : "false",
+aria: LONG[(5 + i) % 12] + " " + (2026 + Math.floor((5 + i) / 12)) + (act ? ", actual" : ", forecast"),
+h: Math.round(base.S.cash[i] / 4500 * 98) + "px",
+bd: act ? (i === 5 ? "#A9E8CF" : "#FFFFFF") : "#A9E8CF", glow: i === 5 ? "0 0 28px rgba(169,232,207,0.7)" : "none",
+fill: act ? (i === 5 ? "#A9E8CF" : "#FFFFFF") : "repeating-linear-gradient(135deg, #A9E8CF 0 1.5px, transparent 1.5px 5px)",
+bg: on ? "rgba(255,255,255,0.14)" : "transparent", ul: on ? "#A9E8CF" : "transparent",
+lw: on ? 800 : 500, lc: on ? "#FFFFFF" : "#C7D2E6",
+delay: (0.3 + i * 0.05).toFixed(2) + "s",
+pick: function () { self.setState({ m: i }); }
+});
+})(ri);
+}
+var mAct = mSel <= 5;
+var mTitle = LONG[(5 + mSel) % 12] + " " + (2026 + Math.floor((5 + mSel) / 12));
+var mTag = mSel < 5 ? "Closed" : mSel === 5 ? "Open, books current" : "Forecast";
+var mNote = mSel < 5 ? "Closed and locked. Every entry is traced to its source document and approval."
+: mSel === 5 ? "This month so far. Agents post as transactions arrive, and you approve the exceptions."
+: "Projected from the same ledger on the base plan. It updates itself each time a month closes.";
+
+return {
+brand: brand,
+rail: rail, mTitle: mTitle, mTag: mTag, mNote: mNote,
+mBg: mAct ? "rgba(255,255,255,0.05)" : "rgba(36,80,220,0.35)", mTagBg: mAct ? "#FFFFFF" : "#A9E8CF", mTagFg: "#0B1B3A",
+mRev: "$" + fmt(base.S.rev[mSel]) + "k", mBurn: "$" + fmt(base.S.burn[mSel]) + "k", mCash: "$" + (base.S.cash[mSel] / 1000).toFixed(2) + "M",
+cmp: cmp,
+tabs: tabs,
+tabPnl: tab === "pnl", tabLedger: tab === "ledger", tabBank: tab === "bank", tabClose: tab === "close", tabStmt: tab === "stmt",
+pnl: pnl, kpis: kpis, wf: wf,
+sigOff: sig ? 0 : 420, sigLine: sig ? "Signed today by Harbor Labs" : "Waiting for a signature",
+sigBtn: sig ? "Replay" : "Sign the contract", sigBtnBg: sig ? "#FFFFFF" : "#2450DC", sigBtnFg: sig ? "#0B1B3A" : "#FFFFFF",
+sigHead: sig ? "DONE BY AGENTS, SECONDS LATER" : "WHAT HAPPENS WHEN IT IS SIGNED",
+sigBs: sig ? "solid" : "dashed", sigBd: sig ? "#A9E8CF" : "rgba(255,255,255,0.3)", sigCardBg: sig ? "rgba(255,255,255,0.09)" : "transparent",
+sigOp: sig ? 1 : 0.4, sigTf: sig ? "none" : "translateY(10px) scale(0.98)",
+sigBarH: sig ? "46px" : "20px", sigBarH2: sig ? "50px" : "24px", sigBarBg: sig ? "#A9E8CF" : "rgba(255,255,255,0.35)",
+sigToggle: function () { self.setState({ sig: !sig }); },
+recOn: recOn, recLedger: recOn ? "3,060,412.18" : "3,048,412.18",
+recDiff: recOn ? "0.00" : "12,000.00", recDiffLabel: recOn ? "Difference. Account reconciled." : "Difference. 1 match waiting for you.",
+recDiffBg: recOn ? "#E4F7EE" : "#FFFFFF", recDiffFg: recOn ? "#2450DC" : "#8A5A00",
+recHead: recOn ? "Reconciled" : "Suggested match", recHeadFg: recOn ? "#2450DC" : "#0B1B3A",
+recBg: recOn ? "#E4F7EE" : "#FFFFFF", recShadow: recOn ? "6px 6px 0 #2450DC" : "0 0 0 #2450DC",
+recMidH: recOn ? "0px" : "104px", recMidOp: recOn ? 0 : 1, recMidVis: recOn ? "hidden" : "visible", recMt: recOn ? "-1px" : "0",
+recAnim1: recOn ? "pop .5s .45s both" : "nd1 2.2s ease-in-out infinite", recAnim2: recOn ? "pop .5s .45s both" : "nd2 2.2s ease-in-out infinite",
+recCount: recOn ? "214" : "213", recBarW: recOn ? "100%" : "99.5%",
+recConfirm: function () { self.setState({ rec: true }); }, recUndo: function () { self.setState({ rec: false }); },
+entries: entries, bankRows: bankRows, closeSteps: closeSteps,
+personas: personas, pv: pv, pairs: pairs, faqs: faqs, mods: mods, mv: mv,
+hiresLabel: hires === 0 ? "0" : "+" + hires,
+growthLabel: growth + "%",
+todayLabel: monthLabel(t0),
+hiresDown: function () { self.setState({ hires: Math.max(0, hires - 1) }); },
+hiresUp: function () { self.setState({ hires: Math.min(10, hires + 1) }); },
+growthDown: function () { self.setState({ growth: Math.max(0, growth - 0.5) }); },
+growthUp: function () { self.setState({ growth: Math.min(6, growth + 0.5) }); },
+closeNext: function () { if (t0 < 8) self.setState({ t0: t0 + 1 }); },
+closeDisabled: !canClose,
+closeBg: canClose ? "#2450DC" : "#5B6B86",
+closeLabel: canClose ? "Close " + LONG[(5 + t0 + 1) % 12] : "All sample months closed",
+reset: function () { self.setState({ hires: 0, growth: 2, t0: 5 }); },
+runway: cur.runway,
+runwayColor: cur.months !== null && cur.months < 12 ? "#B42318" : "#0B1B3A",
+cashOutLine: cur.out === null ? "Cash does not run out" : "Cash lasts to " + monthLabel(cur.out),
+narrative: narrative,
+closeNote: closeNote,
+cols: cols,
+rows: rows,
+actualPath: pathOf(cur.cash, 0, t0),
+forecastPath: pathOf(cur.cash, t0, endIdx),
+ghost: pathOf(baseNow.cash, t0, baseEnd),
+ghostOpacity: same ? "0" : "0.9",
+todayX: todayX,
+shadeW: 720 - todayX,
+todayPct: (Math.round(todayX / 720 * 1000) / 10) + "%",
+lastActualBoxX: X(t0) - 5.5,
+lastActualBoxY: Y(cur.cash[t0]) - 5.5,
+endBoxX: X(endIdx) - 5.5,
+endBoxY: Y(cur.cash[endIdx]) - 5.5,
+endFill: hitZero ? "#B42318" : "#A9E8CF",
+chartLabel: "Cash forecast. Books are closed through " + monthLabel(t0) + ". Runway is " + cur.runway + ".",
+queue: queue,
+queueStatus: queueStatus,
+closePct: closePct,
+auditLine: auditLine,
+questions: questions,
+askedText: ans.text,
+answerTitle: ans.title,
+answerTyped: ans.body.slice(0, typed),
+caretOpacity: typed >= ans.body.length ? "0" : "1",
+answerSource: ans.src
+};
+}
+}
+</script>
+</body>
+</html>
