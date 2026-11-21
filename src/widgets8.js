@@ -307,4 +307,26 @@
     on(el, "[data-t]", function (t) { tab = +t.getAttribute("data-t"); draw(); }); on(el, "[data-ro]", function (t) { role = +t.getAttribute("data-ro"); draw(); }); on(el, "[data-mo]", function (t) { mon = +t.getAttribute("data-mo"); tried = 0; draw(); }); on(el, "[data-ak]", function (t) { acct = +t.getAttribute("data-ak"); draw(); });
     on(el, "[data-a]", function (t) { tried = t.getAttribute("data-a") === "post" ? 1 : 2; draw(); }); draw();
   };
+  /* ---------- early access form ---------- */
+  W.access = function (el) {
+    var ENDPOINT = "";  /* set when sign-ups are wired to a store */
+    var ROLE = ["Founder", "Finance lead", "Accountant", "Other"], KIND = ["Software", "Online store", "Services", "Hospitality or retail", "Something else"], SIZE = ["1 to 10", "11 to 50", "51 to 200", "Over 200"];
+    var st = { email: "", role: -1, kind: -1, size: -1 }, msg = "", done = false;
+    function chips(lab, arr, key) { return '<div class="ea-f"><span class="ea-lab">' + lab + '</span><div class="ea-ch" role="group" aria-label="' + lab + '">' + arr.map(function (x, i) { return '<button type="button" data-k="' + key + '" data-v="' + i + '" aria-pressed="' + (st[key] === i) + '">' + x + "</button>"; }).join("") + "</div></div>"; }
+    function draw(focus) {
+      if (done) { el.innerHTML = '<div class="ea-done"><i aria-hidden="true">&#10003;</i><b>You are on the list.</b><p>We will write to ' + st.email.replace(/</g, "&lt;") + " when early access opens.</p></div>"; return; }
+      el.innerHTML = '<form novalidate><b class="ea-t">Request early access</b><div class="ea-f"><label class="ea-lab" for="ea-email">Work email</label><input id="ea-email" type="email" inputmode="email" autocomplete="email" placeholder="you@company.com" value="' + st.email.replace(/"/g, "&quot;") + '"></div>' + chips("I am a", ROLE, "role") + chips("We are a", KIND, "kind") + chips("Team size", SIZE, "size") + (msg ? '<p class="ea-msg" role="status">' + msg + "</p>" : "") + '<button type="submit" class="ea-go">Request early access <span aria-hidden="true">&rarr;</span></button><p class="ea-fine">Used only to contact you about early access.</p></form>';
+      var inp = el.querySelector("#ea-email"); inp.addEventListener("input", function () { st.email = this.value; });
+      el.querySelector("form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(st.email.trim())) { msg = "Please enter a work email so we can reach you."; draw(true); return; }
+        if (!ENDPOINT) { msg = "Sign-up is not switched on yet, so nothing was sent. Please check back soon."; draw(); return; }
+        var body = JSON.stringify({ email: st.email.trim(), role: ROLE[st.role] || "", kind: KIND[st.kind] || "", size: SIZE[st.size] || "", page: location.pathname });
+        fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: body }).then(function (r) { if (!r.ok) throw 0; done = true; draw(); }).catch(function () { msg = "That did not go through. Please try again in a moment."; draw(); });
+      });
+      if (focus) inp.focus();
+    }
+    on(el, "[data-k]", function (t) { var k = t.getAttribute("data-k"), v = +t.getAttribute("data-v"); st[k] = st[k] === v ? -1 : v; msg = ""; draw(); });
+    draw();
+  };
 })();
