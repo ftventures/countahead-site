@@ -167,7 +167,7 @@
     ["TAX", "Sales tax", "Sales tax tracking", "Tax collected on sales and paid on purchases, tracked by place and kept ready for whoever files.", "Track what was collected and owed, by jurisdiction.", "Hand the report to your tax adviser. Filing stays with you and them.", "Finance and your adviser, each filing period."],
     ["ASSETS", "Fixed assets", "Fixed assets", "Equipment recorded as assets and depreciated on schedule, with the register kept for you.", "Spot equipment in your bills and run the depreciation each month.", "Agree what counts as an asset.", "Finance, when you buy equipment."],
     ["STOCK", "Inventory", "Inventory and cost of goods", "Stock valued at cost, with cost of goods booked alongside each sale.", "Reduce stock and book cost of goods as orders come in.", "Check counts against the shelf now and then.", "Operations and finance, weekly."]];
-  var NAV = [["EVERY DAY", [1, 2, 3, 11]], ["EVERY MONTH", [8, 4, 10, 9, 5]], ["WHEN YOU NEED IT", [7, 0]]];
+  var NAV = [["EVERY DAY", [1, 2, 3, 11]], ["EVERY MONTH", [8, 4, 10, 9, 5]], ["WHEN YOU NEED IT", [0]]];
 
   M[10] = function (el) {
     var A = [["Laptops, 24", 86, 38, 2.8, "36 months"], ["Office fit-out", 40, 14, 1.2, "60 months"]], added = false;
