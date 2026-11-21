@@ -144,9 +144,9 @@ const revLife = mock("contracts", "#F6F8FC", "Contracts", "Approve, sign, " + C(
 const revCollect = mock("collections", "#FFFFFF", "Collections", "An agent that " + C("chases what you are owed."), "It watches every unpaid invoice and drafts the follow-up, in the right tone, to the right person. You approve, or let the routine ones go on their own.", "collect");
 const revArr = mock("recurring", "#F6F8FC", "For subscription businesses", "Recurring revenue, " + C("customer by customer."), "Growth, retention and what moved this month, then the same revenue by customer, by cohort, by geography and by segment.", "arr");
 const revComm = mock("commissions", "#FFFFFF", "For sales teams", "Commissions that " + C("calculate themselves."), "Set the rules once: rates for new business and upsells, what happens above quota, when it is paid and when it is clawed back. Statements follow from signed contracts and cash received.", "comm");
-const planScen = mock("scenarios", "#FFFFFF", "Scenarios", "Three futures, " + C("one set of books."), "Compare a base case with an upside and a downside. Pick one and change what it assumes.", "scen");
+const planScen = mock("scenarios", "#FFFFFF", "Scenarios", "Three futures, " + C("one set of books."), "Compare a base case with an upside and a downside on cash, revenue and burn. Change what each one assumes, and see what choosing it would cost you.", "scen");
 const planMethod = mock("forecast-methods", "#F6F8FC", "Two ways to forecast", "Start from the goal, " + C("or from the team."), "Top down tells you what a target requires. Bottom up tells you where your hires and quotas land. Good plans check one against the other.", "method");
-const planPack = mock("board-pack", "#FFFFFF", "Board packs", "The board pack " + C("builds itself."), "A real deck, not a data dump. Pick the slides, and each one fills itself from the ledger and the plan, with the story drafted for you to edit.", "pack");
+const planPack = mock("board-pack", "#FFFFFF", "Board packs", "The board pack " + C("builds itself."), "A real deck, not a data dump, with a template for each kind of business. Pick the slides, and each one fills itself from the ledger and the plan, with the story drafted for you to edit.", "pack");
 const different = `<section id="different" style="padding: 80px 0; border-bottom: 1px solid #D5DBE5">
 <div class="wrap" style="display: flex; flex-direction: column; gap: 26px">
 <div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px"><p class="ey">Why it is different</p><h2 class="h2">Every other tool does ${C("part of the job.")}</h2><p class="lead">Finance has twelve jobs across revenue, the books and the plan. Tick what you use today and see what your stack covers, then compare it with one system.</p></div>
@@ -156,7 +156,7 @@ const different = `<section id="different" style="padding: 80px 0; border-bottom
 </div>
 </section>`;
 const cycleSec = mock("cycle", "#F6F8FC", "One customer, start to finish", "From first hello " + C("to cash in the bank."), "Follow one customer through the whole system. Watch which numbers move at each step, and notice that nobody types anything twice.", "cycle");
-const analyticsSec = mock("analytics", "#F6F8FC", "Analytics", "The dashboard " + C("for your kind of business."), "The measures that matter are different for software, a store, a services firm or a cafe. Each comes ready, built on the same books.", "analytics");
+const analyticsSec = mock("analytics", "#F6F8FC", "Analytics", "The dashboard " + C("for your kind of business."), "The measures that matter are different for software, a store, a services firm, a cafe, a marketplace or a payments company. Each comes ready with its own eight, built on the same books.", "analytics");
 const revPlanSec = mock("revenue-forecast", "#FFFFFF", "Revenue forecast", "Retention, pipeline " + C("and new hires, together."), "Next year's revenue is what you keep, plus what is in the pipeline, plus what the team can sell. Move each one.", "revplan");
 const bulkSec = mock("approvals", "#FFFFFF", "Approvals", "Approve two hundred entries " + C("in one click."), "Nothing posts without an approval, but that should not mean two hundred clicks. Routine work is grouped for one decision, and the few that deserve a look are pulled out.", "bulk");
 const policySec = mock("policies", "#F6F8FC", "Policies", "Write the rule once. " + C("The software follows it."), "Each policy sets how the system behaves and is published in plain words for the whole company, so everyone knows how spending, discounts and collections work.", "policy");
@@ -226,7 +226,7 @@ ${css.trim()}
 ${vars(fs.readFileSync(path.join(__dirname, "widgets2.css"), "utf8"))}
 `);
 const V = (x) => vars(x);
-const appjs = fs.readFileSync(path.join(__dirname, "runtime.js"), "utf8") + "\nclass DCLogic {}\n" + logic + "\n" + fs.readFileSync(path.join(__dirname, "widgets.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets2.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets3.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets4.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets5.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "site.js"), "utf8").replace(/(bg: on \? )"#0B1B3A"/, '$1"var(--ink)"');
+const appjs = fs.readFileSync(path.join(__dirname, "runtime.js"), "utf8") + "\nclass DCLogic {}\n" + logic + "\n" + fs.readFileSync(path.join(__dirname, "sliderfix.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets2.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets3.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets4.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets5.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "site.js"), "utf8").replace(/(bg: on \? )"#0B1B3A"/, '$1"var(--ink)"');
 const crypto = require("crypto");
 const hash = (x) => crypto.createHash("sha1").update(x).digest("hex").slice(0, 8);
 for (const f of fs.readdirSync(path.join(root, "assets"))) fs.unlinkSync(path.join(root, "assets", f));
@@ -265,6 +265,6 @@ for (const [file, title, desc, parts] of pages) {
   dom.window.__PRERENDER = true;
   dom.window.eval(appjs);
   const html = dom.window.document.getElementById("app").innerHTML;
-  fs.writeFileSync(path.join(root, file), shell.replace('<div id="app"></div>', '<div id="app">' + html + "</div>"));
+  fs.writeFileSync(path.join(root, file), shell.replace('<div id="app"></div>', '<div id="app">' + html + "</div>").replace(/href="index\.html/g, 'href="./').replace(/href="(revenue|books|plan|integrations|about)\.html/g, 'href="$1'));
   console.log(file, Math.round(html.length / 1024) + " KB prerendered,", (tpl.match(/<section/g) || []).length, "sections");
 }

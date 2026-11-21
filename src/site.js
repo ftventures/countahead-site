@@ -45,7 +45,7 @@
       app.innerHTML = na.innerHTML;
       document.title = d.title;
       boot();
-      if (push) { try { if (window.top === window) history.pushState({}, "", url); } catch (e) {} }
+      if (push) { try { if (window.top === window) history.pushState({}, "", url.replace(/^index\.html/, "./").replace(/\.html/, "")); } catch (e) {} }
       var target = hash && document.getElementById(hash);
       if (target) target.scrollIntoView(); else window.scrollTo(0, 0);
     });
@@ -55,13 +55,15 @@
     var a = e.target; while (a && a.nodeName !== "A") a = a.parentNode;
     if (!a || e.defaultPrevented || e.metaKey || e.ctrlKey) return;
     var href = a.getAttribute("href") || "";
+    var m = /^(\.\/|revenue|books|plan|integrations|about)(#[\w-]+)?$/.exec(href);
+    if (m) href = (m[1] === "./" ? "index" : m[1]) + ".html" + (m[2] || "");
     if (/^[\w-]+\.html(#[\w-]+)?$/.test(href)) {
       e.preventDefault();
       go(href, true).catch(function () { try { location.href = href; } catch (x) {} });
     }
   });
   document.addEventListener("submit", function (e) { e.preventDefault(); });
-  window.addEventListener("popstate", function () { var f = location.pathname.split("/").pop() || "index.html"; go(f + location.hash, false).catch(function () {}); });
+  window.addEventListener("popstate", function () { var f = location.pathname.split("/").pop() || "index.html"; if (!/\.html$/.test(f)) f += ".html"; go(f + location.hash, false).catch(function () {}); });
 
   boot();
 })();
