@@ -1,0 +1,64 @@
+// Industry pages. One template, four kinds of business. Each opens with its own numbers and demos.
+const IND = [["software.html", "Software"], ["online-stores.html", "Online stores"], ["services.html", "Services and agencies"], ["hospitality.html", "Hospitality and retail"]];
+
+const DATA = [
+  { file: "software.html", name: "Software", ey: "For software companies", h1: ["Signed contracts in,", "recurring revenue out."],
+    lead: "From the signed contract to recognized revenue, deferred revenue, recurring revenue and runway, on one ledger. Built around ASC 606 and the ways software is really sold.",
+    title: "Accounting and planning for software companies | Countahead", desc: "Contracts, billing, ASC 606 revenue recognition, recurring revenue and runway for software companies, on one ledger.",
+    co: "Sample Co., a software company with 41 customers", kp: [["RECURRING REVENUE", "$4.02M", "+4.1% on October"], ["NET RETENTION", "104%", "last 12 months"], ["GROSS MARGIN", "74.9%", "November"], ["RUNWAY", "20 months", "cash to July 2028"]],
+    pairs: [["Recurring revenue lives in a spreadsheet that never quite matches the books.", "Recurring revenue and recognized revenue come from the same contracts, with the difference explained line by line."], ["Deferred revenue and ASC 606 schedules are rebuilt by hand at every close.", "Each contract gets its schedule the moment it is signed, with license start dates, implementation fees and ramps included."], ["The board deck takes a week, and the numbers have moved by the time it goes out.", "A board pack with retention, burn multiple and runway that fills itself from the ledger."]],
+    sell: [0, "How you sell", "Self-serve or sales-led, ", "billed the way you sold it.", "Card subscriptions that run themselves, and enterprise contracts with a license start date, an implementation fee and a ramp. Pick one and follow it into the books."],
+    pre: 0,
+    spec: [["ASC 606, step by step", "The five steps kept against every contract, so the working is there when the auditor asks.", "revenue.html#recognition"], ["Deferred revenue", "By customer and by type, with the months it will be earned in.", "revenue.html#recognition"], ["Usage and seats", "Usage and seat billing, including upgrades part-way through a month.", "revenue.html#how-you-sell"], ["Commissions", "Rates, accelerators and clawbacks worked out from signed contracts.", "revenue.html#commissions"], ["Options and share-based pay", "Vesting tracked, and the monthly expense prepared for you to approve.", "company.html#options"], ["Sales tax on software", "Tracked state by state, with the figures ready for your adviser to file.", "books.html#tax"]] },
+  { file: "online-stores.html", name: "Online stores", ey: "For online stores", h1: ["Orders in,", "real margin out."],
+    lead: "Shopify, Amazon and marketplace payouts matched to the bank, with fees, refunds, stock and sales tax each in the right place. Know your margin by channel, after everything.",
+    title: "Accounting and planning for online stores | Countahead", desc: "Payouts, fees, refunds, inventory and sales tax for online stores, with margin by channel and cash planning on one ledger.",
+    co: "Sample store, selling on Shopify, Amazon and other marketplaces", kp: [["NET SALES", "$412k", "+9% on October"], ["GROSS MARGIN", "58%", "after shipping and fees"], ["MARGIN AFTER ADS", "29%", "of net sales"], ["STOCK COVER", "46 days", "at this month's pace"]],
+    pairs: [["A payout lands in the bank and nobody can say which orders, fees and refunds are inside it.", "Every payout is broken into its orders, fees and refunds, and matched to the bank."], ["Margin is a guess, because stock, shipping and ad spend sit in different tools.", "Cost of goods, shipping, fees and ads set against each channel, so margin is a number you can act on."], ["Cash disappears into stock and you find out at month end.", "Stock cover, cash tied up and what the next purchase order does to runway, every day."]],
+    sell: [2, "How you sell", "Every channel, ", "one set of books.", "Your own store, Amazon and other marketplaces each pay out differently. See how an order becomes revenue, fees, tax and stock."],
+    pre: 1,
+    spec: [["Marketplace payouts", "Settlements from each channel taken apart and reconciled to the bank.", "revenue.html#how-you-sell"], ["Inventory and cost of goods", "Stock on hand, what it cost to land, and the cost of each sale.", "books.html#accounting"], ["Sales tax across states", "Where you owe it, how much is held, and when each return is due.", "books.html#tax"], ["Returns and refunds", "Taken off revenue and put back into stock, without a manual journal.", "books.html#accounting"], ["Ads and repeat customers", "Sales per ad dollar and repeat orders next to the margin they produce.", "plan.html#analytics"], ["Seasonal cash", "Plan the stock you buy before the busy months and see the cash it needs.", "plan.html#scenarios"]] },
+  { file: "services.html", name: "Services and agencies", ey: "For services firms and agencies", h1: ["Hours in,", "paid invoices out."],
+    lead: "Time, projects and retainers turned into invoices, revenue and a forecast. See who is billable, what has not been invoiced yet and when the cash arrives.",
+    title: "Accounting and planning for services firms and agencies | Countahead", desc: "Projects, retainers, invoicing, collections and capacity planning for services firms and agencies, on one ledger.",
+    co: "Sample studio, a 12-person services firm", kp: [["REVENUE", "$186k", "+3% on October"], ["TIME BILLED", "74%", "of available hours"], ["DONE, NOT YET INVOICED", "$38k", "across 6 projects"], ["DAYS TO GET PAID", "38", "from invoice to cash"]],
+    pairs: [["Work is finished weeks before anyone gets round to invoicing it.", "Work done and not yet invoiced is listed every day, with the invoice already drafted."], ["Clients pay late, and following up is nobody's job.", "An agent follows up every unpaid invoice in the right tone, and you step in when it matters."], ["You cannot tell which clients and projects make money.", "Revenue, hours and cost by client and by project, on the same books."]],
+    sell: [4, "How you sell", "Retainers, projects ", "and time, invoiced on time.", "Fixed fees, milestones and hours each reach the books differently. Follow one from the signed statement of work to cash."],
+    pre: 2,
+    spec: [["Retainers and deposits", "Money received ahead of the work is held, then earned as you deliver.", "revenue.html#recognition"], ["Milestone billing", "Each milestone invoiced when the client accepts it.", "revenue.html#how-you-sell"], ["Collections", "Every unpaid invoice followed up, with the history on the client record.", "revenue.html#collections"], ["Contractors and 1099s", "Contractor payments tracked through the year, ready for the forms.", "books.html#tax"], ["Capacity and hiring", "See when signed work needs another person, and what that does to cash.", "plan.html#headcount"], ["Signed work still to deliver", "Work under contract feeds the forecast before it is invoiced.", "plan.html#forecast"]] },
+  { file: "hospitality.html", name: "Hospitality and retail", ey: "For hospitality and retail", h1: ["Daily takings in,", "profit by site out."],
+    lead: "Takings, tips, labor and cost of goods by site, on books that are current every morning. Countahead reads from the till you already use. Our own till is planned for later.",
+    title: "Accounting and planning for hospitality and retail | Countahead", desc: "Daily takings, tips, labor, cost of goods and sales tax by site for restaurants, cafes and shops, on one ledger.",
+    co: "Sample cafe group, three sites", kp: [["SALES THIS WEEK", "$96k", "+5% on last week"], ["LABOR", "29%", "of sales"], ["COST OF GOODS", "31%", "of sales"], ["AVERAGE TICKET", "$34", "2,820 tickets"]],
+    pairs: [["Yesterday's takings get reconciled next week, if at all.", "Card, cash and delivery-app takings matched to the bank each morning, site by site."], ["Labor and food cost are known at month end, when it is too late to act.", "Labor and cost of goods as a share of sales, by site and by time of day, every week."], ["Tips, gift cards and sales tax are tracked on a spreadsheet.", "Tips paid out, gift cards outstanding and sales tax held, each in its own place in the books."]],
+    sell: [3, "The till", "In person, ", "into the books by morning.", "Square and Toast are on the list of planned connections. Our own till is on the roadmap, and this is the design for it."],
+    pre: 3,
+    spec: [["Takings by site", "Each site's day closed and matched to what reached the bank.", "books.html#accounting"], ["Tips", "Collected, pooled and paid out with payroll, and never counted as revenue.", "books.html#accounting"], ["Gift cards", "Held as money owed to customers until they are spent.", "revenue.html#recognition"], ["Several sites, one view", "Each site on its own, and the group added up every day.", "books.html#group"], ["Payroll and scheduling", "Connects to the payroll tool you use, so labor cost lands by site.", "integrations.html"], ["Sales tax", "Collected at the till, held apart, and ready for each return.", "books.html#tax"]] }
+];
+
+module.exports = function (subhero, mock, C, access) {
+  return DATA.map((d) => {
+    const inner = `<div class="sx-top r4"><div class="sx-sw" role="group" aria-label="Kind of business">${IND.map((x) => `<a href="${x[0]}"${x[0] === d.file ? ' aria-current="page"' : ""}>${x[1]}</a>`).join("")}</div>
+<div class="sx-kp">${d.kp.map((k) => `<div><small>${k[0]}</small><b>${k[1]}</b><span>${k[2]}</span></div>`).join("")}</div>
+<p class="sx-cap">${d.co}. Illustrative figures.</p></div>`;
+    const top = subhero(d.ey, d.h1[0], d.h1[1], d.lead, inner);
+    const pains = `<section id="why" class="ab-sec" style="background: #FFFFFF">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
+<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 900px"><p class="ey">What changes</p><h2 class="h2">Three problems this kind of business has, ${C("and what replaces them.")}</h2></div>
+<div class="ab-grid3 rv">${d.pairs.map((p, i) => `<div class="sx-pair"><div><small>TODAY</small><p>${p[0]}</p></div><div><small>WITH COUNTAHEAD</small><b>${p[1]}</b></div></div>`).join("")}</div>
+</div>
+</section>`;
+    const pre = (html, w, n) => html.replace('data-widget="' + w + '"', 'data-widget="' + w + '" data-pre="' + n + '" data-lock="1"');
+    const sell = pre(mock("selling", "#F6F8FC", d.sell[1], d.sell[2] + C(d.sell[3]), d.sell[4], "revflow"), "revflow", d.sell[0]);
+    const dash = pre(mock("dashboard", "#FFFFFF", "Your dashboard", "The eight numbers ", "", "analytics"), "analytics", d.pre).replace('The eight numbers </h2><p class="lead"></p>', "The eight numbers " + C("this business is run on.") + '</h2><p class="lead">They come ready on day one, built from the books, and every one opens to the entries behind it.</p>');
+    const pack = pre(mock("board-pack", "#F6F8FC", "Your board pack", "A deck that reads like ", "", "pack"), "pack", d.pre).replace('A deck that reads like </h2><p class="lead"></p>', "A deck that reads like " + C("your business.") + '</h2><p class="lead">The slides a board in this sector expects, filled from the ledger and the plan. Click any text to edit it.</p>');
+    const spec = `<section id="specifics" class="ab-sec ab-dark">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
+<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 900px"><p class="ey" style="color: #FFFFFF">The details</p><h2 class="h2" style="color: #FFFFFF">Six things that are particular <span style="color: var(--pop)">to ${d.name.toLowerCase()}.</span></h2></div>
+<div class="ab-rules rv">${d.spec.map((p, i) => `<div class="ab-rule"><span class="ab-n">0${i + 1}</span><b>${p[0]}</b><p>${p[1]}</p><a href="${p[2]}">See it <span aria-hidden="true">&rarr;</span></a></div>`).join("")}</div>
+</div>
+</section>`;
+    return [d.file, d.title, d.desc, [top, pains, sell, dash, pack, spec, access]];
+  });
+};
+module.exports.IND = IND;

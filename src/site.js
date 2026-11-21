@@ -53,11 +53,17 @@
     });
   }
   document.addEventListener("click", function (e) {
+    var mb = e.target.closest && e.target.closest(".mn-btn");
+    if (mb) { var open = document.documentElement.classList.toggle("mn-open"); mb.setAttribute("aria-expanded", open); return; }
+    if (e.target.closest && e.target.closest(".mn a")) { document.documentElement.classList.remove("mn-open"); var bb = document.querySelector(".mn-btn"); if (bb) bb.setAttribute("aria-expanded", "false"); }
+  });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") document.documentElement.classList.remove("mn-open"); });
+  document.addEventListener("click", function (e) {
     if (app && app.__click) app.__click(e);
     var a = e.target; while (a && a.nodeName !== "A") a = a.parentNode;
     if (!a || e.defaultPrevented || e.metaKey || e.ctrlKey) return;
     var href = a.getAttribute("href") || "";
-    var m = /^(\.\/|revenue|books|plan|company|integrations|about)(#[\w-]+)?$/.exec(href);
+    var m = /^(\.\/|revenue|books|plan|company|integrations|about|software|online-stores|services|hospitality)(#[\w-]+)?$/.exec(href);
     if (m) href = (m[1] === "./" ? "index" : m[1]) + ".html" + (m[2] || "");
     if (/^[\w-]+\.html(#[\w-]+)?$/.test(href)) {
       e.preventDefault();

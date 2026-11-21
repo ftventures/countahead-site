@@ -43,11 +43,15 @@ hero = hero.replace(hw, hw.replace('class="wrap"', 'class="wrap hero2"'));
 hero = hero.slice(0, hero.indexOf('<div class="r5" style="background: rgba(255,255,255,0.07)')) + '<div class="r5 w-hero" data-widget="hero"></div>\n' + hero.slice(hero.lastIndexOf("</div>\n</section>"));
 windowHtml = windowHtml.replace('href="#ask"', 'href="plan.html#ask"');
 
-const NAV = [["revenue.html", "Revenue"], ["books.html", "Books"], ["plan.html", "Plan"], ["company.html", "Company"], ["integrations.html", "Integrations"], ["about.html", "About"]];
+const IND = require("./sectors.js").IND;
+const isInd = (f) => IND.some((x) => x[0] === f);
+const NAV = [["revenue.html", "Revenue"], ["books.html", "Books"], ["plan.html", "Plan"], ["company.html", "Company"], ["software.html", "Industries"], ["integrations.html", "Integrations"], ["about.html", "About"]];
 const SUBS = { "revenue.html": [["how-you-sell", "Ways to sell"], ["customers", "Customers"], ["pipeline", "Deals"], ["contracts", "Contracts"], ["collections", "Collections"], ["recognition", "Revenue recognition"], ["recurring", "Recurring revenue"], ["commissions", "Commissions"]], "books.html": [["accounting", "The accounting cycle"], ["group", "Groups"], ["basis", "Accounting rules"], ["approvals", "Approvals"], ["control", "Controls"], ["policies", "Policies"], ["tax", "Tax"], ["audit", "Audit readiness"]], "plan.html": [["today", "Daily view"], ["analytics", "Analytics"], ["scenarios", "Scenarios"], ["forecast", "Revenue forecast"], ["headcount", "Headcount"], ["model", "Financial model"], ["board-pack", "Board packs"], ["ask", "Ask"]], "about.html": [["why", "Why it exists"], ["why-now", "Why now"], ["principles", "How we build"], ["founder", "Founder"], ["status", "Where we are"], ["shape", "Help shape it"], ["questions", "Questions"]], "company.html": [["cap-table", "Cap table"], ["options", "Options"], ["data-room", "Data room"], ["records", "Company records"], ["drafting", "Drafting"], ["calendar", "Reminders"]] };
 function header(cur) {
-  const dd = () => NAV.map(([h, l]) => `<div class="nd"><a href="${h}" style="color: ${h === cur ? "#2450DC" : "#0B1B3A"}; text-decoration: none; padding: 10px 0; border-bottom: 2px solid ${h === cur ? "#2450DC" : "transparent"}; display: inline-flex; align-items: center; gap: 5px">${l}${SUBS[h] ? '<span aria-hidden="true" class="nd-c"></span>' : ""}</a>${SUBS[h] ? `<div class="nd-m">${SUBS[h].map(([a, t]) => `<a href="${h}#${a}">${t}</a>`).join("")}</div>` : ""}</div>`).join("\n");
-  const link = (pad) => NAV.map(([h, l]) => `<a href="${h}" style="color: ${h === cur ? "#2450DC" : "#0B1B3A"}; text-decoration: none; padding: ${pad}; border-bottom: 2px solid ${h === cur ? "#2450DC" : "transparent"}">${l}</a>`).join("\n");
+  const on = (h) => h === cur || (h === "software.html" && isInd(cur));
+  const subOf = (h) => h === "software.html" ? IND.map((x) => [x[0], x[1], 1]) : SUBS[h];
+  const dd = () => NAV.map(([h, l]) => `<div class="nd"><a href="${h}" style="color: ${on(h) ? "#2450DC" : "#0B1B3A"}; text-decoration: none; padding: 10px 0; border-bottom: 2px solid ${on(h) ? "#2450DC" : "transparent"}; display: inline-flex; align-items: center; gap: 5px">${l}${subOf(h) ? '<span aria-hidden="true" class="nd-c"></span>' : ""}</a>${subOf(h) ? `<div class="nd-m">${subOf(h).map(([a, t, pg]) => `<a href="${pg ? a : h + "#" + a}">${t}</a>`).join("")}</div>` : ""}</div>`).join("\n");
+  const link = (pad) => NAV.map(([h, l]) => `<a href="${h}" style="color: ${on(h) ? "#2450DC" : "#0B1B3A"}; text-decoration: none; padding: ${pad}; border-bottom: 2px solid ${on(h) ? "#2450DC" : "transparent"}">${l}</a>`).join("\n");
   return `<header style="position: sticky; top: 0; z-index: 30; background: rgba(255,255,255,0.94); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-bottom: 1px solid #0B1B3A">
 <div class="wrap" style="padding-top: 10px; padding-bottom: 10px; display: flex; align-items: center; justify-content: space-between; gap: 12px 16px">
 <a href="index.html" aria-label="{{brand}} home" style="display: flex; align-items: center; gap: 10px; color: #0B1B3A; text-decoration: none; min-height: 44px; min-width: 0">
@@ -57,11 +61,19 @@ function header(cur) {
 <nav class="navlinks" aria-label="Main" style="align-items: center; gap: 4px 26px; font-size: 15px; font-weight: 600">
 ${dd()}
 </nav>
-<a href="#access" class="b-teal" style="flex: none; background: #0B1B3A; color: #FFFFFF; text-decoration: none; font-weight: 700; font-size: 15px; padding: 11px 16px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; gap: 8px">Early access <span aria-hidden="true">&rarr;</span></a>
+<div class="hd-r"><a href="#access" class="b-teal" style="flex: none; background: #0B1B3A; color: #FFFFFF; text-decoration: none; font-weight: 700; font-size: 15px; padding: 11px 16px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; gap: 8px">Early access <span aria-hidden="true">&rarr;</span></a>
+<button type="button" class="mn-btn" aria-expanded="false" aria-controls="mn" aria-label="Menu"><i></i><i></i><i></i></button></div>
+</div>
+<div id="mn" class="mn">
+<nav aria-label="All pages">
+${NAV.map(([hh, l], n) => { const sub = subOf(hh); const num = '<small>0' + (n + 1) + '</small>'; return sub ? `<details${on(hh) ? " open" : ""}><summary>${num}<b>${l}</b><i aria-hidden="true"></i></summary><div>${hh === "software.html" ? "" : `<a href="${hh}" class="mn-ov">Overview <span aria-hidden="true">&rarr;</span></a>`}${sub.map(([a, t, pg]) => `<a href="${pg ? a : hh + "#" + a}"${pg && a === cur ? ' aria-current="page"' : ""}>${t}</a>`).join("")}</div></details>` : `<a href="${hh}" class="mn-row${on(hh) ? " mn-cur" : ""}">${num}<b>${l}</b><span aria-hidden="true">&rarr;</span></a>`; }).join("\n")}
+</nav>
+<a href="#access" class="mn-cta">Get early access <span aria-hidden="true">&rarr;</span></a>
+<p>In development. Product screens use sample data.</p>
 </div>
 <nav class="subnav nosb" aria-label="Pages" style="border-top: 1px solid #E3E7EE; padding: 0 24px; gap: 22px; font-size: 14px; font-weight: 700; overflow-x: auto; white-space: nowrap">
 ${link("11px 0 9px 0")}
-</nav>${SUBS[cur] ? `<nav class="subnav nosb onpage" aria-label="On this page" style="border-top: 1px solid #E3E7EE; padding: 0 24px; gap: 16px; font-size: 13px; font-weight: 600; overflow-x: auto; white-space: nowrap; background: #F6F8FC">${SUBS[cur].map(([a, t]) => `<a href="#${a}" style="color: #2B3648; text-decoration: none; padding: 9px 0">${t}</a>`).join("")}</nav>` : ""}
+</nav>${isInd(cur) ? `<nav class="subnav nosb onpage" aria-label="Industries" style="border-top: 1px solid #E3E7EE; padding: 0 24px; gap: 16px; font-size: 13px; font-weight: 600; overflow-x: auto; white-space: nowrap; background: #F6F8FC">${IND.map(([a, t]) => `<a href="${a}" style="color: ${a === cur ? "#2450DC" : "#2B3648"}; text-decoration: none; padding: 9px 0">${t}</a>`).join("")}</nav>` : ""}${SUBS[cur] ? `<nav class="subnav nosb onpage" aria-label="On this page" style="border-top: 1px solid #E3E7EE; padding: 0 24px; gap: 16px; font-size: 13px; font-weight: 600; overflow-x: auto; white-space: nowrap; background: #F6F8FC">${SUBS[cur].map(([a, t]) => `<a href="#${a}" style="color: #2B3648; text-decoration: none; padding: 9px 0">${t}</a>`).join("")}</nav>` : ""}
 <div class="prog" aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: -3px; height: 3px; background: linear-gradient(90deg, #0B1B3A, #2450DC 60%, var(--pop))"></div>
 </header>`;
 }
@@ -193,6 +205,7 @@ const pages = [
   ["integrations.html", "Integrations | Countahead", "The bank, payment, payroll, commerce and deal tools Countahead plans to connect to.", [integTop, integSec, S.access]],
   ["about.html", "About | Countahead", "Why Countahead exists, the rules it is built by, who is building it and where it stands today.", [...aboutSecs, S.access]]
 ];
+require("./sectors.js")(subhero, mock, C, S.access).forEach((p) => pages.push(p));
 fs.writeFileSync(path.join(__dirname, "site.css.tmp"), `:root{--ink:#0B1B3A;--inkline:#2F4063;--hl:#FFFFFF;--hlp:#E6EDFF;--hlt:#C7D2E6;--pop:#FFD15C}
 *{-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -289,6 +302,6 @@ for (const [file, title, desc, parts] of pages) {
   dom.window.__PRERENDER = true;
   dom.window.eval(appjs);
   const html = dom.window.document.getElementById("app").innerHTML;
-  fs.writeFileSync(path.join(root, file), shell.replace('<div id="app"></div>', '<div id="app">' + html + "</div>").replace(/href="index\.html/g, 'href="./').replace(/href="(revenue|books|plan|company|integrations|about)\.html/g, 'href="$1'));
+  fs.writeFileSync(path.join(root, file), shell.replace('<div id="app"></div>', '<div id="app">' + html + "</div>").replace(/href="index\.html/g, 'href="./').replace(/href="(revenue|books|plan|company|integrations|about|software|online-stores|services|hospitality)\.html/g, 'href="$1'));
   console.log(file, Math.round(html.length / 1024) + " KB prerendered,", (tpl.match(/<section/g) || []).length, "sections");
 }

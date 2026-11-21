@@ -43,8 +43,8 @@ ${inner}
   const founder = sec("founder", "#FFFFFF", "Who is building it", "Built by a CFO " + C("who has done this job."), "", `<div class="ab-fd rv">
 <div class="ab-bio">
 <div class="ab-id"><span aria-hidden="true">FT</span><div><b>Felipe Tunnell</b><small>Founder, Countahead</small></div></div>
-<p>Felipe has been a CFO, a fractional CFO, an investor and a founder. He has led finance for companies in the United States and Europe, from first hire to exit, on the tools Countahead replaces.</p>
-<div class="ab-path"><span>Investment banking</span><span>Venture capital</span><span>CFO</span><span>Fractional CFO</span><span>Founder</span></div>
+<p>Felipe is a former Bank of America investment banker who became a CFO, a fractional CFO, an investor and a founder. He has led finance for companies in the United States and Europe, from first hire to exit, on the tools Countahead replaces.</p>
+<div class="ab-path"><span>Bank of America, investment banking</span><span>Venture capital</span><span>CFO</span><span>Fractional CFO</span><span>Founder</span></div>
 <div class="ab-links"><a href="https://felipetunnell.com" target="_blank" rel="noopener">felipetunnell.com <span aria-hidden="true">&nearr;</span></a><a href="https://ftventures.io" target="_blank" rel="noopener">ftventures.io <span aria-hidden="true">&nearr;</span></a></div>
 </div>
 <div class="ab-nums">
@@ -56,7 +56,7 @@ ${inner}
 </div>
 <div class="ab-grid3 ab-why3 rv">
 <div class="ab-card"><small>INSIDE ACCOUNTING SOFTWARE</small><b>He helped build one of these.</b><p>Felipe was VP Finance at Holded, the Barcelona company whose accounting and business software is used by small companies across Spain. He was there through its growth and its exit to Visma in 2021, so he knows how these products are built, sold and used.</p></div>
-<div class="ab-card"><small>FUNDRAISING AND EXITS</small><b>He has sat on both sides of the deal.</b><p>First as a banker and venture investor judging other companies' numbers, then as the finance lead raising the round and running the exit. That is why the model, the data room and the board pack are built in from the start.</p></div>
+<div class="ab-card"><small>FUNDRAISING AND EXITS</small><b>He has sat on both sides of the deal.</b><p>First as an investment banker at Bank of America and a venture investor, judging other companies' numbers, then as the finance lead raising the round and running the exit. That is why the model, the data room and the board pack are built in from the start.</p></div>
 <div class="ab-card"><small>MANY SIZES, MANY SECTORS</small><b>From first hire to exit.</b><p>Software, AI, fintech, health, food and robotics, selling to businesses and to consumers. The finance problems underneath are the same, which is why Countahead is not built for one sector.</p></div>
 </div>`);
 
