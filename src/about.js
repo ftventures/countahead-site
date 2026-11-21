@@ -40,21 +40,18 @@ ${inner}
 </div>
 </section>`;
 
-  const founder = sec("founder", "#FFFFFF", "Who is building it", "Built by a CFO who has sat " + C("on every side of the numbers."), "", `<div class="ab-fd rv">
+  const founder = sec("founder", "#FFFFFF", "Who is building it", "Built by a CFO " + C("who has done this job."), "", `<div class="ab-fd rv">
 <div class="ab-bio">
 <div class="ab-id"><span aria-hidden="true">FT</span><div><b>Felipe Tunnell</b><small>Founder, Countahead</small></div></div>
-<p>Felipe has spent his career on every side of the same numbers: reading them as a banker and investor, owning them as a finance leader inside software companies, fixing them as a fractional CFO for very different businesses, and needing them as a founder.</p>
-<p>He has led finance for three companies operating in the United States, each through its own US entity, and run them on the tools Countahead replaces.</p>
-<dl class="ab-facts">
-<div><dt>United States</dt><dd>Finance lead for three companies with US entities: enterprise software, a consumer brand and an AI company</dd></div>
-<div><dt>Worked in</dt><dd>London, Barcelona, Amsterdam, Helsinki, Lisbon, Basel and Dubai</dd></div>
-<div><dt>Studied</dt><dd>Aerospace engineering at Southampton, then finance at Imperial College London</dd></div>
-<div><dt>Deals</dt><dd>Two company sales from the inside, including Holded to Visma</dd></div>
-<div><dt>Also</dt><dd>An investor in technology companies since 2017</dd></div>
-</dl>
+<p>Felipe has been a CFO, an investor and a founder. He has run finance for software, AI and consumer companies selling in the United States, on the tools Countahead replaces.</p>
+<div class="ab-path"><span>Investment banking</span><span>Venture capital</span><span>Finance leader in software</span><span>Fractional CFO</span><span>Founder</span></div>
 <div class="ab-links"><a href="https://felipetunnell.com" target="_blank" rel="noopener">felipetunnell.com <span aria-hidden="true">&nearr;</span></a><a href="https://ftventures.io" target="_blank" rel="noopener">ftventures.io <span aria-hidden="true">&nearr;</span></a></div>
 </div>
-<div class="ab-seats" data-widget="seats"></div>
+<div class="ab-nums">
+<div><b>3</b><span>companies whose finance he led in the US market, each with its own US entity</span></div>
+<div><b>2</b><span>company sales seen from the inside, including Holded to Visma</span></div>
+<div><b>40+</b><span>technology companies invested in since 2017</span></div>
+</div>
 </div>`);
 
   const stages = [["01", "Design", "NOW", "Every demo on this site is a working design of the product, running on sample data."], ["02", "Build", "NEXT", "The ledger first, then revenue and planning on top of it."], ["03", "Early access", "THEN", "A small group of startups, in the United States first."], ["04", "Wider release", "LATER", "More countries, more kinds of business and a mobile app."]];
