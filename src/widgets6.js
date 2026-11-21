@@ -9,7 +9,7 @@
 
   /* ---------- one forecast section, three ways in ---------- */
   W.forecast = function (el) {
-    var T = [["Build it up", "What you keep, plus pipeline, plus what the team can sell.", "revplan"], ["Start from the goal", "Set a target and see what it takes, or start from the team.", "method"]];
+    var T = [["Build it up", "What you keep, plus pipeline, plus what the team can sell.", "revplan"], ["Start from the goal", "Set a target and work backwards to the deals, pipeline, hires and cost it needs.", "method"]];
     el.innerHTML = '<div class="m-kinds">' + T.map(function (t, i) { return '<button type="button" data-k="' + i + '"><b>' + t[0] + "</b><small>" + t[1] + "</small></button>"; }).join("") + '</div><div class="m-kbody"></div>';
     function show(i) { [].forEach.call(el.querySelectorAll(".m-kinds [data-k]"), function (b, n) { b.setAttribute("aria-pressed", n === i); }); var o = el.querySelector(".m-kbody"), n = o.cloneNode(false); o.parentNode.replaceChild(n, o); W[T[i][2]](n); }
     el.querySelector(".m-kinds").addEventListener("click", function (e) { var t = e.target.closest("[data-k]"); if (t) show(+t.getAttribute("data-k")); });
