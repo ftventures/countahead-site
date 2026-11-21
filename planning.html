@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.dc2eed7d.css">
+<link rel="stylesheet" href="assets/site.ce3c4d1d.css">
 </head>
 <body style="margin: 0">
 <div id="app"><div class="site">
@@ -24,6 +24,7 @@
 <span style="font-stretch: 125%; font-weight: 800; font-size: 20px; letter-spacing: -0.02em">Countahead</span>
 </a>
 <nav class="navlinks" aria-label="Main" style="align-items: center; gap: 4px 26px; font-size: 15px; font-weight: 600">
+<a href="revenue.html" style="color: var(--ink); text-decoration: none; padding: 10px 0; border-bottom: 2px solid transparent">Revenue</a>
 <a href="product.html" style="color: var(--ink); text-decoration: none; padding: 10px 0; border-bottom: 2px solid transparent">Books</a>
 <a href="planning.html" style="color: #2450DC; text-decoration: none; padding: 10px 0; border-bottom: 2px solid #2450DC">Plan</a>
 <a href="integrations.html" style="color: var(--ink); text-decoration: none; padding: 10px 0; border-bottom: 2px solid transparent">Integrations</a>
@@ -32,6 +33,7 @@
 <a href="#access" class="b-teal" style="flex: none; background: var(--ink); color: #FFFFFF; text-decoration: none; font-weight: 700; font-size: 15px; padding: 11px 16px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; gap: 8px">Early access <span aria-hidden="true">→</span></a>
 </div>
 <nav class="subnav nosb" aria-label="Pages" style="border-top: 1px solid #E3E7EE; padding: 0 24px; gap: 22px; font-size: 14px; font-weight: 700; overflow-x: auto; white-space: nowrap">
+<a href="revenue.html" style="color: var(--ink); text-decoration: none; padding: 11px 0 9px 0; border-bottom: 2px solid transparent">Revenue</a>
 <a href="product.html" style="color: var(--ink); text-decoration: none; padding: 11px 0 9px 0; border-bottom: 2px solid transparent">Books</a>
 <a href="planning.html" style="color: #2450DC; text-decoration: none; padding: 11px 0 9px 0; border-bottom: 2px solid #2450DC">Plan</a>
 <a href="integrations.html" style="color: var(--ink); text-decoration: none; padding: 11px 0 9px 0; border-bottom: 2px solid transparent">Integrations</a>
@@ -52,10 +54,31 @@
 </div>
 </section>
 
+<section id="scenarios" style="padding: 88px 0; background: #FFFFFF; border-bottom: 1px solid #D5DBE5">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
+<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px"><p class="ey">Scenarios</p><h2 class="h2">Three futures, <span style="color: #2450DC">one set of books.</span></h2><p class="lead">Compare a base case with an upside and a downside. Pick one and change what it assumes.</p></div>
+<div class="m-card" data-widget="scen"></div>
+</div>
+</section>
+
+<section id="forecast-methods" style="padding: 88px 0; background: #F6F8FC; border-bottom: 1px solid #D5DBE5">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
+<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px"><p class="ey">Two ways to forecast</p><h2 class="h2">Start from the goal, <span style="color: #2450DC">or from the team.</span></h2><p class="lead">Top down tells you what a target requires. Bottom up tells you where your hires and quotas land. Good plans check one against the other.</p></div>
+<div class="m-card" data-widget="method"></div>
+</div>
+</section>
+
 <section id="headcount" style="padding: 88px 0; background: #FFFFFF; border-bottom: 1px solid #D5DBE5">
 <div class="wrap demo2" style="display: flex; flex-direction: column; gap: 32px">
 <div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px"><p class="ey">Headcount planning</p><h2 class="h2">Plan the team, <span style="color: #2450DC">see the runway.</span></h2><p class="lead">Hiring is more than engineers. Add people by role and see what each does to payroll, revenue and how long the cash lasts.</p></div>
 <div class="w-panel" data-widget="headcount"></div>
+</div>
+</section>
+
+<section id="board-pack" style="padding: 88px 0; background: #FFFFFF; border-bottom: 1px solid #D5DBE5">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
+<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px"><p class="ey">Board packs</p><h2 class="h2">The board pack <span style="color: #2450DC">builds itself.</span></h2><p class="lead">Choose the sections you want. Each one is a template that pulls live numbers, with commentary drafted for you to edit.</p></div>
+<div class="m-card" data-widget="pack"></div>
 </div>
 </section>
 
@@ -262,7 +285,7 @@
 <footer style="background: #FFFFFF">
 <div class="wrap" style="padding-top: 28px; padding-bottom: 40px; display: flex; flex-wrap: wrap; gap: 12px 32px; justify-content: space-between; font-size: 14px; color: #4B5565">
 <div style="display: flex; align-items: center; gap: 8px; color: var(--ink); font-weight: 700"><svg width="16" height="16" viewBox="0 0 26 26" aria-hidden="true"><rect x="0" y="9" width="17" height="17" style="fill: var(--ink)"></rect><rect x="9" y="0" width="17" height="17" style="fill: #2450DC"></rect><rect x="9" y="9" width="8" height="8" style="fill: var(--pop)"></rect></svg><span>Countahead</span><span style="font-weight: 400; color: #4B5565">© 2026</span></div>
-<div style="display: flex; flex-wrap: wrap; gap: 6px 18px"><a href="product.html" style="color: var(--ink); font-weight: 600">Books</a><a href="planning.html" style="color: var(--ink); font-weight: 600">Plan</a><a href="integrations.html" style="color: var(--ink); font-weight: 600">Integrations</a><a href="about.html" style="color: var(--ink); font-weight: 600">About</a></div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px 18px"><a href="revenue.html" style="color: var(--ink); font-weight: 600">Revenue</a><a href="product.html" style="color: var(--ink); font-weight: 600">Books</a><a href="planning.html" style="color: var(--ink); font-weight: 600">Plan</a><a href="integrations.html" style="color: var(--ink); font-weight: 600">Integrations</a><a href="about.html" style="color: var(--ink); font-weight: 600">About</a></div>
 <div>Product interfaces shown are illustrative and use sample data.</div>
 </div>
 </footer>
@@ -275,6 +298,7 @@
 <span style="font-stretch: 125%; font-weight: 800; font-size: 20px; letter-spacing: -0.02em">{{brand}}</span>
 </a>
 <nav class="navlinks" aria-label="Main" style="align-items: center; gap: 4px 26px; font-size: 15px; font-weight: 600">
+<a href="revenue.html" style="color: var(--ink); text-decoration: none; padding: 10px 0; border-bottom: 2px solid transparent">Revenue</a>
 <a href="product.html" style="color: var(--ink); text-decoration: none; padding: 10px 0; border-bottom: 2px solid transparent">Books</a>
 <a href="planning.html" style="color: #2450DC; text-decoration: none; padding: 10px 0; border-bottom: 2px solid #2450DC">Plan</a>
 <a href="integrations.html" style="color: var(--ink); text-decoration: none; padding: 10px 0; border-bottom: 2px solid transparent">Integrations</a>
@@ -283,6 +307,7 @@
 <a href="#access" class="b-teal" style="flex: none; background: var(--ink); color: #FFFFFF; text-decoration: none; font-weight: 700; font-size: 15px; padding: 11px 16px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; gap: 8px">Early access <span aria-hidden="true">&rarr;</span></a>
 </div>
 <nav class="subnav nosb" aria-label="Pages" style="border-top: 1px solid #E3E7EE; padding: 0 24px; gap: 22px; font-size: 14px; font-weight: 700; overflow-x: auto; white-space: nowrap">
+<a href="revenue.html" style="color: var(--ink); text-decoration: none; padding: 11px 0 9px 0; border-bottom: 2px solid transparent">Revenue</a>
 <a href="product.html" style="color: var(--ink); text-decoration: none; padding: 11px 0 9px 0; border-bottom: 2px solid transparent">Books</a>
 <a href="planning.html" style="color: #2450DC; text-decoration: none; padding: 11px 0 9px 0; border-bottom: 2px solid #2450DC">Plan</a>
 <a href="integrations.html" style="color: var(--ink); text-decoration: none; padding: 11px 0 9px 0; border-bottom: 2px solid transparent">Integrations</a>
@@ -303,10 +328,31 @@
 </div>
 </section>
 
+<section id="scenarios" style="padding: 88px 0; background: #FFFFFF; border-bottom: 1px solid #D5DBE5">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
+<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px"><p class="ey">Scenarios</p><h2 class="h2">Three futures, <span style="color: #2450DC">one set of books.</span></h2><p class="lead">Compare a base case with an upside and a downside. Pick one and change what it assumes.</p></div>
+<div class="m-card" data-widget="scen"></div>
+</div>
+</section>
+
+<section id="forecast-methods" style="padding: 88px 0; background: #F6F8FC; border-bottom: 1px solid #D5DBE5">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
+<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px"><p class="ey">Two ways to forecast</p><h2 class="h2">Start from the goal, <span style="color: #2450DC">or from the team.</span></h2><p class="lead">Top down tells you what a target requires. Bottom up tells you where your hires and quotas land. Good plans check one against the other.</p></div>
+<div class="m-card" data-widget="method"></div>
+</div>
+</section>
+
 <section id="headcount" style="padding: 88px 0; background: #FFFFFF; border-bottom: 1px solid #D5DBE5">
 <div class="wrap demo2" style="display: flex; flex-direction: column; gap: 32px">
 <div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px"><p class="ey">Headcount planning</p><h2 class="h2">Plan the team, <span style="color: #2450DC">see the runway.</span></h2><p class="lead">Hiring is more than engineers. Add people by role and see what each does to payroll, revenue and how long the cash lasts.</p></div>
 <div class="w-panel" data-widget="headcount"></div>
+</div>
+</section>
+
+<section id="board-pack" style="padding: 88px 0; background: #FFFFFF; border-bottom: 1px solid #D5DBE5">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
+<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px"><p class="ey">Board packs</p><h2 class="h2">The board pack <span style="color: #2450DC">builds itself.</span></h2><p class="lead">Choose the sections you want. Each one is a template that pulls live numbers, with commentary drafted for you to edit.</p></div>
+<div class="m-card" data-widget="pack"></div>
 </div>
 </section>
 
@@ -457,11 +503,11 @@
 <footer style="background: #FFFFFF">
 <div class="wrap" style="padding-top: 28px; padding-bottom: 40px; display: flex; flex-wrap: wrap; gap: 12px 32px; justify-content: space-between; font-size: 14px; color: #4B5565">
 <div style="display: flex; align-items: center; gap: 8px; color: var(--ink); font-weight: 700"><svg width="16" height="16" viewBox="0 0 26 26" aria-hidden="true"><rect x="0" y="9" width="17" height="17" style="fill: var(--ink)"></rect><rect x="9" y="0" width="17" height="17" style="fill: #2450DC"></rect><rect x="9" y="9" width="8" height="8" style="fill: var(--pop)"></rect></svg><span>{{brand}}</span><span style="font-weight: 400; color: #4B5565">© 2026</span></div>
-<div style="display: flex; flex-wrap: wrap; gap: 6px 18px"><a href="product.html" style="color: var(--ink); font-weight: 600">Books</a><a href="planning.html" style="color: var(--ink); font-weight: 600">Plan</a><a href="integrations.html" style="color: var(--ink); font-weight: 600">Integrations</a><a href="about.html" style="color: var(--ink); font-weight: 600">About</a></div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px 18px"><a href="revenue.html" style="color: var(--ink); font-weight: 600">Revenue</a><a href="product.html" style="color: var(--ink); font-weight: 600">Books</a><a href="planning.html" style="color: var(--ink); font-weight: 600">Plan</a><a href="integrations.html" style="color: var(--ink); font-weight: 600">Integrations</a><a href="about.html" style="color: var(--ink); font-weight: 600">About</a></div>
 <div>Product interfaces shown are illustrative and use sample data.</div>
 </div>
 </footer>
 </div></template>
-<script src="assets/app.020bd1c8.js"></script>
+<script src="assets/app.99d148f6.js"></script>
 </body>
 </html>

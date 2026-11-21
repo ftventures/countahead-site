@@ -43,7 +43,7 @@ hero = hero.replace(hw, hw.replace('class="wrap"', 'class="wrap hero2"'));
 hero = hero.slice(0, hero.indexOf('<div class="r5" style="background: rgba(255,255,255,0.07)')) + '<div class="r5 w-hero" data-widget="hero"></div>\n' + hero.slice(hero.lastIndexOf("</div>\n</section>"));
 windowHtml = windowHtml.replace('href="#ask"', 'href="planning.html#ask"');
 
-const NAV = [["product.html", "Books"], ["planning.html", "Plan"], ["integrations.html", "Integrations"], ["about.html", "About"]];
+const NAV = [["revenue.html", "Revenue"], ["product.html", "Books"], ["planning.html", "Plan"], ["integrations.html", "Integrations"], ["about.html", "About"]];
 function header(cur) {
   const link = (pad) => NAV.map(([h, l]) => `<a href="${h}" style="color: ${h === cur ? "#2450DC" : "#0B1B3A"}; text-decoration: none; padding: ${pad}; border-bottom: 2px solid ${h === cur ? "#2450DC" : "transparent"}">${l}</a>`).join("\n");
   return `<header style="position: sticky; top: 0; z-index: 30; background: rgba(255,255,255,0.94); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-bottom: 1px solid #0B1B3A">
@@ -82,9 +82,10 @@ const explore = `<section style="padding: 88px 0; border-bottom: 1px solid #D5DB
 <div class="wrap" style="display: flex; flex-direction: column; gap: 28px">
 <div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px"><p class="ey">Look inside</p><h2 class="h2">Try the product <span style="color: #2450DC">before it exists.</span></h2><p class="lead">Each page has working demos on sample data.</p></div>
 <div class="rv" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px">
-${card("product.html", "01", "The books", "Statements, reconciliation, journal entries, the review queue and the audit trail.")}
-${card("planning.html", "02", "The plan", "Change a hire or a growth rate and watch runway move. Ask the ledger a question.")}
-${card("integrations.html", "03", "Integrations", "The banks, payment, payroll and deal tools planned for early access.")}
+${card("revenue.html", "01", "Revenue", "Build a contract and watch the invoices, revenue and commission work themselves out.")}
+${card("product.html", "02", "The books", "Statements, reconciliation, journal entries, the review queue and the audit trail.")}
+${card("planning.html", "03", "The plan", "Change a hire or a growth rate and watch runway move. Ask the ledger a question.")}
+${card("integrations.html", "04", "Integrations", "The banks, payment, payroll and deal tools planned for early access.")}
 </div>
 </div>
 </section>`;
@@ -127,11 +128,27 @@ const liveLedger = demo("live", "#FFFFFF", "Automated bookkeeping", "Watch the b
 const headcount = demo("headcount", "#FFFFFF", "Headcount planning", "Plan the team, " + C("see the runway."), "Hiring is more than engineers. Add people by role and see what each does to payroll, revenue and how long the cash lasts.", "headcount");
 const ownRunway = demo("your-runway", "#F6F8FC", "Try it with your numbers", "How long does " + C("your") + " money last?", "Three numbers give a rough answer. Your real books give an exact one, updated every day.", "runway");
 const planningTop = subhero("The plan", "See where you are going,", "before you get there.", "Your forecast starts from books that are already closed, so it is built on real numbers. Drag across the chart to move from the past into the plan.", '<div class="w-panel w-glass" data-widget="time"></div>', true);
+function mock(id, bg, ey, h2, lead, widget) {
+  return `<section id="${id}" style="padding: 88px 0; background: ${bg}; border-bottom: 1px solid #D5DBE5">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
+<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px"><p class="ey">${ey}</p><h2 class="h2">${h2}</h2><p class="lead">${lead}</p></div>
+<div class="m-card" data-widget="${widget}"></div>
+</div>
+</section>`;
+}
+const revTop = subhero("Revenue", "From signed deal to cash,", "without retyping it once.", "The sale is where the numbers start. Capture it once, and the invoices, the cash, the revenue in the books and the forecast all follow from it.");
+const revFlow = mock("how-you-sell", "#FFFFFF", "Pick how you sell", "One record in. " + C("Everything else follows."), "Subscriptions, an online store, services or plain invoices. Choose one and try it.", "revflow");
+const revArr = mock("recurring", "#F6F8FC", "For subscription businesses", "Recurring revenue, " + C("customer by customer."), "New, upsell, downsell and churn, each traced to the contract that caused it.", "arr");
+const revComm = mock("commissions", "#FFFFFF", "For sales teams", "Commissions that " + C("calculate themselves."), "Booked deals come from signed contracts, so each statement is ready at month end and already accrued in the books.", "comm");
+const planScen = mock("scenarios", "#FFFFFF", "Scenarios", "Three futures, " + C("one set of books."), "Compare a base case with an upside and a downside. Pick one and change what it assumes.", "scen");
+const planMethod = mock("forecast-methods", "#F6F8FC", "Two ways to forecast", "Start from the goal, " + C("or from the team."), "Top down tells you what a target requires. Bottom up tells you where your hires and quotas land. Good plans check one against the other.", "method");
+const planPack = mock("board-pack", "#FFFFFF", "Board packs", "The board pack " + C("builds itself."), "Choose the sections you want. Each one is a template that pulls live numbers, with commentary drafted for you to edit.", "pack");
 const S = sections;
 const pages = [
   ["index.html", "Countahead: your books are done, your future is clear", "One ledger for the past and the future. Agents keep the books, you approve, and your forecast, runway and board pack read the same numbers.", [hero, marquee, S.mani, S.different, S.who, S.connected, explore, S.access]],
   ["product.html", "Product: the accounting system | Countahead", "A full double-entry accounting system run by agents you supervise, with approvals, period locks and a complete audit trail.", [productTop, liveLedger, S.accounting, S.control, S.access]],
-  ["planning.html", "Planning: runway, headcount and forecasts | Countahead", "A forecast that reads the ledger directly. Test a hire or a growth rate and see runway move.", [planningTop, headcount, S.planning, ownRunway, S.ask, S.access]],
+  ["planning.html", "Planning: runway, headcount and forecasts | Countahead", "A forecast that reads the ledger directly. Test a hire or a growth rate and see runway move.", [planningTop, planScen, planMethod, headcount, planPack, S.planning, ownRunway, S.ask, S.access]],
+  ["revenue.html", "Revenue: contracts, billing and commissions | Countahead", "Capture the sale once. Invoices, cash, revenue recognition and the forecast follow, for subscriptions, online stores and services.", [revTop, revFlow, revArr, revComm, S.access]],
   ["integrations.html", "Integrations | Countahead", "The bank, payment, payroll, commerce and deal tools Countahead plans to connect to.", [integ, S.access]],
   ["about.html", "About | Countahead", "Countahead is being built by Felipe Tunnell, a CFO across multiple countries and sectors.", [S.about, S.access]]
 ];
@@ -192,7 +209,7 @@ ${css.trim()}
 ${vars(fs.readFileSync(path.join(__dirname, "widgets2.css"), "utf8"))}
 `);
 const V = (x) => vars(x);
-const appjs = fs.readFileSync(path.join(__dirname, "runtime.js"), "utf8") + "\nclass DCLogic {}\n" + logic + "\n" + fs.readFileSync(path.join(__dirname, "widgets.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets2.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "site.js"), "utf8").replace(/(bg: on \? )"#0B1B3A"/, '$1"var(--ink)"');
+const appjs = fs.readFileSync(path.join(__dirname, "runtime.js"), "utf8") + "\nclass DCLogic {}\n" + logic + "\n" + fs.readFileSync(path.join(__dirname, "widgets.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets2.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets3.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "site.js"), "utf8").replace(/(bg: on \? )"#0B1B3A"/, '$1"var(--ink)"');
 const crypto = require("crypto");
 const hash = (x) => crypto.createHash("sha1").update(x).digest("hex").slice(0, 8);
 for (const f of fs.readdirSync(path.join(root, "assets"))) fs.unlinkSync(path.join(root, "assets", f));
