@@ -7,12 +7,7 @@ ${inner}
 </div>
 </section>`;
 
-  const line = `<div class="ab-line r4" role="img" aria-label="The past and the future on one ledger">
-<div class="ab-half"><span class="ab-k">THE PAST <i>required</i></span><div class="ab-chips"><span>Bank</span><span>Bills</span><span>Invoices</span><span>Payroll</span><span>Month-end close</span><span>Statements</span></div></div>
-<div class="ab-now"><b>TODAY</b></div>
-<div class="ab-half ab-fut"><span class="ab-k">THE FUTURE <i>where decisions are made</i></span><div class="ab-chips"><span>Forecast</span><span>Hiring</span><span>Runway</span><span>Scenarios</span><span>Board pack</span><span>Fundraising</span></div></div>
-<div class="ab-led"><span>ONE LEDGER UNDERNEATH BOTH</span></div>
-</div>`;
+  const line = `<div class="r4" data-widget="pastfuture"></div>`;
   const top = subhero("About", "Finance has two halves.", "They have never shared a ledger.", "Accounting records what happened. Planning decides what happens next. Countahead is being built so both read the same numbers.", line);
 
   const chain = (items) => items.map((x, i) => `<span class="ab-box">${x}</span>${i < items.length - 1 ? '<span class="ab-gap"><i>copy</i></span>' : ""}`).join("");
@@ -23,14 +18,11 @@ ${inner}
 <p>Today those questions get answered in a spreadsheet. The spreadsheet is fed by an export from the accounting system, which is fed by the billing tool, which someone keeps in step with the customer list by hand. Every copy is a chance for the numbers to disagree.</p>
 <p><b>Countahead puts the whole chain on one record,</b> so the plan is as current as the books and nobody has to copy anything.</p>
 </div>
-<div class="ab-diag">
-<div class="ab-d1"><span class="m-lab">HOW IT USUALLY WORKS</span><div class="ab-chain">${chain(["Customer list", "Contracts", "Billing", "Accounting", "Spreadsheet plan"])}</div><p>Five tools, four hand-offs. The plan is the last to know.</p></div>
-<div class="ab-d2"><span class="m-lab">HOW COUNTAHEAD WORKS</span><div class="ab-one"><span>Customers</span><span>Contracts</span><span>Billing</span><span>Books</span><span>Plan</span><b>One record</b></div><p>Entered once. Everything after it reads the same entry.</p></div>
-</div>
+<div class="ab-diag" data-widget="chain"></div>
 </div>`);
 
-  const now = [["01", "Software can now draft the bookkeeping", "Matching a bank line to an invoice, coding a bill, proposing an accrual: an agent can prepare this work and a person can check it. The human moves from typing to judging."], ["02", "A ledger is no longer a ten-year project", "A full double-entry system used to need a large team and many years. We think it can now be built far faster, which makes it realistic to start from the ledger and not sit on top of someone else's."], ["03", "One record makes the plan worth trusting", "When the forecast reads the ledger directly there is nothing to export and nothing to reconcile. Change a hire and the runway moves, on the real numbers."]];
-  const whyNow = sec("why-now", "#F6F8FC", "Why now", "Three things changed " + C("at the same time."), "This is our view of the moment, and the reason the product is shaped the way it is.", `<div class="ab-grid3 rv">${now.map((n) => `<div class="ab-card"><span class="ab-n">${n[0]}</span><b>${n[1]}</b><p>${n[2]}</p></div>`).join("")}</div>`);
+  const now = [["01", "AI can do the routine finance work", "Reading invoices, matching the bank, drafting contracts, chasing late payers, preparing the month-end close. Agents do the first pass and a person checks what matters."], ["02", "One system can cover the whole company", "Customers, contracts, billing, books, planning and company records used to mean six tools from six vendors. Building all of it on one ledger is now realistic."], ["03", "So the plan can run on real numbers", "With everything on one record, the forecast, the board pack and the data room are always current. Change one thing and see what it does to cash."]];
+  const whyNow = sec("why-now", "#F6F8FC", "Why now", "Why this can be " + C("built now."), "Three things are true today that were not a few years ago.", `<div class="ab-grid3 rv">${now.map((n) => `<div class="ab-card"><span class="ab-n">${n[0]}</span><b>${n[1]}</b><p>${n[2]}</p></div>`).join("")}</div>`);
 
   const pr = [["Accounting first", "If the books are not solid, nothing built on them is worth reading. The ledger is real double entry, with period locks and a full audit trail.", "books.html", "See the books"], ["You set the rules, agents work inside them", "You decide what an agent may do alone and what waits for a person. One approval can cover many routine entries, and the exceptions are pulled out for you.", "books.html#policies", "See the policies"], ["Every number shows its working", "Any figure in a statement, a forecast or an answer can be traced back to the entries and documents behind it.", "books.html#audit", "See audit readiness"], ["One record, entered once", "A customer, a contract or a hire is captured once. Invoices, revenue, the forecast and the board pack all read it.", "index.html#cycle", "See the full cycle"], ["Many countries from the start", "Several entities and several currencies are part of the design from day one, with the United States as the first market.", "books.html#accounting", "See entities"], ["Honest about limits", "Countahead does not replace your accountant or tax adviser for filings. It prepares the work and the evidence so their time goes further.", "books.html#tax", "See how tax is handled"]];
   const principles = `<section id="principles" class="ab-sec ab-dark">

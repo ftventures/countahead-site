@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.8a244276.css">
+<link rel="stylesheet" href="assets/site.93586510.css">
 </head>
 <body style="margin: 0">
 <div id="app"><div class="site">
@@ -68,12 +68,7 @@
 <h1 class="r2" style="margin: 0; font-stretch: 125%; font-weight: 800; font-size: clamp(40px, 9.6vw, 96px); line-height: 0.94; letter-spacing: -0.04em; text-wrap: balance">Finance has two halves. <span style="color: var(--hlt)">They have never shared a ledger.</span></h1>
 <p class="r3" style="margin: 0; max-width: 36em; font-size: clamp(18px, 2vw, 21px); line-height: 1.5; color: #E1E7F2">Accounting records what happened. Planning decides what happens next. Countahead is being built so both read the same numbers.</p>
 </div>
-<div class="ab-line r4" role="img" aria-label="The past and the future on one ledger">
-<div class="ab-half"><span class="ab-k">THE PAST <i>required</i></span><div class="ab-chips"><span>Bank</span><span>Bills</span><span>Invoices</span><span>Payroll</span><span>Month-end close</span><span>Statements</span></div></div>
-<div class="ab-now"><b>TODAY</b></div>
-<div class="ab-half ab-fut"><span class="ab-k">THE FUTURE <i>where decisions are made</i></span><div class="ab-chips"><span>Forecast</span><span>Hiring</span><span>Runway</span><span>Scenarios</span><span>Board pack</span><span>Fundraising</span></div></div>
-<div class="ab-led"><span>ONE LEDGER UNDERNEATH BOTH</span></div>
-</div>
+<div class="r4" data-widget="pastfuture"></div>
 </div>
 </section>
 
@@ -87,18 +82,15 @@
 <p>Today those questions get answered in a spreadsheet. The spreadsheet is fed by an export from the accounting system, which is fed by the billing tool, which someone keeps in step with the customer list by hand. Every copy is a chance for the numbers to disagree.</p>
 <p><b>Countahead puts the whole chain on one record,</b> so the plan is as current as the books and nobody has to copy anything.</p>
 </div>
-<div class="ab-diag">
-<div class="ab-d1"><span class="m-lab">HOW IT USUALLY WORKS</span><div class="ab-chain"><span class="ab-box">Customer list</span><span class="ab-gap"><i>copy</i></span><span class="ab-box">Contracts</span><span class="ab-gap"><i>copy</i></span><span class="ab-box">Billing</span><span class="ab-gap"><i>copy</i></span><span class="ab-box">Accounting</span><span class="ab-gap"><i>copy</i></span><span class="ab-box">Spreadsheet plan</span></div><p>Five tools, four hand-offs. The plan is the last to know.</p></div>
-<div class="ab-d2"><span class="m-lab">HOW COUNTAHEAD WORKS</span><div class="ab-one"><span>Customers</span><span>Contracts</span><span>Billing</span><span>Books</span><span>Plan</span><b>One record</b></div><p>Entered once. Everything after it reads the same entry.</p></div>
-</div>
+<div class="ab-diag" data-widget="chain"></div>
 </div>
 </div>
 </section>
 
 <section id="why-now" class="ab-sec" style="background: #F6F8FC">
 <div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
-<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 900px"><p class="ey">Why now</p><h2 class="h2">Three things changed <span style="color: #2450DC">at the same time.</span></h2><p class="lead">This is our view of the moment, and the reason the product is shaped the way it is.</p></div>
-<div class="ab-grid3 rv"><div class="ab-card"><span class="ab-n">01</span><b>Software can now draft the bookkeeping</b><p>Matching a bank line to an invoice, coding a bill, proposing an accrual: an agent can prepare this work and a person can check it. The human moves from typing to judging.</p></div><div class="ab-card"><span class="ab-n">02</span><b>A ledger is no longer a ten-year project</b><p>A full double-entry system used to need a large team and many years. We think it can now be built far faster, which makes it realistic to start from the ledger and not sit on top of someone else's.</p></div><div class="ab-card"><span class="ab-n">03</span><b>One record makes the plan worth trusting</b><p>When the forecast reads the ledger directly there is nothing to export and nothing to reconcile. Change a hire and the runway moves, on the real numbers.</p></div></div>
+<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 900px"><p class="ey">Why now</p><h2 class="h2">Why this can be <span style="color: #2450DC">built now.</span></h2><p class="lead">Three things are true today that were not a few years ago.</p></div>
+<div class="ab-grid3 rv"><div class="ab-card"><span class="ab-n">01</span><b>AI can do the routine finance work</b><p>Reading invoices, matching the bank, drafting contracts, chasing late payers, preparing the month-end close. Agents do the first pass and a person checks what matters.</p></div><div class="ab-card"><span class="ab-n">02</span><b>One system can cover the whole company</b><p>Customers, contracts, billing, books, planning and company records used to mean six tools from six vendors. Building all of it on one ledger is now realistic.</p></div><div class="ab-card"><span class="ab-n">03</span><b>So the plan can run on real numbers</b><p>With everything on one record, the forecast, the board pack and the data room are always current. Change one thing and see what it does to cash.</p></div></div>
 </div>
 </section>
 
@@ -230,12 +222,7 @@
 <h1 class="r2" style="margin: 0; font-stretch: 125%; font-weight: 800; font-size: clamp(40px, 9.6vw, 96px); line-height: 0.94; letter-spacing: -0.04em; text-wrap: balance">Finance has two halves. <span style="color: var(--hlt)">They have never shared a ledger.</span></h1>
 <p class="r3" style="margin: 0; max-width: 36em; font-size: clamp(18px, 2vw, 21px); line-height: 1.5; color: #E1E7F2">Accounting records what happened. Planning decides what happens next. Countahead is being built so both read the same numbers.</p>
 </div>
-<div class="ab-line r4" role="img" aria-label="The past and the future on one ledger">
-<div class="ab-half"><span class="ab-k">THE PAST <i>required</i></span><div class="ab-chips"><span>Bank</span><span>Bills</span><span>Invoices</span><span>Payroll</span><span>Month-end close</span><span>Statements</span></div></div>
-<div class="ab-now"><b>TODAY</b></div>
-<div class="ab-half ab-fut"><span class="ab-k">THE FUTURE <i>where decisions are made</i></span><div class="ab-chips"><span>Forecast</span><span>Hiring</span><span>Runway</span><span>Scenarios</span><span>Board pack</span><span>Fundraising</span></div></div>
-<div class="ab-led"><span>ONE LEDGER UNDERNEATH BOTH</span></div>
-</div>
+<div class="r4" data-widget="pastfuture"></div>
 </div>
 </section>
 
@@ -249,18 +236,15 @@
 <p>Today those questions get answered in a spreadsheet. The spreadsheet is fed by an export from the accounting system, which is fed by the billing tool, which someone keeps in step with the customer list by hand. Every copy is a chance for the numbers to disagree.</p>
 <p><b>Countahead puts the whole chain on one record,</b> so the plan is as current as the books and nobody has to copy anything.</p>
 </div>
-<div class="ab-diag">
-<div class="ab-d1"><span class="m-lab">HOW IT USUALLY WORKS</span><div class="ab-chain"><span class="ab-box">Customer list</span><span class="ab-gap"><i>copy</i></span><span class="ab-box">Contracts</span><span class="ab-gap"><i>copy</i></span><span class="ab-box">Billing</span><span class="ab-gap"><i>copy</i></span><span class="ab-box">Accounting</span><span class="ab-gap"><i>copy</i></span><span class="ab-box">Spreadsheet plan</span></div><p>Five tools, four hand-offs. The plan is the last to know.</p></div>
-<div class="ab-d2"><span class="m-lab">HOW COUNTAHEAD WORKS</span><div class="ab-one"><span>Customers</span><span>Contracts</span><span>Billing</span><span>Books</span><span>Plan</span><b>One record</b></div><p>Entered once. Everything after it reads the same entry.</p></div>
-</div>
+<div class="ab-diag" data-widget="chain"></div>
 </div>
 </div>
 </section>
 
 <section id="why-now" class="ab-sec" style="background: #F6F8FC">
 <div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
-<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 900px"><p class="ey">Why now</p><h2 class="h2">Three things changed <span style="color: #2450DC">at the same time.</span></h2><p class="lead">This is our view of the moment, and the reason the product is shaped the way it is.</p></div>
-<div class="ab-grid3 rv"><div class="ab-card"><span class="ab-n">01</span><b>Software can now draft the bookkeeping</b><p>Matching a bank line to an invoice, coding a bill, proposing an accrual: an agent can prepare this work and a person can check it. The human moves from typing to judging.</p></div><div class="ab-card"><span class="ab-n">02</span><b>A ledger is no longer a ten-year project</b><p>A full double-entry system used to need a large team and many years. We think it can now be built far faster, which makes it realistic to start from the ledger and not sit on top of someone else's.</p></div><div class="ab-card"><span class="ab-n">03</span><b>One record makes the plan worth trusting</b><p>When the forecast reads the ledger directly there is nothing to export and nothing to reconcile. Change a hire and the runway moves, on the real numbers.</p></div></div>
+<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 900px"><p class="ey">Why now</p><h2 class="h2">Why this can be <span style="color: #2450DC">built now.</span></h2><p class="lead">Three things are true today that were not a few years ago.</p></div>
+<div class="ab-grid3 rv"><div class="ab-card"><span class="ab-n">01</span><b>AI can do the routine finance work</b><p>Reading invoices, matching the bank, drafting contracts, chasing late payers, preparing the month-end close. Agents do the first pass and a person checks what matters.</p></div><div class="ab-card"><span class="ab-n">02</span><b>One system can cover the whole company</b><p>Customers, contracts, billing, books, planning and company records used to mean six tools from six vendors. Building all of it on one ledger is now realistic.</p></div><div class="ab-card"><span class="ab-n">03</span><b>So the plan can run on real numbers</b><p>With everything on one record, the forecast, the board pack and the data room are always current. Change one thing and see what it does to cash.</p></div></div>
 </div>
 </section>
 
@@ -340,6 +324,6 @@
 </div>
 </footer>
 </div></template>
-<script src="assets/app.4c6dca97.js"></script>
+<script src="assets/app.ad78ac46.js"></script>
 </body>
 </html>

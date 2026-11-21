@@ -2388,6 +2388,38 @@ answerSource: ans.src
     }
     on(el, "[data-g]", function (t) { g = +t.getAttribute("data-g"); draw(); }); on(el, "[data-i]", function (t) { sel = +t.getAttribute("data-i"); draw(); }); draw();
   };
+  /* ---------- about: past and future, linked ---------- */
+  W.pastfuture = function (el) {
+    var P = ["Bank", "Bills", "Invoices", "Payroll", "Month-end close", "Statements"], F = ["Forecast", "Hiring", "Runway", "Scenarios", "Board pack", "Fundraising"];
+    var L = [[[0, 2, 3], "Today's bank balance is where the forecast, the runway and every scenario start."], [[0, 2], "A bill you approve today is already in next month's cash forecast."], [[0, 2, 4], "An invoice you send today is already in the forecast, the runway and the board pack."], [[1, 2, 3], "This month's payroll is the starting cost for every hire you plan."], [[0, 4, 5], "A closed month becomes the first column of the forecast and the board pack."], [[4, 5], "The statements investors ask for are the same ones the board pack and the data room show."]];
+    var cur = 2, side = 0, auto = true, timer = null;
+    function links() { if (side === 0) return L[cur][0]; var r = []; L.forEach(function (x, i) { if (x[0].indexOf(cur) > -1) r.push(i); }); return r; }
+    function draw() {
+      var lk = links(), cap = side === 0 ? L[cur][1] : F[cur] + " reads straight from " + lk.map(function (i) { return P[i].toLowerCase(); }).join(", ").replace(/, ([^,]*)$/, " and $1") + ". Nothing is copied across.";
+      el.innerHTML = '<div class="ab-line pf"><div class="ab-half"><span class="ab-k">THE PAST <i>required</i></span><div class="ab-chips">' + P.map(function (x, i) { var on_ = side === 0 ? i === cur : lk.indexOf(i) > -1; return '<button type="button" data-p="' + i + '" class="' + (side === 0 && i === cur ? "pf-sel" : on_ ? "pf-on" : "pf-dim") + '">' + x + "</button>"; }).join("") + '</div></div><div class="ab-now"><b>TODAY</b></div><div class="ab-half ab-fut"><span class="ab-k">THE FUTURE <i>where decisions are made</i></span><div class="ab-chips">' + F.map(function (x, i) { var on_ = side === 1 ? i === cur : lk.indexOf(i) > -1; return '<button type="button" data-f="' + i + '" class="' + (side === 1 && i === cur ? "pf-sel" : on_ ? "pf-on" : "pf-dim") + '">' + x + "</button>"; }).join("") + '</div></div><div class="ab-led pf-cap"><small>ONE LEDGER UNDERNEATH BOTH</small><span>' + cap + '</span></div></div><p class="pf-hint">' + (auto ? "Tap anything to see what it connects to." : "Tap another one.") + "</p>";
+    }
+    function stop() { auto = false; if (timer) { clearInterval(timer); timer = null; } }
+    on(el, "[data-p]", function (t) { stop(); side = 0; cur = +t.getAttribute("data-p"); draw(); });
+    on(el, "[data-f]", function (t) { stop(); side = 1; cur = +t.getAttribute("data-f"); draw(); });
+    draw();
+    if (!window.__PRERENDER) timer = setInterval(function () { if (!document.body.contains(el)) { stop(); return; } cur = (cur + 1) % 6; draw(); }, 2800);
+  };
+
+  /* ---------- about: one change, two ways of working ---------- */
+  W.chain = function (el) {
+    var EV = [["A customer adds 20 seats", ["Harbor Labs: 60 seats", "Amendment signed", "+$2,000 on each invoice", "Revenue +$2,000 a month", "Recurring revenue +$24k"]], ["A customer leaves", ["Meridian Labs: left", "Contract ended", "Invoices stopped", "Revenue down $7,700 a month", "Recurring revenue down $92k"]], ["A customer pays late", ["Northwind: 34 days late", "Terms were net 30", "$18k invoice overdue", "$18k still owed to you", "Cash forecast down $18k"]]];
+    var TOOLS = ["Customer list", "Contracts", "Billing", "Accounting", "Spreadsheet plan"], MINE = ["Customers", "Contracts", "Billing", "Books", "Plan"], LAG = ["Today", "2 days later", "Next invoice run", "Month end", "When someone rebuilds it"];
+    var ev = 0, step = -1, auto = true, tm = null;
+    function draw() {
+      var e = EV[ev], doneAll = step >= 5;
+      el.innerHTML = '<div class="ch-ev"><span class="m-lab">SOMETHING CHANGES</span><div class="m-opts" style="justify-content:flex-start;flex-wrap:wrap">' + EV.map(function (x, i) { return '<button type="button" data-e="' + i + '" aria-pressed="' + (i === ev) + '">' + x[0] + "</button>"; }).join("") + '</div></div><div class="ab-d1"><span class="m-lab">HOW IT USUALLY WORKS</span><div class="ab-chain">' + TOOLS.map(function (t, i) { var hit = step >= i; return '<span class="ab-box ch-b' + (hit ? " ch-hit" : step >= 0 ? " ch-stale" : "") + '"><b>' + t + "</b><em>" + (hit ? e[1][i] : step >= 0 ? "Still shows the old number" : "") + "</em>" + (hit ? "<small>" + LAG[i] + "</small>" : "") + "</span>" + (i < 4 ? '<span class="ab-gap' + (step === i ? " ch-go" : "") + '"><i>copy</i></span>' : ""); }).join("") + "</div><p>" + (doneAll ? "Five tools, four hand-offs. The plan found out last, weeks later." : step >= 0 ? "Until the copy happens, the tools disagree." : "Five tools, four hand-offs.") + '</p></div><div class="ab-d2"><span class="m-lab">HOW COUNTAHEAD WORKS</span><div class="ab-one ch-one' + (step >= 0 ? " ch-all" : "") + '">' + MINE.map(function (t, i) { return "<span><b>" + t + "</b><em>" + (step >= 0 ? e[1][i] : "") + "</em></span>"; }).join("") + "<b>" + (step >= 0 ? "ONE RECORD, UPDATED THE SAME MINUTE" : "ONE RECORD") + '</b></div><p>Entered once. Everything after it reads the same entry.</p></div><div class="m-acts"><button type="button" class="m-btn m-ghost" data-a="replay">' + (step < 0 ? "Play" : "Play again") + "</button></div>";
+    }
+    function play() { if (tm) clearInterval(tm); step = -1; draw(); if (window.__PRERENDER) return; tm = setInterval(function () { if (!document.body.contains(el)) { clearInterval(tm); return; } step++; draw(); if (step >= 5) { clearInterval(tm); tm = null; if (auto) setTimeout(function () { if (auto && document.body.contains(el)) { ev = (ev + 1) % EV.length; play(); } }, 3200); } }, 900); }
+    on(el, "[data-e]", function (t) { auto = false; ev = +t.getAttribute("data-e"); play(); });
+    on(el, "[data-a]", function () { auto = false; play(); });
+    draw();
+    if (!window.__PRERENDER) { if ("IntersectionObserver" in window) { var io = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { io.disconnect(); play(); } }, { threshold: 0.3 }); io.observe(el); } else play(); }
+  };
 })();
 
 /* Page logic added on top of the homepage component: integrations list, boot, in-page navigation. */
