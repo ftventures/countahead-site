@@ -1,5 +1,5 @@
 // Industry pages. One template, four kinds of business. Each opens with its own numbers and demos.
-const IND = [["software.html", "Software"], ["online-stores.html", "Online stores"], ["services.html", "Services and agencies"], ["hospitality.html", "Hospitality and retail"]];
+const IND = [["software.html", "Software"], ["online-stores.html", "Online stores"], ["services.html", "Services and agencies"], ["hospitality.html", "Hospitality and retail"], ["other-industries.html", "Other industries"]];
 
 const DATA = [
   { file: "software.html", name: "Software", ey: "For software companies", h1: ["Signed contracts in,", "recurring revenue out."],
@@ -34,6 +34,14 @@ const DATA = [
     sell: [3, "The till", "In person, ", "into the books by morning.", "Square and Toast are on the list of planned connections. Our own till is on the roadmap, and this is the design for it."],
     pre: 3,
     spec: [["Takings by site", "Each site's day closed and matched to what reached the bank.", "books.html#accounting"], ["Tips", "Collected, pooled and paid out with payroll, and never counted as revenue.", "books.html#accounting"], ["Gift cards", "Held as money owed to customers until they are spent.", "revenue.html#recognition"], ["Several sites, one view", "Each site on its own, and the group added up every day.", "books.html#group"], ["Payroll and scheduling", "Connects to the payroll tool you use, so labor cost lands by site.", "integrations.html"], ["Sales tax", "Collected at the till, held apart, and ready for each return.", "books.html#tax"]] }
+  ,{ file: "other-industries.html", name: "Other industries", ey: "For every other kind of business", h1: ["Customers, bills and a bank account in,", "clear numbers out."],
+    lead: "The four industries in the menu get their own billing, dashboards and board packs. Everything else starts from a general set that covers the basics well: books, getting paid, cash and a plan.",
+    title: "Accounting and planning for other industries | Countahead", desc: "Which other kinds of business Countahead fits, which it fits with limits, and which it is not built for.",
+    co: "Sample trading co., a 22-person wholesale business", kp: [["SALES", "$520k", "+4% on October"], ["GROSS MARGIN", "38.1%", "plan 38.0%"], ["DAYS TO GET PAID", "52", "up from 44"], ["CASH", "$212k", "$18k lower"]],
+    pairs: [["The books are done once a month, by someone outside the business.", "Books that are current every day, with a person approving what matters."], ["Nobody can say what cash will look like in three months.", "A cash forecast that starts from the books and moves when you change a decision."], ["Reports are built by hand, differently each time.", "A dashboard and a board pack that fill themselves, and that you can reshape."]],
+    sell: [5, "How you sell", "Plain invoices, ", "done properly.", "If none of the specific ways of selling fits, invoices, payment terms and follow-up still run on the same books."],
+    pre: 4,
+    fit: [["A GOOD FIT", "The general set covers these without special handling.", [["Wholesale and distribution", "Stock, customer terms and margin by product line."], ["Consumer brands and light manufacturing", "Cost of goods, stock cover and seasonal cash."], ["Professional firms", "Law, accounting, architecture and consulting: time, fees and partners."], ["Media, studios and creators", "Projects, royalties paid out and irregular income."], ["Education and training", "Fees paid ahead and earned over a term."], ["Fitness, wellness and personal services", "Memberships, sites and payroll."]]], ["FITS, WITH LIMITS", "The books and the plan work. One specialist part stays in the tool you already use.", [["Construction and trades", "Jobs and billing fit. Detailed job costing and held-back payments are not built yet."], ["Clinics and practices", "Books and planning fit. Insurance claims and patient billing stay in your practice system."], ["Real estate and property", "Entities and consolidation fit. Tenant billing stays in your property system."], ["Nonprofits", "Books fit. Fund and grant accounting is not built yet."]]], ["NOT BUILT FOR", "We would rather say so than have you find out later.", [["Banks, lenders and insurers", "Regulated balance sheets need specialist systems."], ["Public companies", "Stock exchange reporting is out of scope."], ["Government bodies", "Public-sector accounting is a different set of rules."]]]] }
 ];
 
 module.exports = function (subhero, mock, C, access) {
@@ -52,13 +60,19 @@ module.exports = function (subhero, mock, C, access) {
     const sell = pre(mock("selling", "#F6F8FC", d.sell[1], d.sell[2] + C(d.sell[3]), d.sell[4], "revflow"), "revflow", d.sell[0]);
     const dash = pre(mock("dashboard", "#FFFFFF", "Your dashboard", "The eight numbers ", "", "analytics"), "analytics", d.pre).replace('The eight numbers </h2><p class="lead"></p>', "The eight numbers " + C("this business is run on.") + '</h2><p class="lead">They come ready on day one, built from the books, and every one opens to the entries behind it.</p>');
     const pack = pre(mock("board-pack", "#F6F8FC", "Your board pack", "A deck that reads like ", "", "pack"), "pack", d.pre).replace('A deck that reads like </h2><p class="lead"></p>', "A deck that reads like " + C("your business.") + '</h2><p class="lead">The slides a board in this sector expects, filled from the ledger and the plan. Click any text to edit it.</p>');
+    const fit = d.fit ? `<section id="fit" class="ab-sec" style="background: #FFFFFF">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
+<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 900px"><p class="ey">Who else it fits</p><h2 class="h2">Most businesses fit. ${C("Here is where the edges are.")}</h2><p class="lead">This is the design scope, and it will move as early users tell us what they need.</p></div>
+<div class="sx-fit rv">${d.fit.map((f, i) => `<div class="sx-f${i}"><small>${f[0]}</small><p>${f[1]}</p><ul>${f[2].map((x) => `<li><b>${x[0]}</b><span>${x[1]}</span></li>`).join("")}</ul></div>`).join("")}</div>
+</div>
+</section>` : "";
     const spec = `<section id="specifics" class="ab-sec ab-dark">
 <div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
 <div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 900px"><p class="ey" style="color: #FFFFFF">The details</p><h2 class="h2" style="color: #FFFFFF">Six things that are particular <span style="color: var(--pop)">to ${d.name.toLowerCase()}.</span></h2></div>
-<div class="ab-rules rv">${d.spec.map((p, i) => `<div class="ab-rule"><span class="ab-n">0${i + 1}</span><b>${p[0]}</b><p>${p[1]}</p><a href="${p[2]}">See it <span aria-hidden="true">&rarr;</span></a></div>`).join("")}</div>
+<div class="ab-rules rv">${(d.spec || []).map((p, i) => `<div class="ab-rule"><span class="ab-n">0${i + 1}</span><b>${p[0]}</b><p>${p[1]}</p><a href="${p[2]}">See it <span aria-hidden="true">&rarr;</span></a></div>`).join("")}</div>
 </div>
 </section>`;
-    return [d.file, d.title, d.desc, [top, pains, sell, dash, pack, spec, access]];
+    return [d.file, d.title, d.desc, d.fit ? [top, fit, pains, sell, dash, pack, access] : [top, pains, sell, dash, pack, spec, access]];
   });
 };
 module.exports.IND = IND;

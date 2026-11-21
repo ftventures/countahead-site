@@ -302,6 +302,6 @@ for (const [file, title, desc, parts] of pages) {
   dom.window.__PRERENDER = true;
   dom.window.eval(appjs);
   const html = dom.window.document.getElementById("app").innerHTML;
-  fs.writeFileSync(path.join(root, file), shell.replace('<div id="app"></div>', '<div id="app">' + html + "</div>").replace(/href="index\.html/g, 'href="./').replace(/href="(revenue|books|plan|company|integrations|about|software|online-stores|services|hospitality)\.html/g, 'href="$1'));
+  fs.writeFileSync(path.join(root, file), shell.replace('<div id="app"></div>', '<div id="app">' + html + "</div>").replace(/href="index\.html/g, 'href="./').replace(/href="(revenue|books|plan|company|integrations|about|software|online-stores|services|hospitality|other-industries)\.html/g, 'href="$1'));
   console.log(file, Math.round(html.length / 1024) + " KB prerendered,", (tpl.match(/<section/g) || []).length, "sections");
 }
