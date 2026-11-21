@@ -43,12 +43,12 @@ ${inner}
   const founder = sec("founder", "#FFFFFF", "Who is building it", "Built by a CFO " + C("who has done this job."), "", `<div class="ab-fd rv">
 <div class="ab-bio">
 <div class="ab-id"><span aria-hidden="true">FT</span><div><b>Felipe Tunnell</b><small>Founder, Countahead</small></div></div>
-<p>Felipe has been a CFO, a fractional CFO, an investor and a founder. He has run finance for a US company and for European groups with US subsidiaries, across several entities and currencies, on the tools Countahead replaces.</p>
+<p>Felipe has been a CFO, a fractional CFO, an investor and a founder. He has run the books of an American AI startup and the US operations of two international groups, on the tools Countahead replaces. He knows what a US company needs from day one, and what a second entity and a second currency do to it.</p>
 <div class="ab-path"><span>Investment banking</span><span>Venture capital</span><span>CFO</span><span>Fractional CFO</span><span>Founder</span></div>
 <div class="ab-links"><a href="https://felipetunnell.com" target="_blank" rel="noopener">felipetunnell.com <span aria-hidden="true">&nearr;</span></a><a href="https://ftventures.io" target="_blank" rel="noopener">ftventures.io <span aria-hidden="true">&nearr;</span></a></div>
 </div>
 <div class="ab-nums">
-<div><b>3</b><span>companies whose finance he led in the United States: one US company and two European groups with US subsidiaries</span></div>
+<div><b>3</b><span>US entities whose finance he has led: an American AI startup and the US arms of two international groups</span></div>
 <div><b>7</b><span>countries worked from, keeping books across entities and currencies</span></div>
 <div><b>2</b><span>exits delivered from the finance seat, including Holded to Visma</span></div>
 <div><b>40+</b><span>technology companies invested in since 2017</span></div>
