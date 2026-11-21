@@ -587,3 +587,4 @@ button.f-row{cursor:pointer}button.f-row[aria-expanded=true]{background:var(--hl
 .ab-nums{background:#0B1B3A;color:#fff;display:flex;flex-direction:column}.ab-nums>div{flex:1;display:grid;grid-template-columns:110px minmax(0,1fr);gap:18px;align-items:center;padding:22px 24px;border-bottom:1px solid rgba(255,255,255,.25)}.ab-nums>div:last-child{border-bottom:0}
 .ab-nums b{font-stretch:125%;font-weight:800;font-size:56px;line-height:1;letter-spacing:-.03em;color:#FFD15C}.ab-nums span{font-size:17px;line-height:1.4;color:#E1E7F2}
 @media (max-width:820px){.ab-fd{grid-template-columns:1fr}.ab-nums>div{grid-template-columns:84px minmax(0,1fr)}.ab-nums b{font-size:44px}}
+@media (min-width:1000px){html{zoom:.9}}
