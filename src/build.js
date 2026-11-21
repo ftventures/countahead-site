@@ -41,9 +41,9 @@ const hw = '<div class="wrap" style="position: relative; z-index: 1; padding-top
 if (hero.indexOf(hw) < 0) throw new Error("hero wrap not found");
 hero = hero.replace(hw, hw.replace('class="wrap"', 'class="wrap hero2"'));
 hero = hero.slice(0, hero.indexOf('<div class="r5" style="background: rgba(255,255,255,0.07)')) + '<div class="r5 w-hero" data-widget="hero"></div>\n' + hero.slice(hero.lastIndexOf("</div>\n</section>"));
-windowHtml = windowHtml.replace('href="#ask"', 'href="planning.html#ask"');
+windowHtml = windowHtml.replace('href="#ask"', 'href="plan.html#ask"');
 
-const NAV = [["revenue.html", "Revenue"], ["product.html", "Books"], ["planning.html", "Plan"], ["integrations.html", "Integrations"], ["about.html", "About"]];
+const NAV = [["revenue.html", "Revenue"], ["books.html", "Books"], ["plan.html", "Plan"], ["integrations.html", "Integrations"], ["about.html", "About"]];
 function header(cur) {
   const link = (pad) => NAV.map(([h, l]) => `<a href="${h}" style="color: ${h === cur ? "#2450DC" : "#0B1B3A"}; text-decoration: none; padding: ${pad}; border-bottom: 2px solid ${h === cur ? "#2450DC" : "transparent"}">${l}</a>`).join("\n");
   return `<header style="position: sticky; top: 0; z-index: 30; background: rgba(255,255,255,0.94); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-bottom: 1px solid #0B1B3A">
@@ -83,8 +83,8 @@ const explore = `<section style="padding: 88px 0; border-bottom: 1px solid #D5DB
 <div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px"><p class="ey">Look inside</p><h2 class="h2">Try the product <span style="color: #2450DC">before it exists.</span></h2><p class="lead">Each page has working demos on sample data.</p></div>
 <div class="rv" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px">
 ${card("revenue.html", "01", "Revenue", "Build a contract and watch the invoices, revenue and commission work themselves out.")}
-${card("product.html", "02", "The books", "Statements, reconciliation, journal entries, the review queue and the audit trail.")}
-${card("planning.html", "03", "The plan", "Change a hire or a growth rate and watch runway move. Ask the ledger a question.")}
+${card("books.html", "02", "The books", "Statements, reconciliation, journal entries, the review queue and the audit trail.")}
+${card("plan.html", "03", "The plan", "Change a hire or a growth rate and watch runway move. Ask the ledger a question.")}
 ${card("integrations.html", "04", "Integrations", "The banks, payment, payroll and deal tools planned for early access.")}
 </div>
 </div>
@@ -163,8 +163,8 @@ const policySec = mock("policies", "#F6F8FC", "Policies", "Write the rule once. 
 const S = sections;
 const pages = [
   ["index.html", "Countahead: your books are done, your future is clear", "One ledger for the past and the future. Agents keep the books, you approve, and your forecast, runway and board pack read the same numbers.", [hero, marquee, S.mani, cycleSec, different, S.who, S.connected, explore, S.access]],
-  ["product.html", "Product: the accounting system | Countahead", "A full double-entry accounting system run by agents you supervise, with approvals, period locks and a complete audit trail.", [productTop, liveLedger, S.accounting, bulkSec, S.control, policySec, S.access]],
-  ["planning.html", "Planning: runway, headcount and forecasts | Countahead", "A forecast that reads the ledger directly. Test a hire or a growth rate and see runway move.", [planningTop, analyticsSec, planScen, planMethod, revPlanSec, headcount, planPack, S.planning, ownRunway, S.ask, S.access]],
+  ["books.html", "Product: the accounting system | Countahead", "A full double-entry accounting system run by agents you supervise, with approvals, period locks and a complete audit trail.", [productTop, liveLedger, S.accounting, bulkSec, S.control, policySec, S.access]],
+  ["plan.html", "Planning: runway, headcount and forecasts | Countahead", "A forecast that reads the ledger directly. Test a hire or a growth rate and see runway move.", [planningTop, analyticsSec, planScen, planMethod, revPlanSec, headcount, planPack, S.planning, ownRunway, S.ask, S.access]],
   ["revenue.html", "Revenue: contracts, billing and commissions | Countahead", "Capture the sale once. Invoices, cash, revenue recognition and the forecast follow, for subscriptions, online stores and services.", [revTop, revFlow, revCust, revPipe, revLife, revCollect, revArr, revComm, S.access]],
   ["integrations.html", "Integrations | Countahead", "The bank, payment, payroll, commerce and deal tools Countahead plans to connect to.", [integ, S.access]],
   ["about.html", "About | Countahead", "Countahead is being built by Felipe Tunnell, a CFO across multiple countries and sectors.", [S.about, S.access]]
