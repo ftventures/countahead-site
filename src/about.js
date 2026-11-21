@@ -43,12 +43,12 @@ ${inner}
   const founder = sec("founder", "#FFFFFF", "Who is building it", "Built by a CFO " + C("who has done this job."), "", `<div class="ab-fd rv">
 <div class="ab-bio">
 <div class="ab-id"><span aria-hidden="true">FT</span><div><b>Felipe Tunnell</b><small>Founder, Countahead</small></div></div>
-<p>Felipe has been a CFO, a fractional CFO, an investor and a founder. He has led finance for companies in the United States and internationally, from first hire to exit, on the tools Countahead replaces.</p>
+<p>Felipe has been a CFO, a fractional CFO, an investor and a founder. He has led finance for companies in the United States and Europe, from first hire to exit, on the tools Countahead replaces.</p>
 <div class="ab-path"><span>Investment banking</span><span>Venture capital</span><span>CFO</span><span>Fractional CFO</span><span>Founder</span></div>
 <div class="ab-links"><a href="https://felipetunnell.com" target="_blank" rel="noopener">felipetunnell.com <span aria-hidden="true">&nearr;</span></a><a href="https://ftventures.io" target="_blank" rel="noopener">ftventures.io <span aria-hidden="true">&nearr;</span></a></div>
 </div>
 <div class="ab-nums">
-<div><b>US</b><span>and international: he has led finance on both sides of the Atlantic</span></div>
+<div><b>US</b><span>and Europe: he has led finance on both sides of the Atlantic</span></div>
 <div><b>7</b><span>countries worked from, keeping books across entities and currencies</span></div>
 <div><b>2</b><span>exits delivered from the finance seat, including Holded to Visma</span></div>
 <div><b>40+</b><span>technology companies invested in since 2017</span></div>
