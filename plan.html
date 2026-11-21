@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.c66b8e04.css">
+<link rel="stylesheet" href="assets/site.1dd5f728.css">
 </head>
 <body style="margin: 0">
 <div id="app"><div class="site">
@@ -27,6 +27,7 @@
 <a href="revenue" style="color: var(--ink); text-decoration: none; padding: 10px 0; border-bottom: 2px solid transparent">Revenue</a>
 <a href="books" style="color: var(--ink); text-decoration: none; padding: 10px 0; border-bottom: 2px solid transparent">Books</a>
 <a href="plan" style="color: #2450DC; text-decoration: none; padding: 10px 0; border-bottom: 2px solid #2450DC">Plan</a>
+<a href="company" style="color: var(--ink); text-decoration: none; padding: 10px 0; border-bottom: 2px solid transparent">Company</a>
 <a href="integrations" style="color: var(--ink); text-decoration: none; padding: 10px 0; border-bottom: 2px solid transparent">Integrations</a>
 <a href="about" style="color: var(--ink); text-decoration: none; padding: 10px 0; border-bottom: 2px solid transparent">About</a>
 </nav>
@@ -36,6 +37,7 @@
 <a href="revenue" style="color: var(--ink); text-decoration: none; padding: 11px 0 9px 0; border-bottom: 2px solid transparent">Revenue</a>
 <a href="books" style="color: var(--ink); text-decoration: none; padding: 11px 0 9px 0; border-bottom: 2px solid transparent">Books</a>
 <a href="plan" style="color: #2450DC; text-decoration: none; padding: 11px 0 9px 0; border-bottom: 2px solid #2450DC">Plan</a>
+<a href="company" style="color: var(--ink); text-decoration: none; padding: 11px 0 9px 0; border-bottom: 2px solid transparent">Company</a>
 <a href="integrations" style="color: var(--ink); text-decoration: none; padding: 11px 0 9px 0; border-bottom: 2px solid transparent">Integrations</a>
 <a href="about" style="color: var(--ink); text-decoration: none; padding: 11px 0 9px 0; border-bottom: 2px solid transparent">About</a>
 </nav>
@@ -54,6 +56,13 @@
 </div>
 </section>
 
+<section id="today" style="padding: 88px 0; background: #FFFFFF; border-bottom: 1px solid #D5DBE5">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
+<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px"><p class="ey">Your daily view</p><h2 class="h2">What is behind you, what needs you, <span style="color: #2450DC">and what is ahead.</span></h2><p class="lead">One screen to start the day. The month that just closed, the few things waiting for you, and what is coming over the horizon.</p></div>
+<div class="m-card" data-widget="today"></div>
+</div>
+</section>
+
 <section id="analytics" style="padding: 88px 0; background: #F6F8FC; border-bottom: 1px solid #D5DBE5">
 <div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
 <div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px"><p class="ey">Analytics</p><h2 class="h2">The dashboard <span style="color: #2450DC">for your kind of business.</span></h2><p class="lead">The measures that matter are different for software, a store, a services firm, a cafe, a marketplace or a payments company. Each comes ready with its own eight, built on the same books.</p></div>
@@ -68,17 +77,10 @@
 </div>
 </section>
 
-<section id="forecast-methods" style="padding: 88px 0; background: #F6F8FC; border-bottom: 1px solid #D5DBE5">
+<section id="forecast" style="padding: 88px 0; background: #F6F8FC; border-bottom: 1px solid #D5DBE5">
 <div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
-<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px"><p class="ey">Two ways to forecast</p><h2 class="h2">Start from the goal, <span style="color: #2450DC">or from the team.</span></h2><p class="lead">Top down tells you what a target requires. Bottom up tells you where your hires and quotas land. Good plans check one against the other.</p></div>
-<div class="m-card" data-widget="method"></div>
-</div>
-</section>
-
-<section id="revenue-forecast" style="padding: 88px 0; background: #FFFFFF; border-bottom: 1px solid #D5DBE5">
-<div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
-<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px"><p class="ey">Revenue forecast</p><h2 class="h2">Retention, pipeline <span style="color: #2450DC">and new hires, together.</span></h2><p class="lead">Next year's revenue is what you keep, plus what is in the pipeline, plus what the team can sell. Move each one.</p></div>
-<div class="m-card" data-widget="revplan"></div>
+<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px"><p class="ey">Revenue forecast</p><h2 class="h2">One forecast, <span style="color: #2450DC">built two ways.</span></h2><p class="lead">Build it up from retention, pipeline and the team, or start from a goal and see what it takes. Good plans check one against the other.</p></div>
+<div class="m-card" data-widget="forecast"></div>
 </div>
 </section>
 
@@ -89,6 +91,13 @@
 </div>
 </section>
 
+<section id="model" style="padding: 88px 0; background: #FFFFFF; border-bottom: 1px solid #D5DBE5">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
+<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px"><p class="ey">Financial model</p><h2 class="h2">The spreadsheet investors ask for, <span style="color: #2450DC">already built.</span></h2><p class="lead">The same assumptions that drive your scenarios, laid out as a workbook with live formulas and exported to Excel when someone wants it the old way.</p></div>
+<div class="m-card" data-widget="model"></div>
+</div>
+</section>
+
 <section id="board-pack" style="padding: 88px 0; background: #FFFFFF; border-bottom: 1px solid #D5DBE5">
 <div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
 <div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px"><p class="ey">Board packs</p><h2 class="h2">The board pack <span style="color: #2450DC">builds itself.</span></h2><p class="lead">A real deck, not a data dump, with a template for each kind of business. Pick the slides, and each one fills itself from the ledger and the plan, with the story drafted for you to edit.</p></div>
@@ -96,150 +105,10 @@
 </div>
 </section>
 
-<section id="planning" style="padding: 80px 0; border-bottom: 1px solid #D5DBE5">
+<section id="data-room" style="padding: 88px 0; background: #F6F8FC; border-bottom: 1px solid #D5DBE5">
 <div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
-<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 840px">
-<p class="ey">Then, the future</p>
-<h2 class="h2">Because the books are right, <span style="color: #2450DC">the forecast can be.</span></h2>
-<p class="lead">Your model reads straight from the ledger. Close a month and the actuals fill themselves in, the forecast re-bases and runway updates. Change an assumption and see the effect before you commit.</p>
-</div>
-
-<div class="rv" style="background: #FFFFFF; border: 2px solid var(--ink); box-shadow: 10px 10px 0 var(--ink)">
-<div style="display: flex; flex-wrap: wrap; border-bottom: 2px solid var(--ink)">
-<div style="flex: 1 1 320px; min-width: 0; padding: 24px; border-right: 1px solid #D5DBE5; display: flex; flex-direction: column; gap: 16px">
-<div style="display: flex; flex-direction: column; gap: 2px">
-<p style="margin: 0; font-size: 14px; color: #4B5565">Runway</p>
-<p style="margin: 0; font-stretch: 125%; font-weight: 800; font-size: 48px; line-height: 1; letter-spacing: -0.02em; color: var(--ink)" aria-live="polite">20 months</p>
-<p style="margin: 0; font-size: 15px; font-weight: 600; color: #2450DC">Cash lasts to Jul 2028</p>
-</div>
-<div style="display: flex; flex-direction: column; gap: 6px">
-<span style="font-size: 14px; font-weight: 600">People to hire</span>
-<div style="display: flex; align-items: stretch">
-<button type="button" class="b-white" data-on="0" aria-label="One fewer hire" style="width: 46px; min-height: 46px; border: 1px solid var(--ink); background: #FFFFFF; color: var(--ink); font-size: 22px; font-weight: 700; cursor: pointer">−</button>
-<div style="flex: 1; display: flex; align-items: center; justify-content: center; background: var(--hlp); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); font-stretch: 112%; font-weight: 800; font-size: 20px" aria-live="polite">0</div>
-<button type="button" class="b-white" data-on="1" aria-label="One more hire" style="width: 46px; min-height: 46px; border: 1px solid var(--ink); background: #FFFFFF; color: var(--ink); font-size: 22px; font-weight: 700; cursor: pointer">+</button>
-</div>
-</div>
-<div style="display: flex; flex-direction: column; gap: 6px">
-<span style="font-size: 14px; font-weight: 600">Monthly revenue growth</span>
-<div style="display: flex; align-items: stretch">
-<button type="button" class="b-white" data-on="2" aria-label="Lower growth" style="width: 46px; min-height: 46px; border: 1px solid var(--ink); background: #FFFFFF; color: var(--ink); font-size: 22px; font-weight: 700; cursor: pointer">−</button>
-<div style="flex: 1; display: flex; align-items: center; justify-content: center; background: var(--hlp); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); font-stretch: 112%; font-weight: 800; font-size: 20px" aria-live="polite">2%</div>
-<button type="button" class="b-white" data-on="3" aria-label="Raise growth" style="width: 46px; min-height: 46px; border: 1px solid var(--ink); background: #FFFFFF; color: var(--ink); font-size: 22px; font-weight: 700; cursor: pointer">+</button>
-</div>
-</div>
-<p style="margin: 0; font-size: 15px; line-height: 1.5; color: #2B3648">This is the base plan: the current team, revenue growing 2% a month. Change a number to test a decision before you make it.</p>
-</div>
-<div style="flex: 2 1 520px; min-width: 0; padding: 24px 20px 18px; display: flex; flex-direction: column; gap: 12px">
-<div style="position: relative">
-<svg viewBox="0 0 720 260" role="img" aria-label="Cash forecast. Books are closed through Nov 2026. Runway is 20 months." style="width: 100%; height: auto; display: block">
-<line x1="0" y1="93.3" x2="720" y2="93.3" style="stroke: #E3E7EE; stroke-width: 1"></line>
-<line x1="0" y1="166.7" x2="720" y2="166.7" style="stroke: #E3E7EE; stroke-width: 1"></line>
-<line x1="0" y1="240" x2="720" y2="240" style="stroke: #B9C3D3; stroke-width: 1.5"></line>
-<rect x="165" y="0" width="555" height="240" style="fill: var(--hlp); opacity: 0.6"></rect>
-<path d="M165 90.4 L195 100.7 L225 110.7 L255 120.5 L285 130 L315 139.2 L345 148.2 L375 156.9 L405 165.3 L435 173.5 L465 181.3 L495 188.8 L525 196.1 L555 203 L585 209.5 L615 215.8 L645 221.7 L675 227.3 L705 232.5" style="fill: none; stroke: #4B5565; stroke-width: 1.5; stroke-dasharray: 2 6; opacity: 0"></path>
-<line x1="165" y1="0" x2="165" y2="240" style="stroke: var(--ink); stroke-width: 1.5"></line>
-<path d="M15 37.1 L45 48.2 L75 59.1 L105 69.9 L135 79.9 L165 90.4" style="fill: none; stroke: #2450DC; stroke-width: 3.5; stroke-linejoin: round; stroke-linecap: round"></path>
-<path d="M165 90.4 L195 100.7 L225 110.7 L255 120.5 L285 130 L315 139.2 L345 148.2 L375 156.9 L405 165.3 L435 173.5 L465 181.3 L495 188.8 L525 196.1 L555 203 L585 209.5 L615 215.8 L645 221.7 L675 227.3 L705 232.5" style="fill: none; stroke: var(--ink); stroke-width: 3; stroke-dasharray: 8 7; stroke-linecap: square"></path>
-<rect x="159.5" y="84.9" width="11" height="11" style="fill: #2450DC; stroke: #FFFFFF; stroke-width: 2"></rect>
-<rect x="699.5" y="227" width="11" height="11" style="fill: var(--hl); stroke: var(--ink); stroke-width: 2"></rect>
-</svg>
-<span style="position: absolute; left: 6px; top: 30%; font-size: 12px; color: #4B5565">$3.0M</span>
-<span style="position: absolute; left: 6px; top: 58%; font-size: 12px; color: #4B5565">$1.5M</span>
-<span style="position: absolute; left: 22.9%; top: 0; transform: translateX(-50%); background: var(--ink); color: #FFFFFF; padding: 3px 9px; font-size: 12px; font-weight: 700; white-space: nowrap; transition: left .35s ease-out">Today</span>
-</div>
-<div style="display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: #2B3648">
-<span style="display: inline-flex; align-items: center; gap: 7px"><span style="display: inline-block; width: 20px; border-top: 3.5px solid #2450DC"></span>Actuals, from the ledger</span>
-<span style="display: inline-flex; align-items: center; gap: 7px"><span style="display: inline-block; width: 20px; border-top: 3px dashed var(--ink)"></span>Forecast, from the plan</span>
-<span style="display: inline-flex; align-items: center; gap: 7px"><span style="display: inline-block; width: 12px; height: 12px; background: var(--hlp); border: 1px solid var(--ink)"></span>Assumptions you can change</span>
-</div>
-</div>
-</div>
-<div style="display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; padding: 16px 24px; border-bottom: 1px solid #B9C3D3; background: #F6F8FC">
-<button type="button" class="b-teal" data-on="4" disabled="false" style="font-size: 16px; font-weight: 700; background: #2450DC; color: #FFFFFF; border: 0; padding: 13px 20px; min-height: 46px; cursor: pointer">Close December</button>
-<button type="button" class="b-white" data-on="5" style="font-size: 15px; font-weight: 600; background: #FFFFFF; color: var(--ink); border: 1px solid var(--ink); padding: 12px 18px; min-height: 46px; cursor: pointer">Reset</button>
-<p style="margin: 0; font-size: 15px; color: #4B5565">Books closed through <b style="color: var(--ink)">Nov 2026</b></p>
-</div>
-<div style="overflow-x: auto">
-<div role="table" aria-label="Monthly plan in USD thousands. Columns up to today are actuals, later columns are forecast." style="min-width: 720px; font-size: 16px">
-<div role="row" style="display: grid; grid-template-columns: minmax(200px, 1.6fr) repeat(6, minmax(0, 1fr)); border-bottom: 1px solid #B9C3D3; text-align: right">
-<span role="columnheader" style="padding: 12px 24px; text-align: left; font-size: 14px; color: #4B5565">USD thousands</span>
-
-<span role="columnheader" style="padding: 10px 16px; border-left: 1px solid transparent; background: transparent; display: flex; flex-direction: column; align-items: flex-end; gap: 1px" data-k="k0_0/0"><b style="font-weight: 700">Sep</b><small style="font-size: 12px; font-weight: 800; letter-spacing: .08em; color: #2450DC">ACTUAL</small></span>
-
-<span role="columnheader" style="padding: 10px 16px; border-left: 1px solid transparent; background: transparent; display: flex; flex-direction: column; align-items: flex-end; gap: 1px" data-k="k0_1/0"><b style="font-weight: 700">Oct</b><small style="font-size: 12px; font-weight: 800; letter-spacing: .08em; color: #2450DC">ACTUAL</small></span>
-
-<span role="columnheader" style="padding: 10px 16px; border-left: 1px solid transparent; background: transparent; display: flex; flex-direction: column; align-items: flex-end; gap: 1px" data-k="k0_2/0"><b style="font-weight: 700">Nov</b><small style="font-size: 12px; font-weight: 800; letter-spacing: .08em; color: #2450DC">ACTUAL</small></span>
-
-<span role="columnheader" style="padding: 10px 16px; border-left: 2px solid var(--ink); background: transparent; display: flex; flex-direction: column; align-items: flex-end; gap: 1px" data-k="k0_3/0"><b style="font-weight: 700">Dec</b><small style="font-size: 12px; font-weight: 800; letter-spacing: .08em; color: #4B5565">FORECAST</small></span>
-
-<span role="columnheader" style="padding: 10px 16px; border-left: 1px solid transparent; background: transparent; display: flex; flex-direction: column; align-items: flex-end; gap: 1px" data-k="k0_4/0"><b style="font-weight: 700">Jan</b><small style="font-size: 12px; font-weight: 800; letter-spacing: .08em; color: #4B5565">FORECAST</small></span>
-
-<span role="columnheader" style="padding: 10px 16px; border-left: 1px solid transparent; background: transparent; display: flex; flex-direction: column; align-items: flex-end; gap: 1px" data-k="k0_5/0"><b style="font-weight: 700">Feb</b><small style="font-size: 12px; font-weight: 800; letter-spacing: .08em; color: #4B5565">FORECAST</small></span>
-
-</div>
-
-<div role="row" style="display: grid; grid-template-columns: minmax(200px, 1.6fr) repeat(6, minmax(0, 1fr)); border-bottom: 1px solid #E3E7EE; text-align: right; font-weight: 400" data-k="k1_0/0">
-<span role="rowheader" style="padding: 12px 24px; text-align: left">Revenue</span>
-<span role="cell" style="padding: 12px 16px; color: #2450DC; background: transparent; border-left: 1px solid transparent">310</span>
-<span role="cell" style="padding: 12px 16px; color: #2450DC; background: transparent; border-left: 1px solid transparent">322</span>
-<span role="cell" style="padding: 12px 16px; color: #2450DC; background: transparent; border-left: 1px solid transparent">335</span>
-<span role="cell" style="padding: 12px 16px; color: var(--ink); background: transparent; border-left: 2px solid var(--ink)">342</span>
-<span role="cell" style="padding: 12px 16px; color: var(--ink); background: transparent; border-left: 1px solid transparent">349</span>
-<span role="cell" style="padding: 12px 16px; color: var(--ink); background: transparent; border-left: 1px solid transparent">356</span>
-</div>
-
-<div role="row" style="display: grid; grid-template-columns: minmax(200px, 1.6fr) repeat(6, minmax(0, 1fr)); border-bottom: 1px solid #E3E7EE; text-align: right; font-weight: 400" data-k="k1_1/0">
-<span role="rowheader" style="padding: 12px 24px; text-align: left">Payroll</span>
-<span role="cell" style="padding: 12px 16px; color: #2450DC; background: transparent; border-left: 1px solid transparent">365</span>
-<span role="cell" style="padding: 12px 16px; color: #2450DC; background: transparent; border-left: 1px solid transparent">368</span>
-<span role="cell" style="padding: 12px 16px; color: #2450DC; background: transparent; border-left: 1px solid transparent">372</span>
-<span role="cell" style="padding: 12px 16px; color: var(--ink); background: transparent; border-left: 2px solid var(--ink)">372</span>
-<span role="cell" style="padding: 12px 16px; color: var(--ink); background: transparent; border-left: 1px solid transparent">372</span>
-<span role="cell" style="padding: 12px 16px; color: var(--ink); background: transparent; border-left: 1px solid transparent">372</span>
-</div>
-
-<div role="row" style="display: grid; grid-template-columns: minmax(200px, 1.6fr) repeat(6, minmax(0, 1fr)); border-bottom: 1px solid #E3E7EE; text-align: right; font-weight: 400" data-k="k1_2/0">
-<span role="rowheader" style="padding: 12px 24px; text-align: left">Hosting and other costs</span>
-<span role="cell" style="padding: 12px 16px; color: #2450DC; background: transparent; border-left: 1px solid transparent">165</span>
-<span role="cell" style="padding: 12px 16px; color: #2450DC; background: transparent; border-left: 1px solid transparent">159</span>
-<span role="cell" style="padding: 12px 16px; color: #2450DC; background: transparent; border-left: 1px solid transparent">178</span>
-<span role="cell" style="padding: 12px 16px; color: var(--ink); background: transparent; border-left: 2px solid var(--ink)">180</span>
-<span role="cell" style="padding: 12px 16px; color: var(--ink); background: transparent; border-left: 1px solid transparent">182</span>
-<span role="cell" style="padding: 12px 16px; color: var(--ink); background: transparent; border-left: 1px solid transparent">183</span>
-</div>
-
-<div role="row" style="display: grid; grid-template-columns: minmax(200px, 1.6fr) repeat(6, minmax(0, 1fr)); border-bottom: 1px solid #E3E7EE; text-align: right; font-weight: 700" data-k="k1_3/0">
-<span role="rowheader" style="padding: 12px 24px; text-align: left">Net burn</span>
-<span role="cell" style="padding: 12px 16px; color: #2450DC; background: transparent; border-left: 1px solid transparent">220</span>
-<span role="cell" style="padding: 12px 16px; color: #2450DC; background: transparent; border-left: 1px solid transparent">205</span>
-<span role="cell" style="padding: 12px 16px; color: #2450DC; background: transparent; border-left: 1px solid transparent">215</span>
-<span role="cell" style="padding: 12px 16px; color: var(--ink); background: transparent; border-left: 2px solid var(--ink)">210</span>
-<span role="cell" style="padding: 12px 16px; color: var(--ink); background: transparent; border-left: 1px solid transparent">205</span>
-<span role="cell" style="padding: 12px 16px; color: var(--ink); background: transparent; border-left: 1px solid transparent">200</span>
-</div>
-
-<div role="row" style="display: grid; grid-template-columns: minmax(200px, 1.6fr) repeat(6, minmax(0, 1fr)); border-bottom: 1px solid #E3E7EE; text-align: right; font-weight: 700" data-k="k1_4/0">
-<span role="rowheader" style="padding: 12px 24px; text-align: left">Ending cash</span>
-<span role="cell" style="padding: 12px 16px; color: #2450DC; background: transparent; border-left: 1px solid transparent">3,480</span>
-<span role="cell" style="padding: 12px 16px; color: #2450DC; background: transparent; border-left: 1px solid transparent">3,275</span>
-<span role="cell" style="padding: 12px 16px; color: #2450DC; background: transparent; border-left: 1px solid transparent">3,060</span>
-<span role="cell" style="padding: 12px 16px; color: var(--ink); background: transparent; border-left: 2px solid var(--ink)">2,850</span>
-<span role="cell" style="padding: 12px 16px; color: var(--ink); background: transparent; border-left: 1px solid transparent">2,645</span>
-<span role="cell" style="padding: 12px 16px; color: var(--ink); background: transparent; border-left: 1px solid transparent">2,445</span>
-</div>
-
-</div>
-</div>
-<div style="padding: 16px 24px; background: var(--ink); color: #FFFFFF; font-size: 16px; line-height: 1.5">November is closed. December to February are forecast from the plan. Close the next month to see actuals replace them.</div>
-</div>
-</div>
-</section>
-
-<section id="your-runway" style="padding: 88px 0; background: #F6F8FC; border-bottom: 1px solid #D5DBE5">
-<div class="wrap demo2" style="display: flex; flex-direction: column; gap: 32px">
-<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px"><p class="ey">Try it with your numbers</p><h2 class="h2">How long does <span style="color: #2450DC">your</span> money last?</h2><p class="lead">Three numbers give a rough answer. Your real books give an exact one, updated every day.</p></div>
-<div class="w-panel" data-widget="runway"></div>
+<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px"><p class="ey">Data room</p><h2 class="h2">A data room that is <span style="color: #2450DC">always ready.</span></h2><p class="lead">Accounts, model, contracts, cap table and company records in one place, kept current from the system. Share it in a click when an investor asks.</p></div>
+<div class="m-card" data-widget="dataroom"></div>
 </div>
 </section>
 
@@ -251,13 +120,13 @@
 <p class="lead">Answers come from your own entries, with the working shown. Every figure links back to the transactions behind it. Pick a question.</p>
 <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 4px" role="group" aria-label="Sample questions">
 
-<button type="button" data-on="6" aria-pressed="true" style="text-align: left; font-size: 16px; font-weight: 600; padding: 14px 16px; min-height: 52px; cursor: pointer; border: 1px solid var(--ink); background: var(--ink); color: #FFFFFF; box-shadow: 4px 4px 0 #2450DC; transition: background .2s, box-shadow .2s" data-k="k2_0/0">Why did gross margin decline last month?</button>
+<button type="button" data-on="0" aria-pressed="true" style="text-align: left; font-size: 16px; font-weight: 600; padding: 14px 16px; min-height: 52px; cursor: pointer; border: 1px solid var(--ink); background: var(--ink); color: #FFFFFF; box-shadow: 4px 4px 0 #2450DC; transition: background .2s, box-shadow .2s" data-k="k0_0/0">Why did gross margin decline last month?</button>
 
-<button type="button" data-on="7" aria-pressed="false" style="text-align: left; font-size: 16px; font-weight: 600; padding: 14px 16px; min-height: 52px; cursor: pointer; border: 1px solid var(--ink); background: #FFFFFF; color: var(--ink); box-shadow: 0 0 0 #2450DC; transition: background .2s, box-shadow .2s" data-k="k2_1/0">How much runway do we have?</button>
+<button type="button" data-on="1" aria-pressed="false" style="text-align: left; font-size: 16px; font-weight: 600; padding: 14px 16px; min-height: 52px; cursor: pointer; border: 1px solid var(--ink); background: #FFFFFF; color: var(--ink); box-shadow: 0 0 0 #2450DC; transition: background .2s, box-shadow .2s" data-k="k0_1/0">How much runway do we have?</button>
 
-<button type="button" data-on="8" aria-pressed="false" style="text-align: left; font-size: 16px; font-weight: 600; padding: 14px 16px; min-height: 52px; cursor: pointer; border: 1px solid var(--ink); background: #FFFFFF; color: var(--ink); box-shadow: 0 0 0 #2450DC; transition: background .2s, box-shadow .2s" data-k="k2_2/0">Which expenses increased most this quarter?</button>
+<button type="button" data-on="2" aria-pressed="false" style="text-align: left; font-size: 16px; font-weight: 600; padding: 14px 16px; min-height: 52px; cursor: pointer; border: 1px solid var(--ink); background: #FFFFFF; color: var(--ink); box-shadow: 0 0 0 #2450DC; transition: background .2s, box-shadow .2s" data-k="k0_2/0">Which expenses increased most this quarter?</button>
 
-<button type="button" data-on="9" aria-pressed="false" style="text-align: left; font-size: 16px; font-weight: 600; padding: 14px 16px; min-height: 52px; cursor: pointer; border: 1px solid var(--ink); background: #FFFFFF; color: var(--ink); box-shadow: 0 0 0 #2450DC; transition: background .2s, box-shadow .2s" data-k="k2_3/0">What happens to cash if we hire five people?</button>
+<button type="button" data-on="3" aria-pressed="false" style="text-align: left; font-size: 16px; font-weight: 600; padding: 14px 16px; min-height: 52px; cursor: pointer; border: 1px solid var(--ink); background: #FFFFFF; color: var(--ink); box-shadow: 0 0 0 #2450DC; transition: background .2s, box-shadow .2s" data-k="k0_3/0">What happens to cash if we hire five people?</button>
 
 </div>
 </div>
@@ -299,7 +168,7 @@
 <footer style="background: #FFFFFF">
 <div class="wrap" style="padding-top: 28px; padding-bottom: 40px; display: flex; flex-wrap: wrap; gap: 12px 32px; justify-content: space-between; font-size: 14px; color: #4B5565">
 <div style="display: flex; align-items: center; gap: 8px; color: var(--ink); font-weight: 700"><svg width="16" height="16" viewBox="0 0 26 26" aria-hidden="true"><rect x="0" y="9" width="17" height="17" style="fill: var(--ink)"></rect><rect x="9" y="0" width="17" height="17" style="fill: #2450DC"></rect><rect x="9" y="9" width="8" height="8" style="fill: var(--pop)"></rect></svg><span>Countahead</span><span style="font-weight: 400; color: #4B5565">© 2026</span></div>
-<div style="display: flex; flex-wrap: wrap; gap: 6px 18px"><a href="revenue" style="color: var(--ink); font-weight: 600">Revenue</a><a href="books" style="color: var(--ink); font-weight: 600">Books</a><a href="plan" style="color: var(--ink); font-weight: 600">Plan</a><a href="integrations" style="color: var(--ink); font-weight: 600">Integrations</a><a href="about" style="color: var(--ink); font-weight: 600">About</a></div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px 18px"><a href="revenue" style="color: var(--ink); font-weight: 600">Revenue</a><a href="books" style="color: var(--ink); font-weight: 600">Books</a><a href="plan" style="color: var(--ink); font-weight: 600">Plan</a><a href="company" style="color: var(--ink); font-weight: 600">Company</a><a href="integrations" style="color: var(--ink); font-weight: 600">Integrations</a><a href="about" style="color: var(--ink); font-weight: 600">About</a></div>
 <div>Product interfaces shown are illustrative and use sample data.</div>
 </div>
 </footer>
@@ -315,6 +184,7 @@
 <a href="revenue" style="color: var(--ink); text-decoration: none; padding: 10px 0; border-bottom: 2px solid transparent">Revenue</a>
 <a href="books" style="color: var(--ink); text-decoration: none; padding: 10px 0; border-bottom: 2px solid transparent">Books</a>
 <a href="plan" style="color: #2450DC; text-decoration: none; padding: 10px 0; border-bottom: 2px solid #2450DC">Plan</a>
+<a href="company" style="color: var(--ink); text-decoration: none; padding: 10px 0; border-bottom: 2px solid transparent">Company</a>
 <a href="integrations" style="color: var(--ink); text-decoration: none; padding: 10px 0; border-bottom: 2px solid transparent">Integrations</a>
 <a href="about" style="color: var(--ink); text-decoration: none; padding: 10px 0; border-bottom: 2px solid transparent">About</a>
 </nav>
@@ -324,6 +194,7 @@
 <a href="revenue" style="color: var(--ink); text-decoration: none; padding: 11px 0 9px 0; border-bottom: 2px solid transparent">Revenue</a>
 <a href="books" style="color: var(--ink); text-decoration: none; padding: 11px 0 9px 0; border-bottom: 2px solid transparent">Books</a>
 <a href="plan" style="color: #2450DC; text-decoration: none; padding: 11px 0 9px 0; border-bottom: 2px solid #2450DC">Plan</a>
+<a href="company" style="color: var(--ink); text-decoration: none; padding: 11px 0 9px 0; border-bottom: 2px solid transparent">Company</a>
 <a href="integrations" style="color: var(--ink); text-decoration: none; padding: 11px 0 9px 0; border-bottom: 2px solid transparent">Integrations</a>
 <a href="about" style="color: var(--ink); text-decoration: none; padding: 11px 0 9px 0; border-bottom: 2px solid transparent">About</a>
 </nav>
@@ -342,6 +213,13 @@
 </div>
 </section>
 
+<section id="today" style="padding: 88px 0; background: #FFFFFF; border-bottom: 1px solid #D5DBE5">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
+<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px"><p class="ey">Your daily view</p><h2 class="h2">What is behind you, what needs you, <span style="color: #2450DC">and what is ahead.</span></h2><p class="lead">One screen to start the day. The month that just closed, the few things waiting for you, and what is coming over the horizon.</p></div>
+<div class="m-card" data-widget="today"></div>
+</div>
+</section>
+
 <section id="analytics" style="padding: 88px 0; background: #F6F8FC; border-bottom: 1px solid #D5DBE5">
 <div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
 <div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px"><p class="ey">Analytics</p><h2 class="h2">The dashboard <span style="color: #2450DC">for your kind of business.</span></h2><p class="lead">The measures that matter are different for software, a store, a services firm, a cafe, a marketplace or a payments company. Each comes ready with its own eight, built on the same books.</p></div>
@@ -356,17 +234,10 @@
 </div>
 </section>
 
-<section id="forecast-methods" style="padding: 88px 0; background: #F6F8FC; border-bottom: 1px solid #D5DBE5">
+<section id="forecast" style="padding: 88px 0; background: #F6F8FC; border-bottom: 1px solid #D5DBE5">
 <div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
-<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px"><p class="ey">Two ways to forecast</p><h2 class="h2">Start from the goal, <span style="color: #2450DC">or from the team.</span></h2><p class="lead">Top down tells you what a target requires. Bottom up tells you where your hires and quotas land. Good plans check one against the other.</p></div>
-<div class="m-card" data-widget="method"></div>
-</div>
-</section>
-
-<section id="revenue-forecast" style="padding: 88px 0; background: #FFFFFF; border-bottom: 1px solid #D5DBE5">
-<div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
-<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px"><p class="ey">Revenue forecast</p><h2 class="h2">Retention, pipeline <span style="color: #2450DC">and new hires, together.</span></h2><p class="lead">Next year's revenue is what you keep, plus what is in the pipeline, plus what the team can sell. Move each one.</p></div>
-<div class="m-card" data-widget="revplan"></div>
+<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px"><p class="ey">Revenue forecast</p><h2 class="h2">One forecast, <span style="color: #2450DC">built two ways.</span></h2><p class="lead">Build it up from retention, pipeline and the team, or start from a goal and see what it takes. Good plans check one against the other.</p></div>
+<div class="m-card" data-widget="forecast"></div>
 </div>
 </section>
 
@@ -377,6 +248,13 @@
 </div>
 </section>
 
+<section id="model" style="padding: 88px 0; background: #FFFFFF; border-bottom: 1px solid #D5DBE5">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
+<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px"><p class="ey">Financial model</p><h2 class="h2">The spreadsheet investors ask for, <span style="color: #2450DC">already built.</span></h2><p class="lead">The same assumptions that drive your scenarios, laid out as a workbook with live formulas and exported to Excel when someone wants it the old way.</p></div>
+<div class="m-card" data-widget="model"></div>
+</div>
+</section>
+
 <section id="board-pack" style="padding: 88px 0; background: #FFFFFF; border-bottom: 1px solid #D5DBE5">
 <div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
 <div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px"><p class="ey">Board packs</p><h2 class="h2">The board pack <span style="color: #2450DC">builds itself.</span></h2><p class="lead">A real deck, not a data dump, with a template for each kind of business. Pick the slides, and each one fills itself from the ledger and the plan, with the story drafted for you to edit.</p></div>
@@ -384,100 +262,10 @@
 </div>
 </section>
 
-<section id="planning" style="padding: 80px 0; border-bottom: 1px solid #D5DBE5">
+<section id="data-room" style="padding: 88px 0; background: #F6F8FC; border-bottom: 1px solid #D5DBE5">
 <div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
-<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 840px">
-<p class="ey">Then, the future</p>
-<h2 class="h2">Because the books are right, <span style="color: #2450DC">the forecast can be.</span></h2>
-<p class="lead">Your model reads straight from the ledger. Close a month and the actuals fill themselves in, the forecast re-bases and runway updates. Change an assumption and see the effect before you commit.</p>
-</div>
-
-<div class="rv" style="background: #FFFFFF; border: 2px solid var(--ink); box-shadow: 10px 10px 0 var(--ink)">
-<div style="display: flex; flex-wrap: wrap; border-bottom: 2px solid var(--ink)">
-<div style="flex: 1 1 320px; min-width: 0; padding: 24px; border-right: 1px solid #D5DBE5; display: flex; flex-direction: column; gap: 16px">
-<div style="display: flex; flex-direction: column; gap: 2px">
-<p style="margin: 0; font-size: 14px; color: #4B5565">Runway</p>
-<p style="margin: 0; font-stretch: 125%; font-weight: 800; font-size: 48px; line-height: 1; letter-spacing: -0.02em; color: {{runwayColor}}" aria-live="polite">{{runway}}</p>
-<p style="margin: 0; font-size: 15px; font-weight: 600; color: #2450DC">{{cashOutLine}}</p>
-</div>
-<div style="display: flex; flex-direction: column; gap: 6px">
-<span style="font-size: 14px; font-weight: 600">People to hire</span>
-<div style="display: flex; align-items: stretch">
-<button type="button" class="b-white" onClick="{{hiresDown}}" aria-label="One fewer hire" style="width: 46px; min-height: 46px; border: 1px solid var(--ink); background: #FFFFFF; color: var(--ink); font-size: 22px; font-weight: 700; cursor: pointer">&minus;</button>
-<div style="flex: 1; display: flex; align-items: center; justify-content: center; background: var(--hlp); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); font-stretch: 112%; font-weight: 800; font-size: 20px" aria-live="polite">{{hiresLabel}}</div>
-<button type="button" class="b-white" onClick="{{hiresUp}}" aria-label="One more hire" style="width: 46px; min-height: 46px; border: 1px solid var(--ink); background: #FFFFFF; color: var(--ink); font-size: 22px; font-weight: 700; cursor: pointer">+</button>
-</div>
-</div>
-<div style="display: flex; flex-direction: column; gap: 6px">
-<span style="font-size: 14px; font-weight: 600">Monthly revenue growth</span>
-<div style="display: flex; align-items: stretch">
-<button type="button" class="b-white" onClick="{{growthDown}}" aria-label="Lower growth" style="width: 46px; min-height: 46px; border: 1px solid var(--ink); background: #FFFFFF; color: var(--ink); font-size: 22px; font-weight: 700; cursor: pointer">&minus;</button>
-<div style="flex: 1; display: flex; align-items: center; justify-content: center; background: var(--hlp); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); font-stretch: 112%; font-weight: 800; font-size: 20px" aria-live="polite">{{growthLabel}}</div>
-<button type="button" class="b-white" onClick="{{growthUp}}" aria-label="Raise growth" style="width: 46px; min-height: 46px; border: 1px solid var(--ink); background: #FFFFFF; color: var(--ink); font-size: 22px; font-weight: 700; cursor: pointer">+</button>
-</div>
-</div>
-<p style="margin: 0; font-size: 15px; line-height: 1.5; color: #2B3648">{{narrative}}</p>
-</div>
-<div style="flex: 2 1 520px; min-width: 0; padding: 24px 20px 18px; display: flex; flex-direction: column; gap: 12px">
-<div style="position: relative">
-<svg viewBox="0 0 720 260" role="img" aria-label="{{chartLabel}}" style="width: 100%; height: auto; display: block">
-<line x1="0" y1="93.3" x2="720" y2="93.3" style="stroke: #E3E7EE; stroke-width: 1"></line>
-<line x1="0" y1="166.7" x2="720" y2="166.7" style="stroke: #E3E7EE; stroke-width: 1"></line>
-<line x1="0" y1="240" x2="720" y2="240" style="stroke: #B9C3D3; stroke-width: 1.5"></line>
-<rect x="{{todayX}}" y="0" width="{{shadeW}}" height="240" style="fill: var(--hlp); opacity: 0.6"></rect>
-<path d="{{ghost}}" style="fill: none; stroke: #4B5565; stroke-width: 1.5; stroke-dasharray: 2 6; opacity: {{ghostOpacity}}"></path>
-<line x1="{{todayX}}" y1="0" x2="{{todayX}}" y2="240" style="stroke: var(--ink); stroke-width: 1.5"></line>
-<path d="{{actualPath}}" style="fill: none; stroke: #2450DC; stroke-width: 3.5; stroke-linejoin: round; stroke-linecap: round"></path>
-<path d="{{forecastPath}}" style="fill: none; stroke: var(--ink); stroke-width: 3; stroke-dasharray: 8 7; stroke-linecap: square"></path>
-<rect x="{{lastActualBoxX}}" y="{{lastActualBoxY}}" width="11" height="11" style="fill: #2450DC; stroke: #FFFFFF; stroke-width: 2"></rect>
-<rect x="{{endBoxX}}" y="{{endBoxY}}" width="11" height="11" style="fill: {{endFill}}; stroke: var(--ink); stroke-width: 2"></rect>
-</svg>
-<span style="position: absolute; left: 6px; top: 30%; font-size: 12px; color: #4B5565">$3.0M</span>
-<span style="position: absolute; left: 6px; top: 58%; font-size: 12px; color: #4B5565">$1.5M</span>
-<span style="position: absolute; left: {{todayPct}}; top: 0; transform: translateX(-50%); background: var(--ink); color: #FFFFFF; padding: 3px 9px; font-size: 12px; font-weight: 700; white-space: nowrap; transition: left .35s ease-out">Today</span>
-</div>
-<div style="display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: #2B3648">
-<span style="display: inline-flex; align-items: center; gap: 7px"><span style="display: inline-block; width: 20px; border-top: 3.5px solid #2450DC"></span>Actuals, from the ledger</span>
-<span style="display: inline-flex; align-items: center; gap: 7px"><span style="display: inline-block; width: 20px; border-top: 3px dashed var(--ink)"></span>Forecast, from the plan</span>
-<span style="display: inline-flex; align-items: center; gap: 7px"><span style="display: inline-block; width: 12px; height: 12px; background: var(--hlp); border: 1px solid var(--ink)"></span>Assumptions you can change</span>
-</div>
-</div>
-</div>
-<div style="display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; padding: 16px 24px; border-bottom: 1px solid #B9C3D3; background: #F6F8FC">
-<button type="button" class="b-teal" onClick="{{closeNext}}" disabled="{{closeDisabled}}" style="font-size: 16px; font-weight: 700; background: {{closeBg}}; color: #FFFFFF; border: 0; padding: 13px 20px; min-height: 46px; cursor: pointer">{{closeLabel}}</button>
-<button type="button" class="b-white" onClick="{{reset}}" style="font-size: 15px; font-weight: 600; background: #FFFFFF; color: var(--ink); border: 1px solid var(--ink); padding: 12px 18px; min-height: 46px; cursor: pointer">Reset</button>
-<p style="margin: 0; font-size: 15px; color: #4B5565">Books closed through <b style="color: var(--ink)">{{todayLabel}}</b></p>
-</div>
-<div style="overflow-x: auto">
-<div role="table" aria-label="Monthly plan in USD thousands. Columns up to today are actuals, later columns are forecast." style="min-width: 720px; font-size: 16px">
-<div role="row" style="display: grid; grid-template-columns: minmax(200px, 1.6fr) repeat(6, minmax(0, 1fr)); border-bottom: 1px solid #B9C3D3; text-align: right">
-<span role="columnheader" style="padding: 12px 24px; text-align: left; font-size: 14px; color: #4B5565">USD thousands</span>
-<sc-for list="{{cols}}" as="c" hint-placeholder-count="6">
-<span role="columnheader" style="padding: 10px 16px; border-left: {{c.bl}}; background: {{c.bg}}; display: flex; flex-direction: column; align-items: flex-end; gap: 1px"><b style="font-weight: 700">{{c.label}}</b><small style="font-size: 12px; font-weight: 800; letter-spacing: .08em; color: {{c.tagColor}}">{{c.tag}}</small></span>
-</sc-for>
-</div>
-<sc-for list="{{rows}}" as="r" hint-placeholder-count="5">
-<div role="row" style="display: grid; grid-template-columns: minmax(200px, 1.6fr) repeat(6, minmax(0, 1fr)); border-bottom: 1px solid #E3E7EE; text-align: right; font-weight: {{r.weight}}">
-<span role="rowheader" style="padding: 12px 24px; text-align: left">{{r.label}}</span>
-<span role="cell" style="padding: 12px 16px; color: {{r.k0}}; background: {{r.b0}}; border-left: {{r.l0}}">{{r.c0}}</span>
-<span role="cell" style="padding: 12px 16px; color: {{r.k1}}; background: {{r.b1}}; border-left: {{r.l1}}">{{r.c1}}</span>
-<span role="cell" style="padding: 12px 16px; color: {{r.k2}}; background: {{r.b2}}; border-left: {{r.l2}}">{{r.c2}}</span>
-<span role="cell" style="padding: 12px 16px; color: {{r.k3}}; background: {{r.b3}}; border-left: {{r.l3}}">{{r.c3}}</span>
-<span role="cell" style="padding: 12px 16px; color: {{r.k4}}; background: {{r.b4}}; border-left: {{r.l4}}">{{r.c4}}</span>
-<span role="cell" style="padding: 12px 16px; color: {{r.k5}}; background: {{r.b5}}; border-left: {{r.l5}}">{{r.c5}}</span>
-</div>
-</sc-for>
-</div>
-</div>
-<div style="padding: 16px 24px; background: var(--ink); color: #FFFFFF; font-size: 16px; line-height: 1.5">{{closeNote}}</div>
-</div>
-</div>
-</section>
-
-<section id="your-runway" style="padding: 88px 0; background: #F6F8FC; border-bottom: 1px solid #D5DBE5">
-<div class="wrap demo2" style="display: flex; flex-direction: column; gap: 32px">
-<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px"><p class="ey">Try it with your numbers</p><h2 class="h2">How long does <span style="color: #2450DC">your</span> money last?</h2><p class="lead">Three numbers give a rough answer. Your real books give an exact one, updated every day.</p></div>
-<div class="w-panel" data-widget="runway"></div>
+<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px"><p class="ey">Data room</p><h2 class="h2">A data room that is <span style="color: #2450DC">always ready.</span></h2><p class="lead">Accounts, model, contracts, cap table and company records in one place, kept current from the system. Share it in a click when an investor asks.</p></div>
+<div class="m-card" data-widget="dataroom"></div>
 </div>
 </section>
 
@@ -531,11 +319,11 @@
 <footer style="background: #FFFFFF">
 <div class="wrap" style="padding-top: 28px; padding-bottom: 40px; display: flex; flex-wrap: wrap; gap: 12px 32px; justify-content: space-between; font-size: 14px; color: #4B5565">
 <div style="display: flex; align-items: center; gap: 8px; color: var(--ink); font-weight: 700"><svg width="16" height="16" viewBox="0 0 26 26" aria-hidden="true"><rect x="0" y="9" width="17" height="17" style="fill: var(--ink)"></rect><rect x="9" y="0" width="17" height="17" style="fill: #2450DC"></rect><rect x="9" y="9" width="8" height="8" style="fill: var(--pop)"></rect></svg><span>{{brand}}</span><span style="font-weight: 400; color: #4B5565">© 2026</span></div>
-<div style="display: flex; flex-wrap: wrap; gap: 6px 18px"><a href="revenue" style="color: var(--ink); font-weight: 600">Revenue</a><a href="books" style="color: var(--ink); font-weight: 600">Books</a><a href="plan" style="color: var(--ink); font-weight: 600">Plan</a><a href="integrations" style="color: var(--ink); font-weight: 600">Integrations</a><a href="about" style="color: var(--ink); font-weight: 600">About</a></div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px 18px"><a href="revenue" style="color: var(--ink); font-weight: 600">Revenue</a><a href="books" style="color: var(--ink); font-weight: 600">Books</a><a href="plan" style="color: var(--ink); font-weight: 600">Plan</a><a href="company" style="color: var(--ink); font-weight: 600">Company</a><a href="integrations" style="color: var(--ink); font-weight: 600">Integrations</a><a href="about" style="color: var(--ink); font-weight: 600">About</a></div>
 <div>Product interfaces shown are illustrative and use sample data.</div>
 </div>
 </footer>
 </div></template>
-<script src="assets/app.0af1b4f2.js"></script>
+<script src="assets/app.d32e5dac.js"></script>
 </body>
 </html>

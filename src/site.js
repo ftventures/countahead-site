@@ -55,7 +55,7 @@
     var a = e.target; while (a && a.nodeName !== "A") a = a.parentNode;
     if (!a || e.defaultPrevented || e.metaKey || e.ctrlKey) return;
     var href = a.getAttribute("href") || "";
-    var m = /^(\.\/|revenue|books|plan|integrations|about)(#[\w-]+)?$/.exec(href);
+    var m = /^(\.\/|revenue|books|plan|company|integrations|about)(#[\w-]+)?$/.exec(href);
     if (m) href = (m[1] === "./" ? "index" : m[1]) + ".html" + (m[2] || "");
     if (/^[\w-]+\.html(#[\w-]+)?$/.test(href)) {
       e.preventDefault();

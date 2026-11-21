@@ -43,7 +43,7 @@ hero = hero.replace(hw, hw.replace('class="wrap"', 'class="wrap hero2"'));
 hero = hero.slice(0, hero.indexOf('<div class="r5" style="background: rgba(255,255,255,0.07)')) + '<div class="r5 w-hero" data-widget="hero"></div>\n' + hero.slice(hero.lastIndexOf("</div>\n</section>"));
 windowHtml = windowHtml.replace('href="#ask"', 'href="plan.html#ask"');
 
-const NAV = [["revenue.html", "Revenue"], ["books.html", "Books"], ["plan.html", "Plan"], ["integrations.html", "Integrations"], ["about.html", "About"]];
+const NAV = [["revenue.html", "Revenue"], ["books.html", "Books"], ["plan.html", "Plan"], ["company.html", "Company"], ["integrations.html", "Integrations"], ["about.html", "About"]];
 function header(cur) {
   const link = (pad) => NAV.map(([h, l]) => `<a href="${h}" style="color: ${h === cur ? "#2450DC" : "#0B1B3A"}; text-decoration: none; padding: ${pad}; border-bottom: 2px solid ${h === cur ? "#2450DC" : "transparent"}">${l}</a>`).join("\n");
   return `<header style="position: sticky; top: 0; z-index: 30; background: rgba(255,255,255,0.94); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-bottom: 1px solid #0B1B3A">
@@ -85,7 +85,8 @@ const explore = `<section style="padding: 88px 0; border-bottom: 1px solid #D5DB
 ${card("revenue.html", "01", "Revenue", "Build a contract and watch the invoices, revenue and commission work themselves out.")}
 ${card("books.html", "02", "The books", "Statements, reconciliation, journal entries, the review queue and the audit trail.")}
 ${card("plan.html", "03", "The plan", "Change a hire or a growth rate and watch runway move. Ask the ledger a question.")}
-${card("integrations.html", "04", "Integrations", "The banks, payment, payroll and deal tools planned for early access.")}
+${card("company.html", "04", "Company", "Model a funding round on the cap table, and see what the documents say.")}
+${card("integrations.html", "05", "Integrations", "The banks, payment, payroll and deal tools planned for early access.")}
 </div>
 </div>
 </section>`;
@@ -160,12 +161,21 @@ const analyticsSec = mock("analytics", "#F6F8FC", "Analytics", "The dashboard " 
 const revPlanSec = mock("revenue-forecast", "#FFFFFF", "Revenue forecast", "Retention, pipeline " + C("and new hires, together."), "Next year's revenue is what you keep, plus what is in the pipeline, plus what the team can sell. Move each one.", "revplan");
 const bulkSec = mock("approvals", "#FFFFFF", "Approvals", "Approve two hundred entries " + C("in one click."), "Nothing posts without an approval, but that should not mean two hundred clicks. Routine work is grouped for one decision, and the few that deserve a look are pulled out.", "bulk");
 const policySec = mock("policies", "#F6F8FC", "Policies", "Write the rule once. " + C("The software follows it."), "Each policy sets how the system behaves and is published in plain words for the whole company, so everyone knows how spending, discounts and collections work.", "policy");
+const todaySec = mock("today", "#FFFFFF", "Your daily view", "What is behind you, what needs you, " + C("and what is ahead."), "One screen to start the day. The month that just closed, the few things waiting for you, and what is coming over the horizon.", "today");
+const forecastSec = mock("forecast", "#F6F8FC", "Revenue forecast", "One forecast, " + C("built two ways."), "Build it up from retention, pipeline and the team, or start from a goal and see what it takes. Good plans check one against the other.", "forecast");
+const modelSec = mock("model", "#FFFFFF", "Financial model", "The spreadsheet investors ask for, " + C("already built."), "The same assumptions that drive your scenarios, laid out as a workbook with live formulas and exported to Excel when someone wants it the old way.", "model");
+const dataroomSec = mock("data-room", "#F6F8FC", "Data room", "A data room that is " + C("always ready."), "Accounts, model, contracts, cap table and company records in one place, kept current from the system. Share it in a click when an investor asks.", "dataroom");
+const auditSec = mock("audit", "#FFFFFF", "Audit readiness", "Run your own audit " + C("before the auditors do."), "An agent runs the checks an auditor would and prepares the evidence for each, so the real audit starts with the answers already on the table.", "audit");
+const companyTop = subhero("Company", "The company itself,", "kept in order.", "Who owns what, what the documents say and what is due next, tied to the same books and the same plan.");
+const capSec = mock("cap-table", "#FFFFFF", "Cap table", "Who owns what, " + C("and what a round would change."), "Shares, options and investors in one table that agrees to the books. Move the sliders to model a raise.", "captable");
+const codocsSec = mock("records", "#F6F8FC", "Company records", "The documents, " + C("read and remembered."), "Shareholder agreements, the option plan, board minutes and filings, with the key terms pulled out and the deadlines tracked.", "codocs");
 const S = sections;
 const pages = [
-  ["index.html", "Countahead: your books are done, your future is clear", "One ledger for the past and the future. Agents keep the books, you approve, and your forecast, runway and board pack read the same numbers.", [hero, marquee, S.mani, cycleSec, different, S.who, S.connected, explore, S.access]],
-  ["books.html", "Product: the accounting system | Countahead", "A full double-entry accounting system run by agents you supervise, with approvals, period locks and a complete audit trail.", [productTop, liveLedger, S.accounting, bulkSec, S.control, policySec, S.access]],
-  ["plan.html", "Planning: runway, headcount and forecasts | Countahead", "A forecast that reads the ledger directly. Test a hire or a growth rate and see runway move.", [planningTop, analyticsSec, planScen, planMethod, revPlanSec, headcount, planPack, S.planning, ownRunway, S.ask, S.access]],
+  ["index.html", "Countahead: your books are done, your future is clear", "One ledger for the past and the future. Agents keep the books, you approve, and your forecast, runway and board pack read the same numbers.", [hero, marquee, S.mani, cycleSec, different, S.who, explore, S.access]],
+  ["books.html", "Product: the accounting system | Countahead", "A full double-entry accounting system run by agents you supervise, with approvals, period locks and a complete audit trail.", [productTop, S.accounting, bulkSec, S.control, policySec, auditSec, S.access]],
+  ["plan.html", "Planning: runway, headcount and forecasts | Countahead", "A forecast that reads the ledger directly. Test a hire or a growth rate and see runway move.", [planningTop, todaySec, analyticsSec, planScen, forecastSec, headcount, modelSec, planPack, dataroomSec, S.ask, S.access]],
   ["revenue.html", "Revenue: contracts, billing and commissions | Countahead", "Capture the sale once. Invoices, cash, revenue recognition and the forecast follow, for subscriptions, online stores and services.", [revTop, revFlow, revCust, revPipe, revLife, revCollect, revArr, revComm, S.access]],
+  ["company.html", "Company: cap table and records | Countahead", "Cap table, round modelling and company records, tied to the same books and plan.", [companyTop, capSec, codocsSec, S.access]],
   ["integrations.html", "Integrations | Countahead", "The bank, payment, payroll, commerce and deal tools Countahead plans to connect to.", [integ, S.access]],
   ["about.html", "About | Countahead", "Countahead is being built by Felipe Tunnell, a CFO across multiple countries and sectors.", [S.about, S.access]]
 ];
@@ -226,7 +236,7 @@ ${css.trim()}
 ${vars(fs.readFileSync(path.join(__dirname, "widgets2.css"), "utf8"))}
 `);
 const V = (x) => vars(x);
-const appjs = fs.readFileSync(path.join(__dirname, "runtime.js"), "utf8") + "\nclass DCLogic {}\n" + logic + "\n" + fs.readFileSync(path.join(__dirname, "sliderfix.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets2.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets3.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets4.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets5.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "site.js"), "utf8").replace(/(bg: on \? )"#0B1B3A"/, '$1"var(--ink)"');
+const appjs = fs.readFileSync(path.join(__dirname, "runtime.js"), "utf8") + "\nclass DCLogic {}\n" + logic + "\n" + fs.readFileSync(path.join(__dirname, "sliderfix.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets2.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets3.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets4.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets5.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets6.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "site.js"), "utf8").replace(/(bg: on \? )"#0B1B3A"/, '$1"var(--ink)"');
 const crypto = require("crypto");
 const hash = (x) => crypto.createHash("sha1").update(x).digest("hex").slice(0, 8);
 for (const f of fs.readdirSync(path.join(root, "assets"))) fs.unlinkSync(path.join(root, "assets", f));
@@ -265,6 +275,6 @@ for (const [file, title, desc, parts] of pages) {
   dom.window.__PRERENDER = true;
   dom.window.eval(appjs);
   const html = dom.window.document.getElementById("app").innerHTML;
-  fs.writeFileSync(path.join(root, file), shell.replace('<div id="app"></div>', '<div id="app">' + html + "</div>").replace(/href="index\.html/g, 'href="./').replace(/href="(revenue|books|plan|integrations|about)\.html/g, 'href="$1'));
+  fs.writeFileSync(path.join(root, file), shell.replace('<div id="app"></div>', '<div id="app">' + html + "</div>").replace(/href="index\.html/g, 'href="./').replace(/href="(revenue|books|plan|company|integrations|about)\.html/g, 'href="$1'));
   console.log(file, Math.round(html.length / 1024) + " KB prerendered,", (tpl.match(/<section/g) || []).length, "sections");
 }
