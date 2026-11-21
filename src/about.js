@@ -40,15 +40,16 @@ ${inner}
 </div>
 </section>`;
 
-  const founder = sec("founder", "#FFFFFF", "Who is building it", "Built by a CFO who has sat in " + C("all three seats."), "", `<div class="ab-fd rv">
+  const founder = sec("founder", "#FFFFFF", "Who is building it", "Built by a CFO who has sat " + C("on every side of the numbers."), "", `<div class="ab-fd rv">
 <div class="ab-bio">
 <div class="ab-id"><span aria-hidden="true">FT</span><div><b>Felipe Tunnell</b><small>Founder, Countahead</small></div></div>
-<p>Felipe has spent his career on three sides of the same numbers: reading them as an investor, producing them inside a company that makes accounting software, and answering for them as a CFO.</p>
+<p>Felipe has spent his career on every side of the same numbers: reading them as a banker and investor, owning them as a finance leader inside software companies, fixing them as a fractional CFO for very different businesses, and needing them as a founder.</p>
 <p>He has run finance on the tools Countahead replaces, and rebuilt the same spreadsheet plan more times than he would like.</p>
 <dl class="ab-facts">
 <div><dt>Worked in</dt><dd>London, Barcelona, Amsterdam, Helsinki, Lisbon, Basel and Dubai</dd></div>
 <div><dt>Studied</dt><dd>Aerospace engineering at Southampton, then finance at Imperial College London</dd></div>
-<div><dt>Also</dt><dd>Fractional CFO to startups, and an investor in technology companies since 2017</dd></div>
+<div><dt>Deals</dt><dd>Two company sales from the inside, including Holded to Visma</dd></div>
+<div><dt>Also</dt><dd>An investor in technology companies since 2017</dd></div>
 </dl>
 <div class="ab-links"><a href="https://felipetunnell.com" target="_blank" rel="noopener">felipetunnell.com <span aria-hidden="true">&nearr;</span></a><a href="https://ftventures.io" target="_blank" rel="noopener">ftventures.io <span aria-hidden="true">&nearr;</span></a></div>
 </div>
