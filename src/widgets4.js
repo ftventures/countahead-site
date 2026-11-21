@@ -154,9 +154,10 @@
       ["CRMs", "Where sales tracks customers and deals", [2, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1], "Strong on customers and pipeline. What was actually signed and billed lives somewhere else."],
       ["Contract tools", "Drafting, approval and signature", [0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Good at getting a contract signed. The terms then have to be re-entered for billing and revenue."],
       ["Billing tools", "Subscriptions, invoices and chasing", [0, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 1], "Subscriptions and invoices, then the numbers are sent to your accounting system."],
+      ["Spend and bill-pay tools", "Cards, expenses and paying suppliers", [0, 0, 0, 0, 1, 2, 0, 0, 0, 0, 0, 1], "Good control of spending and supplier payments. The entries still have to land in a ledger somewhere else."],
       ["Planning tools", "Forecasts and models", [0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2], "Strong forecasting, on numbers imported from somewhere else."],
       ["Commission tools", "Sales pay calculations", [0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0], "One job done well, fed by your CRM and billing data."]];
-    var use = [1, 1, 0, 0, 0, 0, 0, 0, 0, 0], open = -1;
+    var use = [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], open = -1;
     function cells(v, cls) { var h = "", n = 0; G.forEach(function (g) { h += '<span class="m-cg m-cg4">'; g[1].forEach(function () { h += '<i class="m-c' + v[n] + '" title="' + JOBS[n] + '"></i>'; n++; }); h += "</span>"; }); return '<span class="m-cells ' + (cls || "") + '">' + h + "</span>"; }
     function draw() {
       var picked = C.filter(function (c, i) { return use[i]; }), un = JOBS.map(function (j, n) { return picked.reduce(function (a, c) { return Math.max(a, c[2][n]); }, 0); });
