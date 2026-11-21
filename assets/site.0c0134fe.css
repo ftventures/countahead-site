@@ -809,4 +809,8 @@ html.mn-open{overflow:hidden}
 .ea-fine{margin:0;font-size:12.5px;color:#4B5565}.ea-msg{margin:0;padding:10px 12px;background:#FFF3D1;border:1px solid #8A5A00;font-size:14.5px;color:#5E3D00}
 .ea-done{padding:44px 28px;display:flex;flex-direction:column;gap:10px;align-items:flex-start}.ea-done i{font-style:normal;width:44px;height:44px;background:#2450DC;color:#fff;font-size:24px;display:flex;align-items:center;justify-content:center}.ea-done b{font-stretch:112%;font-weight:800;font-size:28px}.ea-done p{margin:0;font-size:17px;color:#2B3648}
 @media (max-width:900px){.ea{grid-template-columns:1fr;gap:32px}.ea-card{box-shadow:8px 8px 0 #2450DC}.ea-card form{padding:22px 18px}}
+.t-form{display:flex;flex-direction:column;gap:8px}.t-form .m-lab{color:#2450DC}.t-row{display:flex;border:1.5px solid var(--ink);background:#fff;box-shadow:4px 4px 0 #2450DC}
+.t-row input{flex:1;min-width:0;border:0;background:transparent;font:inherit;font-size:17px;color:var(--ink);padding:15px 16px;border-radius:0}.t-row input:focus{outline:3px solid #5B8CFF;outline-offset:-3px}.t-row input::placeholder{color:#6B7586}
+.t-row button{flex:none;border:0;border-left:1.5px solid var(--ink);background:var(--ink);color:#fff;font:800 16px Archivo,Arial,sans-serif;padding:0 22px;cursor:pointer}.t-row button:hover{background:#2450DC}
+.t-ask>div{align-items:center}.t-try{font-size:13px;font-weight:700;color:#4B5565;margin-right:4px}.t-ans a{color:#2450DC;font-weight:700}
 

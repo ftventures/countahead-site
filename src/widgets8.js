@@ -76,6 +76,7 @@
     var PAST = ["Why did gross margin fall?", "Who is late paying?", "Which costs went up most?"], NEXT = ["What if we hire five people?", "What if we raise $8M?", "What if growth slows?", "When do we break even?"];
     var T = [], voice = false, hearing = false, speaking = false, SR = window.SpeechRecognition || window.webkitSpeechRecognition, canSpeak = "speechSynthesis" in window;
     function answer(q) { var l = q.toLowerCase(); for (var i = 0; i < A.length; i++) if (A[i][0].test(l)) { var a = A[i]; return typeof a[1] === "function" ? a[1](l) : [a[1], a[2], a[3], a[4]]; } return ["This preview only knows a handful of sample questions.", "Try one of the suggestions. In the product, the answer comes from your own ledger and plan, with the entries behind it.", "", null]; }
+    W._answer = answer;
     function say(t) { if (!voice || !canSpeak) return; try { window.speechSynthesis.cancel(); var u = new SpeechSynthesisUtterance(t); u.rate = 1.02; u.onend = function () { speaking = false; var o = el.querySelector(".k-orb"); if (o) o.classList.remove("k-talk"); }; speaking = true; window.speechSynthesis.speak(u); } catch (e) {} }
     function ask(q) { q = (q || "").trim(); if (!q) return; var a = answer(q); T.push([q, a]); if (T.length > 2) T.shift(); say(a[0] + " " + a[1]); draw(); }
     function chips(list) { return list.map(function (s) { return '<button type="button" data-s="' + s + '">' + s + "</button>"; }).join(""); }
