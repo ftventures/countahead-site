@@ -624,3 +624,4 @@ button.f-row{cursor:pointer}button.f-row[aria-expanded=true]{background:var(--hl
 .gl-w .m-legend{margin-top:2px}
 @media (max-width:520px){.gl-w .gl-req{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .ab-nums>div{padding-top:16px;padding-bottom:16px}.ab-nums b{font-size:48px}
+.ab-why3{margin-top:4px}.ab-why3 .ab-card{box-shadow:none;border-color:#D5DBE5;background:#F6F8FC;padding:20px}.ab-why3 small{font-size:10.5px;font-weight:800;letter-spacing:.1em;color:#2450DC}.ab-why3 .ab-card b{font-size:20px}.ab-why3 .ab-card p{font-size:15.5px}

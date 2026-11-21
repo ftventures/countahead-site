@@ -53,6 +53,11 @@ ${inner}
 <div><b>2</b><span>company sales seen from the inside, including Holded to Visma</span></div>
 <div><b>40+</b><span>technology companies invested in since 2017</span></div>
 </div>
+</div>
+<div class="ab-grid3 ab-why3 rv">
+<div class="ab-card"><small>INSIDE ACCOUNTING SOFTWARE</small><b>He helped build one of these.</b><p>Felipe was VP Finance at Holded, the Barcelona company whose accounting and business software is used by small companies across Spain. He was there through its growth and its sale to Visma in 2021, so he knows how these products are built, sold and used.</p></div>
+<div class="ab-card"><small>FUNDRAISING AND EXITS</small><b>He has sat on both sides of the deal.</b><p>First as a banker and venture investor judging other companies' numbers, then as the finance lead raising the round and running the sale. That is why the model, the data room and the board pack are built in from the start.</p></div>
+<div class="ab-card"><small>MANY SIZES, MANY SECTORS</small><b>From a few people to a scale-up.</b><p>Software, AI, consumer health and farming, selling to businesses and to consumers. The finance problems underneath are the same, which is why Countahead is not built for one sector.</p></div>
 </div>`);
 
   const stages = [["01", "Design", "NOW", "Every demo on this site is a working design of the product, running on sample data."], ["02", "Build", "NEXT", "The ledger first, then revenue and planning on top of it."], ["03", "Early access", "THEN", "A small group of startups, in the United States first."], ["04", "Wider release", "LATER", "More countries, more kinds of business and a mobile app."]];
