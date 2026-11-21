@@ -132,7 +132,7 @@
   };
   M[5] = function (el) { W.close(el); };
   M[6] = function (el) {
-    var T = { "Income statement": [["Revenue", "335", "41 contracts, 212 charges"], ["Cost of revenue", "(84)", "20 entries in 5100 Hosting and 5200 Support"], ["Operating expenses", "(462)", "Payroll, software, legal and 63 other entries"], ["EBITDA", "(211)", ""], ["Net income", "(215)", "After $4k of depreciation"]],
+    var T = { "Income statement": [["Revenue", "335", "41 contracts, 212 charges"], ["Cost of revenue", "(84)", "20 entries in 5100 Hosting and 5200 Support"], ["Operating expenses", "(470)", "Payroll, software, legal and 63 other entries"], ["EBITDA", "(219)", ""], ["Net income", "(215)", "After $4k of depreciation, $9k of interest income and $1k of tax"]],
       "Balance sheet": [["Cash", "3,060", "3 bank accounts, reconciled today"], ["Other assets", "572", "Receivables, prepaids and fixed assets"], ["Liabilities", "(859)", "Payables, accruals and deferred revenue"], ["Equity", "2,773", "Paid-in capital less accumulated deficit"]],
       "Cash flow": [["Net income", "(215)", "From the income statement"], ["Depreciation", "4", "Non-cash, added back"], ["Receivables and prepaids", "(8)", "Receivables up 14, prepaids down 6"], ["Payables and accruals", "4", "Liabilities up 4"], ["Change in cash", "(215)", "Opening 3,275, closing 3,060"]] }, k = "Income statement", open = 0;
     function draw() {

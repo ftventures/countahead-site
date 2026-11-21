@@ -187,7 +187,7 @@ section[id]{scroll-margin-top:76px}
 <div>
 <div style="padding: 18px 16px 14px 16px; border-bottom: 1px solid #0B1B3A; background: linear-gradient(180deg, #F6F8FC, #FFFFFF); display: flex; flex-direction: column; gap: 6px">
 <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px"><span style="font-size: 12px; font-weight: 800; letter-spacing: 0.1em; color: #0B1B3A">FROM REVENUE TO EBITDA, NOVEMBER</span><span style="font-size: 12px; color: #4B5565">USD thousands</span></div>
-<div class="wfc" role="img" aria-label="Waterfall chart: revenue 335, cost of revenue 84, gross profit 251, R and D 228, sales and marketing 142, G and A 92, EBITDA negative 211" style="position: relative; height: 290px">
+<div class="wfc" role="img" aria-label="Waterfall chart: revenue 335, cost of revenue 84, gross profit 251, R and D 228, sales and marketing 142, G and A 100, EBITDA negative 219" style="position: relative; height: 290px">
 <div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 156px; height: 1px; background: #0B1B3A"></div>
 <sc-for list="{{wf}}" as="c" hint-placeholder-count="7">
 <div aria-hidden="true" style="position: absolute; top: 0; bottom: 0; left: {{c.left}}; width: {{c.width}}">
@@ -280,6 +280,8 @@ section[id]{scroll-margin-top:76px}
 </sc-if>
 
 <sc-if value="{{tabStmt}}" hint-placeholder-val="{{false}}">
+<div class="m-stats" style="border:1px solid #D5DBE5;margin-bottom:14px"><div><small>WORKING CAPITAL</small><b>$2.70M</b></div><div><small>CURRENT RATIO</small><b>4.1x</b></div><div><small>CASH SHARE OF ASSETS</small><b>84%</b></div></div>
+<div role="img" aria-label="Assets of 3,632 funded by liabilities of 859 and equity of 2,773" style="display:flex;flex-direction:column;gap:6px;margin-bottom:16px;font-size:12px;font-weight:700;color:#0B1B3A"><div style="display:flex;height:26px"><span style="flex:3060;background:#2450DC;color:#fff;padding:5px 8px">Cash 3,060</span><span style="flex:412;background:#5B8CFF"></span><span style="flex:160;background:#B9C3D3"></span></div><div style="display:flex;height:26px"><span style="flex:540;background:#FFD15C;padding:5px 8px;white-space:nowrap;overflow:hidden">Deferred 540</span><span style="flex:319;background:#B9C3D3"></span><span style="flex:2773;background:#0B1B3A;color:#fff;padding:5px 8px">Equity 2,773</span></div><span style="font-weight:500;color:#4B5565">Top: what the company owns. Bottom: how it is funded. Deferred revenue is cash received for service still to deliver.</span></div>
 <div class="bs">
 <div>
 <div class="bsh"><span>ASSETS, USD THOUSANDS</span><span>NOV</span><span>OCT</span></div>
@@ -900,7 +902,7 @@ e["i" + n] = dr ? "12px" : "30px"; e["m" + n] = e["d" + n] || e["c" + n]; e["bt"
 var TINTC = "#F6F8FC";
 function pl(label, nov, oct, pct, kind, note) {
 var r = { label: label, nov: nov, oct: oct, weight: 500, nw: 700, bg: "transparent", bt: "1px solid #E3E7EE", fg: "#0B1B3A", mut: "#4B5565", pad: "12px", size: "16px",
-hasBar: pct != null, w: (pct == null ? 0 : Math.min(pct, 100)) + "%", pct: pct == null ? "" : pct.toFixed(1) + "% of revenue", bar: "#0B1B3A", hasNote: !!note, note: note || "", share: ({ "Revenue": "100%", "Cost of revenue": "25.1%", "Gross profit": "74.9%", "R&D": "68.1%", "Sales and marketing": "42.4%", "G&A": "27.5%", "EBITDA": "(63.0%)", "D&A": "1.2%", "Net income": "(64.2%)" })[label] || "" };
+hasBar: pct != null, w: (pct == null ? 0 : Math.min(pct, 100)) + "%", pct: pct == null ? "" : pct.toFixed(1) + "% of revenue", bar: "#0B1B3A", hasNote: !!note, note: note || "", share: ({ "Revenue": "100%", "Cost of revenue": "25.1%", "Gross profit": "74.9%", "R&D": "68.1%", "Sales and marketing": "42.4%", "G&A": "29.9%", "EBITDA": "(65.4%)", "D&A": "1.2%", "Operating result": "(66.6%)", "Interest income": "2.7%", "Income tax": "0.3%", "Net income": "(64.2%)" })[label] || "" };
 if (kind === "rev") { r.weight = 800; r.nw = 800; r.bar = "#2450DC"; r.bt = "1px solid transparent"; r.pct = "100%"; }
 if (kind === "sub") { r.weight = 800; r.nw = 800; r.bg = TINTC; r.bt = "1.5px solid #0B1B3A"; r.size = "17px"; }
 if (kind === "total") { r.weight = 800; r.nw = 800; r.bg = "#0B1B3A"; r.fg = "#FFFFFF"; r.mut = "#C7D2E6"; r.bt = "1px solid #0B1B3A"; r.pad = "16px"; r.size = "18px"; }
@@ -912,9 +914,12 @@ pl("Cost of revenue", "(84)", "(70)", 25.1),
 pl("Gross profit", "251", "252", null, "sub", "Margin 74.9%, down from 78.4%"),
 pl("R&D", "(228)", "(224)", 68.1),
 pl("Sales and marketing", "(142)", "(139)", 42.4),
-pl("G&A", "(92)", "(90)", 27.5),
-pl("EBITDA", "(211)", "(201)", null, "sub", "Margin (63.0%)"),
+pl("G&A", "(100)", "(98)", 29.9),
+pl("EBITDA", "(219)", "(209)", null, "sub", "Margin (65.4%)"),
 pl("D&A", "(4)", "(4)", 1.2),
+pl("Operating result", "(223)", "(213)", null, "sub"),
+pl("Interest income", "9", "9", 2.7),
+pl("Income tax", "(1)", "(1)", 0.3),
 pl("Net income", "(215)", "(205)", null, "total", "Ties to November net burn in the plan")
 ];
 var kpis = [
@@ -923,7 +928,7 @@ var kpis = [
 { label: "Net income", val: "($215k)", delta: "Oct ($205k)", color: "#4B5565" }
 ];
 var HATCH = "repeating-linear-gradient(135deg, #0B1B3A 0 2px, #FFFFFF 2px 5px)";
-var wfDefs = [["Rev", 0, 335, "335", "#2450DC", "#2450DC"], ["Cost", 251, 335, "(84)", HATCH, "#0B1B3A"], ["GP", 0, 251, "251", "#A9E8CF", "#0B1B3A"], ["R&D", 23, 251, "(228)", HATCH, "#0B1B3A"], ["S&M", -119, 23, "(142)", HATCH, "#0B1B3A"], ["G&A", -211, -119, "(92)", HATCH, "#0B1B3A"], ["EBITDA", -211, 0, "(211)", "#0B1B3A", "#0B1B3A"]];
+var wfDefs = [["Rev", 0, 335, "335", "#2450DC", "#2450DC"], ["Cost", 251, 335, "(84)", HATCH, "#0B1B3A"], ["GP", 0, 251, "251", "#A9E8CF", "#0B1B3A"], ["R&D", 23, 251, "(228)", HATCH, "#0B1B3A"], ["S&M", -119, 23, "(142)", HATCH, "#0B1B3A"], ["G&A", -219, -119, "(100)", HATCH, "#0B1B3A"], ["EBITDA", -219, 0, "(219)", "#0B1B3A", "#0B1B3A"]];
 var wf = wfDefs.map(function (d, i) {
 var top = 156 - d[2] * 0.4, h = (d[2] - d[1]) * 0.4;
 return { lab: d[0], val: d[3], bg: d[4], bd: d[5], left: "calc(" + (i * 14.2857).toFixed(3) + "% + 4px)", width: "calc(14.2857% - 8px)", top: top.toFixed(1) + "px", h: h.toFixed(1) + "px", vtop: (d[2] > 0 ? top - 17 : top + h + 3).toFixed(1) + "px", delay: (0.1 + i * 0.09).toFixed(2) + "s" };
