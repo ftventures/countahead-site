@@ -43,7 +43,7 @@ hero = hero.replace(hw, hw.replace('class="wrap"', 'class="wrap hero2"'));
 hero = hero.slice(0, hero.indexOf('<div class="r5" style="background: rgba(255,255,255,0.07)')) + '<div class="r5 w-hero" data-widget="hero"></div>\n' + hero.slice(hero.lastIndexOf("</div>\n</section>"));
 windowHtml = windowHtml.replace('href="#ask"', 'href="planning.html#ask"');
 
-const NAV = [["product.html", "Product"], ["planning.html", "Planning"], ["integrations.html", "Integrations"], ["about.html", "About"]];
+const NAV = [["product.html", "Books"], ["planning.html", "Plan"], ["integrations.html", "Integrations"], ["about.html", "About"]];
 function header(cur) {
   const link = (pad) => NAV.map(([h, l]) => `<a href="${h}" style="color: ${h === cur ? "#2450DC" : "#0B1B3A"}; text-decoration: none; padding: ${pad}; border-bottom: 2px solid ${h === cur ? "#2450DC" : "transparent"}">${l}</a>`).join("\n");
   return `<header style="position: sticky; top: 0; z-index: 30; background: rgba(255,255,255,0.94); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-bottom: 1px solid #0B1B3A">
@@ -110,7 +110,7 @@ const integ = subhero("Integrations", "It plugs into the tools", "you already ru
 <p style="margin: 0; font-size: 13px; line-height: 1.5; color: #4B5565; max-width: 60em">Product names belong to their owners and are listed only to show what we plan to connect to. No partnership or endorsement is implied.</p>
 </div>
 </section>`;
-const productTop = subhero("Product", "A full accounting system,", "run by agents you supervise.", "Open the tabs. Statements, close, reconciliation and journal entries, on one ledger, with sample data.", windowHtml);
+const productTop = subhero("The books", "A full accounting system,", "run by agents you supervise.", "Open the tabs. Statements, close, reconciliation and journal entries, on one ledger, with sample data.", windowHtml);
 const footer = /<footer[\s\S]*?<\/footer>/.exec(body)[0]
   .replace(/<svg width="16" height="16"[\s\S]*?<\/svg>/, '<svg width="16" height="16" viewBox="0 0 26 26" aria-hidden="true"><rect x="0" y="9" width="17" height="17" style="fill: #0B1B3A"></rect><rect x="9" y="0" width="17" height="17" style="fill: #2450DC"></rect><rect x="9" y="9" width="8" height="8" style="fill: var(--pop)"></rect></svg>')
   .replace("<div>Product interfaces shown", '<div style="display: flex; flex-wrap: wrap; gap: 6px 18px">' + NAV.map(([h, l]) => `<a href="${h}" style="color: #0B1B3A; font-weight: 600">${l}</a>`).join("") + "</div>\n<div>Product interfaces shown");
@@ -126,7 +126,7 @@ const C = (t) => `<span style="color: #2450DC">${t}</span>`;
 const liveLedger = demo("live", "#FFFFFF", "Automated bookkeeping", "Watch the books " + C("do themselves."), "Transactions arrive, agents code and post them, and anything outside your policy waits for you. One is waiting now: approve it.", "ledger");
 const headcount = demo("headcount", "#FFFFFF", "Headcount planning", "Plan the team, " + C("see the runway."), "Hiring is more than engineers. Add people by role and see what each does to payroll, revenue and how long the cash lasts.", "headcount");
 const ownRunway = demo("your-runway", "#F6F8FC", "Try it with your numbers", "How long does " + C("your") + " money last?", "Three numbers give a rough answer. Your real books give an exact one, updated every day.", "runway");
-const planningTop = subhero("Planning", "See where you are going,", "from the books you already have.", "Drag across the chart. The past is closed and reconciled. The future is a forecast from the same ledger.", '<div class="w-panel w-glass" data-widget="time"></div>', true);
+const planningTop = subhero("The plan", "See where you are going,", "before you get there.", "Your forecast starts from books that are already closed, so it is built on real numbers. Drag across the chart to move from the past into the plan.", '<div class="w-panel w-glass" data-widget="time"></div>', true);
 const S = sections;
 const pages = [
   ["index.html", "Countahead: your books are done, your future is clear", "One ledger for the past and the future. Agents keep the books, you approve, and your forecast, runway and board pack read the same numbers.", [hero, marquee, S.mani, S.different, S.who, S.connected, explore, S.access]],
@@ -189,9 +189,10 @@ html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 .w-ghost{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.3);color:#fff;font:700 14px Archivo,Arial,sans-serif;padding:10px 14px;min-height:44px;cursor:pointer}
 @media (max-width:860px){.subnav{display:flex}section[id]{scroll-margin-top:120px}}
 ${css.trim()}
+${vars(fs.readFileSync(path.join(__dirname, "widgets2.css"), "utf8"))}
 `);
 const V = (x) => vars(x);
-const appjs = fs.readFileSync(path.join(__dirname, "runtime.js"), "utf8") + "\nclass DCLogic {}\n" + logic + "\n" + fs.readFileSync(path.join(__dirname, "widgets.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "site.js"), "utf8").replace(/(bg: on \? )"#0B1B3A"/, '$1"var(--ink)"');
+const appjs = fs.readFileSync(path.join(__dirname, "runtime.js"), "utf8") + "\nclass DCLogic {}\n" + logic + "\n" + fs.readFileSync(path.join(__dirname, "widgets.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets2.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "site.js"), "utf8").replace(/(bg: on \? )"#0B1B3A"/, '$1"var(--ink)"');
 const crypto = require("crypto");
 const hash = (x) => crypto.createHash("sha1").update(x).digest("hex").slice(0, 8);
 for (const f of fs.readdirSync(path.join(root, "assets"))) fs.unlinkSync(path.join(root, "assets", f));

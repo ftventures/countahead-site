@@ -88,6 +88,7 @@
       var frag = doc.createElement("div");
       renderKids(tplRoot, frag, [inst.renderVals()], ctx, "");
       patchKids(appEl, frag);
+      if (window.CAW && !window.__PRERENDER) window.CAW.mount(appEl);
     }
     inst.setState = function (p) {
       for (var k in p) inst.state[k] = p[k];
