@@ -43,8 +43,8 @@ ${inner}
   const founder = sec("founder", "#FFFFFF", "Who is building it", "Built by a CFO " + C("who has done this job."), "", `<div class="ab-fd rv">
 <div class="ab-bio">
 <div class="ab-id"><span aria-hidden="true">FT</span><div><b>Felipe Tunnell</b><small>Founder, Countahead</small></div></div>
-<p>Felipe has been a CFO, an investor and a founder. He has run finance for software, AI and consumer companies in the United States and Europe, often one group with entities in several countries, on the tools Countahead replaces.</p>
-<div class="ab-path"><span>Investment banking</span><span>Venture capital</span><span>Finance leader in software</span><span>Fractional CFO</span><span>Founder</span></div>
+<p>Felipe has been a CFO, a fractional CFO, an investor and a founder. He has run finance for software, AI and consumer companies in the United States and Europe, often one group with entities in several countries, on the tools Countahead replaces.</p>
+<div class="ab-path"><span>Investment banking</span><span>Venture capital</span><span>CFO</span><span>Fractional CFO</span><span>Founder</span></div>
 <div class="ab-links"><a href="https://felipetunnell.com" target="_blank" rel="noopener">felipetunnell.com <span aria-hidden="true">&nearr;</span></a><a href="https://ftventures.io" target="_blank" rel="noopener">ftventures.io <span aria-hidden="true">&nearr;</span></a></div>
 </div>
 <div class="ab-nums">
