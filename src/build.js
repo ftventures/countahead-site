@@ -36,9 +36,11 @@ let hero = sections.top;
 const ti = hero.indexOf('<div class="tilt"'), te = hero.lastIndexOf("</div>\n</section>");
 let windowHtml = hero.slice(ti, te).trim();
 hero = hero.slice(0, ti) + hero.slice(te);
-const ri = hero.indexOf('<div class="r5" style="background: rgba(255,255,255,0.07)');
-if (ri < 0) throw new Error("hero rail not found");
-hero = hero.slice(0, ri) + '<div class="r5 w-hero" data-widget="hero"></div>\n' + hero.slice(hero.lastIndexOf("</div>\n</section>"));
+if (hero.indexOf('<div class="r5" style="background: rgba(255,255,255,0.07)') < 0) throw new Error("hero rail not found");
+const hw = '<div class="wrap" style="position: relative; z-index: 1; padding-top: 48px; padding-bottom: 88px; display: flex; flex-direction: column; gap: 40px">';
+if (hero.indexOf(hw) < 0) throw new Error("hero wrap not found");
+hero = hero.replace(hw, hw.replace('class="wrap"', 'class="wrap hero2"'));
+hero = hero.slice(0, hero.indexOf('<div class="r5" style="background: rgba(255,255,255,0.07)')) + '<div class="r5 w-hero" data-widget="hero"></div>\n' + hero.slice(hero.lastIndexOf("</div>\n</section>"));
 windowHtml = windowHtml.replace('href="#ask"', 'href="planning.html#ask"');
 
 const NAV = [["product.html", "Product"], ["planning.html", "Planning"], ["integrations.html", "Integrations"], ["about.html", "About"]];
@@ -61,11 +63,11 @@ ${link("11px 0 9px 0")}
 <div class="prog" aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: -3px; height: 3px; background: linear-gradient(90deg, #0B1B3A, #2450DC 60%, var(--pop))"></div>
 </header>`;
 }
-function subhero(ey, h1a, h1b, lead, inner) {
+function subhero(ey, h1a, h1b, lead, inner, two) {
   return `<section style="position: relative; overflow: clip; background: #0B1B3A; color: #FFFFFF">
 <div aria-hidden="true" style="position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 44px 44px; -webkit-mask-image: linear-gradient(180deg, #000 0, transparent 70%); mask-image: linear-gradient(180deg, #000 0, transparent 70%)"></div>
 <div aria-hidden="true" class="a1" style="position: absolute; width: 120vw; max-width: 900px; aspect-ratio: 1; left: -35%; top: -220px; background: radial-gradient(closest-side, rgba(36,80,220,0.55), rgba(36,80,220,0))"></div>
-<div class="wrap" style="position: relative; z-index: 1; padding-top: 56px; padding-bottom: 80px; display: flex; flex-direction: column; gap: 40px">
+<div class="wrap${two ? " hero2" : ""}" style="position: relative; z-index: 1; padding-top: 56px; padding-bottom: 80px; display: flex; flex-direction: column; gap: 40px">
 <div style="display: flex; flex-direction: column; gap: 18px; max-width: 900px">
 <p class="ey r1" style="color: var(--hl)">${ey}</p>
 <h1 class="r2" style="margin: 0; font-stretch: 125%; font-weight: 800; font-size: clamp(40px, 9.6vw, 96px); line-height: 0.94; letter-spacing: -0.04em; text-wrap: balance">${h1a} <span style="color: var(--hl)">${h1b}</span></h1>
@@ -114,7 +116,7 @@ const footer = /<footer[\s\S]*?<\/footer>/.exec(body)[0]
   .replace("<div>Product interfaces shown", '<div style="display: flex; flex-wrap: wrap; gap: 6px 18px">' + NAV.map(([h, l]) => `<a href="${h}" style="color: #0B1B3A; font-weight: 600">${l}</a>`).join("") + "</div>\n<div>Product interfaces shown");
 function demo(id, bg, ey, h2, lead, widget) {
   return `<section id="${id}" style="padding: 88px 0; background: ${bg}; border-bottom: 1px solid #D5DBE5">
-<div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
+<div class="wrap demo2" style="display: flex; flex-direction: column; gap: 32px">
 <div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px"><p class="ey">${ey}</p><h2 class="h2">${h2}</h2><p class="lead">${lead}</p></div>
 <div class="w-panel" data-widget="${widget}"></div>
 </div>
@@ -124,7 +126,7 @@ const C = (t) => `<span style="color: #2450DC">${t}</span>`;
 const liveLedger = demo("live", "#FFFFFF", "Automated bookkeeping", "Watch the books " + C("do themselves."), "Transactions arrive, agents code and post them, and anything outside your policy waits for you. One is waiting now: approve it.", "ledger");
 const headcount = demo("headcount", "#FFFFFF", "Headcount planning", "Plan the team, " + C("see the runway."), "Hiring is more than engineers. Add people by role and see what each does to payroll, revenue and how long the cash lasts.", "headcount");
 const ownRunway = demo("your-runway", "#F6F8FC", "Try it with your numbers", "How long does " + C("your") + " money last?", "Three numbers give a rough answer. Your real books give an exact one, updated every day.", "runway");
-const planningTop = subhero("Planning", "See where you are going,", "from the books you already have.", "Drag across the chart. The past is closed and reconciled. The future is a forecast from the same ledger.", '<div class="w-panel w-glass" data-widget="time"></div>');
+const planningTop = subhero("Planning", "See where you are going,", "from the books you already have.", "Drag across the chart. The past is closed and reconciled. The future is a forecast from the same ledger.", '<div class="w-panel w-glass" data-widget="time"></div>', true);
 const S = sections;
 const pages = [
   ["index.html", "Countahead: your books are done, your future is clear", "One ledger for the past and the future. Agents keep the books, you approve, and your forecast, runway and board pack read the same numbers.", [hero, marquee, S.mani, S.different, S.who, S.connected, explore, S.access]],
@@ -138,6 +140,13 @@ fs.writeFileSync(path.join(__dirname, "site.css.tmp"), `:root{--ink:#0B1B3A;--in
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 .site{font-family:Archivo,'Helvetica Neue',Arial,sans-serif;color:var(--ink);background:#FFFFFF;width:100%;font-variant-numeric:tabular-nums;font-size:17px;line-height:1.5;overflow-x:clip}
 .subnav{display:none}
+@media (min-width:1040px){
+.hero2{display:grid!important;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:64px!important;align-items:center;padding-top:72px!important;padding-bottom:96px!important}
+.hero2 h1{font-size:clamp(54px,5.9vw,88px)!important}
+.demo2{display:grid!important;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:72px!important;align-items:start}
+.demo2>div:first-child{position:sticky;top:110px}
+.wfc{width:100%;max-width:760px;margin:0 auto}
+}
 .w-panel{background:var(--ink);color:#fff;border:1px solid var(--ink);box-shadow:10px 10px 0 #2450DC;display:flex;flex-direction:column;min-height:120px}
 .w-panel.w-glass{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.22);box-shadow:none;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
 .w-hero{display:flex;flex-direction:column;gap:14px;min-height:480px}
