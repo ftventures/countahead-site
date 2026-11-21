@@ -44,8 +44,9 @@ ${inner}
 <div class="ab-bio">
 <div class="ab-id"><span aria-hidden="true">FT</span><div><b>Felipe Tunnell</b><small>Founder, Countahead</small></div></div>
 <p>Felipe has spent his career on every side of the same numbers: reading them as a banker and investor, owning them as a finance leader inside software companies, fixing them as a fractional CFO for very different businesses, and needing them as a founder.</p>
-<p>He has run finance on the tools Countahead replaces, and rebuilt the same spreadsheet plan more times than he would like.</p>
+<p>He has led finance for three companies operating in the United States, each through its own US entity, and run them on the tools Countahead replaces.</p>
 <dl class="ab-facts">
+<div><dt>United States</dt><dd>Finance lead for three companies with US entities: enterprise software, a consumer brand and an AI company</dd></div>
 <div><dt>Worked in</dt><dd>London, Barcelona, Amsterdam, Helsinki, Lisbon, Basel and Dubai</dd></div>
 <div><dt>Studied</dt><dd>Aerospace engineering at Southampton, then finance at Imperial College London</dd></div>
 <div><dt>Deals</dt><dd>Two company sales from the inside, including Holded to Visma</dd></div>
