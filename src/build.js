@@ -143,9 +143,17 @@ const revComm = mock("commissions", "#FFFFFF", "For sales teams", "Commissions t
 const planScen = mock("scenarios", "#FFFFFF", "Scenarios", "Three futures, " + C("one set of books."), "Compare a base case with an upside and a downside. Pick one and change what it assumes.", "scen");
 const planMethod = mock("forecast-methods", "#F6F8FC", "Two ways to forecast", "Start from the goal, " + C("or from the team."), "Top down tells you what a target requires. Bottom up tells you where your hires and quotas land. Good plans check one against the other.", "method");
 const planPack = mock("board-pack", "#FFFFFF", "Board packs", "The board pack " + C("builds itself."), "Choose the sections you want. Each one is a template that pulls live numbers, with commentary drafted for you to edit.", "pack");
+const different = `<section id="different" style="padding: 80px 0; border-bottom: 1px solid #D5DBE5">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 26px">
+<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px"><p class="ey">Why it is different</p><h2 class="h2">Every other tool does ${C("part of the job.")}</h2><p class="lead">Finance has nine jobs across revenue, the books and the plan. Tick what you use today and see what your stack covers, then compare it with one system.</p></div>
+<div class="rv m-legend"><span><i style="background:#2450DC;border-color:#2450DC"></i>Built in</span><span><i style="background:#B9C3D3;border-color:#B9C3D3"></i>Partly, or by hand</span><span><i></i>Not covered</span></div>
+<div class="rv m-card" data-widget="compare"></div>
+<p class="rv" style="margin: 0; font-size: 13px; line-height: 1.5; color: #4B5565; max-width: 70em">Our general reading of each category as of November 2026, not a review of any one product. Products differ and change quickly. Tap a name for detail.</p>
+</div>
+</section>`;
 const S = sections;
 const pages = [
-  ["index.html", "Countahead: your books are done, your future is clear", "One ledger for the past and the future. Agents keep the books, you approve, and your forecast, runway and board pack read the same numbers.", [hero, marquee, S.mani, S.different, S.who, S.connected, explore, S.access]],
+  ["index.html", "Countahead: your books are done, your future is clear", "One ledger for the past and the future. Agents keep the books, you approve, and your forecast, runway and board pack read the same numbers.", [hero, marquee, S.mani, different, S.who, S.connected, explore, S.access]],
   ["product.html", "Product: the accounting system | Countahead", "A full double-entry accounting system run by agents you supervise, with approvals, period locks and a complete audit trail.", [productTop, liveLedger, S.accounting, S.control, S.access]],
   ["planning.html", "Planning: runway, headcount and forecasts | Countahead", "A forecast that reads the ledger directly. Test a hire or a growth rate and see runway move.", [planningTop, planScen, planMethod, headcount, planPack, S.planning, ownRunway, S.ask, S.access]],
   ["revenue.html", "Revenue: contracts, billing and commissions | Countahead", "Capture the sale once. Invoices, cash, revenue recognition and the forecast follow, for subscriptions, online stores and services.", [revTop, revFlow, revArr, revComm, S.access]],
