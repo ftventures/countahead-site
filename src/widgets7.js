@@ -11,8 +11,8 @@
     function set(m, o) { for (k in o) R[k][m] = o[k]; }
     set(0, { open: 3860, nw: 180, ex: 96, ch: 116, close: 4020, rev: 335, cogs: 84, gp: 251, rd: 228, sm: 142, ga: 100, ebitda: -219, da: 4, int: 9, tax: 1, ni: -215, hRd: 11, hSm: 5, hCs: 3, hOps: 3, hGa: 2, heads: 24, pay: 372, ar: 412, pre: 86, fa: 74, cash: 3060, ta: 3632, ap: 319, def: 540, tl: 859, eq: 2773, cfo: -211, wc: 0, capex: 4, fin: 0, dcash: -215, burn: 215 });
     for (var m = 1; m <= N; m++) {
-      var p = m - 1, open = R.close[p], nw = sc.nw * Math.pow(1 + sc.ng / 100, m - 1) + (m >= 5 ? sc.sh * 20 : 0), ex = open * sc.ex / 100, ch = open * sc.ch / 100, close = open + nw + ex - ch, rev = close / 12;
-      var hRd = 11 + (m >= 3 ? sc.eh : 0), hSm = 5 + (m >= 2 ? sc.sh : 0), g = Math.pow(1.01, m);
+      var p = m - 1, open = R.close[p], nw = sc.nw * Math.pow(1 + sc.ng / 100, m - 1) + (m >= 5 ? sc.sh * 20 : 0), ex = open * sc.ex / 100, ch = open * sc.ch / 100, close = open + nw + ex - ch + (sc.priceM === m ? open * 0.06 : 0) - (sc.lossM === m ? 180 : 0), rev = close / 12;
+      var hRd = 11 + (m >= 3 ? sc.eh : 0), hSm = 5 + (m >= 2 ? sc.sh : 0), g = Math.pow(1.01, m) * (sc.cut && m >= 2 ? 0.8 : 1);
       var cogs = rev * (1 - sc.gm / 100), rd = hRd * 18.5 + 24.5 * g, sm = hSm * 15.5 + 30 + 0.085 * (nw + ex) + 11 * g, ga = 61 + 39 * g;
       var ebitda = rev - cogs - rd - sm - ga, int = R.cash[p] * 0.003, ni = ebitda - 4 + int - 1;
       var ar = rev * sc.dso / 30, def = 540 * rev / 335, ap = 319 * (cogs + rd + sm + ga) / 554, wc = -(ar - R.ar[p]) + (def - R.def[p]) + (ap - R.ap[p]);
@@ -23,6 +23,7 @@
   }
   
 
+  W._build = build; W._mlabel = mlabel;
   /* ---------- the financial model ---------- */
   W.model = function (el) {
     var SC = [{ n: "Downside", nw: 40, ng: 0, ex: 0.6, ch: 1.3, gm: 74, sh: 0, eh: 0, dso: 40, rm: 0, ra: 8 }, { n: "Base", nw: 110, ng: 1, ex: 1.0, ch: 0.9, gm: 75, sh: 1, eh: 1, dso: 37, rm: 0, ra: 8 }, { n: "Upside", nw: 170, ng: 2.5, ex: 1.3, ch: 0.7, gm: 76, sh: 3, eh: 1, dso: 35, rm: 0, ra: 8 }], si = 1, tab = 0, view = 1, sel = null, done = false;

@@ -44,7 +44,9 @@ hero = hero.slice(0, hero.indexOf('<div class="r5" style="background: rgba(255,2
 windowHtml = windowHtml.replace('href="#ask"', 'href="plan.html#ask"');
 
 const NAV = [["revenue.html", "Revenue"], ["books.html", "Books"], ["plan.html", "Plan"], ["company.html", "Company"], ["integrations.html", "Integrations"], ["about.html", "About"]];
+const SUBS = { "revenue.html": [["how-you-sell", "Ways to sell"], ["customers", "Customers"], ["pipeline", "Deals"], ["contracts", "Contracts"], ["collections", "Collections"], ["recognition", "Revenue recognition"], ["recurring", "Recurring revenue"], ["commissions", "Commissions"]], "books.html": [["accounting", "The accounting cycle"], ["basis", "Accounting rules"], ["approvals", "Approvals"], ["control", "Controls"], ["policies", "Policies"], ["tax", "Tax"], ["audit", "Audit readiness"]], "plan.html": [["today", "Daily view"], ["analytics", "Analytics"], ["scenarios", "Scenarios"], ["forecast", "Revenue forecast"], ["headcount", "Headcount"], ["model", "Financial model"], ["board-pack", "Board packs"], ["data-room", "Data room"], ["ask", "Ask"]], "company.html": [["cap-table", "Cap table"], ["options", "Options"], ["records", "Company records"], ["calendar", "Reminders"]] };
 function header(cur) {
+  const dd = () => NAV.map(([h, l]) => `<div class="nd"><a href="${h}" style="color: ${h === cur ? "#2450DC" : "#0B1B3A"}; text-decoration: none; padding: 10px 0; border-bottom: 2px solid ${h === cur ? "#2450DC" : "transparent"}; display: inline-flex; align-items: center; gap: 5px">${l}${SUBS[h] ? '<span aria-hidden="true" class="nd-c"></span>' : ""}</a>${SUBS[h] ? `<div class="nd-m">${SUBS[h].map(([a, t]) => `<a href="${h}#${a}">${t}</a>`).join("")}</div>` : ""}</div>`).join("\n");
   const link = (pad) => NAV.map(([h, l]) => `<a href="${h}" style="color: ${h === cur ? "#2450DC" : "#0B1B3A"}; text-decoration: none; padding: ${pad}; border-bottom: 2px solid ${h === cur ? "#2450DC" : "transparent"}">${l}</a>`).join("\n");
   return `<header style="position: sticky; top: 0; z-index: 30; background: rgba(255,255,255,0.94); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-bottom: 1px solid #0B1B3A">
 <div class="wrap" style="padding-top: 10px; padding-bottom: 10px; display: flex; align-items: center; justify-content: space-between; gap: 12px 16px">
@@ -53,13 +55,13 @@ function header(cur) {
 <span style="font-stretch: 125%; font-weight: 800; font-size: 20px; letter-spacing: -0.02em">{{brand}}</span>
 </a>
 <nav class="navlinks" aria-label="Main" style="align-items: center; gap: 4px 26px; font-size: 15px; font-weight: 600">
-${link("10px 0")}
+${dd()}
 </nav>
 <a href="#access" class="b-teal" style="flex: none; background: #0B1B3A; color: #FFFFFF; text-decoration: none; font-weight: 700; font-size: 15px; padding: 11px 16px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; gap: 8px">Early access <span aria-hidden="true">&rarr;</span></a>
 </div>
 <nav class="subnav nosb" aria-label="Pages" style="border-top: 1px solid #E3E7EE; padding: 0 24px; gap: 22px; font-size: 14px; font-weight: 700; overflow-x: auto; white-space: nowrap">
 ${link("11px 0 9px 0")}
-</nav>
+</nav>${SUBS[cur] ? `<nav class="subnav nosb onpage" aria-label="On this page" style="border-top: 1px solid #E3E7EE; padding: 0 24px; gap: 16px; font-size: 13px; font-weight: 600; overflow-x: auto; white-space: nowrap; background: #F6F8FC">${SUBS[cur].map(([a, t]) => `<a href="#${a}" style="color: #2B3648; text-decoration: none; padding: 9px 0">${t}</a>`).join("")}</nav>` : ""}
 <div class="prog" aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: -3px; height: 3px; background: linear-gradient(90deg, #0B1B3A, #2450DC 60%, var(--pop))"></div>
 </header>`;
 }
@@ -112,7 +114,7 @@ const integ = subhero("Integrations", "It plugs into the tools", "you already ru
 <p style="margin: 0; font-size: 13px; line-height: 1.5; color: #4B5565; max-width: 60em">Product names belong to their owners and are listed only to show what we plan to connect to. No partnership or endorsement is implied.</p>
 </div>
 </section>`;
-const productTop = subhero("The books", "A full accounting system,", "run by agents you supervise.", "Open the tabs. Statements, close, reconciliation and journal entries, on one ledger, with sample data.", windowHtml);
+const productTop = subhero("The books", "A full accounting system,", "run by agents you supervise.", "The finished product first: statements that are current today, on sample data. How they get that way is the rest of this page.", windowHtml);
 const footer = /<footer[\s\S]*?<\/footer>/.exec(body)[0]
   .replace(/<svg width="16" height="16"[\s\S]*?<\/svg>/, '<svg width="16" height="16" viewBox="0 0 26 26" aria-hidden="true"><rect x="0" y="9" width="17" height="17" style="fill: #0B1B3A"></rect><rect x="9" y="0" width="17" height="17" style="fill: #2450DC"></rect><rect x="9" y="9" width="8" height="8" style="fill: var(--pop)"></rect></svg>')
   .replace("<div>Product interfaces shown", '<div style="display: flex; flex-wrap: wrap; gap: 6px 18px">' + NAV.map(([h, l]) => `<a href="${h}" style="color: #0B1B3A; font-weight: 600">${l}</a>`).join("") + "</div>\n<div>Product interfaces shown");
@@ -145,7 +147,7 @@ const revLife = mock("contracts", "#F6F8FC", "Contracts", "Approve, sign, " + C(
 const revCollect = mock("collections", "#FFFFFF", "Collections", "An agent that " + C("chases what you are owed."), "It watches every unpaid invoice and drafts the follow-up, in the right tone, to the right person. You approve, or let the routine ones go on their own.", "collect");
 const revArr = mock("recurring", "#F6F8FC", "For subscription businesses", "Recurring revenue, " + C("customer by customer."), "Growth, retention and what moved this month, then the same revenue by customer, by cohort, by geography and by segment.", "arr");
 const revComm = mock("commissions", "#FFFFFF", "For sales teams", "Commissions that " + C("calculate themselves."), "Set the rules once: rates for new business and upsells, what happens above quota, when it is paid and when it is clawed back. Statements follow from signed contracts and cash received.", "comm");
-const planScen = mock("scenarios", "#FFFFFF", "Scenarios", "Three futures, " + C("one set of books."), "Compare a base case with an upside and a downside on cash, revenue and burn. Change what each one assumes, and see what choosing it would cost you.", "scen");
+const planScen = mock("scenarios", "#FFFFFF", "Scenarios", "Three futures, " + C("one set of books."), "Build each case from real decisions: hire, raise, change prices, lose a customer. Compare them on cash, revenue, burn and people, see what choosing each would cost, and find the assumption each one is most exposed to.", "scen");
 const planMethod = mock("forecast-methods", "#F6F8FC", "Two ways to forecast", "Start from the goal, " + C("or from the team."), "Top down tells you what a target requires. Bottom up tells you where your hires and quotas land. Good plans check one against the other.", "method");
 const planPack = mock("board-pack", "#FFFFFF", "Board packs", "The board pack " + C("builds itself."), "A real deck, not a data dump, with a template for each kind of business. Pick the slides, and each one fills itself from the ledger and the plan, with the story drafted for you to edit.", "pack");
 const different = `<section id="different" style="padding: 80px 0; border-bottom: 1px solid #D5DBE5">
@@ -163,10 +165,13 @@ const bulkSec = mock("approvals", "#FFFFFF", "Approvals", "Approve two hundred e
 const policySec = mock("policies", "#F6F8FC", "Policies", "Write the rule once. " + C("The software follows it."), "Each policy is a few numbers. Change one and the written rules rewrite themselves, the software enforces them, and everyone is asked to read the new version.", "policy");
 const todaySec = mock("today", "#FFFFFF", "Your daily view", "What is behind you, what needs you, " + C("and what is ahead."), "One screen to start the day. The month that just closed, the few things waiting for you, and what is coming over the horizon.", "today");
 const revRecSec = mock("recognition", "#FFFFFF", "Revenue recognition", "What you have been paid for " + C("and not yet earned."), "Deferred revenue by customer and by type with the months it will be earned in, one price shared across several promises, and the sales number tied to the accounting number.", "revrec");
-const askSec = mock("ask", "#F6F8FC", "Ask", "Ask the ledger, " + C("out loud if you like."), "Type a question or say it. The answer comes back in a sentence, with the working shown, and can be read aloud.", "ask");
+const askSec = mock("ask", "#F6F8FC", "Ask", "Ask the ledger, " + C("out loud if you like."), "Tap the microphone and ask out loud, or type. Ask what happened and the books answer. Ask what happens next and the plan answers. Either way you get a sentence, the numbers and the working.", "ask");
 const taxSec = mock("tax", "#F6F8FC", "Tax", "Tax-ready books, " + C("every day of the year."), "Sales tax and VAT by place, the adjustments your income tax return needs, contractor forms and every deadline, kept current as the books are written. Your adviser files; nothing is a scramble.", "tax");
 const integTop = subhero("Integrations", "It plugs into the tools", "you already run.", "Money, sales, people and work all flow into one ledger. These are the integrations planned so far. None is live yet, and the list will grow with what early users ask for.");
 const integSec = `<section id="directory" style="padding: 56px 0 88px; border-bottom: 1px solid #D5DBE5"><div class="wrap"><div class="m-card" data-widget="integrations"></div></div></section>`;
+const optSec = mock("options", "#FFFFFF", "Options", "Every grant, " + C("and what has vested."), "The option register with vesting worked out for each person, the monthly expense posted to the books, and new grants drafted with the board consent they need.", "options");
+const cocalSec = mock("calendar", "#F6F8FC", "Reminders", "Nothing about the company " + C("gets forgotten."), "Board meetings, filings, vesting dates, renewals and investor updates, read from your documents and put on one calendar.", "cocal");
+const basisSec = mock("basis", "#F6F8FC", "Accounting rules", "Cash or accrual, official or adjusted, " + C("one set of entries."), "Different readers need different views of the same business. They all come from one ledger, with the difference between them shown line by line.", "basis");
 const forecastSec = mock("forecast", "#F6F8FC", "Revenue forecast", "One forecast, " + C("built two ways."), "Build it up from retention, pipeline and the team, or start from a goal and see what it takes. Good plans check one against the other.", "forecast");
 const modelSec = mock("model", "#FFFFFF", "Financial model", "The spreadsheet investors ask for, " + C("already built."), "A full three-statement operating model for 24 months: revenue build, people, income statement, balance sheet and cash flow, in three scenarios, with live formulas and an Excel export.", "model");
 const dataroomSec = mock("data-room", "#F6F8FC", "Data room", "A data room that is " + C("always ready."), "Accounts, model, contracts, cap table and company records in one place, kept current from the system. Share it in a click when an investor asks.", "dataroom");
@@ -177,10 +182,10 @@ const codocsSec = mock("records", "#F6F8FC", "Company records", "The documents, 
 const S = sections;
 const pages = [
   ["index.html", "Countahead: your books are done, your future is clear", "One ledger for the past and the future. Agents keep the books, you approve, and your forecast, runway and board pack read the same numbers.", [hero, marquee, S.mani, cycleSec, different, S.who, explore, S.access]],
-  ["books.html", "Product: the accounting system | Countahead", "A full double-entry accounting system run by agents you supervise, with approvals, period locks and a complete audit trail.", [productTop, S.accounting, bulkSec, S.control, policySec, taxSec, auditSec, S.access]],
+  ["books.html", "Product: the accounting system | Countahead", "A full double-entry accounting system run by agents you supervise, with approvals, period locks and a complete audit trail.", [productTop, S.accounting, basisSec, bulkSec, S.control, policySec, taxSec, auditSec, S.access]],
   ["plan.html", "Planning: runway, headcount and forecasts | Countahead", "A forecast that reads the ledger directly. Test a hire or a growth rate and see runway move.", [planningTop, todaySec, analyticsSec, planScen, forecastSec, headcount, modelSec, planPack, dataroomSec, askSec, S.access]],
   ["revenue.html", "Revenue: contracts, billing and commissions | Countahead", "Capture the sale once. Invoices, cash, revenue recognition and the forecast follow, for subscriptions, online stores and services.", [revTop, revFlow, revCust, revPipe, revLife, revCollect, revRecSec, revArr, revComm, S.access]],
-  ["company.html", "Company: cap table and records | Countahead", "Cap table, round modelling and company records, tied to the same books and plan.", [companyTop, capSec, codocsSec, S.access]],
+  ["company.html", "Company: cap table and records | Countahead", "Cap table, round modelling and company records, tied to the same books and plan.", [companyTop, capSec, optSec, codocsSec, cocalSec, S.access]],
   ["integrations.html", "Integrations | Countahead", "The bank, payment, payroll, commerce and deal tools Countahead plans to connect to.", [integTop, integSec, S.access]],
   ["about.html", "About | Countahead", "Countahead is being built by Felipe Tunnell, a CFO across multiple countries and sectors.", [S.about, S.access]]
 ];
@@ -241,7 +246,7 @@ ${css.trim()}
 ${vars(fs.readFileSync(path.join(__dirname, "widgets2.css"), "utf8"))}
 `);
 const V = (x) => vars(x);
-const appjs = fs.readFileSync(path.join(__dirname, "runtime.js"), "utf8") + "\nclass DCLogic {}\n" + logic + "\n" + fs.readFileSync(path.join(__dirname, "sliderfix.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets2.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets3.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets4.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets5.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets6.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets7.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "site.js"), "utf8").replace(/(bg: on \? )"#0B1B3A"/, '$1"var(--ink)"');
+const appjs = fs.readFileSync(path.join(__dirname, "runtime.js"), "utf8") + "\nclass DCLogic {}\n" + logic + "\n" + fs.readFileSync(path.join(__dirname, "sliderfix.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets2.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets3.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets4.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets5.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets6.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets7.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "widgets8.js"), "utf8") + "\n" + fs.readFileSync(path.join(__dirname, "site.js"), "utf8").replace(/(bg: on \? )"#0B1B3A"/, '$1"var(--ink)"');
 const crypto = require("crypto");
 const hash = (x) => crypto.createHash("sha1").update(x).digest("hex").slice(0, 8);
 for (const f of fs.readdirSync(path.join(root, "assets"))) fs.unlinkSync(path.join(root, "assets", f));
