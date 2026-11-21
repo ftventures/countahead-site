@@ -120,27 +120,27 @@ people() {
 return [
 { id: "ceo", label: "I run the company", short: "Founder", line: "You want to know how long the money lasts, without becoming an accountant.", role: "Founder or CEO",
 pains: ["Books that are weeks behind, so every decision uses old numbers.", "No confident answer to how long the money lasts.", "Paying for software and a bookkeeper, and still building the investor update by hand."],
-gains: ["Books that are current every day, without you doing them.", "Runway and burn from real numbers, in plain language.", "Investor and board updates drafted from the ledger."],
+gains: ["Books that are current every day, without you doing them.", "Runway, burn and what your next hire does to them, in plain words.", "The board pack, investor update and data room built from the ledger."],
 qa: [
-{ q: "Do I still need an accountant?", a: "For tax filings and statutory accounts, yes. This handles the daily bookkeeping and hands your accountant clean, documented books." },
-{ q: "How much of my time does it take?", a: "The aim is minutes a week. Agents prepare the work and you approve what your policy sends to you." },
-{ q: "Will my books hold up in due diligence?", a: "Every entry carries its source document and approval, so any number can be traced to where it came from." }
+{ q: "Do I still need an accountant?", a: "For tax returns and anything that needs a CPA to sign, yes. This handles the daily bookkeeping and hands your accountant clean, documented books." },
+{ q: "How much of my time does it take?", a: "The aim is minutes a week. Agents work inside rules you set, and only what falls outside them comes to you." },
+{ q: "Will my books hold up in due diligence?", a: "Every entry carries its source document and who approved it, so any number can be traced. The data room is kept current from the same records." }
 ] },
 { id: "cfo", label: "I run finance", short: "Finance lead", line: "You want a close measured in days and a forecast you do not rebuild.", role: "CFO, head of finance or fractional CFO",
-pains: ["A close that takes two weeks of reconciliations.", "A model rebuilt from exports every month.", "Entities and currencies consolidated by hand."],
-gains: ["Continuous reconciliation, so you close by exception.", "A forecast that reads the ledger directly.", "Entities consolidated with intercompany eliminated."],
+pains: ["A close that takes two weeks of reconciliations.", "A model and a board pack rebuilt from exports every month.", "Contracts, billing and revenue recognition kept in step by hand."],
+gains: ["Books reconciled as you go, so the close is only the exceptions.", "A forecast, a model and a board pack that read the ledger directly.", "One record from signed contract to recognized revenue, following ASC 606."],
 qa: [
-{ q: "Is it a real general ledger?", a: "Yes. Double-entry and accrual-based, multi-entity and multi-currency, with period locks. It is the system of record, not a layer on top of one." },
+{ q: "Is it a real general ledger?", a: "Yes. Double entry, cash or accrual, US GAAP or IFRS, several entities and currencies, with locked periods. It is the system of record, not a layer on top of one." },
 { q: "How do I control what the agents do?", a: "A policy you write sets what agents may post alone and what waits for a person. Nothing posts outside those limits." },
 { q: "Can I check the work?", a: "Each entry shows its document, its match and its reasoning. You can reclassify or post a manual journal at any time, and it is logged." }
 ] },
 { id: "acct", label: "I keep the books", short: "Accountant", line: "You want to review the work, not retype it.", role: "Accountant, controller or bookkeeper",
 pains: ["Chasing people for invoices and receipts.", "Coding and reconciling line by line.", "Cleaning up the books before the real work can start."],
-gains: ["Documents collected and attached at the source.", "Entries arrive coded, with their evidence.", "You review the exceptions, not every line."],
+gains: ["Documents collected and attached at the source.", "Entries arrive coded, with the evidence and the reason.", "You review a sample and the exceptions, then lock the month."],
 qa: [
 { q: "Is this meant to replace me?", a: "No. It takes the collecting, coding and matching. Review, judgment, adjusting entries, tax and sign-off stay with you." },
 { q: "Can I correct and adjust?", a: "Yes. Post adjusting journals, reclassify, and lock the period when you are done. Every change is logged." },
-{ q: "What do I get at year end?", a: "A trial balance and ledger detail in which every line links to its source document and approval." }
+{ q: "What do I get at year end?", a: "A trial balance and ledger detail in which every line links to its source document and approval, plus the schedules and evidence an auditor asks for, already prepared." }
 ] }
 ];
 }
