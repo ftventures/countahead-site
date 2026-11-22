@@ -741,3 +741,32 @@ html.mn-open{overflow:hidden}
 .qa-tog{flex:none;display:inline-flex;align-items:center;gap:7px;border:1px solid #D5DBE5;background:#fff;color:var(--ink);font:600 13px Archivo,Arial,sans-serif;padding:6px 9px;cursor:pointer}.qa-tog i{width:10px;height:10px;border:1px solid var(--ink);background:#fff}.qa-tog[aria-pressed=true] i{background:#2450DC;border-color:#2450DC}
 .qa-foot{margin:0;font-size:12.5px;color:#C7D2E6}
 .qa-ft .m-btn{min-height:0;padding:10px 14px}
+.sw-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-bottom:1px solid var(--ink)}
+.sw-steps button{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:12px 10px;min-height:64px;border:0;border-right:1px solid #D5DBE5;background:#fff;color:var(--ink);font:inherit;text-align:left;cursor:pointer}
+.sw-steps button:last-child{border-right:0}
+.sw-steps small{font-stretch:125%;font-weight:800;font-size:13px;color:#2450DC}.sw-steps b{font-size:14px;line-height:1.2}
+.sw-steps button[aria-pressed=true]{background:#E6EDFF;box-shadow:inset 0 -4px 0 #2450DC}
+.sw-body{display:grid;grid-template-columns:minmax(0,1fr)}
+.sw-main{display:flex;flex-direction:column;gap:12px;padding:22px 16px;min-height:430px}
+.sw-main h3{margin:0;font-stretch:112%;font-weight:800;font-size:22px;line-height:1.15;letter-spacing:-.01em}
+.sw-main p{margin:0;font-size:16px;line-height:1.5;color:#2B3648}
+.sw-nav{margin-top:auto;padding-top:8px}.sw-nav a{display:inline-flex;align-items:center;text-decoration:none}
+.sw-ok{display:inline-flex;align-items:center;justify-content:center;flex:none;width:22px;height:22px;background:#2450DC;color:#fff;font-style:normal;font-weight:800;font-size:13px}
+.sw-list{list-style:none;margin:4px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}.sw-list li{display:flex;gap:10px;align-items:flex-start;font-size:15.5px;line-height:1.4}
+.sw-map{display:flex;flex-direction:column;border:1px solid #D5DBE5}
+.sw-map>div{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:4px 10px;align-items:center;padding:9px 12px;border-top:1px solid #E3E7EE;font-size:14.5px}
+.sw-map>div:first-child{border-top:0}.sw-map span{color:#4B5565}.sw-map em{font-style:normal;color:#2450DC;font-weight:800}
+.sw-map small{grid-column:1/-1;font-weight:700;font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+.sw-t0{color:#2450DC}.sw-t1{color:#8A5A00}.sw-t2{color:#0B1B3A;background:#FFD15C;justify-self:start;padding:2px 6px}
+.sw-sum{font-size:15px!important}
+.sw-grid{display:flex;flex-direction:column;border:1px solid #D5DBE5}
+.sw-grid>div{display:grid;grid-template-columns:minmax(92px,1.4fr) repeat(6,minmax(0,1fr));align-items:center;justify-items:center;padding:8px 10px;border-top:1px solid #E3E7EE;font-size:14px}
+.sw-grid>div:first-child{border-top:0;background:#F6F8FC;font-size:13px}.sw-grid span{justify-self:start;font-weight:600}
+.sw-cmp{display:flex;flex-direction:column;border:1px solid #D5DBE5}
+.sw-cmp>div{display:grid;grid-template-columns:minmax(0,.8fr) repeat(2,minmax(0,1fr)) 26px;gap:6px;padding:9px 10px;border-top:1px solid #E3E7EE;font-size:13px;font-variant-numeric:tabular-nums}
+.sw-cmp>div>b{text-align:right}.sw-cmp .sw-ch{border-top:0;background:#F6F8FC;font-size:12.5px}.sw-cmp .sw-ch b{font-weight:700}.sw-z{color:#2450DC}
+.sw-side{display:flex;flex-direction:column;gap:6px;padding:22px 16px;background:#F6F8FC;border-top:1px solid var(--ink)}
+.sw-side>small{font-weight:800;font-size:12px;letter-spacing:.06em;color:#2450DC}.sw-side>b{font-stretch:112%;font-weight:800;font-size:22px}
+.sw-h{margin:12px 0 0;font-weight:800;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:#0B1B3A}
+.sw-side ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:5px;font-size:14.5px;line-height:1.4;color:#2B3648}
+@media(min-width:900px){.sw-body{grid-template-columns:minmax(0,1.55fr) minmax(0,1fr)}.sw-side{border-top:0;border-left:1px solid var(--ink)}.sw-main{padding:26px 24px;min-height:440px}.sw-side{padding:26px 22px}.sw-cmp>div{grid-template-columns:minmax(0,1.1fr) repeat(2,minmax(0,1fr)) 44px;gap:8px;padding:9px 12px;font-size:14.5px}.sw-map>div{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) 110px}.sw-map small{grid-column:auto;justify-self:end}.sw-steps button{padding:14px 16px}.sw-steps b{font-size:15px}}
