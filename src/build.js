@@ -432,3 +432,4 @@ for (const [file, title, desc, parts] of pages) {
   fs.writeFileSync(path.join(root, file), shell.replace('<div id="app"></div>', '<div id="app">' + html + "</div>").replace(/href="index\.html/g, 'href="./').replace(/href="(revenue|books|plan|company|integrations|about|software|ai-usage|online-stores|consumer-brands|wholesale|services|professional-services|hospitality|retail|other-industries|founders|finance-leads|investors|accountants|people|pricing|refunds|privacy|terms)\.html/g, 'href="$1'));
   console.log(file, Math.round(html.length / 1024) + " KB prerendered,", (tpl.match(/<section/g) || []).length, "sections");
 }
+process.on("exit", () => { try { require("./heroopts.js")(); } catch (e) { console.error("hero options error:", e.message); } });

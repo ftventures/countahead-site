@@ -494,15 +494,57 @@
       ["You plan two hires", "PLAN", "Two sales hires, starting in January", "Updated payroll, the budget and the option grants to match.", "Added them to the headcount plan.", 1,
         [["Payroll", "Two starters set up"], ["Budget", "Sales and marketing updated"], ["Options", "Grants drafted for the board"]],
         [["Payroll", "+$31k a month"], ["New revenue", "+$60k a month once ramped"], ["Runway", "20 &rarr; 18 months"]]]];
+    var EV2 = [
+      ["An order ships", "SALES", "Order 4417 ships: 3 items, $186", "Booked the sale, the store's fee and the cost of the stock.", "Nothing. It is routine, and inside your rules.", 0,
+        [["Revenue", "$186"], ["Stock", "3 units out, $62 at cost"], ["Fees", "$5.70, held from the payout"]],
+        [["Net sales", "$412k this month, on track"], ["Stock cover", "41 days, reorder by Dec 12"], ["Cash forecast", "Payout due Thursday"]]],
+      ["A supplier bill arrives", "BOOKS", "Pacific Mills bills $28,400 for 2,000 units", "Matched it to the purchase order and the goods received.", "Approve it. It is over your $5,000 limit.", 0,
+        [["Stock", "+$28,400"], ["Owed to suppliers", "Due January 2"], ["Landed cost", "$14.20 a unit"]],
+        [["Cash forecast", "&minus;$28k in January"], ["Stock cover", "41 &rarr; 96 days"], ["Gross margin", "58%, no change"]]],
+      ["Returns jump", "SALES", "Returns reach 9% on the linen shirt", "Reversed the sales, then put the stock back or wrote it off.", "Decide whether to pull the listing.", 0,
+        [["Refunds", "$3,240 this week"], ["Stock", "31 back, 5 written off"], ["Margin on the shirt", "22%"]],
+        [["Net sales", "&minus;$9k this quarter"], ["Reorder", "Paused for this item"], ["Board pack", "Listed under risks"]]],
+      ["You plan a sale", "PLAN", "20% off for one week in March", "Worked through the margin, the stock and the cash for that week.", "Set the discount and the ad budget.", 1,
+        [["Discounts", "Tracked on their own line"], ["Ad budget", "$18k set"], ["Stock", "1,400 units set aside"]],
+        [["Net sales", "+$96k that week"], ["Gross margin", "58 &rarr; 49% that week"], ["Stock cover", "41 &rarr; 23 days"]]]];
+    var EV3 = [
+      ["The day closes", "TILL", "Market Street takes $3,412 on Tuesday", "Matched card takings to the payout, and the drawer to the count.", "Nothing, unless the drawer is off by more than $20.", 0,
+        [["Sales", "$3,412"], ["Tips", "$386, owed to staff"], ["Sales tax", "$273, held to pay over"]],
+        [["Sales this week", "$24k, on track"], ["Labor", "31% of sales"], ["Cash forecast", "Card payout tomorrow"]]],
+      ["A supplier delivers", "BOOKS", "Harvest Foods delivers $1,960 of produce", "Read the delivery note and matched it to the order.", "Approve it. Two items came short.", 0,
+        [["Cost of goods", "$1,960"], ["Credit note", "$84 requested"], ["Owed to suppliers", "Due in 14 days"]],
+        [["Food cost", "29 &rarr; 30% of sales"], ["Cash forecast", "&minus;$1.9k in two weeks"], ["Prices", "Milk up 6%, flagged"]]],
+      ["Labor runs over", "PEOPLE", "Labor reaches 36% of sales this week", "Compared the rota with sales by hour and found two quiet shifts.", "Change next week's rota, or leave it.", 0,
+        [["Wages", "$8,640 this week"], ["Sales per labor hour", "$41"], ["Overtime", "14 hours"]],
+        [["Prime cost", "66% of sales"], ["Site profit", "&minus;$1.2k this month"], ["Board pack", "Labor flagged"]]],
+      ["You plan a second site", "PLAN", "A second site, opening in April", "Built the plan from Market Street's own numbers.", "Set the rent, the fit-out and the opening team.", 1,
+        [["Fit-out", "$140k budget set up"], ["Lease", "Key terms on record"], ["Opening team", "9 roles added"]],
+        [["Break-even", "Month 7"], ["Cash low point", "$62k in June"], ["Runway", "14 &rarr; 9 months"]]]];
+    var EV4 = [
+      ["A project is won", "REVENUE", "Fernhill signs a $60,000 website project", "Drafted the statement of work and three milestone invoices.", "Approved the terms.", 0,
+        [["Invoice", "$20,000 deposit, drafted"], ["Revenue", "Earned as the work is delivered"], ["Signed work", "+$60,000"]],
+        [["Work ahead", "3.1 &rarr; 3.6 months"], ["Team", "Two designers booked to February"], ["Cash forecast", "+$60k over 4 months"]]],
+      ["Timesheets come in", "BILLING", "312 hours logged this week", "Turned billable hours into draft invoices and flagged one project over budget.", "Approve the invoices.", 0,
+        [["To bill", "$38,400"], ["Time billed", "74% of hours"], ["Fernhill", "82% of budget used"]],
+        [["Revenue this month", "$186k, on track"], ["Margin by project", "One flagged"], ["Board pack", "Time billed updated"]]],
+      ["A client pays late", "COLLECTIONS", "Alder &amp; Co is 41 days late on $24,000", "Sent two reminders and drafted a firmer third.", "Approve the third, or pick up the phone.", 0,
+        [["Owed to you", "$24,000 overdue"], ["Follow-up", "Third reminder drafted"], ["Client", "Marked at risk"]],
+        [["Cash forecast", "$24k moved to next month"], ["Runway", "11 months, no change"], ["Board pack", "Listed under risks"]]],
+      ["You plan a hire", "PLAN", "A senior designer, starting in February", "Checked that signed work covers the cost.", "Added the role and the salary.", 1,
+        [["Payroll", "One starter set up"], ["Budget", "Delivery team updated"], ["Equipment", "$3,200 requested"]],
+        [["Payroll", "+$9k a month"], ["Capacity", "+120 billable hours a month"], ["Pays for itself", "From month 3"]]]];
+    var KD = [["Software", EV], ["Online store", EV2], ["Cafe", EV3], ["Agency", EV4]], kinds = el.getAttribute("data-kinds") != null, kd = 0;
     var cur = 0, auto = !window.__PRERENDER && !(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches), timer = null, DUR = 6500;
     function col(k, rows, sub, cls) { return '<div class="hx-col ' + cls + '"><small><span>' + k + "</span><i>" + sub + "</i></small>" + rows.map(function (r) { return "<div><span>" + r[0] + "</span><b>" + r[1] + "</b></div>"; }).join("") + "</div>"; }
     function draw() {
-      el.innerHTML = '<div class="w-panel w-glass hx"><div class="w-ph"><span>SOMETHING HAPPENS</span><span>BOTH SIDES UPDATE</span></div><div class="hx-ev" role="group" aria-label="Pick an event">' + EV.map(function (e, i) { return '<button type="button" data-e="' + i + '" aria-pressed="' + (i === cur) + '">' + e[0] + "</button>"; }).join("") + '</div><div class="w-prog"><i' + (auto ? ' class="hx-run" style="animation-duration:' + DUR + 'ms"' : "") + '></i></div><div class="stk hx-b">' + EV.map(function (e, i) {
+      var EV = kinds ? KD[kd][1] : KD[0][1];
+      el.innerHTML = '<div class="w-panel w-glass hx"><div class="w-ph"><span>SOMETHING HAPPENS</span><span>BOTH SIDES UPDATE</span></div>' + (kinds ? '<div class="hx-kd" role="group" aria-label="Kind of business"><small>In a business like</small>' + KD.map(function (k, i) { return '<button type="button" data-kd="' + i + '" aria-pressed="' + (i === kd) + '">' + k[0] + "</button>"; }).join("") + "</div>" : "") + '<div class="hx-ev" role="group" aria-label="Pick an event">' + EV.map(function (e, i) { return '<button type="button" data-e="' + i + '" aria-pressed="' + (i === cur) + '">' + e[0] + "</button>"; }).join("") + '</div><div class="w-prog"><i' + (auto ? ' class="hx-run" style="animation-duration:' + DUR + 'ms"' : "") + '></i></div><div class="stk hx-b">' + EV.map(function (e, i) {
         var ag = '<p class="hx-who"><em>AGENT</em><span>' + e[3] + "</span></p>", you = '<p class="hx-who"><em class="hx-y">YOU</em><span>' + e[4] + "</span></p>", who = e[5] ? you + ag : ag + you;
         return '<div class="' + (i === cur ? "on" : "") + (e[5] ? " hx-rev" : "") + '"><div class="hx-card"><small>' + e[1] + "</small><b>" + e[2] + "</b>" + who + '</div><div class="hx-two">' + col("THE BOOKS", e[6], "the past", "hx-p") + col("THE PLAN", e[7], "the future", "hx-f") + "</div></div>";
       }).join("") + '</div><div class="hx-ft">One ledger underneath. Nothing is copied from one side to the other.</div></div>';
-      clearTimeout(timer); if (auto) timer = setTimeout(function () { cur = (cur + 1) % EV.length; draw(); }, DUR);
+      clearTimeout(timer); if (auto) timer = setTimeout(function () { cur = (cur + 1) % 4; draw(); }, DUR);
     }
+    on(el, "[data-kd]", function (t) { kd = +t.getAttribute("data-kd"); cur = 0; auto = false; draw(); });
     on(el, "[data-e]", function (t) { cur = +t.getAttribute("data-e"); auto = false; draw(); });
     draw();
   };
