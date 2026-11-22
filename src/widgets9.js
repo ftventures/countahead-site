@@ -39,24 +39,26 @@
 
   W.pricefind = function (el) {
     var PRESETS = [["Two founders, no revenue yet", 0, 18e4], ["Seed stage, 10 people", 6e5, 1.6e6], ["Shop or cafe", 9e5, 8.2e5], ["Series A, 40 people", 3e6, 7e6], ["Profitable, $20M in sales", 2e7, 1.7e7]];
-    var rev = 0, spend = 18e4, shown = 49, pre = 0, moved = 0;
-    el.innerHTML = '<div class="pf"><div class="pf-in"><small>START FROM A COMPANY LIKE YOURS</small><div class="pf-pre">' + PRESETS.map(function (p, i) { return '<button type="button" data-pre="' + i + '">' + p[0] + "</button>"; }).join("") + '</div><small>OR SET YOUR OWN, LAST TWELVE MONTHS</small><label><span>Revenue <b data-v="r"></b></span><input type="range" min="0" max="600" step="1" data-k="r" aria-label="Revenue over the last twelve months"></label><label><span>Spending <b data-v="s"></b></span><input type="range" min="0" max="600" step="1" data-k="s" aria-label="Spending over the last twelve months"></label><p class="pf-why" aria-live="polite"></p></div><div class="pf-out"><small class="pf-lab">STARTS AT</small><div class="pf-price"><b></b><span>a month</span></div><p class="pf-band"></p><ul class="pf-inc"><li>Books, plan, revenue and company records</li><li>Unlimited users</li><li>Your accountant\'s seat is free</li><li>No setup fee</li></ul><a class="pf-go" href="#compare">Compare with what you pay today <span aria-hidden="true">&rarr;</span></a></div><div class="pf-lad" role="group" aria-label="Price by company size">' + B.map(function (b, i) { return '<button type="button" data-b="' + i + '" style="--h:' + (22 + i * 13) + '%"><i aria-hidden="true"></i><b>' + (b.p === null ? "Quote" : usd(b.p)) + "</b><span>" + b.sh + "</span></button>"; }).join("") + '</div></div><p class="pf-note">Planned launch prices, in US dollars. Countahead is still being built and is not on sale yet.</p>';
+    var rev = 0, spend = 18e4, shown = 49, pre = 0, moved = 0, yr = 0;
+    el.innerHTML = '<div class="pf"><div class="pf-in"><small>START FROM A COMPANY LIKE YOURS</small><div class="pf-pre">' + PRESETS.map(function (p, i) { return '<button type="button" data-pre="' + i + '">' + p[0] + "</button>"; }).join("") + '</div><small>OR SET YOUR OWN, LAST TWELVE MONTHS</small><label><span>Revenue <b data-v="r"></b></span><input type="range" min="0" max="600" step="1" data-k="r" aria-label="Revenue over the last twelve months"></label><label><span>Spending <b data-v="s"></b></span><input type="range" min="0" max="600" step="1" data-k="s" aria-label="Spending over the last twelve months"></label><p class="pf-why" aria-live="polite"></p></div><div class="pf-out"><div class="pf-bill" role="group" aria-label="How you pay"><button type="button" data-yr="0">Monthly</button><button type="button" data-yr="1">Yearly <em>2 months free</em></button></div><small class="pf-lab">STARTS AT</small><div class="pf-price"><b></b><span>a month</span></div><p class="pf-band"></p><ul class="pf-inc"><li>Books, plan, revenue and company records</li><li>Unlimited users</li><li>Your accountant\'s seat is free</li><li>No setup fee</li></ul><a class="pf-go" href="#compare">Compare with what you pay today <span aria-hidden="true">&rarr;</span></a></div><div class="pf-lad" role="group" aria-label="Price by company size">' + B.map(function (b, i) { return '<button type="button" data-b="' + i + '" style="--h:' + (22 + i * 13) + '%"><i aria-hidden="true"></i><b>' + (b.p === null ? "Quote" : usd(b.p)) + "</b><span>" + b.sh + "</span></button>"; }).join("") + '</div></div><p class="pf-note">Planned launch prices, in US dollars. Countahead is still being built and is not on sale yet.</p>';
     var pb = $(el, ".pf-price b");
     function draw() {
       var size = Math.max(rev, spend), i = bandOf(size), b = B[i];
       $(el, '[data-v="r"]').textContent = rev ? big(rev) : "$0"; $(el, '[data-v="s"]').textContent = spend ? big(spend) : "$0";
       $(el, '[data-k="r"]').value = toPos(rev); $(el, '[data-k="s"]').value = toPos(spend);
       $(el, ".pf-why").innerHTML = rev === spend ? "Revenue and spending are level, so your size is <b>" + big(size) + "</b>." : (rev > spend ? "Revenue is the higher of the two, so it sets your size: <b>" + big(size) + "</b>." : "Spending is the higher of the two, so it sets your size: <b>" + big(size) + "</b>. That is how a funded company with little revenue is sized fairly.");
-      $(el, ".pf-why").innerHTML += ' <span class="pf-echo">' + (b.p === null ? "Priced with you." : "Your price: <b>" + usd(b.p) + " a month</b>.") + "</span>";
+      $(el, ".pf-why").innerHTML += ' <span class="pf-echo">' + (b.p === null ? "Priced with you." : "Your price: <b>" + (yr ? usd(b.p * 10) + " a year" : usd(b.p) + " a month") + "</b>.") + "</span>";
       if (b.p === null) { pb.__tw = (pb.__tw || 0) + 1; pb.textContent = "Let's talk"; el.querySelector(".pf-price").classList.add("pf-q"); shown = 0; }
-      else { el.querySelector(".pf-price").classList.remove("pf-q"); tween(pb, shown || b.p, b.p, usd); shown = b.p; }
-      $(el, ".pf-band").innerHTML = b.p === null ? "<b>" + b.lab + ".</b> Everything included, priced with you, with a named contact." : "<b>" + b.lab + ".</b> " + usd(b.p * 12) + " a year. Checked once a year, never mid-year.";
+      else { var amt = yr ? b.p * 10 : b.p; el.querySelector(".pf-price").classList.remove("pf-q"); tween(pb, shown || amt, amt, usd); shown = amt; $(el, ".pf-price span").textContent = yr ? "a year" : "a month"; }
+      all(el, "[data-yr]").forEach(function (x) { x.setAttribute("aria-pressed", +x.getAttribute("data-yr") === yr); });
+      $(el, ".pf-band").innerHTML = b.p === null ? "<b>" + b.lab + ".</b> Everything included, priced with you, with a named contact." : "<b>" + b.lab + ".</b> " + (yr ? "Two months free: you pay for ten. That works out at about " + usd(b.p * 10 / 12) + " a month, and saves " + usd(b.p * 2) + " a year." : "Or " + usd(b.p * 10) + " a year if you pay yearly, with two months free.");
       all(el, "[data-b]").forEach(function (x) { x.setAttribute("aria-pressed", +x.getAttribute("data-b") === i); });
       all(el, "[data-pre]").forEach(function (x) { x.setAttribute("aria-pressed", +x.getAttribute("data-pre") === pre); });
       $(el, ".pf-lab").textContent = moved ? "YOUR PRICE" : "STARTS AT";
       setBand(i, "find");
     }
     el.addEventListener("input", function (e) { var k = e.target.getAttribute && e.target.getAttribute("data-k"); if (!k) return; var v = fromPos(+e.target.value); if (k === "r") rev = v; else spend = v; pre = -1; moved = 1; draw(); });
+    on(el, "[data-yr]", function (b) { yr = +b.getAttribute("data-yr"); draw(); });
     on(el, "[data-pre]", function (b) { pre = +b.getAttribute("data-pre"); rev = PRESETS[pre][1]; spend = PRESETS[pre][2]; moved = 1; draw(); });
     on(el, "[data-b]", function (b) { var m = B[+b.getAttribute("data-b")].mid; rev = m[0]; spend = m[1]; pre = -1; moved = 1; draw(); });
     sub(function (i, from) { if (from === "find") return; var m = B[i].mid; rev = m[0]; spend = m[1]; pre = -1; moved = 1; draw(); });
@@ -151,7 +153,7 @@
       ["Day one", "Connect your current books", "Read only. Nothing changes in the system you use today, and nothing is switched off.", 0],
       ["First weeks", "Run the two side by side", "Your history comes across and every month is checked against your old books. You keep working as usual.", 0],
       ["First close", "A month closes here and agrees to the cent", "Only now does billing start. If it never agrees, you never pay.", 1],
-      ["Every month", "Pay monthly, leave any time", "No contract and no setup fee. Your full books export whenever you want them.", 1],
+      ["From then on", "Pay monthly, or yearly with two months free", "No setup fee. On monthly you can leave any time, and your full books export whenever you want them.", 1],
       ["Once a year", "We check your size", "If you have grown into the next size, the price moves at renewal and not before. Founding customers keep their launch price for two years.", 1]
     ];
     var cur = 0, timer = null, auto = !RM;
