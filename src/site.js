@@ -104,5 +104,8 @@
     var iv = setInterval(function () { n++; var tabs = [].slice.call(document.querySelectorAll(".who-tab")), hit = tabs.filter(function (b) { return (b.textContent || "").indexOf(want) > -1; })[0]; if (hit) { if (hit.getAttribute("aria-pressed") !== "true") hit.click(); var sec = document.getElementById("who"); if (sec && n < 3) sec.scrollIntoView(); clearInterval(iv); } else if (n > 20) clearInterval(iv); }, 200);
   }, true);
 
+  /* a role page's button fills in the role on the sign-up form */
+  document.addEventListener("click", function (e) { var a = e.target.closest ? e.target.closest("[data-rp]") : null; if (!a) return; try { document.dispatchEvent(new CustomEvent("ca-access-preset", { detail: { role: a.getAttribute("data-rp"), tag: "role-page", note: "" } })); } catch (x) {} });
+
   boot();
 })();
