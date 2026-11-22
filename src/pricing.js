@@ -7,7 +7,7 @@ ${inner}
 </div>
 </section>`;
 
-  const top = subhero("Pricing", "One price, set by your size.", "Everything included.", "No plans to choose between and no seats to count. The books and the plan come together at every size. Pick a company like yours, or move the sliders.", `<div class="r4" data-widget="pricefind"></div>`).replace("clamp(40px, 9.6vw, 96px)", "clamp(38px, 6.6vw, 68px)").replace("padding-top: 56px; padding-bottom: 80px; display: flex; flex-direction: column; gap: 40px", "padding-top: 40px; padding-bottom: 72px; display: flex; flex-direction: column; gap: 28px");
+  const top = subhero("Pricing", "One price, set by your size.", "Everything included.", "No plans to choose between and no seats to count. The books and the plan come together at every size. Pick a company like yours, or move the slider.", `<div class="r4" data-widget="pricefind"></div>`).replace("clamp(40px, 9.6vw, 96px)", "clamp(38px, 6.6vw, 68px)").replace("padding-top: 56px; padding-bottom: 80px; display: flex; flex-direction: column; gap: 40px", "padding-top: 40px; padding-bottom: 72px; display: flex; flex-direction: column; gap: 28px");
 
   const all = mock("included", "#FFFFFF", "What you get", "The same product " + C("at every size."), "Most software keeps the good parts for the expensive plan. We do not. Tap any size and see what changes.", "priceall");
 
