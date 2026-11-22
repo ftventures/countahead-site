@@ -65,7 +65,7 @@
     var a = e.target; while (a && a.nodeName !== "A") a = a.parentNode;
     if (!a || e.defaultPrevented || e.metaKey || e.ctrlKey) return;
     var href = a.getAttribute("href") || "";
-    var m = /^(\.\/|revenue|books|plan|company|integrations|about|software|ai-usage|online-stores|consumer-brands|wholesale|services|professional-services|hospitality|retail|other-industries|accountants|people|pricing|refunds|privacy|terms)(#[\w-]+)?$/.exec(href);
+    var m = /^(\.\/|revenue|books|plan|company|integrations|about|software|ai-usage|online-stores|consumer-brands|wholesale|services|professional-services|hospitality|retail|other-industries|founders|finance-leads|investors|accountants|people|pricing|refunds|privacy|terms)(#[\w-]+)?$/.exec(href);
     if (m) href = (m[1] === "./" ? "index" : m[1]) + ".html" + (m[2] || "");
     if (/^[\w-]+\.html(#[\w-]+)?$/.test(href)) {
       e.preventDefault();

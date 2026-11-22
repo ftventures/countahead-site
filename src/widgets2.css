@@ -1333,3 +1333,17 @@ header>.wrap{position:relative}
 .nv-col a{padding:9px 12px}.nv-col b{font-size:15.5px}.nv-col em{font-size:13px}.nv-who .nv-role{flex:1.05!important}.nv-who .nv-acct{flex:.95}
 .sx-sw{flex-wrap:wrap}
 @media(min-width:1000px){.subnav.onpage.sp-ind{display:none!important}}
+/* role pages: questions */
+.pq{display:flex;flex-direction:column;border:1px solid #0B1B3A;background:#fff;box-shadow:8px 8px 0 #0B1B3A;max-width:900px}
+.pq details{border-top:1px solid #D5DBE5}.pq details:first-child{border-top:0}
+.pq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 20px;font-stretch:112%;font-weight:800;font-size:clamp(17px,2vw,20px);line-height:1.25;color:#0B1B3A}.pq summary::-webkit-details-marker{display:none}
+.pq summary i{flex:none;width:14px;height:14px;position:relative}.pq summary i:before,.pq summary i:after{content:"";position:absolute;left:0;top:6px;width:14px;height:2px;background:#2450DC;transition:transform .2s}.pq summary i:after{transform:rotate(90deg)}.pq details[open] summary i:after{transform:none}
+.pq details[open] summary{background:#F2F5FF}.pq p{margin:0;padding:4px 20px 20px;background:#F2F5FF;font-size:17px;line-height:1.55;color:#2B3648;max-width:44em}
+.pq-also{margin:0;font-size:16px;color:#4B5565}.pq-also a{color:#2450DC;font-weight:700;text-underline-offset:3px}
+/* footer, second pass */
+@media(min-width:900px){.ft-main{grid-template-columns:minmax(0,.9fr) minmax(0,2.6fr)!important;gap:56px!important}.ft-cols{grid-template-columns:minmax(0,.8fr) minmax(0,2fr) minmax(0,1.1fr) minmax(0,.8fr)!important;gap:28px!important}}
+.ft-two{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:20px;row-gap:9px;align-content:start}.ft-two b{grid-column:1/-1}
+.ft-cols b{font-size:14.5px;border-bottom-width:2px}.ft-cols a{font-size:15px}
+.ft-brand p{font-stretch:112%;font-weight:800;font-size:22px;line-height:1.2;color:#0B1B3A;max-width:12em}
+.ft-end{background:#0B1B3A;color:#C7D2E6}.ft-end .ft-base{border-top:0;padding-top:18px;padding-bottom:20px;align-items:center;color:#C7D2E6;font-size:13.5px}
+.ft-c{display:inline-flex;align-items:center;gap:9px;color:#fff;font-weight:700}.ft-note{flex:1 1 320px}.ft-legal{display:inline-flex;flex-wrap:wrap;gap:6px 18px}.ft-legal a{color:#fff;font-weight:600;text-underline-offset:3px}
