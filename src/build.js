@@ -92,16 +92,21 @@ ${inner || ""}
 </section>`;
 }
 const card = (href, n, t, d) => `<a href="${href}" class="bt" style="display: flex; flex-direction: column; gap: 8px; padding: 22px 20px; background: #FFFFFF; color: #0B1B3A; text-decoration: none; border: 1px solid #0B1B3A; box-shadow: 6px 6px 0 #0B1B3A"><span style="font-stretch: 125%; font-weight: 800; font-size: 13px; color: #2450DC">${n}</span><b style="font-stretch: 112%; font-weight: 800; font-size: 24px; line-height: 1.1; letter-spacing: -0.01em">${t}</b><span style="font-size: 16px; line-height: 1.45; color: #2B3648">${d}</span><span style="margin-top: 6px; font-weight: 800; color: #2450DC">Open <span aria-hidden="true">&rarr;</span></span></a>`;
-const explore = `<section style="padding: 88px 0; border-bottom: 1px solid #D5DBE5">
+const LOOK = [
+  ["revenue.html#contracts", "Revenue", "From signed deal to cash, without retyping.", "Build a contract", "{{n:revenue.html}} demos"],
+  ["books.html#approvals", "Books", "Agents keep them. You approve.", "Approve 200 entries in two minutes", "{{n:books.html}} demos"],
+  ["plan.html#scenarios", "Plan", "Forecast and runway, straight from the books.", "Add a hire and watch runway move", "{{n:plan.html}} demos"],
+  ["company.html#cap-table", "Company", "Cap table, data room and records.", "Model a funding round", "{{n:company.html}} demos"],
+  ["integrations.html#switch", "Switching", "Bring your books from QuickBooks, Xero or NetSuite.", "Run a switch, month by month", "{{n:integrations.html}} demos"],
+  ["software.html", "Industries", "Software, stores, services, hospitality and more.", "See your kind of business", "5 industries"],
+  ["accountants.html#review", "For accountants", "Less typing. More of the work only you can do.", "Work a review queue and sign off", "{{n:accountants.html}} demos"],
+  ["pricing.html", "Pricing", "One price by company size. Everything included.", "Find your price", "From $49"]
+];
+const explore = `<section id="look-inside" style="padding: 88px 0; border-bottom: 1px solid #D5DBE5">
 <div class="wrap" style="display: flex; flex-direction: column; gap: 28px">
-<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px"><p class="ey">Look inside</p><h2 class="h2">Try the product <span style="color: #2450DC">before it exists.</span></h2><p class="lead">Each page has working demos on sample data.</p></div>
-<div class="rv" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 20px">
-${card("revenue.html", "01", "Revenue", "Build a contract and watch the invoices, revenue and commission work themselves out.")}
-${card("books.html", "02", "The books", "Statements, reconciliation, journal entries, the review queue and the audit trail.")}
-${card("plan.html", "03", "The plan", "Change a hire or a growth rate and watch runway move. Ask the ledger a question.")}
-${card("company.html", "04", "Company", "Model a funding round, share a data room with investors and see who read what.")}
-${card("software.html", "05", "Industries", "Software, online stores, services, hospitality and more, each with its own billing, dashboard and board pack.")}
-${card("integrations.html", "06", "Integrations", "Bring your books across from QuickBooks, Xero or NetSuite, and connect your banks, payments, payroll and deals.")}
+<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px"><p class="ey">Look inside</p><h2 class="h2">Try the product <span style="color: #2450DC">before it exists.</span></h2><p class="lead">Nothing on this site is a screenshot. Every page has working demos on sample data. Pick one thing to try.</p></div>
+<div class="rv lk-grid">
+${LOOK.map((c, i) => `<a href="${c[0]}" class="lk bt"><span class="lk-n">0${i + 1}</span><b>${c[1]}</b><em>${c[4]}</em><p>${c[2]}</p><span class="lk-try"><small>TRY</small> ${c[3]}&nbsp;<i aria-hidden="true">&rarr;</i></span></a>`).join("\n")}
 </div>
 </div>
 </section>`;
@@ -131,7 +136,7 @@ const productTop = subhero("The books", "A full accounting system,", "run by age
 const footer = /<footer[\s\S]*?<\/footer>/.exec(body)[0]
   .replace(/<svg width="16" height="16"[\s\S]*?<\/svg>/, '<svg width="16" height="16" viewBox="0 0 26 26" aria-hidden="true"><rect x="0" y="9" width="17" height="17" style="fill: #0B1B3A"></rect><rect x="9" y="0" width="17" height="17" style="fill: #2450DC"></rect><rect x="9" y="9" width="8" height="8" style="fill: var(--pop)"></rect></svg>')
   .replace("<div>Product interfaces shown", '<div style="display: flex; flex-wrap: wrap; gap: 6px 18px">' + NAV.map(([h, l]) => `<a href="${h}" style="color: #0B1B3A; font-weight: 600">${l}</a>`).join("") + "</div>\n<div>Product interfaces shown")
-  .replace("</div>\n</div>\n</footer>", '</div>\n<div style="flex-basis: 100%; display: flex; flex-wrap: wrap; gap: 6px 18px; padding-top: 14px; border-top: 1px solid #E3E7EE"><a href="accountants.html" style="color: #0B1B3A; font-weight: 600">For accountants</a><a href="pricing.html" style="color: #0B1B3A; font-weight: 600">Pricing</a><a href="privacy.html" style="color: #0B1B3A; font-weight: 600">Privacy</a><a href="terms.html" style="color: #0B1B3A; font-weight: 600">Terms</a><a href="refunds.html" style="color: #0B1B3A; font-weight: 600">Billing and refunds</a><a href="about.html#contact" style="color: #0B1B3A; font-weight: 600">Contact</a><a href="mailto:hello@countahead.ai" style="color: #0B1B3A; font-weight: 600">hello@countahead.ai</a><span>Countahead is a trading name of Oasis Ventures FZE.</span></div>\n</div>\n</footer>');
+  .replace("</div>\n</div>\n</footer>", '</div>\n<div style="flex-basis: 100%; display: flex; flex-wrap: wrap; gap: 6px 18px; padding-top: 14px; border-top: 1px solid #E3E7EE"><a href="privacy.html" style="color: #0B1B3A; font-weight: 600">Privacy</a><a href="terms.html" style="color: #0B1B3A; font-weight: 600">Terms</a><a href="refunds.html" style="color: #0B1B3A; font-weight: 600">Billing and refunds</a><a href="about.html#contact" style="color: #0B1B3A; font-weight: 600">Contact</a><a href="mailto:hello@countahead.ai" style="color: #0B1B3A; font-weight: 600">hello@countahead.ai</a></div>\n</div>\n</footer>');
 function demo(id, bg, ey, h2, lead, widget) {
   return `<section id="${id}" style="padding: 88px 0; background: ${bg}; border-bottom: 1px solid #D5DBE5">
 <div class="wrap demo2" style="display: flex; flex-direction: column; gap: 32px">
@@ -213,6 +218,10 @@ require("./sectors.js")(subhero, mock, C, S.access).forEach((p) => pages.push(p)
 require("./accountants.js")(subhero, mock, C, S.access).forEach((p) => pages.push(p));
 require("./pricing.js")(subhero, mock, C, S.access).forEach((p) => pages.push(p));
 require("./legal.js")(subhero).forEach((p) => pages.push(p));
+// demo counts for the home page, counted from the pages themselves so they cannot drift
+const DEMO = {};
+pages.forEach((p) => { const u = new Set(p[3].join("").match(/data-widget="[a-z0-9]+"/g) || []); u.delete('data-widget="access"'); u.delete('data-widget="acctfaq"'); DEMO[p[0]] = u.size; });
+pages.forEach((p) => { p[3] = p[3].map((x) => x.replace(/\{\{n:([\w-]+\.html)\}\}/g, (m, f) => DEMO[f])); });
 fs.writeFileSync(path.join(__dirname, "site.css.tmp"), `:root{--ink:#0B1B3A;--inkline:#2F4063;--hl:#FFFFFF;--hlp:#E6EDFF;--hlt:#C7D2E6;--pop:#FFD15C}
 *{-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
