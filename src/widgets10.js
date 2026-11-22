@@ -133,4 +133,47 @@
     on(el, "[data-o]", function (b) { if (st < 2) { opt = +b.getAttribute("data-o"); draw(); } });
     draw();
   };
+
+  /* ---------- people: org chart with cost on it ---------- */
+  W.orgchart = function (el) {
+    var T = [
+      ["Engineering", "Sam Okafor", "VP Engineering", 10, 172, 174, [["Dev Patel", "Senior engineer", 0], ["Lena Fischer", "Engineer", 0], ["Priya Nair", "Product designer", 1]], 6, [["Senior engineer", "Offer accepted, starts January 12", 15, 2]]],
+      ["Sales and marketing", "Nina Brooks", "VP Sales", 7, 112, 118, [["Sofia Alvarez", "Account executive", 0], ["Marcus Lee", "Marketing lead", 0]], 4, [["Account executive", "Approved, hiring has started", 12, 1]]],
+      ["Customer success", "Omar Haddad", "Customer success lead", 4, 48, 49, [["Jo Kim", "Support specialist", 0]], 2, [["Support lead", "In the plan for March, not yet approved", 9, 0]]],
+      ["General and admin", "Maya Chen", "Finance lead", 3, 40, 40, [["Tess Morgan", "Operations manager", 0]], 0, []]];
+    var sel = 0, plan = 0;
+    function draw() {
+      var hc = 24, cost = 372, open = 3;
+      if (plan) { T.forEach(function (t) { t[8].forEach(function (r) { hc++; cost += r[2]; }); }); }
+      var t = T[sel];
+      el.innerHTML = '<div class="pl-kp"><div><small>PEOPLE</small><b>' + hc + "</b><span>" + (plan ? "with the three open roles filled" : "22 employees, 2 contractors") + '</span></div><div><small>OPEN ROLES</small><b>' + (plan ? 0 : open) + "</b><span>" + (plan ? "all filled by June" : "shown dashed on the chart") + '</span></div><div><small>PEOPLE COST A MONTH</small><b>$' + cost + "k</b><span>" + (plan ? "was $372k in November" : "November, from payroll") + '</span></div><div><small>' + (plan ? "ADDED BY THE PLAN" : "AGAINST PLAN") + "</small><b>" + (plan ? "+$36k" : "$9k under") + "</b><span>" + (plan ? "a month, already in the forecast" : "one hire started late") + '</span></div></div><div class="oc-bar"><span>Show the company</span><div class="m-opts" role="group" aria-label="Date"><button type="button" data-pl="0" aria-pressed="' + (plan === 0) + '">Today</button><button type="button" data-pl="1" aria-pressed="' + (plan === 1) + '">In June, as planned</button></div></div><div class="oc"><div class="oc-top"><div class="oc-box oc-ceo"><b>Alex Rivera</b><small>Chief executive</small></div></div><div class="oc-teams">' + T.map(function (x, i) {
+        var n = x[3] + (plan ? x[8].length : 0), c = x[4] + (plan ? x[8].reduce(function (a, r) { return a + r[2]; }, 0) : 0), d = x[5] - x[4];
+        return '<button type="button" class="oc-box oc-team" data-s="' + i + '" aria-pressed="' + (i === sel) + '"><small>' + x[0] + "</small><b>" + x[1] + "</b><span>" + x[2] + '</span><div class="oc-nums"><i><u>' + n + "</u> people</i><i><u>$" + c + "k</u> a month</i></div><em class=\"" + (plan ? "oc-pl" : d > 0 ? "oc-un" : "oc-on") + '">' + (plan ? (x[8].length ? "+" + x[8].length + " hire" : "No change") : d > 0 ? "$" + d + "k under plan" : "On plan") + "</em>" + (!plan && x[8].length ? '<em class="oc-open">' + x[8].length + " open role</em>" : "") + "</button>";
+      }).join("") + '</div></div><div class="oc-det" aria-live="polite"><div class="oc-dh"><b>' + t[0] + "</b><span>Reports to " + t[1] + '</span></div><div class="oc-ppl">' + t[6].map(function (p) { return '<div class="oc-p"><b>' + p[0] + "</b><small>" + p[1] + "</small>" + (p[2] ? "<em>Contractor</em>" : "") + "</div>"; }).join("") + (t[7] ? '<div class="oc-p oc-more"><b>' + t[7] + " more</b><small>on the full chart</small></div>" : "") + t[8].map(function (r) { return '<div class="oc-p ' + (plan ? "oc-new" : "oc-dash") + '"><b>' + r[0] + "</b><small>" + (plan ? "Filled, as planned" : r[1]) + "</small><em>$" + r[2] + "k a month</em></div>"; }).join("") + "</div>" + (sel === 3 ? '<p class="pl-cap">The chief executive is counted in this team.</p>' : "") + '</div><p class="pl-cap">Names, managers and pay are read from your payroll or people system. Open roles come from the plan, so the chart, the budget and the forecast always show the same company. Sample data.</p>';
+    }
+    on(el, "[data-s]", function (b) { sel = +b.getAttribute("data-s"); draw(); });
+    on(el, "[data-pl]", function (b) { plan = +b.getAttribute("data-pl"); draw(); });
+    draw();
+  };
+
+  /* ---------- people: a hire request, checked against budget and pay band ---------- */
+  W.hirereq = function (el) {
+    var TM = [["Engineering", 18, "Sam Okafor", [["Senior engineer", 150, 190], ["Engineer", 115, 150]]], ["Sales and marketing", 14, "Nina Brooks", [["Account executive", 80, 110], ["Marketing manager", 95, 125]]], ["Customer success", 6, "Omar Haddad", [["Support lead", 85, 110], ["Support specialist", 55, 75]]], ["General and admin", 0, "Maya Chen", [["Accountant", 80, 105], ["Operations manager", 85, 115]]]];
+    var tm = 0, rl = 0, sal = 165, st = 0;
+    function draw(keep) {
+      var t = TM[tm], r = t[3][rl], cost = Math.round(sal / 12 * 1.2 * 10) / 10, over = Math.round((cost - t[1]) * 10) / 10, inB = over <= 0, out = sal > r[2] ? 1 : sal < r[1] ? -1 : 0, run = Math.round(4000 / (200 + cost) * 10) / 10;
+      var AP = [[t[2], "Team lead"]]; if (tm !== 3) AP.push(["Maya Chen", "Finance lead"]); if (!inB || out > 0 || tm === 3) AP.push(["Alex Rivera", "Chief executive"]);
+      var lock = st ? " disabled" : "", pos = Math.max(0, Math.min(100, (sal - (r[1] - 20)) / (r[2] - r[1] + 40) * 100)), lo = 20 / (r[2] - r[1] + 40) * 100;
+      el.innerHTML = '<div class="rf-grid"><div class="rf-main m-form"><div class="rf-head"><b>New hire request</b><span>From a team lead</span></div><div class="m-kv"><span>Team</span><span class="m-opts hq-wrap">' + TM.map(function (x, i) { return '<button type="button" data-tm="' + i + '" aria-pressed="' + (i === tm) + '"' + lock + ">" + x[0] + "</button>"; }).join("") + '</span></div><div class="m-kv"><span>Role</span><span class="m-opts">' + t[3].map(function (x, i) { return '<button type="button" data-rl="' + i + '" aria-pressed="' + (i === rl) + '"' + lock + ">" + x[0] + "</button>"; }).join("") + '</span></div><div class="m-kv"><span>Salary</span><b>$' + sal + ',000</b></div><input type="range" min="' + (r[1] - 20) + '" max="' + (r[2] + 20) + '" step="5" value="' + sal + '" aria-label="Salary in thousands" data-sl' + lock + '><div class="hq-band"><i style="left:' + lo + "%;right:" + lo + '%"></i><u style="left:' + pos + '%"></u></div><div class="hq-bl"><span>Your band for this role: $' + r[1] + "k to $" + r[2] + 'k</span><b class="' + (out ? "hq-bad" : "hq-ok") + '">' + (out > 0 ? "Above the band" : out < 0 ? "Below the band" : "Inside the band") + "</b></div>" +
+        '<div class="hq-chk"><div class="' + (inB ? "hq-y" : "hq-n") + '"><small>BUDGET</small><b>' + (inB ? "In the budget" : "Over by $" + over + "k a month") + "</b><span>" + t[0] + " has $" + t[1] + "k a month unspent. This role costs $" + cost + 'k with employer taxes and benefits.</span></div><div><small>RUNWAY</small><b>20.0 &rarr; ' + run.toFixed(1) + ' months</b><span>Before any revenue the role brings in.</span></div></div><div class="rf-row rf-s' + (st === 0 ? 1 : st > AP.length ? 3 : 2) + '"><span><b>' + (st === 0 ? "Ready to send" : st > AP.length ? "Approved" : "Waiting for " + AP[st - 1][0]) + "</b><small>" + (st === 0 ? "Goes to " + AP.map(function (a) { return a[1].toLowerCase(); }).join(", then ") + "." : st > AP.length ? "The role is in the plan, the budget and the org chart." : AP[st - 1][1] + ", step " + st + " of " + AP.length + ".") + "</small></span><em></em>" + (st > AP.length ? '<u class="rf-tick">In the plan</u>' : '<button type="button" class="m-btn m-sm" data-go>' + (st === 0 ? "Send for approval" : "Approve as " + AP[st - 1][0].split(" ")[0]) + "</button>") + '</div></div><div class="rf-side"><div class="rf-books"><span class="m-lab">WHO HAS TO SAY YES</span><p class="rf-say">' + (AP.length > 2 || tm === 3 ? (out > 0 ? "Above the pay band" : !inB ? "Over the team's budget" : "A role in the finance lead's own team") + ", so the chief executive is added." : "In budget and inside the band, so two approvals are enough.") + "</p>" + AP.map(function (a, i) { return '<div class="rf-e' + (st === i + 1 ? " rf-new" : "") + '"><b>' + a[0] + "</b><span><i>" + a[1] + '</i><u class="' + (st > i + 1 ? "rf-pos" : "rf-neg") + '">' + (st > i + 1 ? "Approved" : st === i + 1 ? "Waiting" : "Next") + "</u></span></div>"; }).join("") + (st > AP.length ? '<div class="rf-e rf-new"><b>What changed</b><span><i>Plan</i><u class="rf-pos">Role added</u></span><span><i>' + t[0] + ' budget</i><u class="rf-pos">$' + cost + 'k committed</u></span><span><i>Org chart</i><u class="rf-pos">Open role shown</u></span><span><i>Runway</i><u class="rf-neg">' + run.toFixed(1) + " months</u></span></div>" : "") + '</div><button type="button" class="m-link rf-reset" data-x>Start again</button></div></div>';
+      var s = el.querySelector("[data-sl]"); s.addEventListener("input", function () { sal = +this.value; draw(true); }); if (keep) s.focus();
+      el._n = AP.length;
+    }
+    function mid() { var r = TM[tm][3][rl]; sal = Math.round((r[1] + r[2]) / 10) * 5; }
+    on(el, "[data-tm]", function (b) { if (st) return; tm = +b.getAttribute("data-tm"); rl = 0; mid(); draw(); });
+    on(el, "[data-rl]", function (b) { if (st) return; rl = +b.getAttribute("data-rl"); mid(); draw(); });
+    on(el, "[data-go]", function () { if (st <= el._n) st++; draw(); });
+    on(el, "[data-x]", function () { st = 0; draw(); });
+    mid(); draw();
+  };
 })();
