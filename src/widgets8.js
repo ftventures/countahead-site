@@ -559,12 +559,65 @@
       ["You plan a second shop", "PLAN", "A second shop, opening in May", "Built the plan from High Street's own numbers.", "Set the rent, the fit-out and the opening stock.", 1,
         [["Fit-out", "$90k budget set up"], ["Opening stock", "$60k order drafted"], ["Team", "5 roles added"]],
         [["Break-even", "Month 9"], ["Cash low point", "$48k in July"], ["Runway", "16 &rarr; 10 months"]]]];
-    var KD = [["Software", EV], ["AI", EV5], ["Online store", EV2], ["Shop", EV6], ["Cafe", EV3], ["Agency", EV4]], kinds = el.getAttribute("data-kinds") != null, kd = 0;
+    var EV7 = [
+      ["A retailer orders", "REVENUE", "Greenway Markets orders 4,800 units for $57,600", "Raised the invoice on 60-day terms and reserved the stock.", "Approve the order.", 0,
+        [["Invoice", "$57,600, due in 60 days"], ["Stock", "4,800 units reserved"], ["Trade discount", "8%, on its own line"]],
+        [["Net sales", "+$53k in December"], ["Cash forecast", "Arrives in February"], ["Stock cover", "52 &rarr; 31 days"]]],
+      ["A production run is billed", "BOOKS", "Coastal Co-pack bills $41,200 for 20,000 units", "Matched it to the purchase order and the units received.", "Approve it. It is over your limit.", 0,
+        [["Stock", "+$41,200"], ["Cost per unit", "$2.06"], ["Owed to suppliers", "Due in 30 days"]],
+        [["Cash forecast", "&minus;$41k in January"], ["Stock cover", "31 &rarr; 88 days"], ["Gross margin", "46%, no change"]]],
+      ["A retailer pays short", "COLLECTIONS", "Greenway pays $3,900 less than invoiced", "Matched the shortfall to a promotion claim and asked for the paperwork.", "Accept it, or dispute it.", 0,
+        [["Owed to you", "$3,900 open"], ["Trade spend", "+$3,900 if accepted"], ["Customer", "Flagged"]],
+        [["Net sales", "&minus;$3.9k"], ["Trade spend", "11 &rarr; 12% of sales"], ["Board pack", "Listed under risks"]]],
+      ["You plan a new retailer", "PLAN", "Launching in 300 stores in April", "Worked out the stock to build and the cash it ties up.", "Set the stores and the promotion budget.", 1,
+        [["Opening order", "Drafted"], ["Promotion budget", "$45k set"], ["Production", "60,000 units planned"]],
+        [["Net sales", "+$210k next quarter"], ["Cash low point", "$180k in May"], ["Runway", "15 &rarr; 11 months"]]]];
+    var EV8 = [
+      ["An order ships", "REVENUE", "Bayside Hardware's order ships: $12,480", "Raised the invoice on 30-day terms and took the stock out.", "Nothing. It is routine, and inside your rules.", 0,
+        [["Invoice", "$12,480, due December 27"], ["Stock", "640 units out, $8,110 at cost"], ["Margin on the order", "35%"]],
+        [["Sales this month", "$520k, on track"], ["Cash forecast", "Due December 27"], ["Stock cover", "44 days"]]],
+      ["A container lands", "BOOKS", "A container lands: $86,000, plus $9,400 freight and duty", "Spread the freight and duty across the units.", "Approve it. It is over your limit.", 0,
+        [["Stock", "+$95,400"], ["Landed cost", "$7.95 a unit"], ["Owed to suppliers", "Due in 45 days"]],
+        [["Cash forecast", "&minus;$95k in January"], ["Stock cover", "44 &rarr; 102 days"], ["Gross margin", "35 &rarr; 34%"]]],
+      ["A customer nears its limit", "COLLECTIONS", "Bayside reaches 92% of its $50,000 credit limit", "Held the next order and drafted a note to the customer.", "Raise the limit, or wait for payment.", 0,
+        [["Owed to you", "$46,100"], ["Oldest invoice", "38 days"], ["Next order", "$7,200, held"]],
+        [["Cash forecast", "$46k expected in December"], ["Sales", "&minus;$7k if the order stays held"], ["Board pack", "Largest customer, 18% of sales"]]],
+      ["You plan a price rise", "PLAN", "Prices up 4% from February", "Re-ran last year's orders at the new prices.", "Set the rise.", 1,
+        [["Price list", "New version, dated Feb 1"], ["Customers", "212 to notify"], ["Open quotes", "Kept at the old price"]],
+        [["Sales", "+$19k a month"], ["Gross margin", "34 &rarr; 37%"], ["Runway", "13 &rarr; 15 months"]]]];
+    var EV9 = [
+      ["A new client signs", "REVENUE", "Calder Group signs the engagement letter", "Opened the matter, set the rates and asked for the retainer.", "Approved the terms.", 0,
+        [["Retainer", "$15,000, held as a deposit"], ["Rates", "$420 partner, $240 associate"], ["Matter", "Opened"]],
+        [["Fees ahead", "+$90k, estimated"], ["Team", "One partner, two associates booked"], ["Cash forecast", "+$15k this week"]]],
+      ["Time is recorded", "BILLING", "486 hours recorded this week", "Drafted the month's bills and flagged time unbilled for over 60 days.", "Review the write-downs.", 0,
+        [["To bill", "$124k"], ["Unbilled over 60 days", "$18k"], ["Write-downs", "$6,200 proposed"]],
+        [["Fees billed", "$310k, on track"], ["Billed against standard rates", "91%"], ["Board pack", "Partner view updated"]]],
+      ["A client pays late", "COLLECTIONS", "Hollis &amp; Reed is 52 days late on $38,000", "Sent two reminders and drafted a firmer third.", "Approve the third, or pick up the phone.", 0,
+        [["Owed to you", "$38,000 overdue"], ["Follow-up", "Third reminder drafted"], ["Client", "Marked at risk"]],
+        [["Cash forecast", "$38k moved to next month"], ["Days to get paid", "47 &rarr; 51"], ["Board pack", "Listed under risks"]]],
+      ["You plan an associate", "PLAN", "A new associate, starting in March", "Checked that the work ahead covers the cost.", "Added the role and the salary.", 1,
+        [["Payroll", "One starter set up"], ["Budget", "Fee earners updated"], ["Equipment", "$2,800 requested"]],
+        [["Payroll", "+$11k a month"], ["Capacity", "+130 billable hours a month"], ["Pays for itself", "From month 4"]]]];
+    var EV10 = [
+      ["You send an invoice", "REVENUE", "Invoice 1042 to Westfield Supply: $8,400", "Drafted it from your price list and sent it.", "Approved it.", 0,
+        [["Owed to you", "$8,400, due in 30 days"], ["Revenue", "$8,400"], ["Sales tax", "None, exempt customer"]],
+        [["Sales this month", "$520k, on track"], ["Cash forecast", "Due January 2"], ["Days to get paid", "34"]]],
+      ["A bill arrives", "BOOKS", "Summit Insurance bills $14,400 for the year", "Read it and spread the cost over twelve months.", "Approve it. It is over your limit.", 0,
+        [["Paid ahead", "$14,400"], ["Expense", "$1,200 a month"], ["Owed to suppliers", "Due in 15 days"]],
+        [["Cash forecast", "&minus;$14k in December"], ["Operating profit", "No change this month"], ["Budget", "Insurance on plan"]]],
+      ["A customer pays late", "COLLECTIONS", "Westfield is 34 days late on $18,000", "Sent two reminders and drafted a firmer third.", "Approve the third, or pick up the phone.", 0,
+        [["Owed to you", "$18,000 overdue"], ["Follow-up", "Third reminder drafted"], ["Customer", "Marked at risk"]],
+        [["Cash forecast", "$18k moved to next month"], ["Runway", "14 months, no change"], ["Board pack", "Listed under risks"]]],
+      ["You plan new equipment", "PLAN", "A $120,000 machine, bought in March", "Compared buying and leasing on cash and on profit.", "Chose to buy.", 1,
+        [["Asset", "$120,000 over 7 years"], ["Depreciation", "$1,430 a month"], ["Lease option", "Kept on file"]],
+        [["Cash forecast", "&minus;$120k in March"], ["Operating profit", "&minus;$1.4k a month"], ["Runway", "14 &rarr; 12 months"]]]];
+    var KD = [["Software", EV, "sw"], ["AI", EV5, "ai"], ["Online store", EV2, "shop", "Online"], ["Brand", EV7, "brand"], ["Wholesale", EV8, "whole"], ["Agency", EV4, "svc"], ["Firm", EV9, "pro"], ["Cafe", EV3, "cafe"], ["Shop", EV6, "hosp"], ["Other", EV10, "other"]], kinds = el.getAttribute("data-kinds") != null, kd = 0, ICN = {};
+    [].slice.call(el.querySelectorAll("[data-ic]")).forEach(function (x) { ICN[x.getAttribute("data-ic")] = x.innerHTML; });
     var cur = 0, auto = !window.__PRERENDER && !(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches), timer = null, DUR = 6500;
     function col(k, rows, sub, cls) { return '<div class="hx-col ' + cls + '"><small><span>' + k + "</span><i>" + sub + "</i></small>" + rows.map(function (r) { return "<div><span>" + r[0] + "</span><b>" + r[1] + "</b></div>"; }).join("") + "</div>"; }
     function draw() {
       var EV = kinds ? KD[kd][1] : KD[0][1];
-      el.innerHTML = '<div class="w-panel w-glass hx"><div class="w-ph"><span>SOMETHING HAPPENS</span><span>BOTH SIDES UPDATE</span></div>' + (kinds ? '<div class="hx-kd" role="group" aria-label="Kind of business"><small>In a business like</small>' + KD.map(function (k, i) { return '<button type="button" data-kd="' + i + '" aria-pressed="' + (i === kd) + '">' + k[0] + "</button>"; }).join("") + "</div>" : "") + '<div class="hx-ev" role="group" aria-label="Pick an event">' + EV.map(function (e, i) { return '<button type="button" data-e="' + i + '" aria-pressed="' + (i === cur) + '">' + e[0] + "</button>"; }).join("") + '</div><div class="w-prog"><i' + (auto ? ' class="hx-run" style="animation-duration:' + DUR + 'ms"' : "") + '></i></div><div class="stk hx-b">' + EV.map(function (e, i) {
+      el.innerHTML = '<div class="w-panel w-glass hx"><div class="w-ph"><span>SOMETHING HAPPENS</span><span>BOTH SIDES UPDATE</span></div>' + (kinds ? '<div class="hx-kd" role="group" aria-label="Kind of business"><small>In a business like</small>' + KD.map(function (k, i) { return '<button type="button" data-kd="' + i + '" aria-pressed="' + (i === kd) + '" aria-label="' + k[0] + '">' + (ICN[k[2]] ? '<i aria-hidden="true">' + ICN[k[2]] + "</i>" : "") + '<span class="hx-l">' + k[0] + "</span>" + '<span class="hx-s">' + (k[3] || k[0]) + "</span></button>"; }).join("") + "</div>" : "") + '<div class="hx-ev" role="group" aria-label="Pick an event">' + EV.map(function (e, i) { return '<button type="button" data-e="' + i + '" aria-pressed="' + (i === cur) + '">' + e[0] + "</button>"; }).join("") + '</div><div class="w-prog"><i' + (auto ? ' class="hx-run" style="animation-duration:' + DUR + 'ms"' : "") + '></i></div><div class="stk hx-b">' + EV.map(function (e, i) {
         var ag = '<p class="hx-who"><em>AGENT</em><span>' + e[3] + "</span></p>", you = '<p class="hx-who"><em class="hx-y">YOU</em><span>' + e[4] + "</span></p>", who = e[5] ? you + ag : ag + you;
         return '<div class="' + (i === cur ? "on" : "") + (e[5] ? " hx-rev" : "") + '"><div class="hx-card"><small>' + e[1] + "</small><b>" + e[2] + "</b>" + who + '</div><div class="hx-two">' + col("THE BOOKS", e[6], "the past", "hx-p") + col("THE PLAN", e[7], "the future", "hx-f") + "</div></div>";
       }).join("") + '</div><div class="hx-ft">One ledger underneath. Nothing is copied from one side to the other.</div></div>';
