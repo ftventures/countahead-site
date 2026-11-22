@@ -51,7 +51,7 @@
       if (b.p === null) { pb.__tw = (pb.__tw || 0) + 1; pb.textContent = "Let's talk"; el.querySelector(".pf-price").classList.add("pf-q"); shown = 0; }
       else { var amt = yr ? Math.round(b.p * 10 / 12) : b.p; el.querySelector(".pf-price").classList.remove("pf-q"); tween(pb, shown || amt, amt, usd); shown = amt; $(el, ".pf-price span").innerHTML = yr ? "a month <em>paid yearly, " + usd(b.p * 10) + "</em>" : "a month"; }
       all(el, "[data-yr]").forEach(function (x) { x.setAttribute("aria-pressed", +x.getAttribute("data-yr") === yr); });
-      $(el, ".pf-band").innerHTML = b.p === null ? "<b>" + b.lab + ".</b> Everything included, priced with you, with a named contact." : "<b>" + b.lab + ".</b> " + (yr ? "One payment of " + usd(b.p * 10) + " a year. Two months free, which saves " + usd(b.p * 2) + " against paying monthly." : "Or about " + usd(b.p * 10 / 12) + " a month if you pay yearly, with two months free.");
+      $(el, ".pf-band").innerHTML = b.p === null ? "<b>" + b.lab + ".</b> Everything included, priced with you, with a named contact." : "<b>" + b.lab + ".</b> " + (yr ? "One payment of " + usd(b.p * 10) + " for the year, which saves " + usd(b.p * 2) + " against paying monthly. A one-year commitment." : "Or about " + usd(b.p * 10 / 12) + " a month if you pay yearly, with two months free.");
       all(el, "[data-b]").forEach(function (x) { x.setAttribute("aria-pressed", +x.getAttribute("data-b") === i); });
       all(el, "[data-pre]").forEach(function (x) { x.setAttribute("aria-pressed", +x.getAttribute("data-pre") === pre); });
       $(el, ".pf-lab").textContent = moved ? "YOUR PRICE" : "STARTS AT";
