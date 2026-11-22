@@ -1328,3 +1328,8 @@ header>.wrap{position:relative}
 /* Built for: a third column, by role */
 .nv-who{width:min(1000px,calc(100vw - 48px))}.nv-who .nv-col{flex:1.15}.nv-role{border-left:1px solid #D5DBE5;flex:1!important}.nv-who .nv-acct{flex:.9}
 .sp-ind a[aria-current]:before{background:#FFD15C!important;border-color:#FFD15C!important}
+/* Built for: ten kinds of business in two columns */
+.nv-who{width:min(1180px,calc(100vw - 48px))}.nv-ind{flex:2.1!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:min-content;column-gap:6px;align-content:start}.nv-ind .nv-h{grid-column:1/-1}
+.nv-col a{padding:9px 12px}.nv-col b{font-size:15.5px}.nv-col em{font-size:13px}.nv-who .nv-role{flex:1.05!important}.nv-who .nv-acct{flex:.95}
+.sx-sw{flex-wrap:wrap}
+@media(min-width:1000px){.subnav.onpage.sp-ind{display:none!important}}

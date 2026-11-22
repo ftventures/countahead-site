@@ -39,7 +39,7 @@
     var parts = url.split("#"), file = parts[0], hash = parts[1];
     var here = (location.pathname.split("/").pop() || "index.html").replace(/\.html$/, "") || "index";
     if (hash && file.replace(/\.html$/, "") === here && document.getElementById(hash)) { document.getElementById(hash).scrollIntoView(); if (push) { try { if (window.top === window) history.pushState({}, "", "#" + hash); } catch (e) {} } return Promise.resolve(); }
-    return fetch(file).then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); }).then(function (html) {
+    return fetch(file, { cache: "no-cache" }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); }).then(function (html) {
       var d = new DOMParser().parseFromString(html, "text/html");
       var nt = d.getElementById("tpl"), na = d.getElementById("app");
       if (!nt || !na) throw new Error("page");
@@ -65,7 +65,7 @@
     var a = e.target; while (a && a.nodeName !== "A") a = a.parentNode;
     if (!a || e.defaultPrevented || e.metaKey || e.ctrlKey) return;
     var href = a.getAttribute("href") || "";
-    var m = /^(\.\/|revenue|books|plan|company|integrations|about|software|online-stores|services|hospitality|other-industries|accountants|people|pricing|refunds|privacy|terms)(#[\w-]+)?$/.exec(href);
+    var m = /^(\.\/|revenue|books|plan|company|integrations|about|software|ai-usage|online-stores|consumer-brands|wholesale|services|professional-services|hospitality|retail|other-industries|accountants|people|pricing|refunds|privacy|terms)(#[\w-]+)?$/.exec(href);
     if (m) href = (m[1] === "./" ? "index" : m[1]) + ".html" + (m[2] || "");
     if (/^[\w-]+\.html(#[\w-]+)?$/.test(href)) {
       e.preventDefault();
