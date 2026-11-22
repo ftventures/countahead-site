@@ -51,9 +51,9 @@ const DATA = [
 
 module.exports = function (subhero, mock, C, access) {
   return DATA.map((d) => {
-    const inner = `<div class="sx-top r4"><div class="sx-sw" role="group" aria-label="Kind of business">${IND.map((x) => `<a href="${x[0]}"${x[0] === d.file ? ' aria-current="page"' : ""}>{{ic:${x[0]}}}${x[1]}</a>`).join("")}</div>
+    const inner = `<div class="sx-top r4">
 <div class="sx-kp">${d.kp.map((k) => `<div><small>${k[0]}</small><b>${k[1]}</b><span>${k[2]}</span></div>`).join("")}</div>
-<p class="sx-cap">${d.co}. Illustrative figures.</p></div>`;
+<p class="sx-cap">${d.co}. Illustrative figures.${d.file === "other-industries.html" ? "" : ' <a href="other-industries.html#fit">Not quite your business? Check the fit.</a>'}</p></div>`;
     const top = subhero(d.ey, d.h1[0], d.h1[1], d.lead, inner);
     const pains = `<section id="why" class="ab-sec" style="background: #FFFFFF">
 <div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
