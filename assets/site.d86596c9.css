@@ -1414,4 +1414,7 @@ header>.wrap{position:relative}
 .rm-menu{grid-column:1/-1;display:flex!important;flex-direction:row!important;flex-wrap:wrap;align-items:center!important;gap:8px;padding:10px 12px;background:#fff;border:1px solid var(--ink);box-shadow:4px 4px 0 #2450DC;margin:2px 0 6px}.rm-menu em{font-style:normal;font-size:13.5px;font-weight:700;color:#4B5565}
 .rm-menu a,.rm-menu button{display:inline-flex;align-items:center;min-height:40px;padding:0 12px;border:1px solid var(--ink);background:#F6F8FC;color:var(--ink);font:700 14px Archivo,Arial,sans-serif;text-decoration:none;cursor:pointer}.rm-menu a:hover,.rm-menu button:hover{background:var(--ink);color:#fff}
 .rm-cal[aria-expanded=true]{background:var(--ink);color:#fff}
+.rm-ok{display:inline-flex!important;flex-direction:row!important;align-items:center;justify-content:center;gap:7px;min-width:92px;min-height:40px;box-sizing:border-box;padding:0 10px;font-weight:700;font-size:14px;color:#0B6B3A;background:#E7F5EC;border:1px solid #0B6B3A}
+.rm-done>span:nth-child(2) b{color:#4B5565;font-weight:600}.rm-done>small{color:#6B7486!important}
+.rm-ok,.rm-do .m-btn{min-width:100px!important}
 
