@@ -1248,3 +1248,9 @@ header>.wrap{position:relative}
 .qf-side li{grid-template-columns:minmax(0,1fr)!important;padding:11px 0 11px 12px!important;border-left:4px solid #2450DC;border-top:0!important;margin-bottom:8px;background:#fff}.qf-side li.qf-me{border-left-color:#0B1B3A}.qf-side li.qf-cu{border-left-color:#FFD15C}.qf-side li span{padding-right:10px}
 [data-widget=pipeline] .m-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}@media(min-width:760px){[data-widget=pipeline] .m-stats{grid-template-columns:repeat(4,minmax(0,1fr))}}
 .ea-spin{width:16px;height:16px;border:2.5px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:easpin .7s linear infinite}@keyframes easpin{to{transform:rotate(360deg)}}@media(prefers-reduced-motion:reduce){.ea-spin{animation-duration:2s}}
+/* roles table: cells you can change */
+.ct-c{appearance:none;background:none;border:0;padding:6px;margin:-6px;min-width:44px;min-height:44px;display:inline-grid;place-items:center;cursor:pointer;font:inherit;color:inherit}
+.ct-c:hover i,.ct-c:focus-visible i{outline:2px solid #0B1B3A;outline-offset:3px}.ct-c .ct-n{min-width:26px;min-height:26px;display:grid;place-items:center}
+.ct-no{background:#FFF3D1!important;animation:ctno .32s}@keyframes ctno{25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
+.ct-msg{margin:0;padding:12px 16px;border-top:1px solid var(--ink);font-size:15px;line-height:1.45;color:#2B3648;background:#F6F8FC}.ct-msg b{color:#0B1B3A}.ct-msg.ct-bl{background:#FFF3D1}.ct-msg.ct-ok{background:#E9EEFF}
+@media(min-width:860px){.ct-msg{padding:13px 24px;font-size:16px}}@media(prefers-reduced-motion:reduce){.ct-no{animation:none}}
