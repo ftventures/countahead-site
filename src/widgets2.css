@@ -1027,3 +1027,16 @@ html.mn-open{overflow:hidden}
 @media(min-width:760px){.lk-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.lk{padding:20px}}
 @media(min-width:1180px){.lk-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.lk{grid-template-columns:minmax(0,1fr) auto;align-content:start;gap:8px 10px;padding:22px 20px;min-height:230px}.lk-n{grid-column:1}.lk em{grid-column:2;grid-row:1}.lk b{grid-column:1/-1;font-size:24px}.lk p{grid-column:1/-1}.lk-try{grid-column:1/-1;margin-top:auto;align-self:end}}
 .lk-try{display:block;line-height:1.35}.lk-try small{display:inline-block;margin-right:6px;vertical-align:1px}.lk-try i{display:inline-block}
+/* home: who it is for */
+.who-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border:1px solid #0B1B3A;background:#fff;max-width:860px}
+.who-tab{min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:11px 14px;min-height:60px;cursor:pointer;border:0;border-right:1px solid #0B1B3A;border-bottom:1px solid #0B1B3A;transition:background .2s;text-align:left;font-family:inherit}
+.who-tab b{font-stretch:112%;font-weight:800;font-size:18px;line-height:1.15}
+.who-tab:nth-child(2n){border-right:0}.who-tab:nth-last-child(-n+2){border-bottom:0}
+@media(min-width:700px){.who-tabs{grid-template-columns:repeat(4,minmax(0,1fr))}.who-tab{border-bottom:0}.who-tab:nth-child(2n){border-right:1px solid #0B1B3A}.who-tab:last-child{border-right:0}}
+.who-pairs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(290px,100%),1fr));gap:14px}
+.who-pair{background:#fff;border:1px solid #0B1B3A;box-shadow:5px 5px 0 #0B1B3A;display:flex;flex-direction:column}
+.who-was,.who-now{padding:13px 16px;display:flex;flex-direction:column;gap:4px}.who-was span,.who-now>span{font-size:11px;font-weight:800;letter-spacing:.12em}
+.who-was span{color:#7A8496}.who-was p{margin:0;font-size:15.5px;line-height:1.4;color:#4B5565}
+.who-now{position:relative;flex:1;background:#E6EDFF;border-top:1px solid #0B1B3A}.who-now>span{color:#2450DC}.who-now p{margin:0;font-stretch:112%;font-weight:800;font-size:18px;line-height:1.25;letter-spacing:-.01em}
+.who-now:before{content:"\2193";position:absolute;right:14px;top:-13px;width:26px;height:26px;background:#2450DC;color:#fff;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;border:1px solid #0B1B3A;box-sizing:border-box}
+@media(min-width:900px){.who-pairs{gap:20px}.who-was,.who-now{padding:18px}.who-now p{font-size:19px}}

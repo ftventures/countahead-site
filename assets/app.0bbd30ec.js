@@ -118,7 +118,7 @@ return [
 }
 people() {
 return [
-{ id: "ceo", label: "I run the company", short: "Founder", line: "You want to know how long the money lasts, without becoming an accountant.", role: "Founder or CEO",
+{ id: "ceo", go: "plan.html", goLabel: "See the plan", label: "I run the company", short: "Founder", line: "You want to know how long the money lasts, without becoming an accountant.", role: "Founder or CEO",
 pains: ["Books that are weeks behind, so every decision uses old numbers.", "No confident answer to how long the money lasts.", "Paying for software and a bookkeeper, and still building the investor update by hand."],
 gains: ["Books that are current every day, without you doing them.", "Runway, burn and what your next hire does to them, in plain words.", "The board pack, investor update and data room built from the ledger."],
 qa: [
@@ -126,7 +126,7 @@ qa: [
 { q: "How much of my time does it take?", a: "The aim is minutes a week. Agents work inside rules you set, and only what falls outside them comes to you." },
 { q: "Will my books hold up in due diligence?", a: "Every entry carries its source document and who approved it, so any number can be traced. The data room is kept current from the same records." }
 ] },
-{ id: "cfo", label: "I run finance", short: "Finance lead", line: "You want a close measured in days and a forecast you do not rebuild.", role: "CFO, head of finance or fractional CFO",
+{ id: "cfo", go: "books.html", goLabel: "See the books", label: "I run finance", short: "Finance lead", line: "You want a close measured in days and a forecast you do not rebuild.", role: "CFO, head of finance or fractional CFO",
 pains: ["A close that takes two weeks of reconciliations.", "A model and a board pack rebuilt from exports every month.", "Contracts, billing and revenue recognition kept in step by hand."],
 gains: ["Books reconciled as you go, so the close is only the exceptions.", "A forecast, a model and a board pack that read the ledger directly.", "One record from signed contract to recognized revenue, following ASC 606."],
 qa: [
@@ -134,13 +134,21 @@ qa: [
 { q: "How do I control what the agents do?", a: "A policy you write sets what agents may post alone and what waits for a person. Nothing posts outside those limits." },
 { q: "Can I check the work?", a: "Each entry shows its document, its match and its reasoning. You can reclassify or post a manual journal at any time, and it is logged." }
 ] },
-{ id: "acct", label: "I keep the books", short: "Accountant", line: "You want to review the work, not retype it.", role: "Accountant, controller or bookkeeper",
+{ id: "acct", go: "accountants.html", goLabel: "See the accountants page", label: "I keep the books", short: "Accountant", line: "You want to review the work, not retype it.", role: "Accountant, controller or bookkeeper",
 pains: ["Chasing people for invoices and receipts.", "Coding and reconciling line by line.", "Cleaning up the books before the real work can start."],
 gains: ["Documents collected and attached at the source.", "Entries arrive coded, with the evidence and the reason.", "You review a sample and the exceptions, then lock the month."],
 qa: [
 { q: "Is this meant to replace me?", a: "No. It takes the collecting, coding and matching. Review, judgment, adjusting entries, tax and sign-off stay with you." },
 { q: "Can I correct and adjust?", a: "Yes. Post adjusting journals, reclassify, and lock the period when you are done. Every change is logged." },
 { q: "What do I get at year end?", a: "A trial balance and ledger detail in which every line links to its source document and approval, plus the schedules and evidence an auditor asks for, already prepared." }
+] },
+{ id: "inv", go: "company.html#data-room", goLabel: "See the data room", label: "I invest or sit on the board", short: "Investor", line: "You want the numbers the company runs on, not a deck built the night before.", role: "Investor or board member",
+pains: ["Updates that arrive late, each in a different format.", "A metric defined one way this quarter and another the next.", "Diligence that takes weeks of requests and spreadsheets."],
+gains: ["A monthly update drafted from the books, sent once the founder approves it.", "One definition for each metric, with a record whenever one changes.", "A data room kept current, where any number opens to its source."],
+qa: [
+{ q: "Can I see a company's books directly?", a: "Only what the company chooses to share with you: a board pack, an investor update or a data room. It decides the view and can end access at any time." },
+{ q: "Can I rely on the numbers?", a: "Each figure links to the entries and documents behind it, and to who approved them. That makes them easy to check. It is not an audit and does not replace one." },
+{ q: "Is there a view across a portfolio?", a: "It is planned: one place to see the companies that have chosen to share with you, on the same definitions. It is not built yet." }
 ] }
 ];
 }
