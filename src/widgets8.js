@@ -502,34 +502,133 @@
     on(el, "[data-n]", function () { k = Math.min(3, k + 1); draw(); });
     draw();
   };
-  /* ---------- for accountants: the review queue ---------- */
+  /* ---------- for accountants ---------- */
+  var RM = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  function usd(n) { return "$" + Math.round(n).toLocaleString("en-US"); }
+  function seen(el, fn) { if (window.__PRERENDER) return; if ("IntersectionObserver" in window) { var io = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { io.disconnect(); fn(); } }, { threshold: 0.35 }); io.observe(el); } else fn(); }
+
+  /* hero: one item moving between the agent and you */
+  W.accthero = function (el) {
+    var EX = [
+      ["A routine bill", [["a", "Reads the bill", "Cloudline Hosting, $1,240, service for November"], ["a", "Proposes the entry", "Hosting expense, with the bill attached"], ["a", "Finds the rule you approved", "Known supplier, under your limit, same account 11 times"], ["y", "It lands in your monthly sample", "You see it, you can change it, and your review is recorded"]]],
+      ["A judgment call", [["a", "Reads the contract", "24 months, with the first three months free"], ["a", "Stops. This one is not its call", "When revenue starts is an accounting judgment"], ["y", "You decide the treatment", "With the clause, the schedule and the go-live date in front of you"], ["a", "Applies your decision the same way every time", "Recorded with your name and your reasoning"]]],
+      ["A missing receipt", [["a", "Spots a card charge with no receipt", "$2,140 on November 19"], ["a", "Asks the owner, in wording you approved", "They answer from their phone with a photo"], ["y", "You see the answer on the entry", "No email thread and no chasing"], ["y", "You approve", "One click, with the evidence beside it"]]]
+    ];
+    var x = 0, k = RM || window.__PRERENDER ? 4 : 0, t;
+    function draw() {
+      el.innerHTML = '<div class="ah-tabs nosb">' + EX.map(function (e, i) { return '<button type="button" data-x="' + i + '" aria-pressed="' + (i === x) + '">' + e[0] + "</button>"; }).join("") + '</div><ol class="ah-steps">' + EX[x][1].map(function (s, i) { return '<li class="' + (i < k ? "on" : "") + (i === k - 1 ? " now" : "") + '"><em class="ah-' + s[0] + '">' + (s[0] === "a" ? "AGENT" : "YOU") + "</em><span><b>" + s[1] + "</b><small>" + s[2] + "</small></span></li>"; }).join("") + "</ol>";
+    }
+    function tick() { if (k < 4) k++; else { x = (x + 1) % EX.length; k = 1; } draw(); t = setTimeout(tick, k === 4 ? 3400 : 1300); }
+    on(el, "[data-x]", function (b) { clearTimeout(t); x = +b.getAttribute("data-x"); k = 4; draw(); });
+    draw();
+    if (!RM && !window.__PRERENDER) t = setTimeout(tick, 800);
+  };
+
+  /* pick your seat */
+  W.acctrole = function (el) {
+    var R = [
+      ["Bookkeeper", "You stop being the person who types.", ["Bills, receipts and bank lines arrive coded, with the document attached.", "Missing receipts are chased for you, in wording you approved.", "Reconciliations and clearing accounts arrive prepared. You check the differences."], "Knowing the client, spotting what looks wrong, and the month-end sign-off.", "#review", "Try the review queue"],
+      ["CPA or firm owner", "One standard, across every client.", ["Your chart, rules and close checklist are set once and applied to each client.", "Prepare, review and sign off inside the firm, with a name on every step.", "Working papers come out of the system, each traceable to its documents."], "Judgment, adjustments, tax, and the client relationship.", "#rules", "Set a rule"],
+      ["Fractional CFO", "Skip the cleanup. Start at the plan.", ["The books are current when you arrive, so the first hour is not spent fixing them.", "Forecast, scenarios, budget and board pack run on the same numbers as the books.", "A summary before each client meeting: what moved and what needs a decision."], "The advice. That is the job, and it stays the job.", "#advice", "See the advisory tools"],
+      ["Controller", "A close you review, not one you build.", ["Accruals, prepaids and schedules are prepared from the service dates on each bill.", "Every balance sheet account is supported at close, not only the bank.", "The auditor's usual requests are answered from the system, with the evidence."], "Policy, judgment, and your signature on the month.", "#review", "Try the review queue"]
+    ];
+    var s = 0;
+    function draw() {
+      var r = R[s];
+      [].forEach.call(el.querySelectorAll("[data-r]"), function (b) { b.setAttribute("aria-pressed", +b.getAttribute("data-r") === s); });
+      el.querySelector(".ao-body").innerHTML = '<div class="ao-l"><h3>' + r[1] + '</h3><small>WHAT CHANGES</small><ul>' + r[2].map(function (t) { return "<li>" + t + "</li>"; }).join("") + '</ul></div><div class="ao-r"><small>WHAT STAYS YOURS</small><p>' + r[3] + '</p><a href="' + r[4] + '">' + r[5] + ' <span aria-hidden="true">&rarr;</span></a></div>';
+    }
+    el.innerHTML = '<div class="m-tabs nosb">' + R.map(function (r, i) { return '<button type="button" data-r="' + i + '"><small>0' + (i + 1) + "</small><b>" + r[0] + "</b></button>"; }).join("") + '</div><div class="ao-body"></div>';
+    on(el, "[data-r]", function (b) { s = +b.getAttribute("data-r"); draw(); });
+    draw();
+  };
+
+  /* the typing moves, the judgment does not */
+  W.acctshift = function (el) {
+    var P = ["Collect bills and receipts", "Code transactions", "Match the bank", "Chase missing documents", "Build prepaid and accrual schedules", "Prepare every reconciliation"], Y = ["Review the exceptions", "Adjusting entries", "Judgment calls", "Sign off the month", "Advise the client"];
+    var w = window.__PRERENDER || RM ? 1 : 0;
+    el.innerHTML = '<div class="as-top"><div class="as-sw" role="group" aria-label="Compare"><button type="button" data-w="0">Today</button><button type="button" data-w="1">With Countahead</button></div><p class="as-sum"></p></div><div class="as-head"><span></span><div><small>BY HAND</small><small>PREPARED FOR YOU</small></div></div><div class="as-rows">' + P.map(function (t, i) { return '<div class="as-row" style="--d:' + i * 80 + 'ms"><span>' + t + '</span><div class="as-track"><b><u>You, by hand</u><u>Agent prepares</u></b></div></div>'; }).join("") + Y.map(function (t) { return '<div class="as-row as-y"><span>' + t + '</span><div class="as-keep"><b>You</b><small>with the facts and documents attached</small></div></div>'; }).join("") + "</div>";
+    function set(v) {
+      w = v; el.classList.toggle("as-on", !!w);
+      [].forEach.call(el.querySelectorAll("[data-w]"), function (b) { b.setAttribute("aria-pressed", +b.getAttribute("data-w") === w); });
+      el.querySelector(".as-sum").innerHTML = w ? "<b>Six jobs arrive prepared.</b> Five stay exactly where they are: with you." : "<b>Eleven jobs, all yours.</b> Six of them are typing, matching and chasing.";
+    }
+    on(el, "[data-w]", function (b) { set(+b.getAttribute("data-w")); });
+    set(w);
+    if (!w) seen(el, function () { setTimeout(function () { set(1); }, 900); });
+  };
+
+  /* you set the rules */
+  W.acctrules = function (el) {
+    var B = [["Cloudline Hosting", 1240, 11, 1, 1, 0], ["Paperclip Office Co", 86, 9, 1, 1, 0], ["Brightwave Ads", 4800, 7, 1, 1, 0], ["Northgate Legal", 3200, 2, 1, 1, 0], ["Orbit Telecom", 210, 14, 1, 1, 0], ["Greenfork Catering", 640, 1, 1, 0, 0], ["Keel Freight", 1950, 6, 0, 1, 0], ["Cloudline Hosting, annual", 9600, 11, 1, 1, 0], ["Summit Insurance", 780, 4, 1, 1, 0], ["Paperclip Office Co", 132, 9, 1, 1, 0], ["Meridian Software", 299, 8, 1, 1, 0], ["Harper and Lowe", 2400, 6, 1, 1, 1]];
+    var lim = 2000, n = 4, kn = 1;
+    function why(b) { if (b[5]) return "Bank details changed. Always a person"; if (kn && !b[4]) return "New supplier"; if (b[1] >= lim) return "At or over your limit"; if (b[2] < n) return "Seen only " + b[2] + (b[2] === 1 ? " time" : " times"); if (!b[3]) return "Account varies"; return ""; }
+    function draw() {
+      var a = 0, h = B.map(function (b) { var y = why(b); if (!y) a++; return '<div class="' + (y ? "au-w" : "au-a") + '"><span><b>' + b[0] + "</b><small>" + usd(b[1]) + " &middot; seen " + b[2] + (b[2] === 1 ? " time" : " times") + '</small></span><em>' + (y ? "Waits for you" : "Posts by rule") + "</em>" + (y ? "<i>" + y + "</i>" : "") + "</div>"; }).join("");
+      el.querySelector(".au-list").innerHTML = h;
+      el.querySelector(".au-sum").innerHTML = "<b>" + a + " post by rule.</b> <b>" + (B.length - a) + " wait for you.</b> You still review a sample of the " + a + " every month.";
+      el.querySelector(".au-lv").textContent = usd(lim); el.querySelector(".au-nv").textContent = n + (n === 1 ? " time" : " times");
+    }
+    el.innerHTML = '<div class="au-wrap"><div class="au-ctl"><small>AGENTS MAY POST ALONE WHEN</small><label class="au-chk"><input type="checkbox" checked data-u="kn"><span>The supplier is one you already know</span></label><label><span>The bill is under <b class="au-lv"></b></span><input type="range" min="100" max="5000" step="100" value="2000" data-u="lim" aria-label="Amount limit"></label><label><span>It has gone to the same account at least <b class="au-nv"></b> before</span><input type="range" min="1" max="12" step="1" value="4" data-u="n" aria-label="Times seen"></label><div class="au-lock"><b>Always a person, whatever the rule</b><span>A change of bank details, a new supplier&#39;s first payment, and anything in a locked month.</span></div><p class="au-note">A rule takes effect only when you approve it, and every entry it posts names the rule and you.</p></div><div class="au-out"><p class="au-sum"></p><div class="au-list"></div></div></div><div class="au-steps">' + [["Start", "Everything waits for approval"], ["Prove", "The rule is measured on this client&#39;s own items"], ["Unlock", "You switch it on, one rule at a time"], ["Guard", "If corrections rise, it goes back to approval"]].map(function (s, i) { return "<div><small>0" + (i + 1) + " " + s[0].toUpperCase() + "</small><b>" + s[1] + "</b></div>"; }).join("") + '</div><p class="m-foot">Planned, not live. The suppliers and amounts are sample data.</p>';
+    el.addEventListener("input", function (e) { var u = e.target.getAttribute && e.target.getAttribute("data-u"); if (!u) return; if (u === "kn") kn = e.target.checked ? 1 : 0; if (u === "lim") lim = +e.target.value; if (u === "n") n = +e.target.value; draw(); });
+    draw();
+  };
+
+  /* the review queue */
   W.acctreview = function (el) {
     var CL = [
       { n: "Lumen Labs", k: "Software", it: [
-        ["EXCEPTION", "Annual hosting commitment, $48,000, paid November 12", "Agent proposes: a prepaid cost, released over twelve months from the service dates on the bill.", "Bill, service dates, bank line", "Approve", "Approved. Twelve monthly releases scheduled."],
-        ["JUDGMENT", "New contract gives the first three months free", "When should revenue start? The clause, the invoice schedule and the go-live date are attached. This one is yours to decide.", "Contract clause 3.2, invoice schedule", "Record my decision", "Recorded with your name and reasoning. Applied the same way from now on."],
-        ["QUESTION", "Card payment of $2,140 with no receipt", "Nothing in the inbox matches. Ask the founder?", "Card line, November 19", "Ask the client", "Sent to the founder's phone. The answer will attach to this entry."]] },
+        ["EXCEPTION", "Annual hosting commitment, $48,000, paid November 12", "Agent proposes a prepaid cost, released over twelve months from the service dates on the bill.", "BILL &middot; Cloudline Hosting &middot; Service Dec 1, 2026 to Nov 30, 2027", "Prepaid costs 48,000 &middot; then 4,000 a month to Hosting", [["Approve", "Approved. Twelve monthly releases scheduled."], ["Send back", "Sent back with your note. The agent will propose again."]]],
+        ["JUDGMENT", "New contract gives the first three months free", "When should revenue start? This one is yours to decide. The system will apply your answer the same way from now on.", "CONTRACT &middot; Clause 3.2 &middot; 24 months, months 1 to 3 at no charge", "No entry until you decide", [["From go-live", "Recorded: revenue from go-live, with your name and reasoning."], ["Across the full term", "Recorded: revenue across the full term, with your name and reasoning."]]],
+        ["QUESTION", "Card payment of $2,140 with no receipt", "Nothing in the inbox matches. Ask the founder?", "CARD &middot; November 19 &middot; $2,140", "Held, not posted", [["Ask the client", "Sent to the founder's phone. The answer will attach to this entry."]]]] },
       { n: "Harbor & Pine", k: "Online store", it: [
-        ["EXCEPTION", "Store payout account is $312 away from zero", "Agent traced it to two refunds booked net of fees. Proposed fix: book each one gross.", "Payout report, two refund lines", "Approve the fix", "Approved. The clearing account is back to zero."],
-        ["ADJUSTMENT", "Stock count came in below the books", "The count sheet is attached. Post your own adjusting entry.", "Count sheet, November 30", "Post my adjustment", "Posted as an accountant's adjustment, marked with your name."],
-        ["QUESTION", "Goods received, no supplier bill yet", "Accrue it at the order value and ask the client to chase the bill?", "Purchase order, delivery note", "Accrue and ask", "Accrued. Question sent to the client."]] },
+        ["EXCEPTION", "Store payout account is $312 away from zero", "Agent traced it to two refunds booked net of fees. Proposed fix: book each one gross.", "PAYOUT REPORT &middot; Two refund lines, November 21 and 24", "Refunds 312 &middot; Fees 9 &middot; Clearing back to 0", [["Approve the fix", "Approved. The clearing account is back to zero."], ["Send back", "Sent back with your note. The agent will propose again."]]],
+        ["ADJUSTMENT", "Stock count came in below the books", "The count sheet is attached. Post your own adjusting entry.", "COUNT SHEET &middot; November 30 &middot; 14 units short", "Yours to write", [["Post my adjustment", "Posted as an accountant's adjustment, marked with your name."]]],
+        ["QUESTION", "Goods received, no supplier bill yet", "Accrue it at the order value and ask the client to chase the bill?", "PURCHASE ORDER and delivery note", "Accrued costs 6,400, reversing next month", [["Accrue and ask", "Accrued. Question sent to the client."]]]] },
       { n: "Atlas Kitchen Group", k: "Hospitality, three sites", it: [] }
     ];
     var CH = ["Bank agrees with the statements", "Payroll agrees with the provider", "Every balance sheet account supported"];
-    var s = 0, done = CL.map(function (c) { return c.it.map(function () { return false; }); }), signed = CL.map(function () { return false; });
+    var s = 0, me = "", done = CL.map(function (c) { return c.it.map(function () { return ""; }); }), signed = CL.map(function () { return false; });
+    function who() { return me.trim() ? me.trim().replace(/[<>&]/g, "") : "you"; }
     function left(i) { return done[i].filter(function (d) { return !d; }).length; }
     function status(i) { return signed[i] ? ["Signed off", "ar-s2"] : left(i) ? [left(i) + " to review", "ar-s0"] : ["Ready to sign", "ar-s1"]; }
     function draw() {
       var c = CL[s], n = left(s);
       el.querySelector(".ar-list").innerHTML = CL.map(function (x, i) { var st = status(i); return '<button type="button" data-c="' + i + '" aria-pressed="' + (i === s) + '"><span><b>' + x.n + "</b><small>" + x.k + '</small></span><em class="' + st[1] + '">' + st[0] + "</em></button>"; }).join("");
       el.querySelector(".ar-main").innerHTML = '<div class="ar-hd"><small>NOVEMBER CLOSE</small><b>' + c.n + '</b></div><div class="ar-chk">' + CH.map(function (t) { return '<span><i aria-hidden="true">&#10003;</i>' + t + "</span>"; }).join("") + "</div>" +
-        (c.it.length ? c.it.map(function (it, j) { var d = done[s][j]; return '<div class="ar-it' + (d ? " ar-done" : "") + '"><small class="ar-t ar-' + it[0].toLowerCase() + '">' + it[0] + "</small><b>" + it[1] + "</b>" + (d ? '<p class="ar-ok"><i aria-hidden="true">&#10003;</i>' + it[5] + "</p>" : "<p>" + it[2] + '</p><div class="ar-ft"><span>Evidence: ' + it[3] + '</span><button type="button" class="m-btn m-sm" data-i="' + j + '">' + it[4] + "</button></div>") + "</div>"; }).join("") : '<div class="ar-it ar-done"><b>Nothing waiting on you</b><p class="ar-ok"><i aria-hidden="true">&#10003;</i>Agents prepared the month, the checks above all agree, and no exception was raised.</p></div>') +
-        '<div class="ar-sign">' + (signed[s] ? '<p class="ar-ok"><i aria-hidden="true">&#10003;</i><b>Signed off by you on December 3, 2026.</b> November is locked.</p>' : '<button type="button" class="m-btn" data-g="1"' + (n ? " disabled" : "") + ">Sign off November</button><span>" + (n ? n + (n === 1 ? " item" : " items") + " to clear first." : "Your name goes on the close.") + "</span>") + "</div>";
+        (c.it.length ? c.it.map(function (it, j) { var d = done[s][j]; return '<div class="ar-it' + (d ? " ar-done" : "") + '"><small class="ar-t ar-' + it[0].toLowerCase() + '">' + it[0] + "</small><b>" + it[1] + "</b>" + (d ? '<p class="ar-ok"><i aria-hidden="true">&#10003;</i>' + d.replace("your name", who() === "you" ? "your name" : who() + "'s name") + "</p>" : "<p>" + it[2] + '</p><div class="ar-ev"><div><small>THE DOCUMENT</small><span>' + it[3] + '</span></div><em aria-hidden="true">&rarr;</em><div><small>THE PROPOSAL</small><span>' + it[4] + '</span></div></div><div class="ar-ft">' + it[5].map(function (a, q) { return '<button type="button" class="m-btn m-sm' + (q ? " m-ghost" : "") + '" data-i="' + j + '" data-q="' + q + '">' + a[0] + "</button>"; }).join("") + "</div>") + "</div>"; }).join("") : '<div class="ar-it ar-done"><b>Nothing waiting on you</b><p class="ar-ok"><i aria-hidden="true">&#10003;</i>Agents prepared the month, the checks above all agree, and no exception was raised.</p></div>') +
+        '<div class="ar-sign">' + (signed[s] ? '<div class="ar-cert"><small>NOVEMBER 2026 &middot; ' + c.n.toUpperCase() + "</small><b>Signed off by " + who() + "</b><span>December 3, 2026 &middot; " + c.it.length + " reviewed, 0 open &middot; Month locked</span></div>" : '<button type="button" class="m-btn" data-g="1"' + (n ? " disabled" : "") + ">Sign off November</button><span>" + (n ? n + (n === 1 ? " item" : " items") + " to clear first." : "Your name goes on the close.") + "</span>") + "</div>";
     }
-    el.innerHTML = '<div class="ar-wrap"><div class="ar-list" role="group" aria-label="Clients"></div><div class="ar-main"></div></div><p class="m-foot">Planned, not live. The clients, entries and figures are sample data.</p>';
+    el.innerHTML = '<label class="ar-me"><span>Sign as</span><input type="text" maxlength="40" placeholder="Type your name" aria-label="Your name" autocomplete="off"></label><div class="ar-wrap"><div class="ar-list" role="group" aria-label="Clients"></div><div class="ar-main"></div></div><p class="m-foot">Planned, not live. The clients, entries and figures are sample data. Your name stays in your browser.</p>';
+    el.querySelector(".ar-me input").addEventListener("input", function () { me = this.value; if (signed.some(Boolean) || done.some(function (d) { return d.some(Boolean); })) draw(); });
     on(el, "[data-c]", function (b) { s = +b.getAttribute("data-c"); draw(); });
-    on(el, "[data-i]", function (b) { done[s][+b.getAttribute("data-i")] = true; draw(); });
+    on(el, "[data-i]", function (b) { var j = +b.getAttribute("data-i"); done[s][j] = CL[s].it[j][5][+b.getAttribute("data-q")][1]; draw(); });
     on(el, "[data-g]", function () { if (!left(s)) { signed[s] = true; draw(); } });
     draw();
+  };
+
+  /* where does your month go */
+  W.accthours = function (el) {
+    var J = [["Collecting and chasing", 3, 1], ["Coding and entry", 4, 1], ["Reconciling", 2, 1], ["Review and adjustments", 2, 0], ["Advising the client", 1, 0]], cl = 12;
+    function draw() {
+      var p = 0, y = 0; J.forEach(function (j) { if (j[2]) p += j[1]; else y += j[1]; });
+      var tot = (p + y) || 1, P = p * cl, Y = y * cl;
+      el.querySelector(".ak-bar").innerHTML = J.map(function (j, i) { return j[1] ? '<i class="ak-c' + i + '" style="flex:' + j[1] + '" title="' + j[0] + '"></i>' : ""; }).join("");
+      el.querySelector(".ak-res").innerHTML = '<div class="ak-p"><small>PREPARATION</small><b>' + P.toLocaleString("en-US") + ' hours a month</b><span>Collecting, coding and reconciling across ' + cl + (cl === 1 ? " client" : " clients") + ". This is the work that would reach you prepared, ready to review.</span></div><div class=\"ak-y\"><small>YOURS, TODAY</small><b>" + Y.toLocaleString("en-US") + " hours a month</b><span>Review, adjustments and advice. " + Math.round(y / tot * 100) + " percent of the time you spend on a client.</span></div>";
+      el.querySelector(".ak-cv").textContent = cl;
+      [].forEach.call(el.querySelectorAll("[data-jv]"), function (b) { b.textContent = J[+b.getAttribute("data-jv")][1] + " h"; });
+    }
+    el.innerHTML = '<div class="ak-wrap"><div class="ak-in"><label><span>Clients <b class="ak-cv"></b></span><input type="range" min="1" max="60" value="12" data-k="c" aria-label="Number of clients"></label><small>HOURS PER CLIENT, PER MONTH</small>' + J.map(function (j, i) { return '<label><span><i class="ak-c' + i + '"></i>' + j[0] + ' <b data-jv="' + i + '"></b></span><input type="range" min="0" max="12" step="0.5" value="' + j[1] + '" data-k="' + i + '" aria-label="' + j[0] + '"></label>'; }).join("") + '</div><div class="ak-out"><div class="ak-bar" aria-hidden="true"></div><div class="ak-res"></div><p class="ak-note">How many of those hours you get back depends on how closely you choose to review. That choice stays yours.</p></div></div><p class="m-foot">The starting figures are placeholders, not research. Set your own.</p>';
+    el.addEventListener("input", function (e) { var k = e.target.getAttribute && e.target.getAttribute("data-k"); if (k === null || k === undefined) return; if (k === "c") cl = +e.target.value; else J[+k][1] = +e.target.value; draw(); });
+    draw();
+  };
+
+  /* hard questions, by worry */
+  W.acctfaq = function (el) {
+    on(el, "[data-f]", function (b) {
+      var f = b.getAttribute("data-f");
+      [].forEach.call(el.querySelectorAll("[data-f]"), function (x) { x.setAttribute("aria-pressed", x === b); });
+      [].forEach.call(el.querySelectorAll("details"), function (d) { d.style.display = f === "all" || d.getAttribute("data-cat") === f ? "" : "none"; });
+    });
   };
 })();
