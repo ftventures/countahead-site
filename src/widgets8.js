@@ -502,4 +502,34 @@
     on(el, "[data-n]", function () { k = Math.min(3, k + 1); draw(); });
     draw();
   };
+  /* ---------- for accountants: the review queue ---------- */
+  W.acctreview = function (el) {
+    var CL = [
+      { n: "Lumen Labs", k: "Software", it: [
+        ["EXCEPTION", "Annual hosting commitment, $48,000, paid November 12", "Agent proposes: a prepaid cost, released over twelve months from the service dates on the bill.", "Bill, service dates, bank line", "Approve", "Approved. Twelve monthly releases scheduled."],
+        ["JUDGMENT", "New contract gives the first three months free", "When should revenue start? The clause, the invoice schedule and the go-live date are attached. This one is yours to decide.", "Contract clause 3.2, invoice schedule", "Record my decision", "Recorded with your name and reasoning. Applied the same way from now on."],
+        ["QUESTION", "Card payment of $2,140 with no receipt", "Nothing in the inbox matches. Ask the founder?", "Card line, November 19", "Ask the client", "Sent to the founder's phone. The answer will attach to this entry."]] },
+      { n: "Harbor & Pine", k: "Online store", it: [
+        ["EXCEPTION", "Store payout account is $312 away from zero", "Agent traced it to two refunds booked net of fees. Proposed fix: book each one gross.", "Payout report, two refund lines", "Approve the fix", "Approved. The clearing account is back to zero."],
+        ["ADJUSTMENT", "Stock count came in below the books", "The count sheet is attached. Post your own adjusting entry.", "Count sheet, November 30", "Post my adjustment", "Posted as an accountant's adjustment, marked with your name."],
+        ["QUESTION", "Goods received, no supplier bill yet", "Accrue it at the order value and ask the client to chase the bill?", "Purchase order, delivery note", "Accrue and ask", "Accrued. Question sent to the client."]] },
+      { n: "Atlas Kitchen Group", k: "Hospitality, three sites", it: [] }
+    ];
+    var CH = ["Bank agrees with the statements", "Payroll agrees with the provider", "Every balance sheet account supported"];
+    var s = 0, done = CL.map(function (c) { return c.it.map(function () { return false; }); }), signed = CL.map(function () { return false; });
+    function left(i) { return done[i].filter(function (d) { return !d; }).length; }
+    function status(i) { return signed[i] ? ["Signed off", "ar-s2"] : left(i) ? [left(i) + " to review", "ar-s0"] : ["Ready to sign", "ar-s1"]; }
+    function draw() {
+      var c = CL[s], n = left(s);
+      el.querySelector(".ar-list").innerHTML = CL.map(function (x, i) { var st = status(i); return '<button type="button" data-c="' + i + '" aria-pressed="' + (i === s) + '"><span><b>' + x.n + "</b><small>" + x.k + '</small></span><em class="' + st[1] + '">' + st[0] + "</em></button>"; }).join("");
+      el.querySelector(".ar-main").innerHTML = '<div class="ar-hd"><small>NOVEMBER CLOSE</small><b>' + c.n + '</b></div><div class="ar-chk">' + CH.map(function (t) { return '<span><i aria-hidden="true">&#10003;</i>' + t + "</span>"; }).join("") + "</div>" +
+        (c.it.length ? c.it.map(function (it, j) { var d = done[s][j]; return '<div class="ar-it' + (d ? " ar-done" : "") + '"><small class="ar-t ar-' + it[0].toLowerCase() + '">' + it[0] + "</small><b>" + it[1] + "</b>" + (d ? '<p class="ar-ok"><i aria-hidden="true">&#10003;</i>' + it[5] + "</p>" : "<p>" + it[2] + '</p><div class="ar-ft"><span>Evidence: ' + it[3] + '</span><button type="button" class="m-btn m-sm" data-i="' + j + '">' + it[4] + "</button></div>") + "</div>"; }).join("") : '<div class="ar-it ar-done"><b>Nothing waiting on you</b><p class="ar-ok"><i aria-hidden="true">&#10003;</i>Agents prepared the month, the checks above all agree, and no exception was raised.</p></div>') +
+        '<div class="ar-sign">' + (signed[s] ? '<p class="ar-ok"><i aria-hidden="true">&#10003;</i><b>Signed off by you on December 3, 2026.</b> November is locked.</p>' : '<button type="button" class="m-btn" data-g="1"' + (n ? " disabled" : "") + ">Sign off November</button><span>" + (n ? n + (n === 1 ? " item" : " items") + " to clear first." : "Your name goes on the close.") + "</span>") + "</div>";
+    }
+    el.innerHTML = '<div class="ar-wrap"><div class="ar-list" role="group" aria-label="Clients"></div><div class="ar-main"></div></div><p class="m-foot">Planned, not live. The clients, entries and figures are sample data.</p>';
+    on(el, "[data-c]", function (b) { s = +b.getAttribute("data-c"); draw(); });
+    on(el, "[data-i]", function (b) { done[s][+b.getAttribute("data-i")] = true; draw(); });
+    on(el, "[data-g]", function () { if (!left(s)) { signed[s] = true; draw(); } });
+    draw();
+  };
 })();
