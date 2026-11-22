@@ -97,5 +97,12 @@
   function spyQ() { if (!spyT) spyT = requestAnimationFrame(spy); }
   if (!window.__PRERENDER) { window.addEventListener("scroll", spyQ, { passive: true }); window.addEventListener("resize", spyQ); setTimeout(spyQ, 600); document.addEventListener("click", function () { setTimeout(spyQ, 500); }); }
 
+  /* menu links that open the home page on one persona */
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest ? e.target.closest("[data-who]") : null; if (!a) return;
+    var want = { ceo: "Founder", cfo: "Finance lead", acct: "Accountant", inv: "Investor" }[a.getAttribute("data-who")], n = 0;
+    var iv = setInterval(function () { n++; var tabs = [].slice.call(document.querySelectorAll(".who-tab")), hit = tabs.filter(function (b) { return (b.textContent || "").indexOf(want) > -1; })[0]; if (hit) { if (hit.getAttribute("aria-pressed") !== "true") hit.click(); var sec = document.getElementById("who"); if (sec && n < 3) sec.scrollIntoView(); clearInterval(iv); } else if (n > 20) clearInterval(iv); }, 200);
+  }, true);
+
   boot();
 })();
