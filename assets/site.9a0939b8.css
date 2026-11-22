@@ -1387,4 +1387,5 @@ header>.wrap{position:relative}
 .m-hs-g i{background:#2450DC;color:#fff}.m-hs-w i{background:#FFD15C;color:var(--ink)}.m-hs-r i{background:var(--ink);color:#FFD15C}
 .qf-side li{grid-template-columns:minmax(0,1fr)!important;padding:11px 0 11px 12px!important;border-left:4px solid #2450DC;border-top:0!important;margin-bottom:8px;background:#fff}.qf-side li.qf-me{border-left-color:var(--ink)}.qf-side li.qf-cu{border-left-color:#FFD15C}.qf-side li span{padding-right:10px}
 [data-widget=pipeline] .m-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}@media(min-width:760px){[data-widget=pipeline] .m-stats{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.ea-spin{width:16px;height:16px;border:2.5px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:easpin .7s linear infinite}@keyframes easpin{to{transform:rotate(360deg)}}@media(prefers-reduced-motion:reduce){.ea-spin{animation-duration:2s}}
 
