@@ -180,4 +180,46 @@
     on(el, "[data-x]", function () { st = 0; draw(); });
     mid(); draw();
   };
+
+  /* ---------- accountants: every client on one screen ---------- */
+  W.practiceview = function (el) {
+    var WHO = ["Ana", "Ben", "Cara"], C0 = [
+      ["Harbor Labs", "Software", 0, 0, 0, 0, ""], ["Market Street Cafe", "Cafe", 1, 9, 1, 1, "Day 2 of the close"], ["Fernhill Studio", "Agency", 0, 0, 0, 0, ""], ["Juniper Goods", "Online store", 1, 14, 0, 1, "Day 3 of the close"],
+      ["Northgate Supply", "Wholesale", 2, 22, 3, 2, "Bank feed disconnected for 6 days"], ["Ridgeway Legal", "Professional firm", 0, 0, 0, 2, ""], ["Tidewater Brewing", "Consumer brand", 1, 6, 2, 0, "Day 1 of the close"], ["Quanta Labs", "AI", 0, 0, 0, 1, ""],
+      ["High Street Outfitters", "Shop", 2, 4, 11, 2, "Waiting on the client for 11 receipts"], ["Pine and Poppy", "Online store", 0, 0, 0, 0, ""], ["Atlas Freight", "Other", 1, 3, 0, 0, "Day 2 of the close"], ["Brightline Media", "Agency", 0, 0, 0, 1, ""]];
+    var CL, f = 0, who = -1, open = 1;
+    function reset() { CL = C0.map(function (c) { return { n: c[0], k: c[1], st: c[2], w: c[3], rt: Math.round(c[3] * 0.7), cw: c[4], r: c[5], note: c[6], nudge: 0 }; }); }
+    function show(c) { return (who < 0 || c.r === who) && (f === 0 || (f === 1 && c.w > 0) || (f === 2 && c.cw > 0) || (f === 3 && c.st === 2) || (f === 4 && c.st === 0)); }
+    function draw() {
+      var closed = CL.filter(function (c) { return c.st === 0; }).length, wait = CL.reduce(function (a, c) { return a + c.w; }, 0), wc = CL.filter(function (c) { return c.w > 0; }).length, beh = CL.filter(function (c) { return c.st === 2; }).length, onc = CL.reduce(function (a, c) { return a + c.cw; }, 0);
+      var F = ["All " + CL.length, "Needs your review", "Waiting on the client", "Behind", "Closed"], rows = CL.map(function (c, i) { return [c, i]; }).filter(function (x) { return show(x[0]); });
+      el.innerHTML = '<div class="pl-kp"><div><small>CLOSED FOR NOVEMBER</small><b>' + closed + " of " + CL.length + '</b><span>signed off, with your name on it</span></div><div><small>WAITING FOR YOUR REVIEW</small><b>' + wait + "</b><span>entries, across " + wc + (wc === 1 ? " client" : " clients") + '</span></div><div><small>WAITING ON CLIENTS</small><b>' + onc + '</b><span>questions and missing documents</span></div><div><small>BEHIND</small><b>' + beh + "</b><span>" + (beh ? "each with the reason shown" : "nobody is behind") + '</span></div></div><div class="pv-bar"><div class="pl-chips" role="group" aria-label="Filter clients">' + F.map(function (x, i) { return '<button type="button" data-f="' + i + '" aria-pressed="' + (i === f) + '">' + x + "</button>"; }).join("") + '</div><div class="pl-chips" role="group" aria-label="Reviewer"><button type="button" data-w="-1" aria-pressed="' + (who < 0) + '">Whole firm</button>' + WHO.map(function (x, i) { return '<button type="button" data-w="' + i + '" aria-pressed="' + (who === i) + '">' + x + "</button>"; }).join("") + '</div></div><div class="pv-list">' + (rows.length ? rows.map(function (x) {
+        var c = x[0], i = x[1], on_ = i === open, ex = c.w - c.rt;
+        var st = c.st === 0 ? '<em class="pv-ok">Closed</em>' : c.st === 2 ? '<em class="pv-late">Behind</em>' : '<em class="pv-go">In close</em>';
+        var det = "";
+        if (on_) {
+          var L = [];
+          if (c.st === 0) L.push(["Signed off by " + WHO[c.r] + ". Month locked. Working papers ready to export.", ""]);
+          else {
+            if (c.note) L.push([c.note + ".", ""]);
+            if (c.rt > 0) L.push([c.rt + " routine entries, each matched by a rule you approved.", '<button type="button" class="m-btn m-sm" data-a="rt">Approve the ' + c.rt + "</button>"]);
+            if (ex > 0) L.push([ex + (ex === 1 ? " exception" : " exceptions") + ": over a limit, a new supplier or an unusual amount.", '<button type="button" class="m-btn m-sm' + (c.rt > 0 ? " m-ghost" : "") + '" data-a="ex">Review ' + (ex === 1 ? "it" : "them") + "</button>"]);
+            if (c.cw > 0) L.push([c.cw + (c.cw === 1 ? " item" : " items") + " waiting on the client." + (c.nudge === 2 ? " Reminder sent." : c.nudge === 1 ? " Reminder drafted. Nothing goes out until you approve it." : ""), c.nudge === 2 ? "" : '<button type="button" class="m-btn m-sm m-ghost" data-a="nd">' + (c.nudge ? "Approve and send" : "Draft a reminder") + "</button>"]);
+            if (c.w === 0) L.push([c.cw > 0 && c.nudge < 2 ? "Review is done. You can sign off once the client's items are in, or note them and sign now." : "Everything is reviewed and every account agrees with the ledger.", '<button type="button" class="m-btn m-sm" data-a="so">Sign off November</button>']);
+          }
+          det = '<div class="pv-det">' + L.map(function (l) { return "<div><span>" + l[0] + "</span>" + l[1] + "</div>"; }).join("") + '<div class="pv-as"><span>Reviewer</span><span class="m-opts">' + WHO.map(function (n, j) { return '<button type="button" data-r="' + j + '" aria-pressed="' + (c.r === j) + '">' + n + "</button>"; }).join("") + "</span></div></div>";
+        }
+        return '<div class="pv-row' + (on_ ? " pv-on" : "") + '"><button type="button" class="pv-h" data-o="' + i + '" aria-expanded="' + on_ + '"><span class="pv-n"><b>' + c.n + "</b><small>" + c.k + " &middot; " + WHO[c.r] + "</small></span>" + st + '<span class="pv-c"><u>' + c.w + "</u><small>to review</small></span>" + '<span class="pv-c"><u>' + c.cw + "</u><small>on client</small></span><i aria-hidden=\"true\"></i></button>" + det + "</div>";
+      }).join("") : '<p class="pl-cap" style="padding:18px 16px">Nothing here. That is the good kind of empty.</p>') + '</div><div class="pv-ft"><span>Sample firm with twelve clients. Planned, not live.</span><button type="button" class="m-link" data-x>Start again</button></div>';
+    }
+    on(el, "[data-f]", function (b) { f = +b.getAttribute("data-f"); open = -1; draw(); });
+    on(el, "[data-w]", function (b) { who = +b.getAttribute("data-w"); open = -1; draw(); });
+    on(el, "[data-o]", function (b) { var i = +b.getAttribute("data-o"); open = open === i ? -1 : i; draw(); });
+    on(el, "[data-r]", function (b) { if (open > -1) { CL[open].r = +b.getAttribute("data-r"); draw(); } });
+    on(el, "[data-a]", function (b) { var c = CL[open], a = b.getAttribute("data-a"); if (!c) return;
+      if (a === "rt") { c.w -= c.rt; c.rt = 0; } else if (a === "ex") { c.w = c.rt; } else if (a === "nd") { c.nudge++; if (c.nudge === 2 && c.st !== 2) c.cw = c.cw; } else if (a === "so") { c.st = 0; c.cw = 0; c.note = ""; }
+      draw(); });
+    on(el, "[data-x]", function () { reset(); f = 0; who = -1; open = 1; draw(); });
+    reset(); draw();
+  };
 })();
