@@ -55,14 +55,15 @@ function header(cur) {
   const WHO = IND.map((x) => [x[0], x[1]]).concat([["accountants.html", "Accountants and firms"]]);
   const inP = PROD.some((x) => x[0] === cur), inW = WHO.some((x) => x[0] === cur);
   const R = (x, y, w, h, c, cl) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${c}"${cl ? ` class="${cl}"` : ""}></rect>`;
-  const D = (x, y, w, h) => `<rect x="${x + 0.75}" y="${y + 0.75}" width="${w - 1.5}" height="${h - 1.5}" fill="none" stroke="#2450DC" stroke-width="1.5" stroke-dasharray="3 2.5" class="g2"></rect>`;
+  const O = (x, y, w, h, cl) => `<rect x="${x + 1}" y="${y + 1}" width="${w - 2}" height="${h - 1}" fill="#DCE6FF" stroke="#2450DC" stroke-width="2" class="${cl}"></rect>`;
+  const D = (x, y, w, h) => `<rect x="${x + 0.75}" y="${y + 0.75}" width="${w - 1.5}" height="${h - 1.5}" fill="none" stroke="#2450DC" stroke-width="1.5" stroke-dasharray="3 2.5" class="k2"></rect>`;
   const ICON = {
-    rev: R(4, 23, 8, 9, "#0B1B3A") + R(14, 16, 8, 16, "#0B1B3A", "g1") + R(24, 10, 8, 22, "#2450DC", "g2") + R(24, 4, 8, 6, "#FFD15C", "g3"),
-    books: R(4, 5, 12, 5, "#0B1B3A") + R(4, 13, 12, 5, "#0B1B3A") + R(4, 21, 12, 5, "#0B1B3A") + R(20, 5, 12, 5, "#2450DC", "g1") + R(20, 13, 12, 5, "#2450DC", "g2") + R(20, 21, 12, 5, "#FFD15C", "g3") + R(4, 30, 28, 2, "#0B1B3A"),
-    plan: R(3, 20, 6, 12, "#0B1B3A") + R(11, 15, 6, 17, "#0B1B3A") + R(19, 15, 2, 17, "#FFD15C", "g3") + D(23, 10, 5, 22) + D(30, 4, 5, 28),
-    people: R(4, 5, 8, 8, "#0B1B3A") + R(14, 5, 8, 8, "#0B1B3A", "g1") + R(24, 5, 8, 8, "#2450DC", "g2") + R(4, 15, 8, 8, "#2450DC") + R(14, 15, 8, 8, "#FFD15C", "g3") + R(24, 15, 8, 8, "#0B1B3A") + R(4, 25, 8, 8, "#0B1B3A", "g2") + R(14, 25, 8, 8, "#2450DC", "g1"),
-    co: R(4, 4, 17, 28, "#0B1B3A") + R(23, 4, 9, 13, "#2450DC", "g1") + R(23, 19, 9, 7, "#FFD15C", "g3") + R(23, 28, 9, 4, "#8FA8F5", "g2"),
-    int: R(4, 10, 12, 16, "#0B1B3A", "g1") + R(20, 10, 12, 16, "#2450DC", "g2") + R(13, 15, 10, 6, "#FFD15C", "g3") + R(4, 30, 28, 2, "#0B1B3A")
+    rev: R(2, 23, 8, 9, "#0B1B3A") + R(14, 16, 8, 16, "#0B1B3A", "k1") + R(26, 10, 8, 22, "#2450DC", "k2") + R(26, 3, 8, 5, "#FFD15C", "k3"),
+    books: R(2, 4, 14, 6, "#0B1B3A") + R(2, 13, 14, 6, "#0B1B3A") + R(2, 22, 14, 6, "#0B1B3A") + R(20, 4, 14, 6, "#2450DC", "k1") + R(20, 13, 14, 6, "#2450DC", "k2") + R(20, 22, 14, 6, "#FFD15C", "k3") + R(2, 31, 32, 2, "#0B1B3A"),
+    plan: R(1, 21, 6, 11, "#0B1B3A") + R(8.5, 15, 6, 17, "#0B1B3A") + R(16.5, 3, 2, 29, "#FFD15C", "k3") + O(20.5, 11, 6, 21, "k1") + O(28, 5, 6, 27, "k2"),
+    people: R(13, 3, 10, 10, "#0B1B3A", "k3") + R(17, 13, 2, 6, "#0B1B3A") + R(6, 18, 24, 2, "#0B1B3A") + R(6, 18, 2, 5, "#0B1B3A") + R(28, 18, 2, 5, "#0B1B3A") + R(17, 18, 2, 5, "#0B1B3A") + R(2, 23, 10, 10, "#2450DC", "k1") + R(13, 23, 10, 10, "#FFD15C") + R(24, 23, 10, 10, "#2450DC", "k2"),
+    co: R(2, 3, 18, 30, "#0B1B3A") + R(22, 3, 12, 15, "#2450DC", "k1") + R(22, 20, 12, 8, "#FFD15C", "k3") + R(22, 30, 12, 3, "#8FA8F5", "k2"),
+    int: R(2, 9, 12, 18, "#0B1B3A", "k1") + R(22, 9, 12, 18, "#2450DC", "k2") + R(14, 13, 8, 3, "#0B1B3A") + R(14, 20, 8, 3, "#2450DC") + R(16, 15, 4, 6, "#FFD15C", "k3")
   };
   const ic = (k) => `<svg class="nv-ic nv-${k}" width="36" height="36" viewBox="0 0 36 36" aria-hidden="true">${ICON[k]}</svg>`;
   const top = (h, l, act, menu) => `<div class="nd"><a class="nd-t" href="${h}"${act ? ' data-on="1"' : ""}>${l}${menu ? '<span aria-hidden="true" class="nd-c"></span>' : ""}</a>${menu || ""}</div>`;
