@@ -621,6 +621,7 @@
         var ag = '<p class="hx-who"><em>AGENT</em><span>' + e[3] + "</span></p>", you = '<p class="hx-who"><em class="hx-y">YOU</em><span>' + e[4] + "</span></p>", who = e[5] ? you + ag : ag + you;
         return '<div class="' + (i === cur ? "on" : "") + (e[5] ? " hx-rev" : "") + '"><div class="hx-card"><small>' + e[1] + "</small><b>" + e[2] + "</b>" + who + '</div><div class="hx-two">' + col("THE BOOKS", e[6], "the past", "hx-p") + col("THE PLAN", e[7], "the future", "hx-f") + "</div></div>";
       }).join("") + '</div><div class="hx-ft">One ledger underneath. Nothing is copied from one side to the other.</div></div>';
+      var sb = el.querySelector('[data-kd][aria-pressed="true"]'); if (sb && sb.parentNode.scrollWidth > sb.parentNode.clientWidth + 2) sb.parentNode.scrollLeft = Math.max(0, sb.offsetLeft - sb.parentNode.offsetLeft - 40);
       clearTimeout(timer); if (auto) timer = setTimeout(function () { cur = (cur + 1) % 4; draw(); }, DUR);
     }
     on(el, "[data-kd]", function (t) { kd = +t.getAttribute("data-kd"); cur = 0; auto = false; draw(); });
