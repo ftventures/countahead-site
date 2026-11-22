@@ -380,6 +380,34 @@
     on(el, "[data-g]", function (t) { g = +t.getAttribute("data-g"); draw(); }); on(el, "[data-i]", function (t) { sel = +t.getAttribute("data-i"); draw(); }); draw();
   };
   /* ---------- about: past and future, linked ---------- */
+  /* ---------- home hero: one event, both sides of the ledger move ---------- */
+  W.hero = function (el) {
+    var EV = [
+      ["A deal is signed", "REVENUE", "Harbor Labs signs for 40 seats", "Drafted the contract from the deal and sent it for signature.", "Approved the terms.", 0,
+        [["Invoice", "$12,000, drafted"], ["Revenue", "$4,000 a month from Dec 1"], ["Commission", "$4,800 accrued"]],
+        [["Recurring revenue", "$3.97M &rarr; $4.02M"], ["Cash forecast", "+$48k over 12 months"], ["Board pack", "New customer added"]]],
+      ["A bill arrives", "BOOKS", "Orbit Cloud bills $4,812 for hosting", "Read the invoice, matched it to the card and proposed the entry.", "Approve it. It is over your $500 limit, so it waits for you.", 0,
+        [["Entry", "5100 Hosting, $4,812"], ["Bank", "Matched to the card payment"], ["Gross margin", "74.9% this month"]],
+        [["Hosting forecast", "+$11k a month"], ["Runway", "20 months, no change"], ["Board pack", "Margin flagged"]]],
+      ["A customer pays late", "COLLECTIONS", "Northwind is 34 days late on $18,000", "Sent two reminders and drafted a firmer third.", "Approve the third, or pick up the phone.", 0,
+        [["Owed to you", "$18,000 overdue"], ["Follow-up", "Third reminder drafted"], ["Customer", "Marked at risk"]],
+        [["Cash forecast", "$18k moved to next month"], ["Runway", "20 months, no change"], ["Board pack", "Listed under risks"]]],
+      ["You plan two hires", "PLAN", "Two sales hires, starting in January", "Updated payroll, the budget and the option grants to match.", "Added them to the headcount plan.", 1,
+        [["Payroll", "Two starters set up"], ["Budget", "Sales and marketing updated"], ["Options", "Grants drafted for the board"]],
+        [["Payroll", "+$28k a month"], ["Revenue", "+$40k a month once ramped"], ["Runway", "20 &rarr; 22 months"]]]];
+    var cur = 0, auto = !window.__PRERENDER && !(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches), timer = null, DUR = 6500;
+    function col(k, rows, sub, cls) { return '<div class="hx-col ' + cls + '"><small><span>' + k + "</span><i>" + sub + "</i></small>" + rows.map(function (r) { return "<div><span>" + r[0] + "</span><b>" + r[1] + "</b></div>"; }).join("") + "</div>"; }
+    function draw() {
+      el.innerHTML = '<div class="w-panel w-glass hx"><div class="w-ph"><span>SOMETHING HAPPENS</span><span>BOTH SIDES UPDATE</span></div><div class="hx-ev" role="group" aria-label="Pick an event">' + EV.map(function (e, i) { return '<button type="button" data-e="' + i + '" aria-pressed="' + (i === cur) + '">' + e[0] + "</button>"; }).join("") + '</div><div class="w-prog"><i' + (auto ? ' class="hx-run" style="animation-duration:' + DUR + 'ms"' : "") + '></i></div><div class="stk hx-b">' + EV.map(function (e, i) {
+        var ag = '<p class="hx-who"><em>AGENT</em><span>' + e[3] + "</span></p>", you = '<p class="hx-who"><em class="hx-y">YOU</em><span>' + e[4] + "</span></p>", who = e[5] ? you + ag : ag + you;
+        return '<div class="' + (i === cur ? "on" : "") + (e[5] ? " hx-rev" : "") + '"><div class="hx-card"><small>' + e[1] + "</small><b>" + e[2] + "</b>" + who + '</div><div class="hx-two">' + col("THE BOOKS", e[6], "the past", "hx-p") + col("THE PLAN", e[7], "the future", "hx-f") + "</div></div>";
+      }).join("") + '</div><div class="hx-ft">One ledger underneath. Nothing is copied from one side to the other.</div></div>';
+      clearTimeout(timer); if (auto) timer = setTimeout(function () { cur = (cur + 1) % EV.length; draw(); }, DUR);
+    }
+    on(el, "[data-e]", function (t) { cur = +t.getAttribute("data-e"); auto = false; draw(); });
+    draw();
+  };
+
   W.pastfuture = function (el) {
     var P = ["Bank", "Bills", "Invoices", "Payroll", "Month-end close", "Statements"], F = ["Forecast", "Hiring", "Runway", "Scenarios", "Board pack", "Fundraising"];
     var L = [[[0, 2, 3], "Today's bank balance is where the forecast, the runway and every scenario start."], [[0, 2], "A bill you approve today is already in next month's cash forecast."], [[0, 2, 4], "An invoice you send today is already in the forecast, the runway and the board pack."], [[1, 2, 3], "This month's payroll is the starting cost for every hire you plan."], [[0, 4, 5], "A closed month becomes the first column of the forecast and the board pack."], [[4, 5], "The statements investors ask for are the same ones the board pack and the data room show."]];
