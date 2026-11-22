@@ -1242,3 +1242,8 @@ header>.wrap{position:relative}
 .aw-head,.aw-row{display:grid;grid-template-columns:minmax(0,1fr) 84px minmax(0,1.5fr);gap:20px;align-items:center;padding:13px 24px}.aw-head{padding-top:10px;padding-bottom:8px;font-size:13px;font-weight:700;color:#4B5565}.aw-head+.aw-g{border-top:1px solid var(--ink)}
 .aw-what{grid-column:auto;font-size:15.5px}.aw-who{justify-items:start}.aw-g{padding:10px 24px}}
 @media(prefers-reduced-motion:reduce){.aw-who i{transition:none}.as-on .aw-t1{animation:none}}
+/* deal health chip in the pipeline; quote steps side panel */
+.m-hs{display:flex;align-items:center;gap:7px;font-size:12.5px;line-height:1.25;color:#2B3648;margin:2px 0}.m-hs i{font-style:normal;flex:none;min-width:26px;text-align:center;font-weight:800;font-size:12.5px;padding:2px 4px;font-variant-numeric:tabular-nums}
+.m-hs-g i{background:#2450DC;color:#fff}.m-hs-w i{background:#FFD15C;color:#0B1B3A}.m-hs-r i{background:#0B1B3A;color:#FFD15C}
+.qf-side li{grid-template-columns:minmax(0,1fr)!important;padding:11px 0 11px 12px!important;border-left:4px solid #2450DC;border-top:0!important;margin-bottom:8px;background:#fff}.qf-side li.qf-me{border-left-color:#0B1B3A}.qf-side li.qf-cu{border-left-color:#FFD15C}.qf-side li span{padding-right:10px}
+[data-widget=pipeline] .m-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}@media(min-width:760px){[data-widget=pipeline] .m-stats{grid-template-columns:repeat(4,minmax(0,1fr))}}
