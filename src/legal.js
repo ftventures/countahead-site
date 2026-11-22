@@ -20,6 +20,7 @@ module.exports = function (subhero) {
     ["Other companies' names", "The integrations page lists tools we plan to connect to. None is live. Those names and marks belong to their owners, and listing them does not mean they endorse, sponsor or are affiliated with Countahead."],
     ["Early access", "Asking for early access puts you on a list. It does not commit you to anything, and it does not commit us to give you access."],
     ["Using the site", "You are welcome to read, link to and share this site. Please do not copy its designs or text for another product."],
+    ["Our name and mark", "Countahead, the Countahead logo and the look of this site are trademarks and trade dress of Oasis Ventures FZE. They are used here from the day the site went live. Please do not use them in a way that suggests we are connected to, or endorse, your product."],
     ["Our responsibility", "We work to keep this site accurate, but it is provided as it is, and it describes something unfinished. As far as the law allows, we are not responsible for decisions made by relying on it."],
     ["Governing law", "These terms are governed by the laws of the United Arab Emirates as applied in the Emirate of Umm Al Quwain. If you are a consumer, this does not take away any rights you have under the laws of the country where you live."],
     ["Changes", "We may update these terms. The date at the top shows the latest version."]
