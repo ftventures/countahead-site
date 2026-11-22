@@ -90,7 +90,7 @@
       else { var nx = ix + 1 < tops.length ? tops[ix + 1] : document.documentElement.scrollHeight - window.innerHeight + line, f = Math.max(0, Math.min(1, (y - tops[ix]) / Math.max(1, nx - tops[ix]))), to = ix + 1 < rc.length ? rc[ix + 1].left : rc[ix].right; x = rc[ix].left + f * (to - rc[ix].left); }
       pr.style.animation = "none"; pr.style.display = "block"; pr.style.transformOrigin = "0 50%"; pr.style.transform = "scaleX(" + Math.max(0, Math.min(1, x / window.innerWidth)).toFixed(4) + ")";
     }
-    links.forEach(function (a) { if (a === cur) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current"); });
+    var ci = links.indexOf(cur); links.forEach(function (a, i) { if (a === cur) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current"); if (ci > -1 && i < ci) a.setAttribute("data-done", "1"); else a.removeAttribute("data-done"); });
     if (cur) { mk.style.width = cur.offsetWidth + "px"; mk.style.transform = "translateX(" + cur.offsetLeft + "px)"; mk.style.opacity = "1"; var id = cur.getAttribute("href"); if (id !== spyLast) { spyLast = id; var l = cur.offsetLeft - 24, r = cur.offsetLeft + cur.offsetWidth + 24; if (l < nav.scrollLeft) nav.scrollLeft = l; else if (r > nav.scrollLeft + nav.clientWidth) nav.scrollLeft = r - nav.clientWidth; } }
     else { mk.style.opacity = "0"; spyLast = ""; }
   }
