@@ -153,10 +153,21 @@ const integ = subhero("Integrations", "It plugs into the tools", "you already ru
 </div>
 </section>`;
 const productTop = subhero("The books", "A full accounting system,", "run by agents you supervise.", "The finished product first: statements that are current today, on sample data. How they get that way is the rest of this page.", '<div class="r5 st-win" data-widget="statements"></div>');
-const footer = /<footer[\s\S]*?<\/footer>/.exec(body)[0]
-  .replace(/<svg width="16" height="16"[\s\S]*?<\/svg>/, '<svg width="16" height="16" viewBox="0 0 26 26" aria-hidden="true"><rect x="0" y="9" width="17" height="17" style="fill: #0B1B3A"></rect><rect x="9" y="0" width="17" height="17" style="fill: #2450DC"></rect><rect x="9" y="9" width="8" height="8" style="fill: var(--pop)"></rect></svg>')
-  .replace("<div>Product interfaces shown", '<div style="display: flex; flex-wrap: wrap; gap: 6px 18px">' + NAV.map(([h, l]) => `<a href="${h}" style="color: #0B1B3A; font-weight: 600">${l}</a>`).join("") + "</div>\n<div>Product interfaces shown")
-  .replace("</div>\n</div>\n</footer>", '</div>\n<div style="flex-basis: 100%; display: flex; flex-wrap: wrap; gap: 6px 18px; padding-top: 14px; border-top: 1px solid #E3E7EE"><a href="privacy.html" style="color: #0B1B3A; font-weight: 600">Privacy</a><a href="terms.html" style="color: #0B1B3A; font-weight: 600">Terms</a><a href="refunds.html" style="color: #0B1B3A; font-weight: 600">Billing and refunds</a><a href="about.html#contact" style="color: #0B1B3A; font-weight: 600">Contact</a><a href="mailto:hello@countahead.ai" style="color: #0B1B3A; font-weight: 600">hello@countahead.ai</a></div>\n</div>\n</footer>');
+const FT = [["Product", [["revenue.html", "Revenue"], ["books.html", "Books"], ["plan.html", "Plan"], ["people.html", "People"], ["company.html", "Company"], ["integrations.html", "Integrations"]]], ["Who it is for", IND.map((x) => [x[0], x[1]]).concat([["accountants.html", "Accountants and firms"]])], ["Countahead", [["pricing.html", "Pricing"], ["about.html", "About"], ["about.html#contact", "Contact"], ["index.html#look-inside", "Try the demos"]]], ["The small print", [["privacy.html", "Privacy"], ["terms.html", "Terms"], ["refunds.html", "Billing and refunds"]]]];
+const footer = `<footer class="ft">
+<div class="ft-line" aria-hidden="true">${[38, 46, 42, 54, 60].map((h) => `<i class="ft-p" style="height:${h}%"></i>`).join("")}<i class="ft-n" style="height:70%"></i>${[76, 82, 88, 92, 96, 100].map((h) => `<i class="ft-f" style="height:${h}%"></i>`).join("")}</div>
+<div class="wrap ft-key" aria-hidden="true"><span>What happened</span><span>Today</span><span>What happens next</span></div>
+<div class="wrap ft-main">
+<div class="ft-brand">
+<a href="index.html" class="ft-logo" aria-label="{{brand}} home"><svg width="34" height="34" viewBox="0 0 26 26" aria-hidden="true"><rect x="0" y="9" width="17" height="17" style="fill: #0B1B3A"></rect><rect x="9" y="0" width="17" height="17" style="fill: #2450DC"></rect><rect x="9" y="9" width="8" height="8" style="fill: var(--pop)"></rect></svg><b>{{brand}}<span class="tm" aria-hidden="true">&trade;</span></b></a>
+<p>One ledger for the books and the plan.</p>
+<a href="#access" class="ft-cta">Get early access</a>
+<a href="mailto:hello@countahead.ai" class="ft-mail">hello@countahead.ai</a>
+</div>
+<nav class="ft-cols" aria-label="Site">${FT.map(([t, list]) => `<div><b>${t}</b>${list.map(([h, l]) => `<a href="${h}">${l}</a>`).join("")}</div>`).join("")}</nav>
+</div>
+<div class="wrap ft-base"><span>&copy; 2026 {{brand}}</span><span>In development. Every product screen on this site is a working design on sample data.</span></div>
+</footer>`;
 function demo(id, bg, ey, h2, lead, widget) {
   return `<section id="${id}" style="padding: 88px 0; background: ${bg}; border-bottom: 1px solid #D5DBE5">
 <div class="wrap demo2" style="display: flex; flex-direction: column; gap: 32px">
