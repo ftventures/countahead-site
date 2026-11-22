@@ -40,7 +40,14 @@ if (hero.indexOf('<div class="r5" style="background: rgba(255,255,255,0.07)') < 
 const hw = '<div class="wrap" style="position: relative; z-index: 1; padding-top: 48px; padding-bottom: 88px; display: flex; flex-direction: column; gap: 40px">';
 if (hero.indexOf(hw) < 0) throw new Error("hero wrap not found");
 hero = hero.replace(hw, hw.replace('class="wrap"', 'class="wrap hero2"'));
-hero = hero.slice(0, hero.indexOf('<div class="r5" style="background: rgba(255,255,255,0.07)')) + '<div class="r5 w-hero" data-widget="hero"></div>\n' + hero.slice(hero.lastIndexOf("</div>\n</section>"));
+hero = hero.slice(0, hero.indexOf('<div class="r5" style="background: rgba(255,255,255,0.07)')) + '<div class="r5 w-hero" data-widget="hero" data-kinds></div>\n' + hero.slice(hero.lastIndexOf("</div>\n</section>"));
+{
+  const LEAD = "One ledger for the past and the future. Agents keep the books inside the rules you set, and your forecast, runway and board pack read the same numbers.";
+  if (hero.indexOf(LEAD) < 0) throw new Error("hero lead not found");
+  hero = hero.replace(LEAD, "Sales, books, plan, people and company on one ledger. Agents do the work inside the rules you set, so the numbers you plan on are the numbers in your books.");
+  const c = hero.indexOf("</div>", hero.indexOf("See why it is different"));
+  hero = hero.slice(0, c + 6) + '\n<p class="ho-for r4"><small>Built for</small><a href="founders.html">Founders and CEOs</a><a href="finance-leads.html">Finance leads</a><a href="investors.html">Investors and boards</a><a href="accountants.html">Accountants</a></p>' + hero.slice(c + 6);
+}
 windowHtml = windowHtml.replace('href="#ask"', 'href="plan.html#today"');
 
 const IND = require("./sectors.js").IND;
@@ -432,4 +439,3 @@ for (const [file, title, desc, parts] of pages) {
   fs.writeFileSync(path.join(root, file), shell.replace('<div id="app"></div>', '<div id="app">' + html + "</div>").replace(/href="index\.html/g, 'href="./').replace(/href="(revenue|books|plan|company|integrations|about|software|ai-usage|online-stores|consumer-brands|wholesale|services|professional-services|hospitality|retail|other-industries|founders|finance-leads|investors|accountants|people|pricing|refunds|privacy|terms)\.html/g, 'href="$1'));
   console.log(file, Math.round(html.length / 1024) + " KB prerendered,", (tpl.match(/<section/g) || []).length, "sections");
 }
-process.on("exit", () => { try { require("./heroopts.js")(); } catch (e) { console.error("hero options error:", e.message); } });

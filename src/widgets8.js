@@ -533,7 +533,33 @@
       ["You plan a hire", "PLAN", "A senior designer, starting in February", "Checked that signed work covers the cost.", "Added the role and the salary.", 1,
         [["Payroll", "One starter set up"], ["Budget", "Delivery team updated"], ["Equipment", "$3,200 requested"]],
         [["Payroll", "+$9k a month"], ["Capacity", "+120 billable hours a month"], ["Pays for itself", "From month 3"]]]];
-    var KD = [["Software", EV], ["Online store", EV2], ["Cafe", EV3], ["Agency", EV4]], kinds = el.getAttribute("data-kinds") != null, kd = 0;
+    var EV5 = [
+      ["Usage is metered", "BILLING", "Lumen uses 41 million tokens in November", "Priced the usage against the contract and drafted the invoice.", "Approve the invoice.", 0,
+        [["Invoice", "$18,450, drafted"], ["Revenue", "Earned in November"], ["Model cost", "$6,120, same month"]],
+        [["Usage revenue", "$285k, up 12%"], ["Gross margin", "67%"], ["Commitment", "118% used"]]],
+      ["A model bill arrives", "BOOKS", "The model provider bills $92,300", "Split the cost by customer from the usage logs.", "Approve it. It is over your limit.", 0,
+        [["Cost of revenue", "$92,300"], ["Margin by customer", "Three below 40%"], ["Owed to suppliers", "Due December 15"]],
+        [["Gross margin", "67 &rarr; 65%"], ["Cash forecast", "&minus;$92k in December"], ["Board pack", "Margin flagged"]]],
+      ["A customer passes its cap", "REVENUE", "Brightline passes its $10,000 monthly commitment", "Applied the overage rate and told the account owner.", "Offer a bigger plan, or leave it.", 0,
+        [["Overage", "$2,140 this month"], ["Prepaid credits", "Used up"], ["Upgrade", "Quote drafted"]],
+        [["Recurring revenue", "+$26k a year if upgraded"], ["Usage forecast", "Trend raised"], ["Net retention", "124%"]]],
+      ["You plan a price cut", "PLAN", "Price per token down 15% from January", "Re-ran every customer's last 90 days at the new price.", "Set the new price.", 1,
+        [["Price book", "New version, dated Jan 1"], ["Contracts", "14 need notice"], ["Invoices", "Unchanged until then"]],
+        [["Revenue", "&minus;$38k a month at today's usage"], ["Gross margin", "67 &rarr; 61%"], ["Runway", "19 &rarr; 17 months"]]]];
+    var EV6 = [
+      ["The day closes", "TILL", "High Street takes $6,148 on Saturday", "Matched card takings to the payout and took the stock sold off the shelf.", "Nothing, unless the drawer is off by more than $20.", 0,
+        [["Sales", "$6,148"], ["Stock", "212 units out, $2,460 at cost"], ["Gift cards", "$150 sold, held until used"]],
+        [["Sales this week", "$128k, on track"], ["Stock cover", "38 days"], ["Cash forecast", "Card payout Monday"]]],
+      ["Stock arrives", "BOOKS", "Loom &amp; Co delivers 600 units for $9,800", "Matched the delivery to the purchase order.", "Approve it. Twelve units came short.", 0,
+        [["Stock", "+$9,604"], ["Credit note", "$196 requested"], ["Owed to suppliers", "Due in 30 days"]],
+        [["Cash forecast", "&minus;$9.6k in January"], ["Stock cover", "38 &rarr; 61 days"], ["Gross margin", "54%, no change"]]],
+      ["A line stops selling", "STOCK", "Winter coats: 9 sold in three weeks", "Worked out what a markdown would cost and what it would free up.", "Mark down by 30%, or hold.", 0,
+        [["Stock held", "$14,200 in coats"], ["Margin today", "56%"], ["Margin at 30% off", "37%"]],
+        [["Cash forecast", "+$8k by January if marked down"], ["Sales", "+$11k"], ["Board pack", "Slow stock listed"]]],
+      ["You plan a second shop", "PLAN", "A second shop, opening in May", "Built the plan from High Street's own numbers.", "Set the rent, the fit-out and the opening stock.", 1,
+        [["Fit-out", "$90k budget set up"], ["Opening stock", "$60k order drafted"], ["Team", "5 roles added"]],
+        [["Break-even", "Month 9"], ["Cash low point", "$48k in July"], ["Runway", "16 &rarr; 10 months"]]]];
+    var KD = [["Software", EV], ["AI", EV5], ["Online store", EV2], ["Shop", EV6], ["Cafe", EV3], ["Agency", EV4]], kinds = el.getAttribute("data-kinds") != null, kd = 0;
     var cur = 0, auto = !window.__PRERENDER && !(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches), timer = null, DUR = 6500;
     function col(k, rows, sub, cls) { return '<div class="hx-col ' + cls + '"><small><span>' + k + "</span><i>" + sub + "</i></small>" + rows.map(function (r) { return "<div><span>" + r[0] + "</span><b>" + r[1] + "</b></div>"; }).join("") + "</div>"; }
     function draw() {
