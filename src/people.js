@@ -1,0 +1,19 @@
+// People. The record finance needs, an employee's own page, and time off. Payroll stays with the payroll provider.
+module.exports = function (subhero, mock, C, access) {
+  const sec = (id, bg, ey, h2, lead, inner) => `<section id="${id}" class="ab-sec" style="background: ${bg}">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
+<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 900px"><p class="ey">${ey}</p><h2 class="h2">${h2}</h2>${lead ? `<p class="lead">${lead}</p>` : ""}</div>
+${inner}
+</div>
+</section>`;
+  const top = subhero("People", "Everyone who works here,", "and what they cost.", "One record for the people in the company, tied to the plan, the books and the cap table. Your payroll provider keeps running payroll. Countahead keeps everything else about your team in step.");
+  const team = mock("team", "#FFFFFF", "The team", "One list of people. " + C("Every part of the product uses it."), "The hiring plan, the payroll cost by department, who approves what, option grants and commissions all need to know who works here. Today each keeps its own list. Here there is one.", "peopleteam");
+  const me = mock("my-page", "#F6F8FC", "My page", "Each person's own page, " + C("with nothing they should not see."), "Expenses, approvals, equity, commission, documents and time off, gathered in one place. Pick a person and tap a tile.", "peopleme");
+  const off = mock("time-off", "#FFFFFF", "Time off", "A day off is also " + C("a number in the books."), "Request, approve, see who is out. And because unused holiday is money the company owes, the month-end figure comes from the real balances. Send a request and watch it.", "peopleoff");
+  const join = mock("joining-leaving", "#F6F8FC", "Joining and leaving", "One change, " + C("everywhere it matters."), "When someone joins or leaves, a dozen things have to happen across finance, access and equity. Tap through each list.", "peoplejoin");
+  const here = ["The person and position record, with cost by team.", "Each person's own page.", "Time off, with balances that feed the books.", "Joining and leaving checklists.", "People cost against plan, by position."];
+  const there = ["Payroll, and anything that calculates or files payroll tax.", "Benefits.", "Performance reviews and goals.", "Hiring and applicant tracking.", "Advice on employment law. Leave allowances are the ones you set."];
+  const line = sec("the-line", "#FFFFFF", "What stays outside", "People, " + C("not an HR system."), "Payroll and the big HR tools are good at what they do. We connect to them and stay out of their way.", `<div class="ac-two rv"><div class="ab-card"><b>Here</b><ul>${here.map((t) => `<li class="ac-yes">${t}</li>`).join("")}</ul></div><div class="ab-card"><b>With your payroll or HR provider</b><ul>${there.map((t) => `<li class="ac-no">${t}</li>`).join("")}</ul></div></div>
+<p class="rv" style="margin: 0; font-size: 15px; line-height: 1.5; color: #4B5565; max-width: 60em">Planned connections: Gusto, Rippling, Deel and Remote. If you already track time off there, it stays there and the balances are read in. <a href="integrations.html#directory" style="color: #2450DC; font-weight: 700">See integrations</a>.</p>`);
+  return [["people.html", "People: your team, tied to the books and the plan | Countahead", "One record of who works here and what they cost, each person's own page, and time off that feeds the books. Payroll stays with your payroll provider.", [top, team, me, off, join, line, access]]];
+};

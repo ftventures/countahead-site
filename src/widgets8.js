@@ -346,10 +346,12 @@
         if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(st.email.trim())) { msg = "Please enter a work email so we can reach you."; draw(true); return; }
         if (!ENDPOINT) { msg = "Sign-up is not switched on yet, so nothing was sent. Please check back soon."; draw(); return; }
         if (st.hp) { done = true; draw(); return; }
-        fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email: st.email.trim().toLowerCase(), role: st.role || null, page: location.pathname.slice(0, 80) }) }).then(function (r) { if (!r.ok) throw 0; done = true; draw(); }).catch(function () { msg = "That did not go through. Please try again in a moment."; draw(); });
+        fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email: st.email.trim().toLowerCase(), role: st.role || null, page: (location.pathname + (st.tag ? "#" + st.tag : "")).slice(0, 80) }) }).then(function (r) { if (!r.ok) throw 0; done = true; draw(); }).catch(function () { msg = "That did not go through. Please try again in a moment."; draw(); });
       });
       if (focus) el.querySelector("#ea-email").focus();
+      if (st.note && el.querySelector("form")) { var nt = document.createElement("p"); nt.className = "ea-note"; nt.textContent = st.note; el.insertBefore(nt, el.querySelector("form")); }
     }
+    document.addEventListener("ca-access-preset", function (e) { var dd = e.detail || {}; if (done) return; st.role = dd.role || st.role; st.tag = dd.tag || ""; st.note = dd.note || ""; draw(); });
     draw();
   };
   /* ---------- plan: the monthly investor update ---------- */
