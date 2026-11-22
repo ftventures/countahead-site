@@ -141,20 +141,21 @@ ${inner || ""}
 }
 const card = (href, n, t, d) => `<a href="${href}" class="bt" style="display: flex; flex-direction: column; gap: 8px; padding: 22px 20px; background: #FFFFFF; color: #0B1B3A; text-decoration: none; border: 1px solid #0B1B3A; box-shadow: 6px 6px 0 #0B1B3A"><span style="font-stretch: 125%; font-weight: 800; font-size: 13px; color: #2450DC">${n}</span><b style="font-stretch: 112%; font-weight: 800; font-size: 24px; line-height: 1.1; letter-spacing: -0.01em">${t}</b><span style="font-size: 16px; line-height: 1.45; color: #2B3648">${d}</span><span style="margin-top: 6px; font-weight: 800; color: #2450DC">Open <span aria-hidden="true">&rarr;</span></span></a>`;
 const LOOK = [
-  ["revenue.html#contracts", "Revenue", "From signed deal to cash, without retyping.", "Build a contract", "{{n:revenue.html}} demos"],
-  ["books.html#approvals", "Books", "Agents keep them. You approve.", "Approve 200 entries in two minutes", "{{n:books.html}} demos"],
-  ["plan.html#scenarios", "Plan", "Forecast and runway, straight from the books.", "Add a hire and watch runway move", "{{n:plan.html}} demos"],
-  ["company.html#cap-table", "Company", "Cap table, data room and records.", "Model a funding round", "{{n:company.html}} demos"],
-  ["integrations.html#switch", "Switching", "Bring your books from QuickBooks, Xero or NetSuite.", "Run a switch, month by month", "{{n:integrations.html}} demos"],
-  ["software.html", "Industries", "Software, stores, services, hospitality and more.", "See your kind of business", "5 industries"],
-  ["accountants.html#review", "For accountants", "Less typing. More of the work only you can do.", "Work a review queue and sign off", "{{n:accountants.html}} demos"],
-  ["pricing.html", "Pricing", "One price by company size. Everything included.", "Find your price", "From $49"]
+  ["revenue.html#how-you-sell", "Revenue", "From signed deal to cash, without retyping.", "Sign a contract and watch the books react", "{{n:revenue.html}} demos", "rev"],
+  ["books.html#approvals", "Books", "Agents keep them. You approve.", "Approve 200 entries in two minutes", "{{n:books.html}} demos", "books"],
+  ["plan.html#scenarios", "Plan", "Forecast and runway, straight from the books.", "Add a hire and watch runway move", "{{n:plan.html}} demos", "plan"],
+  ["people.html", "People", "Your team, what it costs and who you hire next.", "See what each team costs", "{{n:people.html}} demos", "people"],
+  ["company.html#cap-table", "Company", "Cap table, data room and records.", "Model a funding round", "{{n:company.html}} demos", "co"],
+  ["integrations.html#switch", "Switching", "Bring your books from QuickBooks, Xero or NetSuite.", "Run a switch, month by month", "{{n:integrations.html}} demos", "int"],
+  ["other-industries.html#fit", "By industry", "Ten kinds of business, each with its own demo, dashboard and board pack.", "Check that it fits yours", "10 industries", "other"],
+  ["accountants.html#review", "For accountants", "Less typing. More of the work only you can do.", "Work a review queue and sign off", "{{n:accountants.html}} demos", "acct"],
+  ["pricing.html", "Pricing", "One price by company size. Everything included.", "Find your price", "From $49", "price"]
 ];
 const explore = `<section id="look-inside" style="padding: 88px 0; border-bottom: 1px solid #D5DBE5">
 <div class="wrap" style="display: flex; flex-direction: column; gap: 28px">
 <div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 860px"><p class="ey">Look inside</p><h2 class="h2">Try the product <span style="color: #2450DC">before it exists.</span></h2><p class="lead">Nothing on this site is a screenshot. Every page has working demos on sample data. Pick one thing to try.</p></div>
 <div class="rv lk-grid">
-${LOOK.map((c, i) => `<a href="${c[0]}" class="lk bt"><span class="lk-n">0${i + 1}</span><b>${c[1]}</b><em>${c[4]}</em><p>${c[2]}</p><span class="lk-try"><small>TRY</small> ${c[3]}&nbsp;<i aria-hidden="true">&rarr;</i></span></a>`).join("\n")}
+${LOOK.map((c, i) => `<a href="${c[0]}" class="lk bt"><span class="lk-n">{{ik:${c[5]}}}</span><b>${c[1]}</b><em>${c[4]}</em><p>${c[2]}</p><span class="lk-try"><small>TRY</small> ${c[3]}&nbsp;<i aria-hidden="true">&rarr;</i></span></a>`).join("\n")}
 </div>
 </div>
 </section>`;
@@ -407,7 +408,7 @@ const CSSF = "assets/site." + hash(cssText) + ".css", JSF = "assets/app." + hash
 fs.writeFileSync(path.join(root, CSSF), cssText);
 fs.writeFileSync(path.join(root, JSF), appjs);
 for (const [file, title, desc, parts] of pages) {
-  const tpl = V(`<div class="site">\n${header(file)}\n${parts.join("\n\n").replace(/\{\{ic:([a-z-]+\.html)\}\}/g, (m, f) => global.caIcon(global.caIK[f] || "other"))}\n\n${footer}\n</div>`);
+  const tpl = V(`<div class="site">\n${header(file)}\n${parts.join("\n\n").replace(/\{\{ic:([a-z-]+\.html)\}\}/g, (m, f) => global.caIcon(global.caIK[f] || "other")).replace(/\{\{ik:([a-z]+)\}\}/g, (m, k) => global.caIcon(k))}\n\n${footer}\n</div>`);
   const shell = `<!DOCTYPE html>
 <html lang="en">
 <head>
