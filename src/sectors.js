@@ -1,4 +1,4 @@
-// Industry pages. One template, four kinds of business. Each opens with its own numbers and demos.
+// Industry pages. One template, five pages. Each opens with its own numbers and demos.
 const IND = [["software.html", "Software"], ["online-stores.html", "Online stores"], ["services.html", "Services and agencies"], ["hospitality.html", "Hospitality and retail"], ["other-industries.html", "Other industries"]];
 
 const DATA = [
@@ -52,7 +52,7 @@ module.exports = function (subhero, mock, C, access) {
     const top = subhero(d.ey, d.h1[0], d.h1[1], d.lead, inner);
     const pains = `<section id="why" class="ab-sec" style="background: #FFFFFF">
 <div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
-<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 900px"><p class="ey">What changes</p><h2 class="h2">Three problems this kind of business has, ${C("and what replaces them.")}</h2></div>
+<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 900px"><p class="ey">What changes</p><h2 class="h2">Three problems ${d.file === "other-industries.html" ? "most businesses" : d.ey.replace(/^For /, "").replace("hospitality and retail", "restaurants and shops")} have, ${C("and what replaces them.")}</h2></div>
 <div class="ab-grid3 rv">${d.pairs.map((p, i) => `<div class="sx-pair"><div><small>TODAY</small><p>${p[0]}</p></div><div><small>WITH COUNTAHEAD</small><b>${p[1]}</b></div></div>`).join("")}</div>
 </div>
 </section>`;

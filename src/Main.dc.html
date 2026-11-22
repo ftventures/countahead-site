@@ -241,7 +241,7 @@ section[id]{scroll-margin-top:76px}
 <p style="margin: 0 0 14px 0; font-size: 12px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: {{recHeadFg}}">{{recHead}}</p>
 <div style="display: flex; flex-direction: column; box-shadow: {{recShadow}}; transition: box-shadow .4s .35s">
 <div class="mcard" style="position: relative; background: {{recBg}}; border: 1px solid #0B1B3A; padding: 14px 16px; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; animation: {{recAnim1}}; transition: background .4s .3s">
-<div style="min-width: 0; display: flex; flex-direction: column; gap: 3px"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #4B5565">BANK LINE</span><span style="font-weight: 800; font-size: 16px; line-height: 1.25">Incoming wire, <span style="background: #A9E8CF">Northwind Ltd</span></span><span style="font-size: 13px; color: #4B5565">Nov 05, reference <span style="background: #A9E8CF; color: #0B1B3A">INV-0147</span></span></div>
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 3px"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #4B5565">BANK LINE</span><span style="font-weight: 800; font-size: 16px; line-height: 1.25">Incoming wire, <span style="background: #A9E8CF">Northwind Ltd</span></span><span style="font-size: 13px; color: #4B5565">Nov 05, reference <span style="background: #A9E8CF; color: #0B1B3A">INV-0143</span></span></div>
 <span style="flex: none; font-stretch: 112%; font-weight: 800; font-size: 18px; background: #A9E8CF; padding: 0 4px">12,000.00</span>
 </div>
 <div style="height: {{recMidH}}; opacity: {{recMidOp}}; visibility: {{recMidVis}}; overflow: hidden; transition: height .5s cubic-bezier(.6,0,.2,1), opacity .25s, visibility .5s; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; border-left: 1px dashed #2450DC; border-right: 1px dashed #2450DC; box-sizing: border-box">
@@ -249,13 +249,13 @@ section[id]{scroll-margin-top:76px}
 <button type="button" class="b-teal" onClick="{{recConfirm}}" style="background: #2450DC; color: #FFFFFF; border: 0; font-weight: 700; font-size: 16px; padding: 12px 22px; min-height: 46px; cursor: pointer">Confirm match</button>
 </div>
 <div class="mcard" style="background: {{recBg}}; border: 1px solid #0B1B3A; margin-top: {{recMt}}; padding: 14px 16px; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; animation: {{recAnim2}}; transition: background .4s .3s">
-<div style="min-width: 0; display: flex; flex-direction: column; gap: 3px"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #4B5565">OPEN INVOICE</span><span style="font-weight: 800; font-size: 16px; line-height: 1.25"><span style="background: #A9E8CF">INV-0147</span>, <span style="background: #A9E8CF">Northwind Ltd</span></span><span style="font-size: 13px; color: #4B5565">Issued Oct 21, due Nov 20</span></div>
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 3px"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #4B5565">OPEN INVOICE</span><span style="font-weight: 800; font-size: 16px; line-height: 1.25"><span style="background: #A9E8CF">INV-0143</span>, <span style="background: #A9E8CF">Northwind Ltd</span></span><span style="font-size: 13px; color: #4B5565">Issued Oct 21, due Nov 20</span></div>
 <span style="flex: none; font-stretch: 112%; font-weight: 800; font-size: 18px; background: #A9E8CF; padding: 0 4px">12,000.00</span>
 </div>
 </div>
 <sc-if value="{{recOn}}" hint-placeholder-val="{{false}}">
 <div class="r1" style="margin-top: 18px; display: flex; flex-direction: column; gap: 10px; font-size: 14px; color: #2B3648">
-<span><b style="color: #0B1B3A">JE-1191 posted.</b> Debit 1010 Operating bank, credit 1200 Accounts receivable, 12,000.00. Invoice INV-0147 marked paid.</span>
+<span><b style="color: #0B1B3A">JE-1191 posted.</b> Debit 1010 Operating bank, credit 1200 Accounts receivable, 12,000.00. Invoice INV-0143 marked paid.</span>
 <button type="button" class="b-white" onClick="{{recUndo}}" style="align-self: flex-start; background: #FFFFFF; color: #0B1B3A; border: 1px solid #0B1B3A; font-weight: 600; font-size: 14px; padding: 9px 14px; min-height: 44px; cursor: pointer">Undo and replay</button>
 </div>
 </sc-if>
@@ -439,7 +439,7 @@ section[id]{scroll-margin-top:76px}
 <span style="font-size: 14px; color: #C7D2E6">{{queueStatus}}</span>
 </div>
 <div style="height: 6px; background: #E3E7EE"><div style="height: 6px; background: #2450DC; width: {{closePct}}; transition: width .6s ease-out"></div></div>
-<div style="padding: 12px 20px; border-bottom: 1px solid #E3E7EE; font-size: 14px; font-weight: 600; color: #2450DC">November close: {{closePct}} prepared</div>
+<div style="padding: 12px 20px; border-bottom: 1px solid #E3E7EE; font-size: 14px; font-weight: 600; color: #2450DC">Month-end close: {{closePct}} prepared</div>
 <sc-for list="{{queue}}" as="item" hint-placeholder-count="4">
 <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; padding: 16px 20px; border-bottom: 1px solid #E3E7EE; background: {{item.bg}}; transition: background .4s">
 <div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 3px">
@@ -847,7 +847,7 @@ var queueDefs = [
 { id: "host", title: "Orbit Cloud, hosting invoice", amount: "$4,812.40", detail: "Collected from the billing inbox and matched to the card ending 2204.", entry: "Proposed: Dr 5100 Hosting / Cr 2100 Card payable" },
 { id: "tools", title: "Lumen design tools, annual receipt", amount: "$540.00", detail: "Matched to the card ending 2204. Spread over 12 months as a prepaid.", entry: "Proposed: Dr 1400 Prepaid expenses / Cr 2100 Card payable" },
 { id: "payout", title: "Payment processor payout", amount: "$38,204.11", detail: "Reconciled to 212 customer charges. Fees of $1,146.12 split out.", entry: "Proposed: Dr 1010 Bank, Dr 6400 Fees / Cr 1200 Receivables" },
-{ id: "wire", title: "Incoming wire, sender not recognized", amount: "$12,000.00", detail: "No matching invoice or contract found. The agent has asked your ops lead in Slack.", entry: "Held in 2900 Suspense until documented", exception: true }
+{ id: "wire", title: "Incoming wire, sender not recognized", amount: "$8,250.00", detail: "No matching invoice or contract found. The agent has asked your ops lead in Slack.", entry: "Held in 2900 Suspense until documented", exception: true }
 ];
 var pending = 0, doneCount = 0;
 var queue = queueDefs.map(function (dq) {

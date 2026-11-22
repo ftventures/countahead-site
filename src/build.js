@@ -100,7 +100,8 @@ ${card("revenue.html", "01", "Revenue", "Build a contract and watch the invoices
 ${card("books.html", "02", "The books", "Statements, reconciliation, journal entries, the review queue and the audit trail.")}
 ${card("plan.html", "03", "The plan", "Change a hire or a growth rate and watch runway move. Ask the ledger a question.")}
 ${card("company.html", "04", "Company", "Model a funding round, share a data room with investors and see who read what.")}
-${card("integrations.html", "05", "Integrations", "The banks, payment, payroll and deal tools planned for early access.")}
+${card("software.html", "05", "Industries", "Software, online stores, services, hospitality and more, each with its own billing, dashboard and board pack.")}
+${card("integrations.html", "06", "Integrations", "The banks, payment, payroll and deal tools planned for early access.")}
 </div>
 </div>
 </section>`;
@@ -113,7 +114,7 @@ const integ = subhero("Integrations", "It plugs into the tools", "you already ru
 </sc-for>
 </div>
 <p aria-live="polite" style="margin: 0; font-size: 14px; font-weight: 700; color: #4B5565">{{integCount}}, all planned</p>
-<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(200px, 46%), 1fr)); gap: 12px">
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 46%), 1fr)); gap: 12px">
 <sc-for list="{{integ}}" as="g" hint-placeholder-count="20">
 <div class="bt" style="background: #FFFFFF; border: 1px solid #0B1B3A; padding: 14px; display: flex; flex-direction: column; gap: 6px; min-width: 0">
 <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px"><span aria-hidden="true" style="flex: none; width: 40px; height: 40px; background: #0B1B3A; color: var(--hl); font-stretch: 125%; font-weight: 800; font-size: 19px; display: flex; align-items: center; justify-content: center">{{g.mono}}</span><span style="flex: none; font-size: 10px; font-weight: 800; letter-spacing: 0.08em; padding: 3px 6px; background: var(--hlp); border: 1px solid #0B1B3A">PLANNED</span></div>
@@ -199,7 +200,7 @@ const S = sections;
 const aboutSecs = require("./about.js")(subhero, C);
 const pages = [
   ["index.html", "Countahead: your books are done, your future is clear", "One ledger for the past and the future. Agents keep the books inside the rules you set, and your forecast, runway and board pack read the same numbers.", [hero, marquee, S.mani, cycleSec, different, S.who, explore, S.access]],
-  ["books.html", "Product: the accounting system | Countahead", "A full double-entry accounting system run by agents you supervise, with approvals, period locks and a complete audit trail.", [productTop, S.accounting, groupSec, basisSec, bulkSec, controlSec, policySec, taxSec, auditSec, S.access]],
+  ["books.html", "Books: the accounting system | Countahead", "A full double-entry accounting system run by agents you supervise, with approvals, period locks and a complete audit trail.", [productTop, S.accounting, groupSec, basisSec, bulkSec, controlSec, policySec, taxSec, auditSec, S.access]],
   ["plan.html", "Planning: runway, headcount and forecasts | Countahead", "A forecast that reads the ledger directly. Test a hire or a growth rate and see runway move.", [planningTop, todaySec, analyticsSec, planScen, forecastSec, headcount, modelSec, planPack, invSec, askSec, S.access]],
   ["revenue.html", "Revenue: contracts, billing and commissions | Countahead", "Capture the sale once. Invoices, cash, revenue recognition and the forecast follow, for subscriptions, online stores and services.", [revTop, revFlow, revCust, revPipe, revLife, revCollect, revRecSec, revArr, revComm, S.access]],
   ["company.html", "Company: cap table and records | Countahead", "Cap table, round modelling, a live investor data room and company records, tied to the same books and plan.", [companyTop, capSec, optSec, dataroomSec, codocsSec, draftSec, cocalSec, S.access]],
