@@ -6,7 +6,7 @@ module.exports = function (subhero, mock, C, access) {
 ${inner}
 </div>
 </section>`;
-  const top = subhero("People", "Everyone who works here,", "and what they cost.", "One record for the people in the company, tied to the plan, the books and the cap table. Your payroll provider keeps running payroll. Countahead keeps everything else about your team in step.");
+  const top = subhero("People", "Everyone who works here,", "and what they cost.", "One record for the people in the company, tied to the plan, the books and the cap table. Your payroll provider keeps running payroll. Countahead keeps everything else about your team in step.", global.hgPpl, true);
   const team = mock("team", "#FFFFFF", "The team", "One list of people. " + C("Every part of the product uses it."), "The hiring plan, the payroll cost by department, who approves what, option grants and commissions all need to know who works here. Today each keeps its own list. Here there is one.", "peopleteam");
   const me = mock("my-page", "#F6F8FC", "My page", "Each person's own page, " + C("with nothing they should not see."), "Expenses, approvals, equity, commission, documents and time off, gathered in one place. Pick a person and tap a tile.", "peopleme");
   const off = mock("time-off", "#FFFFFF", "Time off", "A day off is also " + C("a number in the books."), "Request, approve, see who is out. And because unused holiday is money the company owes, the month-end figure comes from the real balances. Send a request and watch it.", "peopleoff");
