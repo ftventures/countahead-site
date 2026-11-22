@@ -53,17 +53,6 @@
       '<div class="m-bal">' + CHECK + "<span>Debits equal credits</span><b>" + e.amt + '</b></div></div><div class="m-lab" style="margin-top:4px">AUDIT TRAIL</div><div class="m-trail">' +
       e.trail.map(function (x) { return '<div><span>' + x[0] + '</span><span><b class="m-w' + (x[1] === "You" ? " m-you" : "") + '">' + x[1] + "</b> " + x[2] + "</span></div>"; }).join("") + "</div></div>";
   }
-  W.journal = function (el) {
-    var f = "All", sel = 0, KS = ["All", "Bills", "Revenue", "Payroll"];
-    function draw() {
-      var list = JE.filter(function (e) { return f === "All" || e.k === f; }); if (sel >= list.length) sel = 0;
-      el.innerHTML = '<div class="m-two"><div class="m-list"><div class="m-filters">' + KS.map(function (k) { return '<button type="button" data-a="f" data-k="' + k + '" aria-pressed="' + (k === f) + '">' + k + "</button>"; }).join("") + "</div>" +
-        list.map(function (e, i) { return '<button type="button" class="m-row" data-a="s" data-i="' + i + '" aria-pressed="' + (i === sel) + '"><span><b>' + e.t + "</b><small>" + e.id + " · " + e.d + "</small></span><b>" + e.amt + "</b></button>"; }).join("") +
-        '</div><div class="m-pane">' + jeDetail(list[sel]) + "</div></div>";
-    }
-    on(el, "[data-a]", function (t) { if (t.getAttribute("data-a") === "f") { f = t.getAttribute("data-k"); sel = 0; } else sel = +t.getAttribute("data-i"); draw(); });
-    draw();
-  };
 
   /* ---------- the eight modules ---------- */
   var M = [];
@@ -216,32 +205,4 @@
   };
 
 
-  /* ---------- controls ---------- */
-  W.controls = function (el) {
-    var lim = 5000, locked = 5, role = 0, why = false, acct = "5100 Hosting", log = [["09:14", "Agent", "read invoice 2291 from Orbit Cloud"], ["09:14", "Agent", "proposed JE-1182, matched to card"], ["09:31", "You", "approved under policy"]];
-    var BILLS = [["Lumen", 540], ["Orbit Cloud", 4812], ["Atlas Legal", 8400], ["Annual insurance", 36000]], MO = ["Jun", "Jul", "Aug", "Sep", "Oct", "Nov"];
-    var ROLES = [["Founder", [1, 1, 0, 0]], ["Finance lead", [1, 1, 1, 1]], ["Fractional CFO", [1, 1, 1, 1]], ["Outside accountant", [1, 0, 1, 0]]], PERM = ["View everything", "Approve bills", "Post journals", "Lock periods"];
-    function draw(focus) {
-      el.innerHTML = '<div class="c-grid">' +
-        '<div class="c-tile c-wide"><b class="c-h">Approval policies</b><p>The limit from your spending policy, at work. Drag it to see what would wait for you.</p><div class="c-row"><span>Approval limit</span><b>$' + lim.toLocaleString("en-US") + '</b></div><input type="range" min="500" max="40000" step="500" value="' + lim + '" aria-label="Approval limit in dollars" data-r="lim">' +
-        BILLS.map(function (b) { var okp = b[1] <= lim; return '<div class="c-li"><span>' + b[0] + ", $" + b[1].toLocaleString("en-US") + '</span><span class="c-chip' + (okp ? "" : " c-ask") + '">' + (okp ? "Posts itself" : "Asks you") + "</span></div>"; }).join("") + "</div>" +
-        '<div class="c-tile"><b class="c-h">Period locks</b><p>Tap a month to lock or unlock it.</p><div class="c-months">' + MO.map(function (m, i) { return '<button type="button" data-a="lock" data-i="' + i + '" aria-pressed="' + (i < locked) + '">' + m + "<small>" + (i < locked ? "Locked" : "Open") + "</small></button>"; }).join("") + "</div><p class=\"c-s\">" + (locked === 6 ? "November is locked. Changes now need an adjusting entry." : locked + " months locked. " + MO[locked] + " onward can still change.") + "</p></div>" +
-        '<div class="c-tile"><b class="c-h">Roles for everyone</b><p>Pick a role to see what it can do.</p><div class="c-roles">' + ROLES.map(function (r, i) { return '<button type="button" data-a="role" data-i="' + i + '" aria-pressed="' + (i === role) + '">' + r[0] + "</button>"; }).join("") + "</div>" + PERM.map(function (p, i) { var y = ROLES[role][1][i]; return '<div class="c-li' + (y ? "" : " c-no") + '"><span>' + p + "</span><span>" + (y ? "Yes" : "No") + "</span></div>"; }).join("") + "</div>" +
-        '<div class="c-tile c-wide"><b class="c-h">Full audit trail</b><p>Every action, document and decision, with who did it. Try the two tiles beside this one and watch the log grow.</p><div class="c-log">' + log.map(function (l) { return "<div><span>" + l[0] + '</span><span><b class="' + (l[1] === "You" ? "c-you" : "") + '">' + l[1] + "</b> " + l[2] + "</span></div>"; }).join("") + "</div></div>" +
-        '<div class="c-tile"><b class="c-h">Explainable entries</b><p>JE-1182, Orbit Cloud, $4,812.40</p>' + (why ? '<div class="c-why"><div><b>Document.</b> Invoice 2291, found in the billing inbox.</div><div><b>Match.</b> Card ending 2204, same amount, same day.</div><div><b>Rule.</b> Orbit Cloud has been coded to hosting 11 times.</div></div>' : "") + '<button type="button" class="c-btn" data-a="why">' + (why ? "Hide the reasoning" : "Why was it coded this way?") + "</button></div>" +
-        '<div class="c-tile"><b class="c-h">Human override</b><p>Move JE-1182 to another account. It is logged.</p><div class="c-roles">' + ["5100 Hosting", "6200 Software", "6300 Office"].map(function (a) { return '<button type="button" data-a="acct" data-v="' + a + '" aria-pressed="' + (a === acct) + '">' + a + "</button>"; }).join("") + '</div><p class="c-s">Coded to ' + acct + ".</p></div></div>";
-      var r = el.querySelector('[data-r="lim"]'); r.addEventListener("input", function () { lim = +this.value; draw(true); }); if (focus) r.focus();
-    }
-    function stamp() { var n = log.length; return "10:" + ("0" + (n * 7 % 60)).slice(-2); }
-    on(el, "[data-a]", function (t) {
-      var a = t.getAttribute("data-a"), i = +t.getAttribute("data-i");
-      if (a === "lock") { locked = i < locked ? i : i + 1; log.push([stamp(), "You", (locked > i ? "locked " : "unlocked ") + MO[i]]); }
-      if (a === "role") role = i;
-      if (a === "why") { why = !why; if (why) log.push([stamp(), "You", "opened the reasoning for JE-1182"]); }
-      if (a === "acct") { var v = t.getAttribute("data-v"); if (v !== acct) { log.push([stamp(), "You", "reclassified JE-1182 from " + acct + " to " + v]); acct = v; } }
-      if (log.length > 6) log = log.slice(log.length - 6);
-      draw();
-    });
-    draw();
-  };
 })();

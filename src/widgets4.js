@@ -9,28 +9,6 @@
   var CHECK = '<svg width="14" height="14" viewBox="0 0 18 18" aria-hidden="true"><rect x="0.5" y="0.5" width="17" height="17" fill="#2450DC" stroke="#2450DC"></rect><path d="M4.5 9.5l3 3 6-7" fill="none" stroke="#fff" stroke-width="2"></path></svg>';
   function bars(vals, hi, color) { var mx = Math.max.apply(null, vals); return '<div class="a-bars">' + vals.map(function (v, i) { return '<i style="height:' + (v / mx * 100).toFixed(1) + "%;background:" + (i === (hi == null ? vals.length - 1 : hi) ? (color || "#2450DC") : "#B9C3D3") + '"></i>'; }).join("") + "</div>"; }
 
-  /* ---------- the full cycle, one customer ---------- */
-  W.cycle = function (el) {
-    var S = [["A lead arrives", "Customers", "Ferro Marine asks for a demo. A company and a contact are created, with nothing typed twice.", "Agent created the record", [180, 4020, 412, 3060, 540, 0]],
-      ["It becomes an opportunity", "Deals", "Priya qualifies it at $96,000 a year. The forecast counts it at its stage probability.", "Priya moved the deal", [199, 4020, 412, 3060, 540, 0]],
-      ["Proposal and negotiation", "Deals", "Terms go back and forth. The deal moves to 75% and the forecast moves with it.", "Agent drafted the proposal", [252, 4020, 412, 3060, 540, 0]],
-      ["Won, and the contract is signed", "Contracts", "The contract is filled in from the deal, approved and signed on the platform. Recurring revenue and commission are booked.", "You approved, the customer signed", [180, 4116, 412, 3060, 540, 0]],
-      ["The first invoice goes out", "Billing", "A quarterly invoice for $24,000 is drafted from the contract and sent. It is owed to you, and not yet earned.", "Agent drafted, you approved", [180, 4116, 436, 3060, 564, 0]],
-      ["Revenue lands in the books", "Books", "The first month, $8,000, is recognized. The other $16,000 waits as deferred revenue.", "Agent posted under your policy", [180, 4116, 436, 3060, 556, 8]],
-      ["The customer pays", "Bank", "$24,000 arrives. The payment is matched to the invoice and the bank reconciles itself.", "Agent matched it", [180, 4116, 412, 3084, 556, 8]],
-      ["The plan already knows", "Plan", "Runway, the forecast and next month's board pack are updated, because they read the same numbers.", "Nothing to do", [180, 4116, 412, 3084, 556, 8]]];
-    var L = ["Pipeline in forecast", "Recurring revenue", "Owed to you", "Cash", "Deferred revenue", "Revenue from this deal"], cur = 0, play = true, tm;
-    function draw() {
-      var s = S[cur], p = S[Math.max(cur - 1, 0)][4];
-      el.innerHTML = '<div class="cy"><div class="cy-steps nosb">' + S.map(function (x, i) { return '<button type="button" data-i="' + i + '" class="' + (i < cur ? "cy-done" : "") + '" aria-pressed="' + (i === cur) + '"><i>' + (i + 1) + "</i><span>" + x[0] + "</span></button>"; }).join("") + "</div>" +
-        '<div class="cy-main"><div class="cy-card"><span class="m-chip m-blue">' + s[1].toUpperCase() + "</span><b>" + s[0] + "</b><p>" + s[2] + '</p><small>' + CHECK + " " + s[3] + '</small><div class="cy-ctl"><button type="button" class="m-btn m-sm" data-a="play">' + (play ? "Pause" : "Play") + '</button><button type="button" class="m-btn m-sm m-ghost" data-a="next">Next step &rarr;</button></div></div>' +
-        '<div class="cy-nums">' + L.map(function (l, i) { var v = s[4][i], ch = cur > 0 && v !== p[i], d = v - p[i]; return '<div class="' + (ch ? "cy-ch" : "") + '"><small>' + l.toUpperCase() + "</small><b>$" + n0(v) + "k</b><span>" + (ch ? (d > 0 ? "+" : "") + d + "k" : "&nbsp;") + "</span></div>"; }).join("") + "</div></div></div>";
-    }
-    function tick() { if (!el.isConnected) { clearInterval(tm); return; } if (play) { cur = (cur + 1) % S.length; draw(); } }
-    on(el, "[data-i]", function (t) { cur = +t.getAttribute("data-i"); play = false; draw(); });
-    on(el, "[data-a]", function (t) { if (t.getAttribute("data-a") === "play") play = !play; else { cur = (cur + 1) % S.length; play = false; } draw(); });
-    draw(); tm = setInterval(tick, 3600);
-  };
 
   /* ---------- analytics by kind of business ---------- */
   W.analytics = function (el) {
@@ -46,45 +24,8 @@
     cur = +(el.getAttribute("data-pre") || 0); on(el, "[data-i]", function (t) { cur = +t.getAttribute("data-i"); draw(); }); draw();
   };
 
-  /* ---------- policies that run the software and inform the company ---------- */
-  W.policy = function (el) {
-    var P = [["Spending and approvals", "Anyone can spend up to", 500, 100, 5000, 100, "$", function (v) { return ["Bills and card spend up to " + $k(v) + " are approved automatically when they match a known supplier.", "Anything above " + $k(v) + " goes to the budget owner, and above " + $k(v * 10) + " to the finance lead as well.", "Every receipt is collected by an agent. You will only be asked when one is missing."]; }, "Bills over this amount now wait for approval."],
-      ["Discounts", "A rep can discount up to", 10, 0, 30, 5, "%", function (v) { return ["Sales can offer up to " + v + "% off list price without asking.", "Larger discounts need finance approval before the contract can be sent for signature.", "Multi-year deals may include a price rise each year, agreed in the contract."]; }, "Contracts above this discount now stop for approval."],
-      ["Chasing unpaid invoices", "First reminder after", 3, 1, 14, 1, " days", function (v) { return ["Customers get a friendly reminder " + v + " days after an invoice falls due.", "Follow-ups get firmer at 14 and 30 days, and the account owner is copied at 30.", "Reminders under 14 days are sent automatically. Later ones are approved by finance."]; }, "The collections agent now follows this timing."]], cur = 0, pub = {};
-    function fmt(p) { return p[6] === "$" ? $k(p[2]) : p[2] + p[6]; }
-    function draw(keep) {
-      var p = P[cur];
-      el.innerHTML = '<div class="m-two m-tw2"><div class="m-pane m-form" style="padding:0"><div class="m-list" style="border:0">' + P.map(function (x, i) { return '<button type="button" class="m-row" data-i="' + i + '" aria-pressed="' + (i === cur) + '"><span><b>' + x[0] + "</b><small>" + x[1] + " " + fmt(x) + '</small></span><span class="m-chip ' + (pub[i] ? "m-blue" : "m-warn") + '">' + (pub[i] ? "PUBLISHED" : "DRAFT") + "</span></button>"; }).join("") + '</div><div style="padding:16px;display:flex;flex-direction:column;gap:8px"><span class="m-lab">THE RULE</span><div class="m-kv" style="border:0"><span>' + p[1] + "</span><b>" + fmt(p) + '</b></div><input type="range" min="' + p[3] + '" max="' + p[4] + '" step="' + p[5] + '" value="' + p[2] + '" aria-label="' + p[1] + '" data-r="1"><p class="m-foot" style="padding:0">Change the rule and the written policy changes with it. Sample policies.</p></div></div>' +
-        '<div class="m-pane"><div class="m-page"><div class="m-doch"><b>' + p[0] + '</b><span>Company handbook</span></div><ol class="p-ol">' + p[7](p[2]).map(function (t) { return "<li>" + t + "</li>"; }).join("") + "</ol></div>" + (pub[cur] ? '<div class="m-note">' + CHECK + " Published to everyone. " + p[8] + "</div>" : '<div class="m-acts"><button type="button" class="m-btn" data-a="pub">Publish to the company</button></div>') + "</div></div>";
-      var r = el.querySelector("[data-r]"); r.addEventListener("input", function () { p[2] = +this.value; pub[cur] = 0; draw(true); }); if (keep) r.focus();
-    }
-    on(el, "[data-i]", function (t) { cur = +t.getAttribute("data-i"); draw(); }); on(el, "[data-a]", function () { pub[cur] = 1; draw(); }); draw();
-  };
 
-  /* ---------- bulk approval ---------- */
-  W.bulk = function (el) {
-    var done = false, X = [["Lattice Legal, new supplier", "$7,400.00", "First invoice from this supplier", 0], ["Orbit Cloud, hosting", "$16,012.40", "38% higher than the last three months", 0], ["Refund to Meridian Labs", "$2,300.00", "Agent is unsure which invoice this reverses", 0]];
-    function draw() {
-      var left = X.filter(function (x) { return !x[3]; }).length;
-      el.innerHTML = '<div class="m-stats">' + stat("PREPARED TODAY", "214") + stat("ROUTINE, MATCH YOUR RULES", done ? "0 waiting" : "211", "m-good") + stat("NEED A LOOK", left, left ? "m-bad" : "") + '</div><div class="m-two m-tw2"><div class="m-pane"><span class="m-lab">ROUTINE</span><div class="m-fl"><span>Bank and card lines matched to a document</span><b>148</b></div><div class="m-fl"><span>Bills from known suppliers, under your limit</span><b>41</b></div><div class="m-fl"><span>Monthly schedule entries</span><b>22</b></div>' + (done ? '<div class="m-note">' + CHECK + " 211 entries posted with one approval. Each one is in the audit trail under your name and can be reversed.</div>" : '<div class="m-acts"><button type="button" class="m-btn" data-a="all">Approve all 211</button></div>') + '<p class="m-foot" style="padding:0">Nothing posts without an approval. You choose how much one approval covers.</p></div>' +
-        '<div class="m-pane"><span class="m-lab">PULLED OUT FOR YOU</span>' + X.map(function (x, i) { return '<div class="m-li" style="padding:10px 0"><span><b>' + x[0] + "</b><small>" + x[2] + '</small></span><span style="display:flex;flex-direction:column;align-items:flex-end;gap:6px"><b>' + x[1] + "</b>" + (x[3] ? '<span class="m-chip m-blue">APPROVED</span>' : '<button type="button" class="m-btn m-sm" data-i="' + i + '">Approve</button>') + "</span></div>"; }).join("") + "</div></div>";
-    }
-    on(el, "[data-a]", function () { done = true; draw(); }); on(el, "[data-i]", function (t) { X[+t.getAttribute("data-i")][3] = 1; draw(); }); draw();
-  };
 
-  /* ---------- revenue forecast from retention, pipeline and hires ---------- */
-  W.revplan = function (el) {
-    var nrr = 104, pipe = 1, reps = 3, PIPE = [["Ignore", 0], ["At stage odds", 1], ["Everything closes", 2]], SEGS = [["Small", 1120, 22, 92, 71], ["Mid-size", 1840, 14, 106, 76], ["Enterprise", 1060, 5, 118, 79]];
-    function draw(keep) {
-      var base = 4020 * nrr / 100, pv = pipe === 0 ? 0 : pipe === 1 ? 190 : 348, nb = reps * 40 * 0.75 * 12, tot = base + pv + nb, H = 150, mx = 7200;
-      var cols = ""; for (var m = 0; m <= 12; m += 1) { var f = m / 12, a = 4020 + (base - 4020) * f, b = pv * Math.min(f * 2, 1), c = nb * f; cols += '<div class="r-col"><i style="height:' + c / mx * H + 'px;background:#5B8CFF"></i><i style="height:' + b / mx * H + 'px;background:#FFD15C"></i><i style="height:' + a / mx * H + 'px;background:#0B1B3A"></i></div>'; }
-      el.innerHTML = '<div class="m-two m-tw2"><div class="m-pane m-form"><span class="m-lab">THREE THINGS DRIVE IT</span><div class="m-kv"><span>Net retention, a year</span><b>' + nrr + '%</b></div><input type="range" min="85" max="125" step="1" value="' + nrr + '" aria-label="Net retention" data-r="1"><div class="m-bench"><span>Your last 12 months: 104%</span></div><div class="m-kv"><span>Open pipeline</span><span class="m-opts">' + PIPE.map(function (p, i) { return '<button type="button" data-a="p" data-v="' + i + '" aria-pressed="' + (i === pipe) + '">' + p[0] + "</button>"; }).join("") + '</span></div><div class="m-kv"><span>Reps selling</span><span class="m-stp"><button type="button" data-a="r-">&minus;</button><output>' + reps + '</output><button type="button" data-a="r+">+</button></span></div><p class="m-foot" style="padding:0">Retention comes from signed contracts, pipeline from your deals, and new business from the hiring plan. Sample quota of $40k a month at 75% attainment.</p></div>' +
-        '<div class="m-pane"><span class="m-lab">RECURRING REVENUE, NEXT 12 MONTHS</span><div class="m-stats">' + stat("IN 12 MONTHS", "$" + (tot / 1000).toFixed(2) + "M", "m-good") + stat("GROWTH", "+" + Math.round((tot / 4020 - 1) * 100) + "%") + '</div><div class="r-chart" style="height:' + H + 'px">' + cols + '</div><div class="m-legend" style="font-size:12.5px"><span><i style="background:#0B1B3A"></i>Today\'s customers ' + $k(base) + 'k</span><span><i style="background:#FFD15C;border-color:#FFD15C"></i>Pipeline ' + $k(pv) + 'k</span><span><i style="background:#5B8CFF;border-color:#5B8CFF"></i>New business ' + $k(nb) + "k</span></div></div></div>" +
-"";
-      var r = el.querySelector("[data-r]"); r.addEventListener("input", function () { nrr = +this.value; draw(true); }); if (keep) r.focus();
-    }
-    on(el, "[data-a]", function (t) { var a = t.getAttribute("data-a"); if (a === "p") pipe = +t.getAttribute("data-v"); if (a === "r-") reps = Math.max(0, reps - 1); if (a === "r+") reps = Math.min(12, reps + 1); draw(); }); draw();
-  };
 
   /* ---------- pipeline with drag and drop ---------- */
   W.pipeline = function (el) {
@@ -140,19 +81,6 @@
     reset(); draw();
   };
 
-  /* ---------- recurring revenue, customer by customer ---------- */
-  W.arr = function (el) {
-    var TR = [2640, 2750, 2860, 2970, 3080, 3190, 3300, 3432, 3576, 3720, 3860, 4020], MO = ["D", "J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N"];
-    var MV = [["New", 180, "#2450DC"], ["Upsell", 96, "#5B8CFF"], ["Downsell", -24, "#C99A2E"], ["Churn", -92, "#8A5A00"]];
-    var CU = [["Kestrel Freight", 0, 72, "New", "Nov 2027", "Mid-size"], ["Oakline Health", 0, 60, "New", "Nov 2027", "Mid-size"], ["Harbor Labs", 0, 48, "New", "Nov 2027", "Small"], ["Northwind Ltd", 72, 132, "Upsell", "Mar 2028", "Enterprise"], ["Tallis and Co", 54, 90, "Upsell", "Jun 2027", "Mid-size"], ["Brightdesk", 96, 72, "Downsell", "Feb 2027", "Mid-size"], ["Meridian Labs", 92, 0, "Churn", "Ended", "Small"], ["Corvid Systems", 180, 180, "No change", "Jan 2027", "Enterprise"], ["Atlas Payroll", 144, 144, "No change", "Sep 2027", "Enterprise"]], f = "All";
-    function draw() {
-      var rows = CU.filter(function (c) { return f === "All" || c[3] === f; }), mx = 180, F = ["All", "New", "Upsell", "Downsell", "Churn", "No change"];
-      el.innerHTML = '<div class="a-kp">' + [["RECURRING REVENUE", "$4.02M", "+4.1% on October"], ["NET NEW", "+$160k", "$276k gained, $116k lost"], ["NET RETENTION", "99.5%", "this month"], ["CUSTOMERS", "41", "3 new, 1 lost"]].map(function (k) { return "<div><small>" + k[0] + "</small><b>" + k[1] + "</b><span>" + k[2] + "</span></div>"; }).join("") + '</div><div class="m-two m-tw2" style="border-top:1px solid #D5DBE5"><div class="m-pane"><span class="m-lab">12 MONTHS, USD THOUSANDS</span>' + bars(TR) + '<div class="a-ax a-mo">' + MO.map(function (m) { return "<span>" + m + "</span>"; }).join("") + '</div></div><div class="m-pane"><span class="m-lab">WHAT MOVED IN NOVEMBER. TAP ONE.</span>' + MV.map(function (m) { return '<button type="button" class="a-mv" data-f="' + m[0] + '" aria-pressed="' + (f === m[0]) + '"><span>' + m[0] + '</span><i><u style="width:' + Math.abs(m[1]) / 180 * 100 + "%;background:" + m[2] + '"></u></i><b>' + (m[1] > 0 ? "+" : "") + m[1] + "</b></button>"; }).join("") + '<div class="m-fl" style="margin-top:6px"><span>Opening 3,860, closing</span><b>4,020</b></div></div></div>' +
-        '<div class="a-tbl"><div class="a-th">' + seg(F, F.indexOf(f), "x") + '</div><div class="a-row a-hd"><span>Customer</span><span class="a-hide">Segment</span><span>Before</span><span>Now</span><span class="a-bar"></span><span>Change</span><span class="a-hide">Renews</span></div>' + rows.map(function (c) { var d = c[2] - c[1]; return '<div class="a-row"><span><b>' + c[0] + '</b></span><span class="a-hide">' + c[5] + "</span><span>" + c[1] + "</span><span><b>" + c[2] + '</b></span><span class="a-bar"><i><u style="width:' + c[2] / mx * 100 + '%"></u></i></span><span class="' + (d > 0 ? "sl-up" : d < 0 ? "sl-dn" : "") + '"><b>' + (d > 0 ? "+" : "") + (d || "0") + '</b></span><span class="a-hide">' + c[4] + "</span></div>"; }).join("") + '<p class="m-foot">' + (f === "All" || f === "No change" ? "Showing 9 of 41 customers. " : "") + "USD thousands a year. Every figure comes from a signed contract, so it ties to the invoices and to the $335k recognized this month.</p></div>";
-    }
-    on(el, "[data-f]", function (t) { var v = t.getAttribute("data-f"); f = f === v ? "All" : v; draw(); });
-    on(el, "[data-x]", function (t) { f = ["All", "New", "Upsell", "Downsell", "Churn", "No change"][+t.getAttribute("data-x")]; draw(); }); draw();
-  };
 
   /* ---------- comparison: twelve jobs, by category ---------- */
   W.compare = function (el) {

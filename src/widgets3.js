@@ -117,23 +117,6 @@
     show(+(el.getAttribute("data-pre") || 0));
   };
 
-  /* ---------- recurring revenue movements ---------- */
-  W.arr = function (el) {
-    var MV = [["Opening", 3860, 0, []], ["New", 180, 1, [["Harbor Labs", 48], ["Kestrel Freight", 72], ["Oakline Health", 60]]], ["Upsell", 96, 1, [["Northwind Ltd, 20 more seats", 60], ["Tallis and Co, higher plan", 36]]], ["Downsell", -24, -1, [["Brightdesk, 10 fewer seats", -24]]], ["Churn", -92, -1, [["Meridian Labs, did not renew", -92]]], ["Closing", 4020, 0, []]], sel = 1, view = 0, SEG = [["Small, under 50 people", 1120, 22], ["Mid-size", 1840, 14], ["Enterprise", 1060, 5]];
-    function draw() {
-      var run = 0, top = 4100, base = 3700, H = 170;
-      function y(v) { return (top - v) / (top - base) * H; }
-      var bars = MV.map(function (m, i) {
-        var a, b; if (m[2] === 0) { a = base; b = m[1]; run = m[1]; } else { a = run; b = run + m[1]; run = b; }
-        var hi = Math.max(a, b), lo = Math.min(a, b);
-        return '<button type="button" class="m-wf" data-i="' + i + '" aria-pressed="' + (i === sel) + '" style="left:' + (i * 16.666) + '%"><span class="m-wfv" style="top:' + (y(hi) - 18) + 'px">' + (m[2] === 0 ? m[1].toLocaleString("en-US") : (m[1] > 0 ? "+" : "") + m[1]) + '</span><i style="top:' + y(hi) + "px;height:" + Math.max(y(lo) - y(hi), 2) + "px;background:" + (m[2] === 0 ? "var(--ink)" : m[2] > 0 ? "#2450DC" : "#8A5A00") + '"></i><span class="m-wfl">' + m[0] + "</span></button>";
-      }).join("");
-      var m = MV[sel];
-      el.innerHTML = '<div class="m-stats">' + stat("RECURRING REVENUE, NOV", "$4.02M", "m-good") + stat("NET NEW", "+$160k") + stat("NET RETENTION, NOV", "99.5%") + stat("GROSS RETENTION, NOV", "97.0%") + "</div>" + seg(["By movement", "By segment"], view, "v") + (view ? '<div class="m-pane">' + SEG.map(function (g) { return '<div class="m-li" style="padding:10px 0"><span style="flex:1"><b>' + g[0] + "</b><small>" + g[2] + " customers, $" + Math.round(g[1] / g[2]) + 'k each on average</small><span class="m-track" style="margin-top:6px"><i style="width:' + g[1] / 4020 * 100 + '%"></i></span></span><b>$' + (g[1] / 1000).toFixed(2) + "M</b></div>"; }).join("") + '<p class="m-foot" style="padding:0">Segments come from the customer record, so the same split is available in the forecast and the board pack.</p></div>' : '<div class="m-two m-tw2"><div class="m-pane"><span class="m-lab">MOVEMENTS IN NOVEMBER, USD THOUSANDS. TAP A BAR.</span><div class="m-wfc" style="height:' + (H + 40) + 'px">' + bars + '</div></div><div class="m-pane"><span class="m-lab">' + m[0].toUpperCase() + ": WHAT IS BEHIND IT</span>" +
-        (m[3].length ? m[3].map(function (c) { return '<div class="m-li" style="padding:10px 0"><span><b>' + c[0] + "</b><small>From the signed contract</small></span><b>" + (c[1] > 0 ? "+" : "") + c[1] + "</b></div>"; }).join("") : '<p class="m-p">' + (sel === 0 ? "Recurring revenue at the start of November, from 40 active contracts." : "Recurring revenue at the end of November. It ties to the $335k recognized this month.") + "</p>") + "</div></div>");
-    }
-    on(el, "[data-i]", function (t) { sel = +t.getAttribute("data-i"); draw(); }); on(el, "[data-v]", function (t) { view = +t.getAttribute("data-v"); draw(); }); draw();
-  };
 
   /* ---------- commissions ---------- */
   W.comm = function (el) {
@@ -168,42 +151,7 @@
   /* ---------- scenarios ---------- */
   function run(g, hires, N) { var cash = 3060, rev = 335, opx = 178, out = null, a = [3060]; for (var m = 1; m <= 96; m++) { rev *= 1 + g / 100; opx *= 1.01; cash -= 372 + hires * 17 + opx - rev; if (out === null && cash <= 0) out = m; if (m <= N) a.push(Math.max(cash, 0)); } return { a: a, out: out, arr: null }; }
   function when(m) { var d = new Date(2026, 10 + m, 1); return ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][d.getMonth()] + " " + d.getFullYear(); }
-  W.scen = function (el) {
-    var SC = [["Base", 2, 0, "#0B1B3A"], ["Upside", 4, 3, "#2450DC"], ["Downside", 0.5, 0, "#8A5A00"]], sel = 0, N = 24;
-    function draw(keep) {
-      var R = SC.map(function (s) { return run(s[1], s[2], N); }), Wd = 600, H = 190;
-      var lines = R.map(function (r, i) { return '<polyline fill="none" stroke="' + SC[i][3] + '" stroke-width="' + (i === sel ? 4 : 2) + '" ' + (i === sel ? "" : 'stroke-dasharray="6 5" ') + 'points="' + r.a.map(function (v, m) { return (m / N * Wd).toFixed(1) + "," + (H - v / 3200 * H).toFixed(1); }).join(" ") + '"></polyline>'; }).join("");
-      var s = SC[sel];
-      el.innerHTML = '<div class="m-scn">' + SC.map(function (x, i) { var r = R[i]; return '<button type="button" data-i="' + i + '" aria-pressed="' + (i === sel) + '"><small style="color:' + x[3] + '">' + x[0].toUpperCase() + "</small><b>" + (r.out === null ? "8+ years" : r.out + " months") + "</b><span>" + (r.out === null ? "Reaches breakeven" : "Cash to " + when(r.out)) + "</span></button>"; }).join("") + "</div>" +
-        '<div class="m-two m-tw2"><div class="m-pane"><span class="m-lab">CASH OVER 24 MONTHS, THREE SCENARIOS</span><svg viewBox="0 -6 ' + Wd + " " + (H + 12) + '" preserveAspectRatio="none" style="width:100%;height:210px;border-bottom:1px solid var(--ink);border-left:1px solid var(--ink)" role="img" aria-label="Cash over 24 months for base, upside and downside scenarios">' + lines + "</svg></div>" +
-        '<div class="m-pane"><span class="m-lab">' + s[0].toUpperCase() + ": ASSUMPTIONS</span><div class=\"m-kv\" style=\"border:0\"><span>Revenue growth a month</span><b>" + s[1] + '%</b></div><input type="range" min="0" max="6" step="0.5" value="' + s[1] + '" aria-label="Revenue growth" data-r="g"><div class="m-kv"><span>New hires in January</span><span class="m-stp"><button type="button" data-a="h-">&minus;</button><output>' + s[2] + '</output><button type="button" data-a="h+">+</button></span></div><p class="m-foot" style="padding:0">Every scenario starts from the same closed books, so they differ only in what you assume.</p></div></div>';
-      var r = el.querySelector('[data-r="g"]'); r.addEventListener("input", function () { SC[sel][1] = +this.value; draw(true); }); if (keep) r.focus();
-    }
-    on(el, "[data-i]", function (t) { sel = +t.getAttribute("data-i"); draw(); });
-    on(el, "[data-a]", function (t) { SC[sel][2] = Math.max(0, Math.min(10, SC[sel][2] + (t.getAttribute("data-a") === "h+" ? 1 : -1))); draw(); }); draw();
-  };
 
-  /* ---------- top down and bottom up ---------- */
-  W.method = function (el) {
-    var mode = 0, goal = 6000, reps = 3, add = 2, quota = 40, att = 75, NOW = 4020;
-    function draw(keep) {
-      var h = seg(["Top down: start from the goal", "Bottom up: start from the team"], mode, "m"), body;
-      if (mode === 0) {
-        var need = goal - NOW, perMo = need / 12, perRep = quota * att / 100, repsNeeded = Math.ceil(perMo / perRep);
-        body = '<div class="m-two m-tw2"><div class="m-pane"><span class="m-lab">THE GOAL</span><div class="m-kv" style="border:0"><span>Recurring revenue in 12 months</span><b>$' + (goal / 1000).toFixed(1) + 'M</b></div><input type="range" min="4500" max="9000" step="100" value="' + goal + '" aria-label="Recurring revenue goal" data-r="goal"><p class="m-foot" style="padding:0">Today it is $4.02M. Assumes $' + quota + "k quota per rep a month at " + att + "% attainment.</p></div>" +
-          '<div class="m-pane"><span class="m-lab">WHAT IT TAKES</span><div class="m-stats">' + stat("NET NEW NEEDED", $k(need) + "k") + stat("A MONTH", $k(perMo) + "k") + stat("REPS NEEDED", repsNeeded, repsNeeded > reps ? "m-bad" : "m-good") + '</div><div class="m-note">' + CHECK + (repsNeeded > reps ? " You have " + reps + " reps, so the plan needs " + (repsNeeded - reps) + " more, hired early enough to ramp." : " Your " + reps + " reps can carry this at current attainment.") + "</div></div></div>";
-      } else {
-        var total = 0; for (var m = 1; m <= 12; m++) total += reps * quota * att / 100 + (m > 3 ? add * quota * att / 100 : 0);
-        var end = NOW + total;
-        body = '<div class="m-two m-tw2"><div class="m-pane"><span class="m-lab">THE TEAM</span><div class="m-kv" style="border:0"><span>Reps today</span><b>' + reps + '</b></div><div class="m-kv"><span>New reps, three-month ramp</span><span class="m-stp"><button type="button" data-a="a-">&minus;</button><output>' + add + '</output><button type="button" data-a="a+">+</button></span></div><div class="m-kv"><span>Quota attainment</span><b>' + att + '%</b></div><input type="range" min="40" max="120" step="5" value="' + att + '" aria-label="Quota attainment" data-r="att"><div class="m-bench"><span>Your last 6 months: 77%</span><span>Sample benchmark: 70%</span></div></div>' +
-          '<div class="m-pane"><span class="m-lab">WHERE IT LANDS</span><div class="m-stats">' + stat("NEW IN 12 MONTHS", $k(total) + "k") + stat("RECURRING REVENUE", "$" + (end / 1000).toFixed(2) + "M", "m-good") + stat("AGAINST $" + (goal / 1000).toFixed(1) + "M GOAL", (end >= goal ? "+" : "") + $k(end - goal).replace("$-", "-$") + "k", end >= goal ? "m-good" : "m-bad") + '</div><p class="m-foot" style="padding:0">Quota of $' + quota + "k new recurring revenue per rep a month. Before churn, to keep the example simple.</p></div></div>";
-      }
-      el.innerHTML = h + body;
-      var r = el.querySelector("input[data-r]"); r.addEventListener("input", function () { if (r.getAttribute("data-r") === "goal") goal = +this.value; else att = +this.value; draw(true); }); if (keep) r.focus();
-    }
-    on(el, "[data-m]", function (t) { mode = +t.getAttribute("data-m"); draw(); });
-    on(el, "[data-a]", function (t) { add = Math.max(0, Math.min(10, add + (t.getAttribute("data-a") === "a+" ? 1 : -1))); draw(); }); draw();
-  };
 
   /* ---------- board pack, as slides ---------- */
   W.pack = function (el) {
@@ -245,7 +193,7 @@
       ["Team", 1, function () { return '<p class="sl-ey">Team</p><h4>24 people, 2 open roles in the plan</h4>' + hb(TEAM, 11, "") + '<div class="sl-2">' + bul("OPEN ROLES", ["Account executive, offer accepted", "Senior engineer, interviewing"]) + bul("PAYROLL", ["$372k a month, about two thirds of all costs"]) + "</div>"; }, "Two open roles are in the plan and already in the burn forecast."],
       ["Product roadmap", 1, function () { var C = [["Shipped this quarter", "#0B1B3A", [["Usage dashboards", "Live for all customers", "DONE"], ["Single sign-on", "Asked for by 6 enterprise deals", "DONE"], ["Audit log export", "Unblocked two renewals", "DONE"]]], ["Now, to March", "#2450DC", [["Roles and permissions", "In build, due January", "ON TRACK"], ["Mobile approvals", "In build, due February", "ON TRACK"], ["API version 2", "In design, due March", "AT RISK"]]], ["Next, to June", "#5B8CFF", [["Workflow builder", "Scoped, 2 engineers", "PLANNED"], ["European data hosting", "Needs the hosting contract", "PLANNED"]]], ["Later", "#B9C3D3", [["Partner integrations", "After API version 2", "IDEA"], ["Assistant for end users", "Research under way", "IDEA"]]]]; return '<p class="sl-ey">Product</p><h4>Three things shipped, one of the next three is at risk</h4><div class="sl-road">' + C.map(function (c) { return '<div><small style="border-top-color:' + c[1] + '">' + c[0].toUpperCase() + "</small>" + c[2].map(function (x) { return '<div class="sl-card"><b>' + x[0] + "</b><span>" + x[1] + '</span><em class="sl-' + x[2].toLowerCase().replace(" ", "") + '">' + x[2] + "</em></div>"; }).join("") + "</div>"; }).join("") + "</div>"; }, "API version 2 is short one engineer. The senior hire on the team slide closes that gap."],
       ["Risks", 1, function () { return '<p class="sl-ey">Risks</p><h4>Three things that could move the plan</h4><div class="sl-dec"><div><b>1</b><span><strong>Hosting cost.</strong> Up $11.2k this month. A committed contract is in front of the board today.</span></div><div><b>2</b><span><strong>Renewals.</strong> Two large contracts renew by February, including one customer that reduced seats.</span></div><div><b>3</b><span><strong>Overdue invoices.</strong> $32k is overdue, $18k of it by more than 30 days.</span></div></div>'; }],
-      ["Decisions", 1, function () { return '<p class="sl-ey">For the board</p><h4>Two decisions we are asking for</h4><div class="sl-dec"><div><b>1</b><span><strong>Approve two sales hires in January.</strong> They add $28k a month to payroll, and runway goes from 20 to 22 months once they reach quota.</span></div><div><b>2</b><span><strong>Approve the move to a committed hosting contract.</strong> Brings gross margin back toward plan from the first quarter.</span></div></div><p class="sl-nt">Every number in this pack is read from the ledger and the plan at the time it was built.</p>'; }]];
+      ["Decisions", 1, function () { return '<p class="sl-ey">For the board</p><h4>Two decisions we are asking for</h4><div class="sl-dec"><div><b>1</b><span><strong>Approve two sales hires in January.</strong> They add $31k a month to payroll. Runway goes from 20 to 18 months while they ramp, and recurring revenue in a year goes from $5.18M to $5.67M.</span></div><div><b>2</b><span><strong>Approve the move to a committed hosting contract.</strong> Brings gross margin back toward plan from the first quarter.</span></div></div><p class="sl-nt">Every number in this pack is read from the ledger and the plan at the time it was built.</p>'; }]];
     function vbar(vals, unit) { var mx = Math.max.apply(null, vals), mn = Math.min.apply(null, vals) * 0.8; return '<div class="sl-vbars">' + vals.map(function (v, i) { return '<i style="height:' + ((v - mn) / (mx - mn) * 100).toFixed(1) + "%" + (i === vals.length - 1 ? ";background:#2450DC" : "") + '">' + (i === vals.length - 1 || i === 0 ? "<u>" + unit + v + "k</u>" : "") + "</i>"; }).join("") + '</div><div class="sl-vax"><span>12 months ago</span><span>November</span></div>'; }
     function tb(cols, rows) { return '<div class="sl-tb"><div class="sl-r sl-hd"><span>' + cols[0] + "</span><b>" + cols[1] + "</b><b>" + cols[2] + "</b><b>" + cols[3] + "</b></div>" + rows.map(function (r) { return r4(r[0], r[1], r[2], r[3], r[4] ? "sl-st" : ""); }).join("") + "</div>"; }
     function so(t) { return t; }
@@ -336,69 +284,8 @@
     draw();
   };
 
-  /* ---------- comparison: coverage of the nine jobs, and your own stack ---------- */
-  W.compare = function (el) {
-    var G = [["Revenue", ["Contracts", "Billing", "Commissions"]], ["Books", ["Bookkeeping", "Month-end close", "Statements"]], ["Plan", ["Forecast", "Scenarios", "Board packs"]]];
-    var JOBS = G[0][1].concat(G[1][1], G[2][1]);
-    var C = [["Spreadsheets", "Excel and Google Sheets", [1, 1, 1, 1, 1, 1, 1, 1, 1], "Can do anything, and all of it by hand."],
-      ["Accounting software", "Such as QuickBooks and Xero", [0, 2, 0, 1, 1, 2, 1, 0, 0], "Solid books and invoices. The bookkeeping is still mostly yours to do, and planning stops at a basic budget."],
-      ["ERPs", "Such as NetSuite and Odoo", [1, 2, 0, 1, 1, 2, 1, 1, 0], "Broad and configurable. Much of the work is manual, and planning is usually a separate module."],
-      ["AI accounting", "Such as Rillet and Digits", [1, 2, 0, 2, 2, 2, 1, 0, 1], "The closest to us on the books, with billing built in. Planning is newer and lighter."],
-      ["Billing tools", "Such as Chargebee and Maxio", [1, 2, 0, 0, 0, 0, 0, 0, 0], "Subscriptions and invoices, then the numbers are sent to your accounting system."],
-      ["Planning tools", "Such as Pigment and Abacum", [0, 0, 0, 0, 0, 1, 2, 2, 2], "Strong forecasting on numbers imported from somewhere else."],
-      ["Commission tools", "Such as CaptivateIQ and QuotaPath", [0, 0, 2, 0, 0, 0, 0, 0, 0], "One job done well, fed by your CRM and billing data."]];
-    var use = [1, 1, 0, 0, 0, 0, 0], open = -1;
-    function cells(v, cls) { var h = "", n = 0; G.forEach(function (g, gi) { h += '<span class="m-cg">'; g[1].forEach(function () { h += '<i class="m-c' + v[n] + '" title="' + JOBS[n] + '"></i>'; n++; }); h += "</span>"; }); return '<span class="m-cells ' + (cls || "") + '">' + h + "</span>"; }
-    function draw() {
-      var picked = C.filter(function (c, i) { return use[i]; }), un = JOBS.map(function (j, n) { return picked.reduce(function (a, c) { return Math.max(a, c[2][n]); }, 0); });
-      var hand = un.filter(function (x) { return x === 1; }).length, none = JOBS.filter(function (j, n) { return un[n] === 0; }), N = picked.length;
-      var head = '<div class="m-crow m-chead"><span></span><span class="m-cells">' + G.map(function (g) { return '<span class="m-cg"><b>' + g[0] + "</b></span>"; }).join("") + "</span></div>";
-      el.innerHTML = '<div class="m-cmp"><div class="m-clist">' + head + C.map(function (c, i) {
-        return '<div class="m-crow' + (use[i] ? " m-on" : "") + '"><span class="m-cname"><button type="button" class="m-tick" data-u="' + i + '" aria-pressed="' + !!use[i] + '" aria-label="I use ' + c[0] + '">' + (use[i] ? "&#10003;" : "") + '</button><button type="button" class="m-cn" data-o="' + i + '" aria-expanded="' + (open === i) + '"><b>' + c[0] + "</b><small>" + c[1] + "</small></button></span>" + cells(c[2]) + "</div>" +
-          (open === i ? '<div class="m-cdet"><p>' + c[3] + "</p><div>" + JOBS.map(function (j, n) { return '<span><i class="m-c' + c[2][n] + '"></i>' + j + "</span>"; }).join("") + "</div></div>" : "");
-      }).join("") + "</div>" +
-        '<div class="m-cside"><div class="m-cyou"><span class="m-lab">YOUR STACK TODAY</span>' + (N ? "<b>" + N + (N === 1 ? " tool" : " tools") + "</b>" + cells(un) + '<div class="m-fl"><span>Jobs still done by hand</span><b>' + hand + ' of 9</b></div><div class="m-fl"><span>Not covered</span><b>' + (none.length ? none.join(", ") : "Nothing") + '</b></div><div class="m-fl"><span>Connections to keep in sync</span><b>' + (N > 1 ? "At least " + (N - 1) : "None") + "</b></div>" : '<p class="m-p">Tick what you use on the left.</p>') + "</div>" +
-        '<div class="m-cus"><span class="m-lab" style="color:#C7D2E6">COUNTAHEAD</span><b>1 system</b>' + cells([2, 2, 2, 2, 2, 2, 2, 2, 2], "m-inv") + '<div class="m-fl"><span>Jobs done by agents, approved by you</span><b>9 of 9</b></div><div class="m-fl"><span>Connections to keep in sync</span><b>None</b></div><p>The contract, the ledger and the forecast are the same data, so nothing is exported or retyped.</p></div></div></div>';
-    }
-    on(el, "[data-u]", function (t) { var i = +t.getAttribute("data-u"); use[i] = use[i] ? 0 : 1; draw(); });
-    on(el, "[data-o]", function (t) { var i = +t.getAttribute("data-o"); open = open === i ? -1 : i; draw(); }); draw();
-  };
 
-  /* ---------- customer record ---------- */
-  W.customer = function (el) {
-    var CU = [["Harbor Labs", "Software, 120 people", [["Maya Chen", "Head of Finance, pays the invoices"], ["Tom Reyes", "VP Operations, signed the contract"]], "$48,000", "40 seats, 12 months, renews Dec 2027", "Nothing overdue", "Priya"],
-      ["Northwind Ltd", "Logistics, 300 people", [["Elena Novak", "Finance Manager, pays the invoices"], ["Sam Okafor", "COO, signed the contract"]], "$132,000", "110 seats, 24 months, renews Mar 2028", "$18,000 overdue by 34 days", "Daniel"],
-      ["Kestrel Freight", "Freight, 80 people", [["Jon Halvorsen", "Controller, pays the invoices"]], "$72,000", "60 seats, 12 months, renews Nov 2027", "$6,000 due in 5 days", "Priya"]], sel = 0;
-    function draw() {
-      var c = CU[sel];
-      el.innerHTML = '<div class="m-two m-tw2"><div class="m-list"><div class="m-grp"><span>Customers, synced with your CRM</span><b>41</b></div>' + CU.map(function (x, i) { return '<button type="button" class="m-row" data-i="' + i + '" aria-pressed="' + (i === sel) + '"><span><b>' + x[0] + "</b><small>" + x[1] + "</small></span><b>" + x[3] + "</b></button>"; }).join("") + "</div>" +
-        '<div class="m-pane"><span class="m-lab">' + c[0].toUpperCase() + ": ONE RECORD</span><div class=\"m-stats\">" + stat("RECURRING REVENUE", c[3], "m-good") + stat("OWNER", c[6]) + '</div><div class="m-kv"><span>Contract</span><b>' + c[4] + '</b></div><div class="m-kv"><span>Receivables</span><b>' + c[5] + "</b></div>" +
-        '<span class="m-lab" style="margin-top:6px">PEOPLE</span>' + c[2].map(function (p) { return '<div class="m-li" style="padding:8px 0"><span><b>' + p[0] + "</b><small>" + p[1] + "</small></span></div>"; }).join("") + '<p class="m-foot" style="padding:0">Sales, finance and the forecast all read this record, so there is one answer to what a customer pays.</p></div></div>';
-    }
-    on(el, "[data-i]", function (t) { sel = +t.getAttribute("data-i"); draw(); }); draw();
-  };
 
-  /* ---------- contract lifecycle ---------- */
-  W.lifecycle = function (el) {
-    var ST = ["Drafted", "Approved", "Signed", "Live"], step = 0, arr = 48000, log, did;
-    function reset() { step = 0; arr = 48000; did = {}; log = [["Drafted by an agent from the won deal in your CRM", "40 seats at $100, 12 months, 15% discount"]]; }
-    function draw() {
-      var act = step === 0 ? [["go", "Send for approval"]] : step === 1 ? [["go", "Approve the discount"]] : step === 2 ? [["go", "Customer signs"]] : [].concat(did.a ? [] : [["amend", "Amend: add 20 seats"]], did.r ? [] : [["renew", "Renew for 12 months"]], [["reset", "Start again"]]);
-      el.innerHTML = '<div class="m-chain">' + ST.map(function (s, i) { return '<span class="m-node' + (i <= step ? " m-first" : "") + '">' + s + "</span>"; }).join('<i aria-hidden="true">&rarr;</i>') + '</div><div class="m-two m-tw2"><div class="m-pane"><div class="m-doch"><b>Harbor Labs, subscription agreement</b><span class="m-chip ' + (step === 3 ? "m-blue" : "m-warn") + '">' + (step === 1 ? "NEEDS APPROVAL" : step === 2 ? "OUT FOR SIGNATURE" : ST[step].toUpperCase()) + '</span></div><div class="m-stats">' + stat("RECURRING REVENUE", step === 3 ? $k(arr) : "Not yet", step === 3 ? "m-good" : "") + stat("SEATS", did.a ? 60 : 40) + stat("ENDS", did.r ? "Nov 2028" : "Nov 2027") + "</div>" +
-        (step === 1 ? '<div class="m-note">A 15% discount is above the 10% a rep can give alone, so this waits for finance. Example policy.</div>' : "") +
-        '<div class="m-acts" style="flex-wrap:wrap">' + act.map(function (a, i) { return '<button type="button" class="m-btn' + (a[0] === "reset" || i > 0 ? " m-ghost" : "") + '" data-a="' + a[0] + '">' + a[1] + "</button>"; }).join("") + '</div><p class="m-foot" style="padding:0">Nothing counts as revenue until the contract is signed. After that, every change goes through an amendment, and agents never alter signed terms.</p></div>' +
-        '<div class="m-pane"><span class="m-lab">WHAT HAPPENED, AND WHAT IT CHANGED</span>' + log.slice().reverse().map(function (l) { return '<div class="m-li" style="padding:9px 0"><span><b>' + l[0] + "</b><small>" + l[1] + "</small></span></div>"; }).join("") + "</div></div>";
-    }
-    on(el, "[data-a]", function (t) {
-      var a = t.getAttribute("data-a");
-      if (a === "reset") reset();
-      else if (a === "go") { step++; log.push(step === 1 ? ["Sent to finance for approval", "Discount above the rep limit"] : step === 2 ? ["Approved and sent for signature", "Terms locked, signing link sent to Tom Reyes"] : ["Signed on the platform. Contract is live", "Booked $48,000 of recurring revenue, 12 invoices scheduled, commission accrued, forecast updated"]); }
-      else if (a === "amend") { did.a = 1; arr += 24000; log.push(["Amendment signed: 20 more seats", "Upsell of $24,000, a part-month invoice drafted, revenue schedule and commission updated"]); }
-      else if (a === "renew") { did.r = 1; log.push(["Renewed for 12 months", "End date moved to Nov 2028, no change to recurring revenue, removed from the at-risk list in the forecast"]); }
-      draw();
-    });
-    reset(); draw();
-  };
 
   /* ---------- collections agent ---------- */
   W.collect = function (el) {
@@ -414,15 +301,4 @@
     on(el, "[data-i]", function (t) { sel = +t.getAttribute("data-i"); draw(); }); on(el, "[data-a]", function () { sent[sel] = 1; draw(); }); draw();
   };
 
-  /* ---------- deals pipeline ---------- */
-  W.pipeline = function (el) {
-    var STG = [["Qualified", 20], ["Proposal", 50], ["Negotiation", 75], ["Won", 100]], D;
-    function reset() { D = [["Tallis and Co, 30 more seats", 36, 2, "Daniel"], ["Pallas Robotics", 84, 2, "Priya"], ["Quill Studio", 30, 1, "Sofia"], ["Ferro Marine", 96, 1, "Priya"], ["Lumen Dental", 42, 0, "Sofia"], ["Arden Foods", 60, 0, "Daniel"]]; }
-    function draw() {
-      var open = D.filter(function (d) { return d[2] < 3; }), tot = open.reduce(function (a, d) { return a + d[1]; }, 0), wt = open.reduce(function (a, d) { return a + d[1] * STG[d[2]][1] / 100; }, 0), won = D.filter(function (d) { return d[2] === 3; });
-      el.innerHTML = '<div class="m-stats">' + stat("OPEN PIPELINE", "$" + tot + "k") + stat("WEIGHTED, IN THE FORECAST", "$" + Math.round(wt) + "k", "m-good") + stat("WON HERE", won.length) + '</div><div class="m-pipe">' + STG.map(function (st, si) { var ds = D.map(function (d, i) { return [d, i]; }).filter(function (x) { return x[0][2] === si; });
-        return '<div class="m-pcol"><div class="m-grp"><span>' + st[0] + "</span><b>" + (si < 3 ? st[1] + "%" : "") + "</b></div>" + (ds.length ? ds.map(function (x) { var d = x[0]; return '<div class="m-deal"><b>' + d[0] + "</b><small>$" + d[1] + "k a year, " + d[3] + "</small>" + (si < 3 ? '<button type="button" class="m-btn m-sm" data-i="' + x[1] + '">' + (si === 2 ? "Mark won" : "Move on") + " &rarr;</button>" : '<span class="m-chip m-blue">CONTRACT DRAFTED</span>') + "</div>"; }).join("") : '<p class="m-foot">Nothing here.</p>') + "</div>"; }).join("") + '</div><p class="m-foot">Move a deal along. The forecast takes each deal at its stage probability, and a won deal becomes a draft contract with its terms filled in. Sample probabilities. <button type="button" class="m-link" data-a="r">Reset</button></p>';
-    }
-    on(el, "[data-i]", function (t) { D[+t.getAttribute("data-i")][2]++; draw(); }); on(el, "[data-a]", function () { reset(); draw(); }); reset(); draw();
-  };
 })();
