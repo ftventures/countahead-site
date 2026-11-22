@@ -2253,7 +2253,7 @@ answerSource: ans.src
   function price(i) { return B[i].p === null ? "Let's talk" : usd(B[i].p); }
 
   /* one shared band, so every section on the page follows the visitor's size */
-  var S = window.CAPrice = window.CAPrice || { band: 1, subs: [] };
+  var S = window.CAPrice = window.CAPrice || { band: 0, subs: [] };
   function setBand(i, from) { if (i === S.band) return; S.band = i; S.subs.forEach(function (f) { try { f(i, from); } catch (e) {} }); }
   function sub(f) { S.subs.push(f); }
 
@@ -2271,8 +2271,8 @@ answerSource: ans.src
 
   W.pricefind = function (el) {
     var PRESETS = [["Two founders, no revenue yet", 0, 18e4], ["Seed stage, 10 people", 6e5, 1.6e6], ["Shop or cafe", 9e5, 8.2e5], ["Series A, 40 people", 3e6, 7e6], ["Profitable, $20M in sales", 2e7, 1.7e7]];
-    var rev = 6e5, spend = 1.6e6, shown = 149, pre = 1;
-    el.innerHTML = '<div class="pf"><div class="pf-in"><small>START FROM A COMPANY LIKE YOURS</small><div class="pf-pre">' + PRESETS.map(function (p, i) { return '<button type="button" data-pre="' + i + '">' + p[0] + "</button>"; }).join("") + '</div><small>OR SET YOUR OWN, LAST TWELVE MONTHS</small><label><span>Revenue <b data-v="r"></b></span><input type="range" min="0" max="600" step="1" data-k="r" aria-label="Revenue over the last twelve months"></label><label><span>Spending <b data-v="s"></b></span><input type="range" min="0" max="600" step="1" data-k="s" aria-label="Spending over the last twelve months"></label><p class="pf-why" aria-live="polite"></p></div><div class="pf-out"><small>YOUR PRICE</small><div class="pf-price"><b></b><span>a month</span></div><p class="pf-band"></p><ul class="pf-inc"><li>Books, plan, revenue and company records</li><li>Unlimited users</li><li>Your accountant\'s seat is free</li><li>No setup fee</li></ul><a class="pf-go" href="#compare">Compare with what you pay today <span aria-hidden="true">&rarr;</span></a></div><div class="pf-lad" role="group" aria-label="Price by company size">' + B.map(function (b, i) { return '<button type="button" data-b="' + i + '" style="--h:' + (22 + i * 13) + '%"><i aria-hidden="true"></i><b>' + (b.p === null ? "Quote" : usd(b.p)) + "</b><span>" + b.sh + "</span></button>"; }).join("") + '</div></div><p class="pf-note">Planned launch prices, in US dollars. Countahead is still being built and is not on sale yet.</p>';
+    var rev = 0, spend = 18e4, shown = 49, pre = 0, moved = 0;
+    el.innerHTML = '<div class="pf"><div class="pf-in"><small>START FROM A COMPANY LIKE YOURS</small><div class="pf-pre">' + PRESETS.map(function (p, i) { return '<button type="button" data-pre="' + i + '">' + p[0] + "</button>"; }).join("") + '</div><small>OR SET YOUR OWN, LAST TWELVE MONTHS</small><label><span>Revenue <b data-v="r"></b></span><input type="range" min="0" max="600" step="1" data-k="r" aria-label="Revenue over the last twelve months"></label><label><span>Spending <b data-v="s"></b></span><input type="range" min="0" max="600" step="1" data-k="s" aria-label="Spending over the last twelve months"></label><p class="pf-why" aria-live="polite"></p></div><div class="pf-out"><small class="pf-lab">STARTS AT</small><div class="pf-price"><b></b><span>a month</span></div><p class="pf-band"></p><ul class="pf-inc"><li>Books, plan, revenue and company records</li><li>Unlimited users</li><li>Your accountant\'s seat is free</li><li>No setup fee</li></ul><a class="pf-go" href="#compare">Compare with what you pay today <span aria-hidden="true">&rarr;</span></a></div><div class="pf-lad" role="group" aria-label="Price by company size">' + B.map(function (b, i) { return '<button type="button" data-b="' + i + '" style="--h:' + (22 + i * 13) + '%"><i aria-hidden="true"></i><b>' + (b.p === null ? "Quote" : usd(b.p)) + "</b><span>" + b.sh + "</span></button>"; }).join("") + '</div></div><p class="pf-note">Planned launch prices, in US dollars. Countahead is still being built and is not on sale yet.</p>';
     var pb = $(el, ".pf-price b");
     function draw() {
       var size = Math.max(rev, spend), i = bandOf(size), b = B[i];
@@ -2285,12 +2285,13 @@ answerSource: ans.src
       $(el, ".pf-band").innerHTML = b.p === null ? "<b>" + b.lab + ".</b> Everything included, priced with you, with a named contact." : "<b>" + b.lab + ".</b> " + usd(b.p * 12) + " a year. Checked once a year, never mid-year.";
       all(el, "[data-b]").forEach(function (x) { x.setAttribute("aria-pressed", +x.getAttribute("data-b") === i); });
       all(el, "[data-pre]").forEach(function (x) { x.setAttribute("aria-pressed", +x.getAttribute("data-pre") === pre); });
+      $(el, ".pf-lab").textContent = moved ? "YOUR PRICE" : "STARTS AT";
       setBand(i, "find");
     }
-    el.addEventListener("input", function (e) { var k = e.target.getAttribute && e.target.getAttribute("data-k"); if (!k) return; var v = fromPos(+e.target.value); if (k === "r") rev = v; else spend = v; pre = -1; draw(); });
-    on(el, "[data-pre]", function (b) { pre = +b.getAttribute("data-pre"); rev = PRESETS[pre][1]; spend = PRESETS[pre][2]; draw(); });
-    on(el, "[data-b]", function (b) { var m = B[+b.getAttribute("data-b")].mid; rev = m[0]; spend = m[1]; pre = -1; draw(); });
-    sub(function (i, from) { if (from === "find") return; var m = B[i].mid; rev = m[0]; spend = m[1]; pre = -1; draw(); });
+    el.addEventListener("input", function (e) { var k = e.target.getAttribute && e.target.getAttribute("data-k"); if (!k) return; var v = fromPos(+e.target.value); if (k === "r") rev = v; else spend = v; pre = -1; moved = 1; draw(); });
+    on(el, "[data-pre]", function (b) { pre = +b.getAttribute("data-pre"); rev = PRESETS[pre][1]; spend = PRESETS[pre][2]; moved = 1; draw(); });
+    on(el, "[data-b]", function (b) { var m = B[+b.getAttribute("data-b")].mid; rev = m[0]; spend = m[1]; pre = -1; moved = 1; draw(); });
+    sub(function (i, from) { if (from === "find") return; var m = B[i].mid; rev = m[0]; spend = m[1]; pre = -1; moved = 1; draw(); });
     draw();
   };
 
