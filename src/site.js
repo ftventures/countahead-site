@@ -75,5 +75,20 @@
   document.addEventListener("submit", function (e) { e.preventDefault(); });
   window.addEventListener("popstate", function () { var f = location.pathname.split("/").pop() || "index.html"; if (!/\.html$/.test(f)) f += ".html"; go(f + location.hash, false).catch(function () {}); });
 
+  /* section row under the header: mark the section in view and slide a marker to it */
+  var spyT = 0, spyLast = "";
+  function spy() {
+    spyT = 0;
+    var nav = document.querySelector("header .subnav.onpage[aria-label='On this page']"); if (!nav || !nav.offsetParent) return;
+    var links = [].slice.call(nav.querySelectorAll("a[href^='#']")), cur = null, line = 150;
+    links.forEach(function (a) { var el = document.getElementById(a.getAttribute("href").slice(1)); if (el && el.getBoundingClientRect().top <= line) cur = a; });
+    var mk = nav.querySelector(".sp-mk"); if (!mk) { mk = document.createElement("i"); mk.className = "sp-mk"; mk.setAttribute("aria-hidden", "true"); nav.appendChild(mk); }
+    links.forEach(function (a) { if (a === cur) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current"); });
+    if (cur) { mk.style.width = cur.offsetWidth + "px"; mk.style.transform = "translateX(" + cur.offsetLeft + "px)"; mk.style.opacity = "1"; var id = cur.getAttribute("href"); if (id !== spyLast) { spyLast = id; var l = cur.offsetLeft - 24, r = cur.offsetLeft + cur.offsetWidth + 24; if (l < nav.scrollLeft) nav.scrollLeft = l; else if (r > nav.scrollLeft + nav.clientWidth) nav.scrollLeft = r - nav.clientWidth; } }
+    else { mk.style.opacity = "0"; spyLast = ""; }
+  }
+  function spyQ() { if (!spyT) spyT = requestAnimationFrame(spy); }
+  if (!window.__PRERENDER) { window.addEventListener("scroll", spyQ, { passive: true }); window.addEventListener("resize", spyQ); setTimeout(spyQ, 600); document.addEventListener("click", function () { setTimeout(spyQ, 500); }); }
+
   boot();
 })();
