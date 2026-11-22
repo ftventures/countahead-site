@@ -7,9 +7,9 @@ ${inner}
 </div>
 </section>`;
 
-  const top = subhero("For accountants, bookkeepers and fractional CFOs", "Less typing.", "More of the work only you can do.", "Agents collect, code and match. You review, decide, sign and advise, with your name on it. Watch one item travel between the agent and you.", `<div class="r4" data-widget="accthero"></div>`);
+  const top = subhero("For accountants and bookkeepers", "Less typing.", "More of the work only you can do.", "Agents collect, code and match. You review, decide, sign and advise, with your name on it. Watch one item travel between the agent and you.", `<div class="r4" data-widget="accthero"></div>`);
 
-  const role = mock("your-seat", "#FFFFFF", "Pick your seat", "What changes for you, " + C("and what does not."), "The work is different for a bookkeeper, a firm owner, a fractional CFO and an accountant inside a company. Choose yours.", "acctrole");
+  const role = mock("your-seat", "#FFFFFF", "Pick your seat", "What changes for you, " + C("and what does not."), "The work is different for a bookkeeper, a firm owner and an accountant inside a company. Choose yours.", "acctrole");
 
   const shift = mock("who-does-what", "#F6F8FC", "Who does what", "The typing moves. " + C("The judgment does not."), "A month-end holds two kinds of work. Flip the switch and watch which jobs move and which stay exactly where they are.", "acctshift");
 
@@ -25,7 +25,7 @@ ${inner}
   const adv = [["A monthly pack with your name on it", "Statements, the few measures that matter for that kind of business, and what changed and why.", "plan.html#board-pack", "See the packs"], ["Runway and what-ifs", "Model the decision your client is facing, a hire, a price rise, a raise, on their real numbers.", "plan.html#scenarios", "See scenarios"], ["A forecast you can stand behind", "Built from signed contracts and known costs first, with assumptions kept separate and labeled.", "plan.html#forecast", "See the forecast"], ["Ready for every client meeting", "What moved, what needs a decision and what to raise, prepared before you walk in.", "plan.html#today", "See the daily view"], ["A model for the raise", "A three-statement model with live formulas, for the client who is about to meet investors.", "plan.html#model", "See the model"], ["A health check to open the conversation", "Connect a prospect's books, read only, and show them what is wrong with the structure before any commitment.", "integrations.html#switch", "See switching"]];
   const advice = `<section id="advice" class="ab-sec ab-dark">
 <div class="wrap" style="display: flex; flex-direction: column; gap: 32px">
-<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 900px"><p class="ey" style="color: #FFFFFF">From entry work to advice</p><h2 class="h2" style="color: #FFFFFF">The hours you get back <span style="color: var(--pop)">are for advising.</span></h2><p class="lead" style="color: #E1E7F2">Every planning tool in Countahead is yours to run for a client. A fractional CFO can open on these and never look at the close.</p></div>
+<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 900px"><p class="ey" style="color: #FFFFFF">From entry work to advice</p><h2 class="h2" style="color: #FFFFFF">The hours you get back <span style="color: var(--pop)">are for advising.</span></h2><p class="lead" style="color: #E1E7F2">Every planning tool in Countahead is yours to run for a client, so the hours you get back can go on the advice clients pay most for.</p></div>
 <div class="ab-rules rv">${adv.map((p, i) => `<div class="ab-rule"><span class="ab-n">0${i + 1}</span><b>${p[0]}</b><p>${p[1]}</p><a href="${p[2]}">${p[3]} <span aria-hidden="true">&rarr;</span></a></div>`).join("")}</div>
 </div>
 </section>`;
@@ -60,10 +60,10 @@ ${inner}
   const perks = [["Your own firm's books, free", "Run your practice on Countahead at no charge, for as long as you use it. The best way to judge it is on your own numbers."], ["In the directory from day one", "When the list of firms opens, you are on it from the start, marked as a founding firm. The list is in no order of merit. It never ranks or rates."], ["A say in what gets built", "The review queue, firm templates and pricing for firms are still open. You help decide them."]];
   const founding = `<section id="founding-firms" class="ab-sec" style="background: #FFD15C">
 <div class="wrap" style="display: flex; flex-direction: column; gap: 28px">
-<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 900px"><p class="ey" style="color: #0B1B3A">Founding firms</p><h2 class="h2">Ten firms will shape this. <span style="color: #2450DC">Yours could be one.</span></h2><p class="lead" style="color: #0B1B3A">Before there is a product to sell, we are asking a small group of bookkeepers, CPA firms and fractional CFOs to tell us where it would fail them. In return:</p></div>
+<div class="rv" style="display: flex; flex-direction: column; gap: 14px; max-width: 900px"><p class="ey" style="color: #0B1B3A">Founding firms</p><h2 class="h2">Ten firms will shape this. <span style="color: #2450DC">Yours could be one.</span></h2><p class="lead" style="color: #0B1B3A">Before there is a product to sell, we are asking a small group of bookkeepers and CPA firms to tell us where it would fail them. In return:</p></div>
 <div class="ab-grid3 rv">${perks.map((c) => `<div class="ab-card"><b>${c[0]}</b><p>${c[1]}</p></div>`).join("")}</div>
 <div class="rv" data-widget="founding" style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px"><a href="#access" data-ff class="ab-cta">Ask to be a founding firm <span aria-hidden="true">&rarr;</span></a><span style="font-size: 15px; color: #0B1B3A">No commitment either way. Felipe writes back himself.</span></div>
 </div>
 </section>`;
-  return [["accountants.html", "For accountants, bookkeepers and fractional CFOs | Countahead", "Agents collect, code and match. Review, judgment, sign-off and advice stay with the accountant. Try the review queue, set a rule, and see what changes for your practice.", [top, role, shift, rules, review, hours, practice, advice, founding, faq, promises, shape, access]]];
+  return [["accountants.html", "For accountants and bookkeepers | Countahead", "Agents collect, code and match. Review, judgment, sign-off and advice stay with the accountant. Try the review queue, set a rule, and see what changes for your practice.", [top, role, shift, rules, review, hours, practice, advice, founding, faq, promises, shape, access]]];
 };
