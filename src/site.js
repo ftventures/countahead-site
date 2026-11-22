@@ -82,7 +82,14 @@
     var nav = document.querySelector("header .subnav.onpage[aria-label='On this page']"); if (!nav || !nav.offsetParent) return;
     var links = [].slice.call(nav.querySelectorAll("a[href^='#']")), cur = null, line = 150;
     links.forEach(function (a) { var el = document.getElementById(a.getAttribute("href").slice(1)); if (el && el.getBoundingClientRect().top <= line) cur = a; });
-    var mk = nav.querySelector(".sp-mk"); if (!mk) { mk = document.createElement("i"); mk.className = "sp-mk"; mk.setAttribute("aria-hidden", "true"); nav.appendChild(mk); }
+    var mk = { style: {} }, pr = document.querySelector("header .prog");
+    if (pr && links.length) {
+      var y = window.scrollY + line, tops = links.map(function (a) { var el = document.getElementById(a.getAttribute("href").slice(1)); return el ? el.getBoundingClientRect().top + window.scrollY : 1e9; }), rc = links.map(function (a) { return a.getBoundingClientRect(); }), ix = -1, x;
+      tops.forEach(function (t, i) { if (t <= y) ix = i; });
+      if (ix < 0) x = rc[0].left * Math.max(0, Math.min(1, window.scrollY / Math.max(1, tops[0] - line)));
+      else { var nx = ix + 1 < tops.length ? tops[ix + 1] : document.documentElement.scrollHeight - window.innerHeight + line, f = Math.max(0, Math.min(1, (y - tops[ix]) / Math.max(1, nx - tops[ix]))), to = ix + 1 < rc.length ? rc[ix + 1].left : rc[ix].right; x = rc[ix].left + f * (to - rc[ix].left); }
+      pr.style.animation = "none"; pr.style.display = "block"; pr.style.transformOrigin = "0 50%"; pr.style.transform = "scaleX(" + Math.max(0, Math.min(1, x / window.innerWidth)).toFixed(4) + ")";
+    }
     links.forEach(function (a) { if (a === cur) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current"); });
     if (cur) { mk.style.width = cur.offsetWidth + "px"; mk.style.transform = "translateX(" + cur.offsetLeft + "px)"; mk.style.opacity = "1"; var id = cur.getAttribute("href"); if (id !== spyLast) { spyLast = id; var l = cur.offsetLeft - 24, r = cur.offsetLeft + cur.offsetWidth + 24; if (l < nav.scrollLeft) nav.scrollLeft = l; else if (r > nav.scrollLeft + nav.clientWidth) nav.scrollLeft = r - nav.clientWidth; } }
     else { mk.style.opacity = "0"; spyLast = ""; }
