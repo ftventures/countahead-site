@@ -1,6 +1,11 @@
 {
   "name": "countahead-site",
   "private": true,
-  "scripts": { "build": "node src/build.js" },
-  "devDependencies": { "jsdom": "^24.0.0" }
+  "scripts": {
+    "build": "node src/build.js"
+  },
+  "devDependencies": {
+    "jsdom": "^24.0.0",
+    "puppeteer-core": "^23.0.0"
+  }
 }

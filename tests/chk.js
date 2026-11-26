@@ -1,0 +1,5 @@
+const p=require('puppeteer-core');
+(async()=>{const b=await p.launch({executablePath:'/usr/bin/google-chrome',args:['--no-sandbox']});
+for(const pn of ['software','ai-usage','online-stores','consumer-brands','wholesale','services','professional-services','hospitality','retail','other-industries']){const pg=await b.newPage();await pg.setViewport({width:1280,height:800});await pg.goto('http://localhost:8766/'+pn+'.html',{waitUntil:'networkidle0'});
+console.log(pn.padEnd(22),await pg.evaluate(()=>{const q=s=>{const e=document.querySelector(s);return e?e.textContent.trim().slice(0,60):'-'};const tabs=w=>[...document.querySelectorAll('[data-widget="'+w+'"] [aria-pressed="true"]')].map(x=>x.textContent.trim().slice(0,28)).slice(0,2).join(' / ');return 'SELL: '+q('[data-widget=revflow] .m-chain .m-lab')+' | DASH: '+tabs('analytics')+' | PACK: '+q('[data-widget=pack] small')+' | tabsVisible:'+[...document.querySelectorAll('[data-widget=revflow] .m-tabs,[data-widget=analytics] [role=tablist],[data-widget=analytics] .a-views')].map(e=>getComputedStyle(e).display).join(',')}));await pg.close();}
+await b.close();})();

@@ -1,0 +1,6 @@
+const p=require('puppeteer-core');
+(async()=>{const b=await p.launch({executablePath:'/usr/bin/google-chrome',args:['--no-sandbox']});
+for(const [pn,w] of [['plan',1280],['plan',390],['professional-services',1280]]){const pg=await b.newPage();await pg.setViewport({width:w,height:900});await pg.emulateMediaFeatures([{name:'prefers-reduced-motion',value:'reduce'}]);const errs=[];pg.on('pageerror',e=>errs.push(e.message));await pg.goto('http://localhost:8766/'+pn+'.html',{waitUntil:'networkidle0'});const W='[data-widget="analytics"]';const e=await pg.$(W);await e.scrollIntoView();
+if(pn==='plan'){for(let i=0;i<5;i++){await pg.evaluate((W,i)=>document.querySelector(W+' [data-i="'+i+'"]').click(),W,i);for(let k=0;k<8;k++)await pg.evaluate((W,k)=>document.querySelector(W+' [data-k="'+k+'"]').click(),W,k);}await pg.evaluate(W=>{document.querySelector(W+' [data-i="0"]').click();document.querySelector(W+' [data-k="2"]').click();document.querySelector(W+' [data-add]').click()},W);}
+await new Promise(r=>setTimeout(r,300));await e.screenshot({path:'/tmp/job/ba/ad-'+pn+'-'+w+'.png'});console.log(pn,w,await pg.evaluate(()=>document.documentElement.scrollWidth-innerWidth),errs.join('|'));await pg.close();}
+await b.close();})();

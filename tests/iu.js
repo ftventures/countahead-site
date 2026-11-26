@@ -1,0 +1,6 @@
+const p=require('puppeteer-core');
+(async()=>{const b=await p.launch({executablePath:'/usr/bin/google-chrome',args:['--no-sandbox']});
+for(const pn of ['software','ai-usage','online-stores','consumer-brands','wholesale','services','professional-services','hospitality','retail','other-industries','accountants','finance-leads']){const pg=await b.newPage();await pg.setViewport({width:1280,height:900});await pg.emulateMediaFeatures([{name:'prefers-reduced-motion',value:'reduce'}]);const errs=[];pg.on('pageerror',e=>errs.push(e.message));await pg.goto('http://localhost:8766/'+pn+'.html',{waitUntil:'networkidle0'});await new Promise(r=>setTimeout(r,700));
+console.log(pn.padEnd(22),await pg.evaluate(()=>{const e=document.querySelector('[data-widget=invupdate] .iu-hd b');const k=document.querySelector('[data-widget=invupdate] .iu-kp small');const n=document.querySelector('.subnav.sp');return (e?e.textContent.slice(0,34):'-')+' | '+(k?k.textContent:'-')+' | row '+(n?n.scrollWidth-n.clientWidth:'-')+' over '+(document.documentElement.scrollWidth-innerWidth)+' frac:'+(document.body.textContent.match(/fractional/gi)||[]).length}),errs.join('|'));
+if(pn==='retail'){const e=await pg.$('[data-widget=invupdate]');await e.scrollIntoView();await e.screenshot({path:'/tmp/job/ba/iu-retail.png'});}await pg.close();}
+await b.close();})();

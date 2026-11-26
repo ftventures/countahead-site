@@ -1,0 +1,9 @@
+const p=require('puppeteer-core');
+(async()=>{const b=await p.launch({executablePath:'/usr/bin/google-chrome',args:['--no-sandbox']});
+for(const pn of ['ai-usage','consumer-brands','wholesale','professional-services','retail','services','hospitality','other-industries']){for(const w of [1280,390]){const pg=await b.newPage();await pg.setViewport({width:w,height:900});await pg.emulateMediaFeatures([{name:'prefers-reduced-motion',value:'reduce'}]);const errs=[];pg.on('pageerror',e=>errs.push(e.message));await pg.goto('http://localhost:8766/'+pn+'.html',{waitUntil:'networkidle0'});
+const r=await pg.evaluate(()=>({over:document.documentElement.scrollWidth-innerWidth,h1:document.querySelector('h1').textContent.slice(0,50),n:document.querySelectorAll('[data-widget]').length,row:(()=>{const n=document.querySelector('.subnav.sp');return n&&n.offsetParent?n.scrollWidth-n.clientWidth:'-'})()}));
+if(r.over||errs.length||w===1280)console.log(pn,w,JSON.stringify(r),errs.join('|'));
+if(w===1280&&(pn==='professional-services'||pn==='ai-usage')){await pg.screenshot({path:'/tmp/job/ba/np-'+pn+'.png'});const sp=await pg.$('#specifics');if(sp&&pn==='professional-services'){await sp.scrollIntoView();await new Promise(r=>setTimeout(r,400));await sp.screenshot({path:'/tmp/job/ba/np-spec.png'});}}
+await pg.close();}}
+const pg=await b.newPage();await pg.setViewport({width:1440,height:640});await pg.goto('http://localhost:8766/index.html',{waitUntil:'networkidle0'});const t=await pg.$$('.navlinks .nd-t');const bx=await t[1].boundingBox();await pg.mouse.move(bx.x+20,bx.y+10);await new Promise(r=>setTimeout(r,400));await pg.mouse.move(bx.x+20,bx.y+40,{steps:6});await pg.mouse.move(bx.x-200,bx.y+200,{steps:10});await new Promise(r=>setTimeout(r,600));await pg.screenshot({path:'/tmp/job/ba/np-menu.png'});
+await b.close();})();
