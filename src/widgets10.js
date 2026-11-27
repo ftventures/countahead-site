@@ -222,4 +222,49 @@
     on(el, "[data-x]", function () { reset(); f = 0; who = -1; open = 1; draw(); });
     reset(); draw();
   };
+
+  /* ---------- hero, right-hand side: three alternatives for review ---------- */
+  function heroIcons(el) { var m = {}; [].slice.call(el.querySelectorAll("[data-ic]")).forEach(function (x) { m[x.getAttribute("data-ic")] = x.innerHTML; }); return m; }
+  var H2RM = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* B. One thing happens, every part updates */
+  W.heroparts = function (el) {
+    var IC = heroIcons(el), P = [["rev", "Sales"], ["books", "Books"], ["plan", "Plan"], ["people", "People"], ["co", "Company"]];
+    var EV = [
+      ["A deal is signed", "Harbor Labs, 40 seats", 0, ["Contract signed. $48,000 a year", "Invoice drafted. Revenue starts Dec 1", "Recurring revenue up to $4.02M", "Commission of $4,800 accrued", "Board pack: new customer added"]],
+      ["A bill arrives", "Orbit Cloud, $4,812 for hosting", 1, ["", "Read, matched to the card, waiting for your approval", "Hosting forecast up $11k a month", "", "Board pack: margin flagged"]],
+      ["You plan two hires", "Two account executives, from January", 3, ["Selling capacity up from March", "Sales budget updated", "Runway 20 to 18 months", "Two open roles on the org chart", "Option pool: 0.6% reserved"]]];
+    var cur = 0, step = 9, timer, auto = !window.__PRERENDER && !H2RM;
+    function order(e) { var o = [e[2]]; for (var i = 0; i < 5; i++) if (i !== e[2]) o.push(i); return o; }
+    function draw() {
+      var e = EV[cur], o = order(e), lit = {}; o.forEach(function (i, n) { if (n < step) lit[i] = 1; });
+      el.innerHTML = '<div class="hv"><div class="hv-top"><small>One thing happens</small><div class="hv-ev" role="group" aria-label="Event">' + EV.map(function (x, i) { return '<button type="button" data-e="' + i + '" aria-pressed="' + (i === cur) + '">' + x[0] + "</button>"; }).join("") + '</div><p class="hv-sub">' + e[1] + '</p></div><div class="hv-mid"><small>Every part of the company updates</small>' + P.map(function (p, i) { var t = e[3][i], on_ = lit[i]; return '<div class="hv-row' + (on_ ? (t ? " hv-on" : " hv-none") : "") + (i === e[2] && on_ ? " hv-src" : "") + '"><i aria-hidden="true">' + (IC[p[0]] || "") + "</i><b>" + p[1] + "</b><span>" + (on_ ? (t || "No change") : "") + "</span></div>"; }).join("") + '</div><p class="hv-foot">One ledger underneath. Nothing is typed twice, and nothing has to be reconciled.</p></div>';
+      clearTimeout(timer);
+      if (auto) timer = setTimeout(function () { if (step < 5) step++; else { cur = (cur + 1) % EV.length; step = 1; } draw(); }, step < 5 ? 650 : 3200);
+    }
+    on(el, "[data-e]", function (b) { cur = +b.getAttribute("data-e"); auto = false; step = H2RM ? 9 : 1; draw(); if (!H2RM) { var n = 1, t = setInterval(function () { n++; step = n; draw(); if (n >= 5) clearInterval(t); }, 350); } });
+    if (auto) step = 1; draw();
+  };
+
+  /* C. Six tools that disagree, or one that cannot */
+  W.herostack = function (el) {
+    var IC = heroIcons(el), T = [["Accounting software", "$331k"], ["Planning spreadsheet", "$318k"], ["CRM", "$346k"], ["Contract signing", "3 unsigned"], ["Cap table", "Out of date"], ["People records", "22 or 24?"]];
+    var one = 0, timer, auto = !window.__PRERENDER && !H2RM;
+    function draw() {
+      el.innerHTML = '<div class="hv"><div class="hv-top"><div class="hv-sw" role="group" aria-label="View"><button type="button" data-o="0" aria-pressed="' + (one === 0) + '">Most companies today</button><button type="button" data-o="1" aria-pressed="' + (one === 1) + '">With Countahead</button></div></div>' + (one === 0 ? '<div class="hv-mid"><small>Six tools, each with its own version of the numbers</small><div class="hv-tools">' + T.map(function (t) { return "<div><b>" + t[0] + "</b><span>" + (t[1].charAt(0) === "$" ? "Revenue: " : "") + t[1] + "</span></div>"; }).join("") + '</div></div><p class="hv-foot">Someone exports, pastes and reconciles between them every month. The plan is always a few weeks behind the books.</p>' : '<div class="hv-mid"><small>One system, one set of numbers</small><div class="hv-one"><div class="hv-parts">' + [["rev", "Sales"], ["books", "Books"], ["plan", "Plan"], ["people", "People"], ["co", "Company"]].map(function (p) { return '<span><i aria-hidden="true">' + (IC[p[0]] || "") + "</i>" + p[1] + "</span>"; }).join("") + '</div><div class="hv-led">One ledger</div><div class="hv-facts"><div><span>Revenue, everywhere it appears</span><b>$331k</b></div><div><span>Books closed through</span><b>Yesterday</b></div><div><span>Runway, from those books</span><b>20 months</b></div></div></div></div><p class="hv-foot">Agents keep the books inside the rules you set. The plan reads the same ledger, so it is never behind.</p>') + "</div>";
+      clearTimeout(timer); if (auto) timer = setTimeout(function () { one = 1 - one; draw(); }, one ? 5200 : 3600);
+    }
+    on(el, "[data-o]", function (b) { one = +b.getAttribute("data-o"); auto = false; draw(); });
+    draw();
+  };
+
+  /* D. This morning */
+  W.heroday = function (el) {
+    var need = [["Orbit Cloud bill, $4,812", "Over your $500 limit"], ["New supplier: Pacific Mills", "First bill from them"]], done = ["31 bank lines matched", "14 entries posted inside your rules", "3 invoices sent", "2 late payers reminded"];
+    function draw() {
+      el.innerHTML = '<div class="hv"><div class="hv-top"><small>Wednesday, 8:02 am</small><p class="hv-hi">Good morning. Your books are up to date.</p></div><div class="hv-mid"><small>Done overnight, by agents</small><ul class="hv-done">' + done.map(function (d) { return "<li>" + d + "</li>"; }).join("") + '</ul><small>' + (need.length ? "Needs you, " + need.length + (need.length === 1 ? " thing" : " things") : "Needs you") + "</small>" + (need.length ? need.map(function (n, i) { return '<div class="hv-need"><span><b>' + n[0] + "</b><em>" + n[1] + '</em></span><button type="button" data-ok="' + i + '">Approve</button></div>'; }).join("") : '<p class="hv-clear">Nothing. You are clear for today.</p>') + '<small>What is ahead</small><div class="hv-ahead"><div><span>Runway</span><b>20 months</b></div><div><span>Cash low point</span><b>August</b></div><div><span>Board pack</span><b>Ready Friday</b></div></div></div><p class="hv-foot">The past kept by agents, the future read from the same numbers.</p></div>';
+    }
+    on(el, "[data-ok]", function (b) { var n = need.splice(+b.getAttribute("data-ok"), 1)[0]; done.unshift(n[0] + ", approved by you"); draw(); });
+    draw();
+  };
 })();
