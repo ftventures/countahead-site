@@ -40,7 +40,7 @@ if (hero.indexOf('<div class="r5" style="background: rgba(255,255,255,0.07)') < 
 const hw = '<div class="wrap" style="position: relative; z-index: 1; padding-top: 48px; padding-bottom: 88px; display: flex; flex-direction: column; gap: 40px">';
 if (hero.indexOf(hw) < 0) throw new Error("hero wrap not found");
 hero = hero.replace(hw, hw.replace('class="wrap"', 'class="wrap hero2"'));
-hero = hero.slice(0, hero.indexOf('<div class="r5" style="background: rgba(255,255,255,0.07)')) + '<div class="r5 w-hero" data-widget="hero" data-kinds><span hidden data-ic="sw">{{ik:sw}}</span><span hidden data-ic="ai">{{ik:ai}}</span><span hidden data-ic="shop">{{ik:shop}}</span><span hidden data-ic="brand">{{ik:brand}}</span><span hidden data-ic="whole">{{ik:whole}}</span><span hidden data-ic="svc">{{ik:svc}}</span><span hidden data-ic="pro">{{ik:pro}}</span><span hidden data-ic="cafe">{{ik:cafe}}</span><span hidden data-ic="hosp">{{ik:hosp}}</span><span hidden data-ic="other">{{ik:other}}</span></div>\n' + hero.slice(hero.lastIndexOf("</div>\n</section>"));
+hero = hero.slice(0, hero.indexOf('<div class="r5" style="background: rgba(255,255,255,0.07)')) + '<div class="r5 w-hero" data-widget="heroparts"><span hidden data-ic="rev">{{ik:rev}}</span><span hidden data-ic="books">{{ik:books}}</span><span hidden data-ic="plan">{{ik:plan}}</span><span hidden data-ic="people">{{ik:people}}</span><span hidden data-ic="co">{{ik:co}}</span></div>\n' + hero.slice(hero.lastIndexOf("</div>\n</section>"));
 {
   const LEAD = "One ledger for the past and the future. Agents keep the books inside the rules you set, and your forecast, runway and board pack read the same numbers.";
   if (hero.indexOf(LEAD) < 0) throw new Error("hero lead not found");

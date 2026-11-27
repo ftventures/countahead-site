@@ -232,8 +232,9 @@
     var IC = heroIcons(el), P = [["rev", "Sales"], ["books", "Books"], ["plan", "Plan"], ["people", "People"], ["co", "Company"]];
     var EV = [
       ["A deal is signed", "Harbor Labs, 40 seats", 0, ["Contract signed. $48,000 a year", "Invoice drafted. Revenue starts Dec 1", "Recurring revenue up to $4.02M", "Commission of $4,800 accrued", "Board pack: new customer added"]],
-      ["A bill arrives", "Orbit Cloud, $4,812 for hosting", 1, ["", "Read, matched to the card, waiting for your approval", "Hosting forecast up $11k a month", "", "Board pack: margin flagged"]],
-      ["You plan two hires", "Two account executives, from January", 3, ["Selling capacity up from March", "Sales budget updated", "Runway 20 to 18 months", "Two open roles on the org chart", "Option pool: 0.6% reserved"]]];
+      ["A customer cancels", "Northwind, $36,000 a year, ends Jan 31", 0, ["Renewal marked lost. Reason recorded", "Final invoice sent. Unused months refunded", "Recurring revenue down $36k. Runway 20 to 19 months", "Commission on the renewal reversed", "Board pack: churn and the reason added"]],
+      ["You hire a sales lead", "Offer accepted, starts January 6", 3, ["New quota of $600k added to the forecast", "Salary cost accrues from January 6", "Runway 20 to 18 months", "Offer signed. Added to the org chart", "Option grant drafted for board approval"]],
+      ["You raise a round", "$3M seed, four investors", 4, ["", "$3M received and posted to equity", "Runway 20 to 41 months", "Hiring plan unlocked: four open roles", "Cap table updated. Four investors added"]]];
     var cur = 0, step = 9, timer, auto = !window.__PRERENDER && !H2RM;
     function order(e) { var o = [e[2]]; for (var i = 0; i < 5; i++) if (i !== e[2]) o.push(i); return o; }
     function draw() {
