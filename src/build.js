@@ -44,7 +44,7 @@ hero = hero.slice(0, hero.indexOf('<div class="r5" style="background: rgba(255,2
 {
   const LEAD = "One ledger for the past and the future. Agents keep the books inside the rules you set, and your forecast, runway and board pack read the same numbers.";
   if (hero.indexOf(LEAD) < 0) throw new Error("hero lead not found");
-  hero = hero.replace(LEAD, "Sales, books, plan, people and company on one ledger. Agents do the work inside the rules you set, so the numbers you plan on are the numbers in your books.");
+  hero = hero.replace(LEAD, "Stop waiting for your books to close, rebuilding forecasts in spreadsheets and making decisions with outdated numbers. Your accounting, financial planning and business operations, finally working together. <strong>AI does the work. You stay in control.</strong>");
   const c = hero.indexOf("</div>", hero.indexOf("See why it is different"));
   hero = hero.slice(0, c + 6) + '\n<p class="ho-for r4"><small>Built for</small><a href="founders.html">Founders and CEOs</a><a href="finance-leads.html">Finance leads</a><a href="investors.html">Investors and boards</a><a href="accountants.html">Accountants</a></p>' + hero.slice(c + 6);
 }
