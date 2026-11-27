@@ -49,7 +49,7 @@ ${step("03", "THEN", "One email from me", "When early access opens. Nothing in b
 ${look("#0B1B3A", "THE BOOKS", "Statements that are current today", "Agents keep the books inside the rules you set.", "https://countahead.ai/books")}
 ${look("#2450DC", "THE PLAN", "Change a hire, watch runway move", "Forecast, scenarios and the board pack on the same numbers.", "https://countahead.ai/plan")}
 ${look("#FFD15C", "REVENUE", "From signed deal to cash", "Contracts, billing and revenue recognition, entered once.", "https://countahead.ai/revenue")}
-${look("#8FA8F5", "PRICING", "One price, set by your size", "Planned launch prices, from $49 a month. Not on sale yet.", "https://countahead.ai/pricing", true)}
+${look("#8FA8F5", "PRICING", "One price, set by your size", "Planned launch prices, from $79 a month. Not on sale yet.", "https://countahead.ai/pricing", true)}
 </table></td></tr>
 
 <tr><td class="px" style="padding:26px 32px 30px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;border-top:1px solid #D5DBE5"><tr><td style="padding-top:20px;${F};font-size:17px;line-height:1.55;color:#0B1B3A">Thank you for being early. Replies to this email come straight to me.</td></tr><tr><td style="padding-top:16px"><table role="presentation" cellpadding="0" cellspacing="0"><tr>

@@ -149,7 +149,7 @@ const LOOK = [
   ["integrations.html#switch", "Switching", "Bring your books from QuickBooks, Xero or NetSuite.", "Run a switch, month by month", "{{n:integrations.html}} demos", "int"],
   ["other-industries.html#fit", "By industry", "Ten kinds of business, each with its own demo, dashboard and board pack.", "Check that it fits yours", "10 industries", "other"],
   ["accountants.html#review", "For accountants", "Less typing. More of the work only you can do.", "Work a review queue and sign off", "{{n:accountants.html}} demos", "acct"],
-  ["pricing.html", "Pricing", "One price by company size. Everything included.", "Find your price", "From $49", "price"]
+  ["pricing.html", "Pricing", "One price by company size. Everything included.", "Find your price", "From $79", "price"]
 ];
 const explore = `<section id="look-inside" style="padding: 88px 0; border-bottom: 1px solid #D5DBE5">
 <div class="wrap" style="display: flex; flex-direction: column; gap: 28px">
