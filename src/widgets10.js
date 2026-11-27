@@ -230,19 +230,33 @@
   /* B. One thing happens, every part updates */
   W.heroparts = function (el) {
     var IC = heroIcons(el), P = [["rev", "Sales"], ["books", "Books"], ["plan", "Plan"], ["people", "People"], ["co", "Company"]];
-    var EV = [
+    var KD = [["Software", [
       ["A deal is signed", "Harbor Labs, 40 seats", 0, ["Contract signed. $48,000 a year", "Invoice drafted. Revenue starts Dec 1", "Recurring revenue up to $4.02M", "Commission of $4,800 accrued", "Board pack: new customer added"]],
       ["A customer cancels", "Northwind, $36,000 a year, ends Jan 31", 0, ["Renewal marked lost. Reason recorded", "Final invoice sent. Unused months refunded", "Recurring revenue down $36k. Runway 20 to 19 months", "Commission on the renewal reversed", "Board pack: churn and the reason added"]],
       ["You hire a sales lead", "Offer accepted, starts January 6", 3, ["New quota of $600k added to the forecast", "Salary cost accrues from January 6", "Runway 20 to 18 months", "Offer signed. Added to the org chart", "Option grant drafted for board approval"]],
-      ["You raise a round", "$3M seed, four investors", 4, ["", "$3M received and posted to equity", "Runway 20 to 41 months", "Hiring plan unlocked: four open roles", "Cap table updated. Four investors added"]]];
+      ["You raise a round", "$3M seed, four investors", 4, ["", "$3M received and posted to equity", "Runway 20 to 41 months", "Hiring plan unlocked: four open roles", "Cap table updated. Four investors added"]]]],
+      ["Online store", [
+      ["A big order ships", "Fern & Co, 1,200 units wholesale", 0, ["Order shipped. Invoice for $28,800 sent", "Stock down at cost. Margin recorded", "January cash forecast up", "", "Monthly report: largest order so far"]],
+      ["Stock runs low", "Best seller, nine days of stock left", 1, ["Sales forecast capped until the restock", "Purchase order drafted for your approval", "Cash low point moves to March", "", "Supplier terms on hand: 30 days to pay"]],
+      ["You launch a product", "New range, on sale from February 1", 0, ["Added to the store and the price list", "Stock and cost set up. First batch on order", "Launch added to the forecast. Runway 14 to 13 months", "Freelance designer's hours tracked to the launch", "Supplier contract signed and filed"]]]],
+      ["Shop or cafe", [
+      ["A busy Saturday", "312 sales at the till, $6,480", 0, ["Every sale recorded as it is rung up", "Takings, tips and sales tax posted", "Month now 8% ahead of plan", "Tips split across the six on shift", ""]],
+      ["A supplier raises prices", "Coffee beans up 12% from February", 1, ["Margin per cup recalculated", "New cost applied from the next bill", "Year's profit down $5,400 unless prices move", "", "Supplier contract updated and filed"]],
+      ["You open a second site", "Lease signed, opening in March", 4, ["Second till set up with the same menu", "New location tracked separately", "Fit-out cost added. Cash low point in April", "Eight roles to hire", "Lease filed. Renewal date tracked"]]]],
+      ["Agency", [
+      ["A retainer is signed", "Bright & Co, $12,000 a month", 0, ["Contract signed for 12 months", "First invoice drafted for December 1", "Recurring income up $144k a year", "Team now at 92% of capacity", "Contract filed. Renewal date tracked"]],
+      ["A project runs over", "Website rebuild, 40 hours over budget", 3, ["Change request drafted for the client", "Extra hours ready to invoice", "Project margin 38% to 24%", "Hours logged against the project", ""]],
+      ["You hire a contractor", "Freelance designer, three days a week", 3, ["Capacity for one more project", "Their invoices matched to projects", "Runway 11 to 10 months", "Added to the team. Day rate recorded", "Contract sent for signature"]]]]];
+    var kd = 0, EV = KD[0][1];
     var cur = 0, step = 9, timer, auto = !window.__PRERENDER && !H2RM;
     function order(e) { var o = [e[2]]; for (var i = 0; i < 5; i++) if (i !== e[2]) o.push(i); return o; }
     function draw() {
       var e = EV[cur], o = order(e), lit = {}; o.forEach(function (i, n) { if (n < step) lit[i] = 1; });
-      el.innerHTML = '<div class="hv"><div class="hv-top"><small>One thing happens</small><div class="hv-ev" role="group" aria-label="Event">' + EV.map(function (x, i) { return '<button type="button" data-e="' + i + '" aria-pressed="' + (i === cur) + '">' + x[0] + "</button>"; }).join("") + '</div><p class="hv-sub">' + e[1] + '</p></div><div class="hv-mid"><small>Every part of the company updates</small>' + P.map(function (p, i) { var t = e[3][i], on_ = lit[i]; return '<div class="hv-row' + (on_ ? (t ? " hv-on" : " hv-none") : "") + (i === e[2] && on_ ? " hv-src" : "") + '"><i aria-hidden="true">' + (IC[p[0]] || "") + "</i><b>" + p[1] + "</b><span>" + (on_ ? (t || "No change") : "") + "</span></div>"; }).join("") + '</div><p class="hv-foot">One ledger underneath. Nothing is typed twice, and nothing has to be reconciled.</p></div>';
+      el.innerHTML = '<div class="hv"><div class="hv-top"><div class="hv-kd" role="group" aria-label="Kind of business">' + KD.map(function (k, i) { return '<button type="button" data-k="' + i + '" aria-pressed="' + (i === kd) + '">' + k[0] + "</button>"; }).join("") + '</div><small>One thing happens</small><div class="hv-ev" role="group" aria-label="Event">' + EV.map(function (x, i) { return '<button type="button" data-e="' + i + '" aria-pressed="' + (i === cur) + '">' + x[0] + "</button>"; }).join("") + '</div><p class="hv-sub">' + e[1] + '</p></div><div class="hv-mid"><small>Every part of the company updates</small>' + P.map(function (p, i) { var t = e[3][i], on_ = lit[i]; return '<div class="hv-row' + (on_ ? (t ? " hv-on" : " hv-none") : "") + (i === e[2] && on_ ? " hv-src" : "") + '"><i aria-hidden="true">' + (IC[p[0]] || "") + "</i><b>" + p[1] + "</b><span>" + (on_ ? (t || "No change") : "") + "</span></div>"; }).join("") + '</div><p class="hv-foot">One ledger underneath. Nothing is typed twice, and nothing has to be reconciled.</p></div>';
       clearTimeout(timer);
       if (auto) timer = setTimeout(function () { if (step < 5) step++; else { cur = (cur + 1) % EV.length; step = 1; } draw(); }, step < 5 ? 650 : 3200);
     }
+    on(el, "[data-k]", function (b) { kd = +b.getAttribute("data-k"); EV = KD[kd][1]; cur = 0; auto = false; step = H2RM ? 9 : 1; draw(); if (!H2RM) { var n = 1, t = setInterval(function () { n++; step = n; draw(); if (n >= 5) clearInterval(t); }, 350); } });
     on(el, "[data-e]", function (b) { cur = +b.getAttribute("data-e"); auto = false; step = H2RM ? 9 : 1; draw(); if (!H2RM) { var n = 1, t = setInterval(function () { n++; step = n; draw(); if (n >= 5) clearInterval(t); }, 350); } });
     if (auto) step = 1; draw();
   };
